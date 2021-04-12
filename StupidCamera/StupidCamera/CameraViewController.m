@@ -6,6 +6,7 @@
 //
 
 #import "CameraViewController.h"
+#import <GPUImage/GPUImage.h>
 
 #define TOP_VIEW_HEIGHT 60
 
@@ -13,6 +14,9 @@
 @property (strong, nonatomic) UIView *topView;
 @property (strong, nonatomic) UIView *showView;
 @property (strong, nonatomic) UIView *bottomView;
+
+@property (strong, nonatomic) GPUImageStillCamera *camera;
+@property (strong, nonatomic) GPUImageView *imageView;
 @end
 
 @implementation CameraViewController
@@ -22,6 +26,11 @@
     [self initTopView];
     [self initShowView];
     [self initBottomView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self initCameraView];
 }
 
 - (void)initTopView {
@@ -74,6 +83,17 @@
     [self.view addConstraint:ConstraintRight];
     NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_bottomView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_bottomView.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     [self.view addConstraint:ConstraintBottom];
+}
+
+- (void)initCameraView {
+    _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
+    _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
+    _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
+    [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
+    _imageView = [[GPUImageView alloc] initWithFrame:_showView.bounds];
+    [_camera addTarget:_imageView];
+    [_showView addSubview:_imageView];
+    [_camera startCameraCapture];
 }
 
 /*
