@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		86A160FD2C93FD4FE6416200 /* Pods_StupidCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2257FAF0F1FC9E1C6FF9783 /* Pods_StupidCamera.framework */; };
+		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
 		FC6A35532624358100CA4434 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35522624358100CA4434 /* AppDelegate.m */; };
 		FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35552624358100CA4434 /* SceneDelegate.m */; };
 		FC6A35592624358100CA4434 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35582624358100CA4434 /* ViewController.m */; };
@@ -19,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		0DFE828F9FB7D34B38FA0C91 /* Pods-StupidCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.debug.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.debug.xcconfig"; sourceTree = "<group>"; };
-		A2257FAF0F1FC9E1C6FF9783 /* Pods_StupidCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StupidCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6A354E2624358100CA4434 /* StupidCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StupidCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6A35512624358100CA4434 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC6A35522624358100CA4434 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		FC6A35602624358100CA4434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC6A35622624358100CA4434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC6A35632624358100CA4434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A160FD2C93FD4FE6416200 /* Pods_StupidCamera.framework in Frameworks */,
+				62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +50,7 @@
 		4FF61262739EE8D0565CC1A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A2257FAF0F1FC9E1C6FF9783 /* Pods_StupidCamera.framework */,
+				FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,6 +111,7 @@
 				FC6A354A2624358100CA4434 /* Sources */,
 				FC6A354B2624358100CA4434 /* Frameworks */,
 				FC6A354C2624358100CA4434 /* Resources */,
+				79CDCEE854949DA5FFB79BD0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,6 +187,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79CDCEE854949DA5FFB79BD0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StupidCamera/Pods-StupidCamera-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StupidCamera/Pods-StupidCamera-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StupidCamera/Pods-StupidCamera-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
