@@ -14,6 +14,7 @@
 @property (strong, nonatomic) UIView *topView;
 @property (strong, nonatomic) UIView *showView;
 @property (strong, nonatomic) UIView *bottomView;
+@property (strong, nonatomic) UIButton *captureButton;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
 @property (strong, nonatomic) GPUImageView *imageView;
@@ -26,6 +27,7 @@
     [self initTopView];
     [self initShowView];
     [self initBottomView];
+    [self initCaptureButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -83,6 +85,26 @@
     [self.view addConstraint:ConstraintRight];
     NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_bottomView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_bottomView.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     [self.view addConstraint:ConstraintBottom];
+}
+
+- (void)initCaptureButton {
+    if (!_captureButton) {
+        _captureButton = [[UIButton alloc] init];
+        [_bottomView addSubview:_captureButton];
+        [_captureButton setTitle:@"拍照" forState:UIControlStateNormal];
+        [_captureButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_captureButton setTitleColor:UIColor.lightGrayColor forState:UIControlStateHighlighted];
+    }
+    _captureButton.backgroundColor = UIColor.redColor;
+    _captureButton.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_bottomView attribute:NSLayoutAttributeTop multiplier:1.0 constant:50];
+    [_bottomView addConstraint:ConstraintTop];
+    NSLayoutConstraint *ConstraintLeft = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_bottomView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:100];
+    [_bottomView addConstraint:ConstraintLeft];
+    NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-100];
+    [_bottomView addConstraint:ConstraintRight];
+    NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_bottomView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-50];
+    [_bottomView addConstraint:ConstraintBottom];
 }
 
 - (void)initCameraView {
