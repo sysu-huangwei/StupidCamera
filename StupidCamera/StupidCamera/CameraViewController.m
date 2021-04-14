@@ -14,6 +14,7 @@
 @property (strong, nonatomic) UIView *topView;
 @property (strong, nonatomic) UIView *showView;
 @property (strong, nonatomic) UIView *bottomView;
+@property (strong, nonatomic) UIButton *backButton;
 @property (strong, nonatomic) UIButton *captureButton;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
@@ -28,6 +29,7 @@
     [self initShowView];
     [self initBottomView];
     [self initCaptureButton];
+    [self initBackButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,6 +89,27 @@
     [self.view addConstraint:ConstraintBottom];
 }
 
+- (void)initBackButton {
+    if (!_backButton) {
+        _backButton = [[UIButton alloc] init];
+        [_topView addSubview:_backButton];
+        [_backButton setTitle:@"返回" forState:UIControlStateNormal];
+        [_backButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        [_backButton setTitleColor:UIColor.lightGrayColor forState:UIControlStateHighlighted];
+    }
+    _backButton.backgroundColor = UIColor.redColor;
+    _backButton.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_backButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_backButton.superview attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    [_topView addConstraint:ConstraintTop];
+    NSLayoutConstraint *ConstraintLeft = [NSLayoutConstraint constraintWithItem:_backButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_backButton.superview attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    [_topView addConstraint:ConstraintLeft];
+    NSLayoutConstraint *ConstraintWidth = [NSLayoutConstraint constraintWithItem:_backButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    [_backButton addConstraint:ConstraintWidth];
+    NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_backButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_backButton.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    [_topView addConstraint:ConstraintBottom];
+    [_backButton addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)initCaptureButton {
     if (!_captureButton) {
         _captureButton = [[UIButton alloc] init];
@@ -112,6 +135,11 @@
     [self takeOriginPhoto:^(UIImage *image) {
         NSLog(@"1");
     }];
+}
+
+- (void)backClick:(UIButton *)button{
+    [_camera stopCameraCapture];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)initCameraView {
