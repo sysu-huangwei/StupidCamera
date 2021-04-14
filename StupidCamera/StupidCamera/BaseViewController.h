@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import <GPUImage/GPUImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIView *showView;
 @property (strong, nonatomic) UIView *bottomView;
 @property (strong, nonatomic) UIButton *backButton;
+@property (strong, nonatomic) GPUImageView *imageView;
 @end
 
 NS_ASSUME_NONNULL_END

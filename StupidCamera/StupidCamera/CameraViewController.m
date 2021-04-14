@@ -13,7 +13,6 @@
 @property (strong, nonatomic) UIButton *captureButton;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
-@property (strong, nonatomic) GPUImageView *imageView;
 @end
 
 @implementation CameraViewController
@@ -25,7 +24,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self initCameraView];
+    [self initCamera];
 }
 
 
@@ -59,14 +58,12 @@
 }
 
 
-- (void)initCameraView {
+- (void)initCamera {
     _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
     _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
     _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
     [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
-    _imageView = [[GPUImageView alloc] initWithFrame:self.showView.bounds];
-    [_camera addTarget:_imageView];
-    [self.showView addSubview:_imageView];
+    [_camera addTarget:self.imageView];
     [_camera startCameraCapture];
 }
 

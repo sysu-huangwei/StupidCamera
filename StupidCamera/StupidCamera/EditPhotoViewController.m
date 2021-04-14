@@ -11,7 +11,6 @@
 @interface EditPhotoViewController ()
 @property (strong, nonatomic) UIImage *originImage;
 @property (strong, nonatomic) GPUImagePicture *originPicture;
-@property (strong, nonatomic) GPUImageView *imageView;
 @end
 
 @implementation EditPhotoViewController
@@ -31,11 +30,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    _imageView = [[GPUImageView alloc] initWithFrame:self.view.bounds];
     GPUImageFilter *filter = [[GPUImageFilter alloc] init];
     [_originPicture addTarget:filter];
-    [filter addTarget:_imageView];
-    [self.view addSubview:_imageView];
+    [filter addTarget:self.imageView];
     [_originPicture processImage];
 }
 

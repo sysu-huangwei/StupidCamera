@@ -6,10 +6,11 @@
 //
 
 #import "ViewController.h"
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EditPhotoViewController : ViewController
+@interface EditPhotoViewController : BaseViewController
 
 - (instancetype)initWithUIImage:(UIImage *)image;
 

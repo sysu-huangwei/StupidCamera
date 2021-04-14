@@ -23,6 +23,11 @@
     [self initBackButton];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self initGPUImageView];
+}
+
 - (void)initTopView {
     if (!self.topView) {
         self.topView = [[UIView alloc] init];
@@ -94,6 +99,11 @@
     NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:self.backButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.backButton.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     [self.topView addConstraint:ConstraintBottom];
     [self.backButton addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)initGPUImageView {
+    self.imageView = [[GPUImageView alloc] initWithFrame:self.showView.bounds];
+    [self.showView addSubview:self.imageView];
 }
 
 - (void)backClick:(UIButton *)button{
