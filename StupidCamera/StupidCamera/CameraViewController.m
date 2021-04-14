@@ -7,6 +7,7 @@
 
 #import "CameraViewController.h"
 #import <GPUImage/GPUImage.h>
+#import "EditPhotoViewController.h"
 
 #define TOP_VIEW_HEIGHT 60
 
@@ -133,7 +134,9 @@
 
 - (void)takeOriginPhotoClick:(UIButton *)button{
     [self takeOriginPhoto:^(UIImage *image) {
-        NSLog(@"1");
+        EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
+        editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:editPhotoViewController animated:NO completion:nil];
     }];
 }
 
