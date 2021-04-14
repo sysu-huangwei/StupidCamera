@@ -16,9 +16,7 @@
 		FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC6A355F2624358100CA4434 /* LaunchScreen.storyboard */; };
 		FC6A35642624358100CA4434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35632624358100CA4434 /* main.m */; };
 		FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC794A97262446E1009E46A6 /* CameraViewController.m */; };
-		FC794A9A262446E1009E46A6 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC794A98262446E1009E46A6 /* CameraViewController.xib */; };
 		FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */; };
-		FCEF78E42626961D00F20ED0 /* EditPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCEF78E22626961D00F20ED0 /* EditPhotoViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,10 +35,8 @@
 		FC6A35632624358100CA4434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC794A96262446E1009E46A6 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		FC794A97262446E1009E46A6 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		FC794A98262446E1009E46A6 /* CameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
-		FCEF78E22626961D00F20ED0 /* EditPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPhotoViewController.xib; sourceTree = "<group>"; };
 		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,10 +104,8 @@
 				FC6A35632624358100CA4434 /* main.m */,
 				FC794A96262446E1009E46A6 /* CameraViewController.h */,
 				FC794A97262446E1009E46A6 /* CameraViewController.m */,
-				FC794A98262446E1009E46A6 /* CameraViewController.xib */,
 				FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */,
 				FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */,
-				FCEF78E22626961D00F20ED0 /* EditPhotoViewController.xib */,
 			);
 			path = StupidCamera;
 			sourceTree = "<group>";
@@ -174,9 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCEF78E42626961D00F20ED0 /* EditPhotoViewController.xib in Resources */,
 				FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */,
-				FC794A9A262446E1009E46A6 /* CameraViewController.xib in Resources */,
 				FC6A355E2624358100CA4434 /* Assets.xcassets in Resources */,
 				FC6A355C2624358100CA4434 /* Main.storyboard in Resources */,
 			);
