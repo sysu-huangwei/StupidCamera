@@ -27,7 +27,6 @@
     [self initCamera];
     [_camera startCameraCapture];
 }
-}
 
 
 - (void)initCaptureButton {
