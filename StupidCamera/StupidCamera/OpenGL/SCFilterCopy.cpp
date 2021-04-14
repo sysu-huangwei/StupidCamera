@@ -6,7 +6,7 @@
 
 #include "SCFilterCopy.hpp"
 
-const char *kMTFilterCopyVertexShaderString = SHADER_STRING
+const char *kSCFilterCopyVertexShaderString = SHADER_STRING
 (
  attribute vec2 a_position;
  attribute vec2 a_texCoord;
@@ -19,7 +19,7 @@ const char *kMTFilterCopyVertexShaderString = SHADER_STRING
  }
 );
 
-const char *kMTFilterCopyFragmentShaderString = SHADER_STRING
+const char *kSCFilterCopyFragmentShaderString = SHADER_STRING
 (
  precision highp float;
 
@@ -41,7 +41,7 @@ SCFilterCopy::~SCFilterCopy() {
 }
 
 void SCFilterCopy::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString(kMTFilterCopyVertexShaderString, kMTFilterCopyFragmentShaderString);
+    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterCopyVertexShaderString, kSCFilterCopyFragmentShaderString);
     positionAttribute = glGetAttribLocation(programID, "a_position");
     textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
     inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
