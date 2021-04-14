@@ -25,6 +25,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self initCamera];
+    [_camera startCameraCapture];
+}
 }
 
 
@@ -59,12 +61,13 @@
 
 
 - (void)initCamera {
-    _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
-    _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
-    _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
-    [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
-    [_camera addTarget:self.imageView];
-    [_camera startCameraCapture];
+    if (!_camera) {
+        _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
+        _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
+        _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
+        [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
+        [_camera addTarget:self.imageView];
+    }
 }
 
 - (void)takeOriginPhoto:(void (^)(UIImage *image))block {
@@ -76,6 +79,7 @@
     [self->_camera capturePhotoAsImageProcessedUpToFilter:filter withCompletionHandler:^(UIImage *image, NSError *error) {
         [self->_camera removeTarget:filter];
         filter = nil;
+        [_camera stopCameraCapture];
         block(image);
     }];
 }
