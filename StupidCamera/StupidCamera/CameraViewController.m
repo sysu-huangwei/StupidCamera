@@ -105,6 +105,13 @@
     [_bottomView addConstraint:ConstraintRight];
     NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_bottomView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-50];
     [_bottomView addConstraint:ConstraintBottom];
+    [_captureButton addTarget:self action:@selector(takeOriginPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)takeOriginPhotoClick:(UIButton *)button{
+    [self takeOriginPhoto:^(UIImage *image) {
+        NSLog(@"1");
+    }];
 }
 
 - (void)initCameraView {
@@ -116,6 +123,19 @@
     [_camera addTarget:_imageView];
     [_showView addSubview:_imageView];
     [_camera startCameraCapture];
+}
+
+- (void)takeOriginPhoto:(void (^)(UIImage *image))block {
+    if (!block) {
+        return;
+    }
+    __block GPUImageFilter* filter = [[GPUImageFilter alloc] init];
+    [_camera addTarget:filter];
+    [self->_camera capturePhotoAsImageProcessedUpToFilter:filter withCompletionHandler:^(UIImage *image, NSError *error) {
+        [self->_camera removeTarget:filter];
+        filter = nil;
+        block(image);
+    }];
 }
 
 /*
