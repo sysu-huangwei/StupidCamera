@@ -18,6 +18,11 @@
 		FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC794A97262446E1009E46A6 /* CameraViewController.m */; };
 		FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */; };
 		FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78EA2626C31700F20ED0 /* BaseViewController.m */; };
+		FCEF7A9C2626E10300F20ED0 /* GPUImageBaseFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */; };
+		FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */; };
+		FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */; };
+		FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */; };
+		FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,17 @@
 		FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		FCEF78E92626C31700F20ED0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		FCEF78EA2626C31700F20ED0 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		FCEF7A9A2626E10300F20ED0 /* GPUImageBaseFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageBaseFilter.h; sourceTree = "<group>"; };
+		FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageBaseFilter.mm; sourceTree = "<group>"; };
+		FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseLog.h; sourceTree = "<group>"; };
+		FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBase.cpp; sourceTree = "<group>"; };
+		FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterCopy.hpp; sourceTree = "<group>"; };
+		FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseDefine.h; sourceTree = "<group>"; };
+		FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCBaseGLUtils.cpp; sourceTree = "<group>"; };
+		FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBase.hpp; sourceTree = "<group>"; };
+		FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCBaseLog.cpp; sourceTree = "<group>"; };
+		FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterCopy.cpp; sourceTree = "<group>"; };
+		FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCBaseGLUtils.hpp; sourceTree = "<group>"; };
 		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +110,7 @@
 		FC6A35502624358100CA4434 /* StupidCamera */ = {
 			isa = PBXGroup;
 			children = (
+				FCEF7AF02627045700F20ED0 /* OpenGL */,
 				FC6A35512624358100CA4434 /* AppDelegate.h */,
 				FC6A35522624358100CA4434 /* AppDelegate.m */,
 				FC6A35542624358100CA4434 /* SceneDelegate.h */,
@@ -111,8 +128,26 @@
 				FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */,
 				FCEF78E92626C31700F20ED0 /* BaseViewController.h */,
 				FCEF78EA2626C31700F20ED0 /* BaseViewController.m */,
+				FCEF7A9A2626E10300F20ED0 /* GPUImageBaseFilter.h */,
+				FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */,
 			);
 			path = StupidCamera;
+			sourceTree = "<group>";
+		};
+		FCEF7AF02627045700F20ED0 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */,
+				FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */,
+				FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */,
+				FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */,
+				FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */,
+				FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */,
+				FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */,
+				FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */,
+				FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */,
+			);
+			path = OpenGL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,13 +263,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */,
 				FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */,
+				FCEF7A9C2626E10300F20ED0 /* GPUImageBaseFilter.mm in Sources */,
 				FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */,
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,
+				FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */,
 				FC6A35532624358100CA4434 /* AppDelegate.m in Sources */,
 				FC6A35642624358100CA4434 /* main.m in Sources */,
+				FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */,
 				FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,
+				FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
