@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GPUImageLutFilter : GPUImageFilter
 
+@property (nonatomic, strong) NSString *lutImagePath;
+
 @end
 
 NS_ASSUME_NONNULL_END

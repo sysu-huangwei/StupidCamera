@@ -21,7 +21,6 @@
         runSynchronouslyOnVideoProcessingQueue(^{
             self->lutFilter = new SCFilterLut();
             self->lutFilter->init();
-            self->lutFilter->setLutImagePath([NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_1.png"].UTF8String);
         });
     }
     return self;
@@ -64,6 +63,13 @@
     {
         dispatch_semaphore_signal(imageCaptureSemaphore);
     }
+}
+
+- (void)setLutImagePath:(NSString *)lutImagePath {
+    runSynchronouslyOnVideoProcessingQueue(^{
+        self->_lutImagePath = lutImagePath;
+        self->lutFilter->setLutImagePath(self->_lutImagePath.UTF8String);
+    });
 }
 
 @end

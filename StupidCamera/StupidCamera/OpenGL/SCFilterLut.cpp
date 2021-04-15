@@ -87,6 +87,9 @@ void SCFilterLut::release() {
 }
 
 unsigned SCFilterLut::render() {
+    if (lutTextureID == 0) {
+        return isRenderToOutside ? textureIDOutside : srcTextureID;
+    }
     beforeDraw();
     
     glActiveTexture(GL_TEXTURE2);

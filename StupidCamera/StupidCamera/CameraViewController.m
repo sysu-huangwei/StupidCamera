@@ -17,6 +17,9 @@
 @property (strong, nonatomic) GPUImageStillCamera *camera;
 @property (strong, nonatomic) GPUImageBaseFilter *baseFilter;
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
+
+@property (strong, nonatomic) NSArray *lutImagePaths;
+@property (assign, nonatomic) int currintLutIndex;
 @end
 
 @implementation CameraViewController
@@ -30,6 +33,15 @@
     [super viewDidAppear:animated];
     [self initCamera];
     [_camera startCameraCapture];
+    _lutImagePaths = @[
+        @"",
+//        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_miss_etikate.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_1.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_2.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_amatorka.png"],
+    ];
+    _currintLutIndex = 0;
 }
 
 
@@ -55,11 +67,13 @@
 }
 
 - (void)takeOriginPhotoClick:(UIButton *)button{
-    [self takeOriginPhoto:^(UIImage *image) {
-        EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
-        editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:editPhotoViewController animated:NO completion:nil];
-    }];
+    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex++]];
+    if (_currintLutIndex == _lutImagePaths.count) { _currintLutIndex = 0; }
+//    [self takeOriginPhoto:^(UIImage *image) {
+//        EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
+//        editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+//        [self presentViewController:editPhotoViewController animated:NO completion:nil];
+//    }];
 }
 
 
