@@ -19,7 +19,7 @@
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 
 @property (strong, nonatomic) NSArray *lutImagePaths;
-@property (assign, nonatomic) int currintLutIndex;
+@property (assign, nonatomic) NSUInteger currintLutIndex;
 @end
 
 @implementation CameraViewController
@@ -66,14 +66,22 @@
     [_captureButton addTarget:self action:@selector(takeOriginPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)showViewGesture:(UISwipeGestureRecognizer *)recognizer {
+    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        _currintLutIndex = _currintLutIndex == _lutImagePaths.count - 1 ? 0 : _currintLutIndex + 1;
+    }
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        _currintLutIndex = _currintLutIndex == 0 ? _lutImagePaths.count - 1 : _currintLutIndex - 1;
+    }
+}
+
 - (void)takeOriginPhotoClick:(UIButton *)button{
-    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex++]];
-    if (_currintLutIndex == _lutImagePaths.count) { _currintLutIndex = 0; }
-//    [self takeOriginPhoto:^(UIImage *image) {
-//        EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
-//        editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-//        [self presentViewController:editPhotoViewController animated:NO completion:nil];
-//    }];
+    [self takeOriginPhoto:^(UIImage *image) {
+        EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
+        editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:editPhotoViewController animated:NO completion:nil];
+    }];
 }
 
 

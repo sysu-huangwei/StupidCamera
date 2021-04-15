@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIView *bottomView;
 @property (strong, nonatomic) UIButton *backButton;
 @property (strong, nonatomic) GPUImageView *imageView;
+- (void)showViewGesture:(UISwipeGestureRecognizer *)recognizer;
 @end
 
 NS_ASSUME_NONNULL_END

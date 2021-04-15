@@ -61,6 +61,19 @@
     [self.view addConstraint:ConstraintLeft];
     NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:self.showView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.showView.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
     [self.view addConstraint:ConstraintRight];
+    
+    UISwipeGestureRecognizer *leftRecognizer;
+    leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showViewGesture:)];
+    [leftRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.showView addGestureRecognizer:leftRecognizer];
+    UISwipeGestureRecognizer *rightRecognizer;
+    rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showViewGesture:)];
+    [rightRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.showView addGestureRecognizer:rightRecognizer];
+}
+
+- (void)showViewGesture:(UISwipeGestureRecognizer *)recognizer {
+    
 }
 
 - (void)initBottomView {
