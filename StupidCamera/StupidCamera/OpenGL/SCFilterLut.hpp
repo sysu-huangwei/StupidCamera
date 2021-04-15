@@ -29,6 +29,8 @@ public:
     /// @param srcTextureID 输入图像的纹理ID
     void setSrcTextureID(unsigned srcTextureID);
     
+    /// 设置LUT图路径，底层加载
+    /// @param path LUT图的路径
     void setLutImagePath(const char *path);
     
     /// 设置滤镜程度

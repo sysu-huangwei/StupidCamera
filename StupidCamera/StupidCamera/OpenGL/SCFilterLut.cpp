@@ -122,6 +122,10 @@ void SCFilterLut::setSrcTextureID(unsigned srcTextureID) {
 
 void SCFilterLut::setLutImagePath(const char *path) {
     int width, height;
+    if (lutTextureID > 0) {
+        glDeleteTextures(1, &lutTextureID);
+        lutTextureID = 0;
+    }
     this->lutTextureID = BaseGLUtils::LoadTexture_File(path, &width, &height);
 }
 
