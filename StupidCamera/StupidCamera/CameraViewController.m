@@ -67,7 +67,7 @@
     [self.bottomView addConstraint:ConstraintRight];
     NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-50];
     [self.bottomView addConstraint:ConstraintBottom];
-    [_captureButton addTarget:self action:@selector(takeOriginPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_captureButton addTarget:self action:@selector(takePhotoClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)initLutAlphaSlider {
@@ -121,8 +121,8 @@
     }
 }
 
-- (void)takeOriginPhotoClick:(UIButton *)button {
-    [self takeOriginPhoto:^(UIImage *image) {
+- (void)takePhotoClick:(UIButton *)button {
+    [self takePhoto:^(UIImage *image) {
         EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
         editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:editPhotoViewController animated:NO completion:nil];
@@ -142,15 +142,11 @@
     }
 }
 
-- (void)takeOriginPhoto:(void (^)(UIImage *image))block {
+- (void)takePhoto:(void (^)(UIImage *image))block {
     if (!block) {
         return;
     }
-    __block GPUImageFilter* filter = [[GPUImageFilter alloc] init];
-    [_camera addTarget:filter];
-    [self->_camera capturePhotoAsImageProcessedUpToFilter:filter withCompletionHandler:^(UIImage *image, NSError *error) {
-        [self->_camera removeTarget:filter];
-        filter = nil;
+    [self->_camera capturePhotoAsImageProcessedUpToFilter:_lutFilter withCompletionHandler:^(UIImage *image, NSError *error) {
         [self->_camera stopCameraCapture];
         block(image);
     }];
