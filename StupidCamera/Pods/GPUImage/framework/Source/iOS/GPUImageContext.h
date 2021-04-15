@@ -1,3 +1,4 @@
+#define GLES_SILENCE_DEPRECATION 1
 #import "GLProgram.h"
 #import "GPUImageFramebuffer.h"
 #import "GPUImageFramebufferCache.h"

@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+#define GLES_SILENCE_DEPRECATION 1
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES2/gl.h>

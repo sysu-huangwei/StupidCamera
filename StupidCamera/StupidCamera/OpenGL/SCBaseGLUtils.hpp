@@ -14,7 +14,7 @@
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #elif PLATFORM_IOS
-#define GLES_SILENCE_DEPRECATION
+#define GLES_SILENCE_DEPRECATION 1
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
 #endif

@@ -31,6 +31,6 @@
 //链接字符串的宏定义
 #define STRINGIZE(x) #x
 #define STRINGIZE2(x) STRINGIZE(x)
-#define SHADER_STRING(text) STRINGIZE2(text)
+#define SHADER_STRING_CPP(text) STRINGIZE2(text)
 
 #endif //SCBASEDEFINE_H

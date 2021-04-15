@@ -8,7 +8,7 @@
 #include "SCFilterLut.hpp"
 #include <stdio.h>
 
-const char *kSCFilterLutVertexShaderString = SHADER_STRING
+const char *kSCFilterLutVertexShaderString = SHADER_STRING_CPP
 (
  attribute vec2 a_position;
  attribute vec2 a_texCoord;
@@ -21,7 +21,7 @@ const char *kSCFilterLutVertexShaderString = SHADER_STRING
 }
  );
 
-const char *kSCFilterLutFragmentShaderString = SHADER_STRING
+const char *kSCFilterLutFragmentShaderString = SHADER_STRING_CPP
 (
  precision highp float;
  

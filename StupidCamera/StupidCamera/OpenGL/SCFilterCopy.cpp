@@ -6,7 +6,7 @@
 
 #include "SCFilterCopy.hpp"
 
-const char *kSCFilterCopyVertexShaderString = SHADER_STRING
+const char *kSCFilterCopyVertexShaderString = SHADER_STRING_CPP
 (
  attribute vec2 a_position;
  attribute vec2 a_texCoord;
@@ -19,7 +19,7 @@ const char *kSCFilterCopyVertexShaderString = SHADER_STRING
 }
  );
 
-const char *kSCFilterCopyFragmentShaderString = SHADER_STRING
+const char *kSCFilterCopyFragmentShaderString = SHADER_STRING_CPP
 (
  precision highp float;
  
