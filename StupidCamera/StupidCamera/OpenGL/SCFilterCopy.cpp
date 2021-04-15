@@ -11,26 +11,26 @@ const char *kSCFilterCopyVertexShaderString = SHADER_STRING
  attribute vec2 a_position;
  attribute vec2 a_texCoord;
  varying vec2 texcoordOut;
-
+ 
  void main()
  {
-     texcoordOut = a_texCoord;
-     gl_Position = vec4(a_position,0.0,1.0);
- }
-);
+    texcoordOut = a_texCoord;
+    gl_Position = vec4(a_position,0.0,1.0);
+}
+ );
 
 const char *kSCFilterCopyFragmentShaderString = SHADER_STRING
 (
  precision highp float;
-
+ 
  uniform sampler2D  u_texture;
  varying vec2 texcoordOut;
  void main()
  {
-     vec4 srcColor = texture2D(u_texture,texcoordOut);
-     gl_FragColor = srcColor;
- }
-);
+    vec4 srcColor = texture2D(u_texture,texcoordOut);
+    gl_FragColor = srcColor;
+}
+ );
 
 SCFilterCopy::SCFilterCopy():SCFilterBase() {
     

@@ -13,18 +13,18 @@ const char *kSCFilterLutVertexShaderString = SHADER_STRING
  attribute vec2 a_position;
  attribute vec2 a_texCoord;
  varying vec2 texcoordOut;
-
+ 
  void main()
  {
     texcoordOut = a_texCoord;
     gl_Position = vec4(a_position,0.0,1.0);
- }
-);
+}
+ );
 
 const char *kSCFilterLutFragmentShaderString = SHADER_STRING
 (
  precision highp float;
-
+ 
  uniform sampler2D u_texture;
  uniform sampler2D u_lut;
  varying vec2 texcoordOut;
@@ -59,7 +59,7 @@ const char *kSCFilterLutFragmentShaderString = SHADER_STRING
     vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
     gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), alpha);
 }
-);
+ );
 
 SCFilterLut::SCFilterLut():SCFilterBase() {
     
