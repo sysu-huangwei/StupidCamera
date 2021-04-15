@@ -42,8 +42,6 @@
 
 - (void)renderToTextureWithVertices:(const GLfloat *)vertices textureCoordinates:(const GLfloat *)textureCoordinates;
 {
-    GLenum err = glGetError();
-    printf("rayyy err1 = %d\n", err);
     if (self.preventRendering)
     {
         [firstInputFramebuffer unlock];
@@ -56,14 +54,9 @@
     {
         [outputFramebuffer lock];
     }
-    err = glGetError();
-    printf("rayyy err2 = %d\n", err);
     self->lutFilter->setSrcTextureID(firstInputFramebuffer.texture);
     self->lutFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
     self->lutFilter->render();
-    
-    err = glGetError();
-    printf("rayyy err3 = %d\n", err);
     
     [firstInputFramebuffer unlock];
     

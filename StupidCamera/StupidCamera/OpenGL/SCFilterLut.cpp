@@ -87,12 +87,6 @@ void SCFilterLut::release() {
 }
 
 unsigned SCFilterLut::render() {
-    GLint err = glGetError();
-    printf("rayyy err4 = %d\n", err);
-    beforeDraw();
-    
-    err = glGetError();
-    printf("rayyy err5 = %d\n", err);
     
     glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, srcTextureID);
@@ -104,13 +98,7 @@ unsigned SCFilterLut::render() {
     
     glUniform1f(alphaUniform, alpha);
     
-    err = glGetError();
-    printf("rayyy err6 = %d\n", err);
-    
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    
-    err = glGetError();
-    printf("rayyy err7 = %d\n", err);
     
     afterDraw();
     return SCFilterBase::render();
