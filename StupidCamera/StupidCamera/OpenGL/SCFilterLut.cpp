@@ -87,6 +87,7 @@ void SCFilterLut::release() {
 }
 
 unsigned SCFilterLut::render() {
+    beforeDraw();
     
     glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, srcTextureID);
