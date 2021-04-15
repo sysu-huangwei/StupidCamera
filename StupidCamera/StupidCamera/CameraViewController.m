@@ -12,6 +12,8 @@
 #import "GPUImageLutFilter.h"
 
 @interface CameraViewController ()
+@property (strong, nonatomic) UISlider *lutAlphaSlider;
+@property (strong, nonatomic) UILabel *lutAlphaLabel;
 @property (strong, nonatomic) UIButton *captureButton;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
@@ -27,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initCaptureButton];
+    [self initLutAlphaSlider];
+    [self initLutAlphaLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -35,7 +39,7 @@
     [_camera startCameraCapture];
     _lutImagePaths = @[
         @"",
-//        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup.png"],
+        //        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup.png"],
         [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_miss_etikate.png"],
         [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_1.png"],
         [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_2.png"],
@@ -66,6 +70,47 @@
     [_captureButton addTarget:self action:@selector(takeOriginPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)initLutAlphaSlider {
+    if (!_lutAlphaSlider) {
+        _lutAlphaSlider = [[UISlider alloc] init];
+        [self.bottomView addSubview:_lutAlphaSlider];
+        [_lutAlphaSlider setValue:1.0f];
+        
+        _lutAlphaSlider.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_lutAlphaSlider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10];
+        [self.bottomView addConstraint:ConstraintTop];
+        NSLayoutConstraint *ConstraintLeft = [NSLayoutConstraint constraintWithItem:_lutAlphaSlider attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:20];
+        [self.bottomView addConstraint:ConstraintLeft];
+        NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_lutAlphaSlider attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-50];
+        [self.bottomView addConstraint:ConstraintRight];
+        
+        [_lutAlphaSlider addTarget:self action:@selector(lutAlphaSliderChange:) forControlEvents:UIControlEventValueChanged];
+    }
+}
+
+- (void)initLutAlphaLabel {
+    if (!_lutAlphaLabel) {
+        _lutAlphaLabel = [[UILabel alloc] init];
+        [self.bottomView addSubview:_lutAlphaLabel];
+        _lutAlphaLabel.text = @"100";
+        
+        _lutAlphaLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_lutAlphaLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10];
+        [self.bottomView addConstraint:ConstraintTop];
+        NSLayoutConstraint *ConstraintWidth = [NSLayoutConstraint constraintWithItem:_lutAlphaLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+        [_lutAlphaLabel addConstraint:ConstraintWidth];
+        NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_lutAlphaLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-10];
+        [self.bottomView addConstraint:ConstraintRight];
+    }
+}
+
+- (void)lutAlphaSliderChange:(UISlider *)slider {
+    _lutAlphaLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
+    [_lutFilter setAlpha:slider.value];
+}
+
 - (void)showViewGesture:(UISwipeGestureRecognizer *)recognizer {
     [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
@@ -76,7 +121,7 @@
     }
 }
 
-- (void)takeOriginPhotoClick:(UIButton *)button{
+- (void)takeOriginPhotoClick:(UIButton *)button {
     [self takeOriginPhoto:^(UIImage *image) {
         EditPhotoViewController *editPhotoViewController = [[EditPhotoViewController alloc] initWithUIImage:image];
         editPhotoViewController.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -106,7 +151,7 @@
     [self->_camera capturePhotoAsImageProcessedUpToFilter:filter withCompletionHandler:^(UIImage *image, NSError *error) {
         [self->_camera removeTarget:filter];
         filter = nil;
-        [_camera stopCameraCapture];
+        [self->_camera stopCameraCapture];
         block(image);
     }];
 }

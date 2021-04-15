@@ -29,6 +29,7 @@
 - (void)dealloc {
     runSynchronouslyOnVideoProcessingQueue(^{
         self->lutFilter->release();
+        delete self->lutFilter;
     });
 }
 
@@ -70,6 +71,10 @@
         self->_lutImagePath = lutImagePath;
         self->lutFilter->setLutImagePath(self->_lutImagePath.UTF8String);
     });
+}
+
+- (void)setAlpha:(float)alpha {
+    lutFilter->setAlpha(alpha);
 }
 
 @end
