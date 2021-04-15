@@ -6,6 +6,10 @@
 
 #include "SCBaseGLUtils.hpp"
 #include <stdio.h>
+#include <cstring>
+#ifdef PLATFORM_IOS
+#include "FileUtilsForIOS.h"
+#endif
 
 unsigned BaseGLUtils::loadShader(int shaderType, const char *source) {
   unsigned shader = glCreateShader(shaderType);
@@ -113,4 +117,75 @@ unsigned BaseGLUtils::createFBO(int texture, int width, int height) {
   }
 
   return frameBuffer;
+}
+
+unsigned char *BaseGLUtils::LoadImage_File(const char *filePath, int *nWidth, int *nHeight) {
+    *nWidth = 0;
+    *nHeight = 0;
+    unsigned char *pData = NULL;
+    long nLength;
+    unsigned char *memoryData = (unsigned char *) file2string(filePath, nLength);
+    if (memoryData == NULL || nLength == 0) {
+        LOGE("file2string failed: filePath = %s", filePath);
+        return pData;
+    }
+
+    pData = IOS_LoadTextureData(memoryData, nLength, nWidth, nHeight);
+
+    if (memoryData) {
+        delete[] memoryData;
+        memoryData = NULL;
+    }
+    return pData;
+}
+
+GLuint LoadTexture_BYTE(GLubyte *pdata, int width, int height, GLenum glFormat) {
+    GLuint textures;
+    glGenTextures(1, &textures);
+    if (textures != 0) {
+        glBindTexture(GL_TEXTURE_2D, textures);
+        if (glFormat == GL_LUMINANCE) {
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+            glTexImage2D(GL_TEXTURE_2D, 0, glFormat, width, height, 0, glFormat,
+                         GL_UNSIGNED_BYTE, pdata);
+            glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+        } else {
+            glTexImage2D(GL_TEXTURE_2D, 0, glFormat, width, height, 0, glFormat,
+                         GL_UNSIGNED_BYTE, pdata);
+        }
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        return textures;
+    } else {
+        LOGE("ERROR in loadTexture!");
+        return 0;
+    }
+}
+
+GLuint
+BaseGLUtils::LoadTexture_File(const char *filePath, int *OutWidth, int *OutHeight) {
+    if (filePath == NULL || strcmp(filePath, "") == 0) {
+        return 0;
+    }
+    int nWidth, nHeight;
+    unsigned char *pData = LoadImage_File(filePath, &nWidth, &nHeight);
+    //loadRGBADataToUIImage(pData, nWidth, nHeight);
+    if (pData == NULL || nWidth * nHeight <= 0) {
+        LOGE("failed to load image: filePath: %s, pData = %p, w * h: %d * %d", filePath, pData,
+             nWidth, nHeight);
+        return 0;
+    }
+
+    GLuint result = LoadTexture_BYTE(pData, nWidth, nHeight, GL_RGBA);
+    SAFE_DELETE_ARRAY(pData);
+
+    if (OutWidth) {
+        *OutWidth = nWidth;
+    }
+    if (OutHeight) {
+        *OutHeight = nHeight;
+    }
+    return result;
 }

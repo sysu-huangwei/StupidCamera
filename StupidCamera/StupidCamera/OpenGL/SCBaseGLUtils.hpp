@@ -74,6 +74,10 @@ public:
   */
  static unsigned createFBO(int texture, int width, int height);
     
+ static unsigned char *LoadImage_File(const char *filePath, int *nWidth, int *nHeight);
+    
+    static GLuint LoadTexture_File(const char *filePath, int *OutWidth, int *OutHeight);
+    
 };
 
 
