@@ -91,7 +91,7 @@ void SCFilterBase::beforeDraw() {
 }
 
 void SCFilterBase::afterDraw() {
-//    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
 //    glDisableVertexAttribArray(positionAttribute);
 //    glDisableVertexAttribArray(textureCoordinateAttribute);
 }
