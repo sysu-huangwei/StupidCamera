@@ -65,6 +65,7 @@
 		FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FileUtilsForIOS.mm; sourceTree = "<group>"; };
 		FCEF7B142627181D00F20ED0 /* GPUImageLutFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageLutFilter.h; sourceTree = "<group>"; };
 		FCEF7B152627181D00F20ED0 /* GPUImageLutFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageLutFilter.mm; sourceTree = "<group>"; };
+		FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFaceData.hpp; sourceTree = "<group>"; };
 		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +161,7 @@
 				FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */,
 				FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */,
 				FCEF7B0A26270E7200F20ED0 /* SCFilterLut.hpp */,
+				FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";

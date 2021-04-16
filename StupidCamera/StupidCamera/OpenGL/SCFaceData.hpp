@@ -1,0 +1,63 @@
+//
+//  SCFaceData.hpp
+//
+//  Created by rayyy on 2021/4/16.
+//
+
+#ifndef SCFaceData_h
+#define SCFaceData_h
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_FACE_COUNT 5
+
+#define FACE_POINT_COUNT 9
+#define FACE_POINT_FLOAT_ARRAY_SIZE FACE_POINT_COUNT << 1
+
+typedef struct {
+    int faceID;
+    
+    float rectOriginX, rectOriginY;
+    float rectWidth, rectHeight;
+    
+    float facePoints[FACE_POINT_FLOAT_ARRAY_SIZE];
+    
+    bool hasRollAngle;
+    float rollAngle;
+    bool hasPitchlAngle;
+    float pitchlAngle;
+    bool hasYawlAngle;
+    float yawAngle;
+} SCFace;
+
+typedef struct {
+    float detectWidth, detectHeight;
+    int faceCount;
+    SCFace faces[MAX_FACE_COUNT];
+} SCFaceData;
+
+static SCFaceData* createSCFaceData() {
+    SCFaceData *faceData = (SCFaceData *)malloc(sizeof(SCFaceData));
+    memset(faceData, 0, sizeof(SCFaceData));
+    return faceData;
+}
+
+static SCFaceData* copySCFaceData(const SCFaceData *anotherFaceData) {
+    SCFaceData *faceData = NULL;
+    if (anotherFaceData) {
+        SCFaceData *faceData = (SCFaceData *)malloc(sizeof(SCFaceData));
+        memcpy(faceData, anotherFaceData, sizeof(SCFaceData));
+    }
+    return faceData;
+}
+
+static void freeSCFaceData(SCFaceData **faceData) {
+    if(*faceData) {
+        free(*faceData);
+        *faceData = NULL;
+    }
+}
+
+#endif /* SCFaceData_h */
