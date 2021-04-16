@@ -162,31 +162,39 @@
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
     [_faceDataDict removeAllObjects];
-    for (AVMetadataObject *object in metadataObjects) {
+    for (AVMetadataObject *objectOri in metadataObjects) {
+        AVMetadataObject *object = [captureOutput transformedMetadataObjectForMetadataObject:objectOri connection:connection];
         if ([object isKindOfClass:[AVMetadataFaceObject class]]) {
             AVMetadataFaceObject *faceObject = (AVMetadataFaceObject *)object;
             NSMutableDictionary *oneFaceDict = [[NSMutableDictionary alloc] init];
             oneFaceDict[@"faceID"] = @(faceObject.faceID);
-            oneFaceDict[@"faceRect"] = @(faceObject.bounds);
+            //iOS原生的人脸检测坐标是xy颠倒的，这里需要重新计算一下
+            CGRect boundsOrigin = faceObject.bounds;
+            CGRect bounds;
+            bounds.origin.x = boundsOrigin.origin.y;
+            bounds.origin.y = boundsOrigin.origin.x;
+            bounds.size.width = boundsOrigin.size.height;
+            bounds.size.height = boundsOrigin.size.width;
+            oneFaceDict[@"faceRect"] = @(bounds);
             float facePointFloat[18];
-            facePointFloat[0] = faceObject.bounds.origin.x + faceObject.bounds.size.width * 0.5f;
-            facePointFloat[1] = faceObject.bounds.origin.y + faceObject.bounds.size.height * 0.5f;
-            facePointFloat[2] = faceObject.bounds.origin.x;
-            facePointFloat[3] = faceObject.bounds.origin.y;
-            facePointFloat[4] = faceObject.bounds.origin.x;
-            facePointFloat[5] = faceObject.bounds.origin.y + faceObject.bounds.size.height;
-            facePointFloat[6] = faceObject.bounds.origin.x + faceObject.bounds.size.width;
-            facePointFloat[7] = faceObject.bounds.origin.y;
-            facePointFloat[8] = faceObject.bounds.origin.x + faceObject.bounds.size.width;
-            facePointFloat[9] = faceObject.bounds.origin.y + faceObject.bounds.size.height;
-            facePointFloat[10] = faceObject.bounds.origin.x - faceObject.bounds.size.width * 0.25f;
-            facePointFloat[11] = faceObject.bounds.origin.y - faceObject.bounds.size.height * 0.25f;
-            facePointFloat[12] = faceObject.bounds.origin.x + faceObject.bounds.size.width * 1.25f;
-            facePointFloat[13] = faceObject.bounds.origin.y - faceObject.bounds.size.height * 0.25f;
-            facePointFloat[14] = faceObject.bounds.origin.x - faceObject.bounds.size.width * 0.25f;
-            facePointFloat[15] = faceObject.bounds.origin.y + faceObject.bounds.size.height * 1.25f;
-            facePointFloat[16] = faceObject.bounds.origin.x + faceObject.bounds.size.width * 1.25f;
-            facePointFloat[17] = faceObject.bounds.origin.y + faceObject.bounds.size.height * 1.25f;
+            facePointFloat[0] = bounds.origin.x + bounds.size.width * 0.5f;
+            facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.5f;
+            facePointFloat[2] = bounds.origin.x;
+            facePointFloat[3] = bounds.origin.y;
+            facePointFloat[4] = bounds.origin.x;
+            facePointFloat[5] = bounds.origin.y + bounds.size.height;
+            facePointFloat[6] = bounds.origin.x + bounds.size.width;
+            facePointFloat[7] = bounds.origin.y;
+            facePointFloat[8] = bounds.origin.x + bounds.size.width;
+            facePointFloat[9] = bounds.origin.y + bounds.size.height;
+            facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.25f;
+            facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.25f;
+            facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.25f;
+            facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.25f;
+            facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.25f;
+            facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.25f;
+            facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.25f;
+            facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.25f;
             oneFaceDict[@"facePoints"] = @[@(facePointFloat[0]),
                                            @(facePointFloat[1]),
                                            @(facePointFloat[2]),
