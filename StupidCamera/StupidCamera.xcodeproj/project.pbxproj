@@ -26,6 +26,8 @@
 		FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */; };
 		FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */; };
 		FCEF7B162627181D00F20ED0 /* GPUImageLutFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B152627181D00F20ED0 /* GPUImageLutFilter.mm */; };
+		FCEF7B5626297CE600F20ED0 /* SCFilterPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */; };
+		FCEF7B5B2629820B00F20ED0 /* GPUImageFacePointFilter..mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B5A2629820B00F20ED0 /* GPUImageFacePointFilter..mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,10 @@
 		FCEF7B142627181D00F20ED0 /* GPUImageLutFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageLutFilter.h; sourceTree = "<group>"; };
 		FCEF7B152627181D00F20ED0 /* GPUImageLutFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageLutFilter.mm; sourceTree = "<group>"; };
 		FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFaceData.hpp; sourceTree = "<group>"; };
+		FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterPoint.cpp; sourceTree = "<group>"; };
+		FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterPoint.hpp; sourceTree = "<group>"; };
+		FCEF7B592629820B00F20ED0 /* GPUImageFacePointFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageFacePointFilter.h; sourceTree = "<group>"; };
+		FCEF7B5A2629820B00F20ED0 /* GPUImageFacePointFilter..mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageFacePointFilter..mm; sourceTree = "<group>"; };
 		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +148,8 @@
 				FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */,
 				FCEF7B142627181D00F20ED0 /* GPUImageLutFilter.h */,
 				FCEF7B152627181D00F20ED0 /* GPUImageLutFilter.mm */,
+				FCEF7B592629820B00F20ED0 /* GPUImageFacePointFilter.h */,
+				FCEF7B5A2629820B00F20ED0 /* GPUImageFacePointFilter..mm */,
 			);
 			path = StupidCamera;
 			sourceTree = "<group>";
@@ -161,6 +169,8 @@
 				FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */,
 				FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */,
 				FCEF7B0A26270E7200F20ED0 /* SCFilterLut.hpp */,
+				FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */,
+				FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */,
 				FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */,
 			);
 			path = OpenGL;
@@ -296,6 +306,8 @@
 				FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */,
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,
 				FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */,
+				FCEF7B5B2629820B00F20ED0 /* GPUImageFacePointFilter..mm in Sources */,
+				FCEF7B5626297CE600F20ED0 /* SCFilterPoint.cpp in Sources */,
 				FC6A35532624358100CA4434 /* AppDelegate.m in Sources */,
 				FC6A35642624358100CA4434 /* main.m in Sources */,
 				FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */,
