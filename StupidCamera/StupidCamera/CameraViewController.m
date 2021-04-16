@@ -11,7 +11,7 @@
 #import "GPUImageBaseFilter.h"
 #import "GPUImageLutFilter.h"
 
-@interface CameraViewController ()
+@interface CameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) UISlider *lutAlphaSlider;
 @property (strong, nonatomic) UILabel *lutAlphaLabel;
 @property (strong, nonatomic) UIButton *captureButton;
@@ -136,6 +136,8 @@
         _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
         _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
         [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
+        [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
+        [_camera enableFaceDetect:YES];
         _lutFilter = [[GPUImageLutFilter alloc] init];
         [_camera addTarget:_lutFilter];
         [_lutFilter addTarget:self.imageView];
@@ -150,6 +152,17 @@
         [self->_camera stopCameraCapture];
         block(image);
     }];
+}
+
+#pragma mark - AVCaptureMetadataOutputObjectsDelegate
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
+    if (metadataObjects.count > 0) {
+        AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects objectAtIndex :0];
+        if (metadataObject.type == AVMetadataObjectTypeFace) {
+            AVMetadataObject *objec = [captureOutput transformedMetadataObjectForMetadataObject:metadataObject connection:connection];
+            NSLog(@"111");
+        }
+    }
 }
 
 

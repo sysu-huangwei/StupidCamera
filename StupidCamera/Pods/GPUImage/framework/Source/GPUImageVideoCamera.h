@@ -33,6 +33,11 @@ extern NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString
     AVCaptureDevice *_microphone;
     AVCaptureDeviceInput *videoInput;
 	AVCaptureVideoDataOutput *videoOutput;
+    
+    dispatch_queue_t metadataProcessingQueue;
+    AVCaptureMetadataOutput *metadataOutput;
+    id<AVCaptureMetadataOutputObjectsDelegate> metadataDelegate;
+    BOOL faceDetectEnable;
 
     BOOL capturePaused;
     GPUImageRotationMode outputRotation, internalRotation;
@@ -150,5 +155,8 @@ extern NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString
 
 + (BOOL)isBackFacingCameraPresent;
 + (BOOL)isFrontFacingCameraPresent;
+
+- (void)setAVCaptureMetadataOutputObjectsDelegate:(id<AVCaptureMetadataOutputObjectsDelegate>)metadataDelegate;
+- (void)enableFaceDetect:(BOOL)faceDetectEnable;
 
 @end

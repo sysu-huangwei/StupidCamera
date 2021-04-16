@@ -386,6 +386,10 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
         audioOutput = nil;
         _microphone = nil;
     }
+    if (metadataOutput) {
+        [_captureSession removeOutput:metadataOutput];
+        metadataOutput = nil;
+    }
     [_captureSession commitConfiguration];
 }
 
@@ -1124,6 +1128,48 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
 {
     _horizontallyMirrorRearFacingCamera = newValue;
     [self updateOrientationSendToTargets];
+}
+
+- (void)addMetadataOutputs {
+    [_captureSession beginConfiguration];
+    
+    if (metadataOutput == nil) {
+        metadataOutput = [[AVCaptureMetadataOutput alloc]init];
+    }
+    if ([_captureSession canAddOutput:metadataOutput]){
+        [_captureSession addOutput:metadataOutput];
+        metadataOutput.metadataObjectTypes = @[AVMetadataObjectTypeFace];
+    } else {
+        NSLog(@"Couldn't add metadata output");
+    }
+    metadataProcessingQueue = dispatch_queue_create("meta face", 0);
+    [metadataOutput setMetadataObjectsDelegate:metadataDelegate queue:metadataProcessingQueue];
+    
+    [_captureSession commitConfiguration];
+}
+
+- (void)removeMetadataOutputs {
+    [_captureSession beginConfiguration];
+    
+    if (metadataOutput) {
+        [_captureSession removeOutput:metadataOutput];
+        metadataOutput = nil;
+    }
+    
+    [_captureSession commitConfiguration];
+}
+
+- (void)setAVCaptureMetadataOutputObjectsDelegate:(id<AVCaptureMetadataOutputObjectsDelegate>)metadataDelegate {
+    self->metadataDelegate = metadataDelegate;
+}
+
+- (void)enableFaceDetect:(BOOL)faceDetectEnable {
+    self->faceDetectEnable = faceDetectEnable;
+    if (faceDetectEnable && metadataDelegate) {
+        [self addMetadataOutputs];
+    } else {
+        [self removeMetadataOutputs];
+    }
 }
 
 @end
