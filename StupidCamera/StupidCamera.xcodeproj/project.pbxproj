@@ -34,6 +34,7 @@
 		FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CF5262ECE3700F20ED0 /* delaunay.cpp */; };
 		FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CFE262ECFAA00F20ED0 /* DelaunayTriangle.cpp */; };
 		FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7D02262EF4CB00F20ED0 /* SCFilterLine.cpp */; };
+		FCEF7D08262EF70600F20ED0 /* GPUImageFaceLineFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7D07262EF70600F20ED0 /* GPUImageFaceLineFilter.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,8 @@
 		FCEF7CFF262ECFAA00F20ED0 /* DelaunayTriangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DelaunayTriangle.hpp; sourceTree = "<group>"; };
 		FCEF7D02262EF4CB00F20ED0 /* SCFilterLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterLine.cpp; sourceTree = "<group>"; };
 		FCEF7D03262EF4CB00F20ED0 /* SCFilterLine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterLine.hpp; sourceTree = "<group>"; };
+		FCEF7D06262EF70600F20ED0 /* GPUImageFaceLineFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageFaceLineFilter.h; sourceTree = "<group>"; };
+		FCEF7D07262EF70600F20ED0 /* GPUImageFaceLineFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageFaceLineFilter.mm; sourceTree = "<group>"; };
 		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +173,8 @@
 				FCEF7B152627181D00F20ED0 /* GPUImageLutFilter.mm */,
 				FCEF7B592629820B00F20ED0 /* GPUImageFacePointFilter.h */,
 				FCEF7B5A2629820B00F20ED0 /* GPUImageFacePointFilter..mm */,
+				FCEF7D06262EF70600F20ED0 /* GPUImageFaceLineFilter.h */,
+				FCEF7D07262EF70600F20ED0 /* GPUImageFaceLineFilter.mm */,
 			);
 			path = StupidCamera;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */,
 				FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */,
 				FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */,
+				FCEF7D08262EF70600F20ED0 /* GPUImageFaceLineFilter.mm in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,
 				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,
 				FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */,

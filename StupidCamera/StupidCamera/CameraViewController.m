@@ -11,6 +11,7 @@
 #import "GPUImageBaseFilter.h"
 #import "GPUImageLutFilter.h"
 #import "GPUImageFacePointFilter.h"
+#import "GPUImageFaceLineFilter.h"
 
 @interface CameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) UISlider *lutAlphaSlider;
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) GPUImageBaseFilter *baseFilter;
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
+@property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
 
 @property (strong, nonatomic) NSMutableArray<NSMutableDictionary *> *faceDataDict;
 
@@ -143,9 +145,9 @@
         [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
         [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
         [_camera enableFaceDetect:YES];
-        _facePointFilter = [[GPUImageFacePointFilter alloc] init];
-        [_camera addTarget:_facePointFilter];
-        [_facePointFilter addTarget:self.imageView];
+        _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
+        [_camera addTarget:_faceLineFilter];
+        [_faceLineFilter addTarget:self.imageView];
     }
 }
 
@@ -220,7 +222,7 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
-    [_facePointFilter setFaceDataDict:_faceDataDict];
+    [_faceLineFilter setFaceDataDict:_faceDataDict];
 }
 
 
