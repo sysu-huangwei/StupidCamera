@@ -6,6 +6,7 @@
 
 #include "SCFilterPoint.hpp"
 #include <string.h>
+#include "DelaunayTriangle.hpp"
 
 const char *kSCFilterPointVertexShaderString = SHADER_STRING_CPP
 (
@@ -22,7 +23,6 @@ const char *kSCFilterPointFragmentShaderString = SHADER_STRING_CPP
 (
  precision highp float;
  
- uniform sampler2D  u_texture;
  void main()
  {
     gl_FragColor = vec4(1,0,0,1);
@@ -44,7 +44,7 @@ void SCFilterPoint::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterPointVertexShaderString, kSCFilterPointFragmentShaderString);
     positionAttribute = glGetAttribLocation(programID, "a_position");
 //    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
-    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
+//    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
 unsigned SCFilterPoint::render() {
@@ -73,11 +73,11 @@ unsigned SCFilterPoint::render() {
 //    glEnableVertexAttribArray(textureCoordinateAttribute);
 //    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
     
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
+//    glActiveTexture(GL_TEXTURE2);
+//    glBindTexture(GL_TEXTURE_2D, srcTextureID);
+//    glUniform1i(inputImageTextureUniform, 2);
     
-    glDrawArrays(GL_POINTS, 0, 9);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
     
     afterDraw();
     return SCFilterBase::render();
@@ -93,9 +93,10 @@ void SCFilterPoint::setPoints(float *points, int pointsCount) {
         delete [] this->points;
         this->points = nullptr;
     }
-    this->points = new float[pointsCount * 2];
-    memcpy(this->points, points, sizeof(float) * pointsCount * 2);
     for (int i = 0; i < pointsCount * 2; i++) {
-        this->points[i] = this->points[i] * 2.0f - 1.0f;
+        points[i] = points[i] * 2.0f - 1.0f;
     }
+    
+    this->pointsCount = pointsCount;
+    this->points = DelaunayTriangle::getTriangles(points, pointsCount, this->trianglesCount);
 }

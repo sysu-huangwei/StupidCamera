@@ -36,5 +36,6 @@ private:
     unsigned srcTextureID = 0;
     float *points = nullptr;
     int pointsCount = 0;
+    int trianglesCount = 0;
 };
 #endif /* SCFilterPoint_hpp */
