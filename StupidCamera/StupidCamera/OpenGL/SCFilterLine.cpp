@@ -77,7 +77,7 @@ unsigned SCFilterLine::render() {
 //    glUniform1i(inputImageTextureUniform, 2);
     
     glLineWidth(5.0f);
-    glDrawArrays(GL_LINES, 0, linesCount);
+    glDrawArrays(GL_LINES, 0, linesCount * 2);
     
     afterDraw();
     return SCFilterBase::render();
