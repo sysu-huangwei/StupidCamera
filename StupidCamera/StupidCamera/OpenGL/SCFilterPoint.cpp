@@ -77,7 +77,7 @@ unsigned SCFilterPoint::render() {
 //    glBindTexture(GL_TEXTURE_2D, srcTextureID);
 //    glUniform1i(inputImageTextureUniform, 2);
     
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawArrays(GL_POINTS, 0, pointsCount);
     
     afterDraw();
     return SCFilterBase::render();
@@ -89,14 +89,15 @@ void SCFilterPoint::setSrcTextureID(unsigned srcTextureID) {
 
 
 void SCFilterPoint::setPoints(float *points, int pointsCount) {
-    if (this->points) {
-        delete [] this->points;
-        this->points = nullptr;
+    if (pointsCount != this->pointsCount) {
+        if (this->points) {
+            delete [] this->points;
+            this->points = nullptr;
+        }
+        this->pointsCount = pointsCount;
+        this->points = new float[pointsCount * 2];
     }
-    for (int i = 0; i < pointsCount * 2; i++) {
-        points[i] = points[i] * 2.0f - 1.0f;
+    if (points && pointsCount > 0) {
+        memcpy(this->points, points, sizeof(float) * pointsCount * 2);
     }
-    
-    this->pointsCount = pointsCount;
-    this->points = DelaunayTriangle::getTriangles(points, pointsCount, this->trianglesCount);
 }
