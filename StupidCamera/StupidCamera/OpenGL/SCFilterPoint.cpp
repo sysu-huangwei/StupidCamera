@@ -83,10 +83,6 @@ unsigned SCFilterPoint::render() {
     return SCFilterBase::render();
 }
 
-void SCFilterPoint::setSrcTextureID(unsigned srcTextureID) {
-    this->srcTextureID = srcTextureID;
-}
-
 
 void SCFilterPoint::setPoints(float *points, int pointsCount) {
     if (pointsCount != this->pointsCount) {

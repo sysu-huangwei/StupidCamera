@@ -59,7 +59,3 @@ unsigned SCFilterCopy::render() {
     afterDraw();
     return SCFilterBase::render();
 }
-
-void SCFilterCopy::setSrcTextureID(unsigned srcTextureID) {
-    this->srcTextureID = srcTextureID;
-}

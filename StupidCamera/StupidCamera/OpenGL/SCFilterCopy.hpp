@@ -21,14 +21,7 @@ public:
     /// 渲染，必须在GL线程
     /// @return 结果纹理ID
     virtual unsigned render() override;
-    
-    /// 设置输入图像的纹理ID
-    /// @param srcTextureID 输入图像的纹理ID
-    void setSrcTextureID(unsigned srcTextureID);
-    
-private:
-    int inputImageTextureUniform = -1;
-    unsigned srcTextureID = 0;
+
 };
 
 #endif /* SCFilterCopy_hpp */

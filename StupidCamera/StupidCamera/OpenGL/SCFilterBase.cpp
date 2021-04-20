@@ -67,6 +67,10 @@ void SCFilterBase::release() {
     }
 }
 
+void SCFilterBase::setSrcTextureID(unsigned srcTextureID) {
+    this->srcTextureID = srcTextureID;
+}
+
 void SCFilterBase::beforeDraw() {
     if (isRenderToOutside) {
         glBindFramebuffer(GL_FRAMEBUFFER, fboIDOutside);

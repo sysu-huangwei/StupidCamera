@@ -83,10 +83,6 @@ unsigned SCFilterLine::render() {
     return SCFilterBase::render();
 }
 
-void SCFilterLine::setSrcTextureID(unsigned srcTextureID) {
-    this->srcTextureID = srcTextureID;
-}
-
 
 void SCFilterLine::setLines(float *lines, int linesCount) {
     if (linesCount != this->linesCount) {

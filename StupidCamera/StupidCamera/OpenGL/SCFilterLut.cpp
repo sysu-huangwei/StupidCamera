@@ -108,10 +108,6 @@ unsigned SCFilterLut::render() {
     return SCFilterBase::render();
 }
 
-void SCFilterLut::setSrcTextureID(unsigned srcTextureID) {
-    this->srcTextureID = srcTextureID;
-}
-
 void SCFilterLut::setLutImagePath(const char *path) {
     int width, height;
     if (lutTextureID > 0) {

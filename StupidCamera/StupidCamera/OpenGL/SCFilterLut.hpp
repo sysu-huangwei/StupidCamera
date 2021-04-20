@@ -25,10 +25,6 @@ public:
     /// @return 结果纹理ID
     virtual unsigned render() override;
     
-    /// 设置输入图像的纹理ID
-    /// @param srcTextureID 输入图像的纹理ID
-    void setSrcTextureID(unsigned srcTextureID);
-    
     /// 设置LUT图路径，底层加载
     /// @param path LUT图的路径
     void setLutImagePath(const char *path);
@@ -37,9 +33,9 @@ public:
     /// @param alpha 滤镜程度，0.0 ~ 1.0
     void setAlpha(float alpha);
     
-private:
-    int inputImageTextureUniform = -1, lutTextureUniform = -1, alphaUniform = -1;
-    unsigned srcTextureID = 0, lutTextureID = 0;
+protected:
+    int lutTextureUniform = -1, alphaUniform = -1;
+    unsigned lutTextureID = 0;
     float alpha = 1.0f;
 };
 

@@ -42,6 +42,10 @@ public:
     /// @param height 高
     virtual void resize(int width, int height);
     
+    /// 设置输入图像的纹理ID
+    /// @param srcTextureID 输入图像的纹理ID
+    virtual void setSrcTextureID(unsigned srcTextureID);
+    
     /// 渲染，必须在GL线程
     /// @return 结果纹理ID
     virtual unsigned render() = 0;
@@ -55,6 +59,9 @@ protected:
     int width = 0, height = 0;
     unsigned textureID = 0, fboID = 0, programID = 0;
     int positionAttribute = -1, textureCoordinateAttribute = -1;
+    
+    int inputImageTextureUniform = -1;
+    unsigned srcTextureID = 0;
     
     virtual void initWithVertexStringAndFragmentString(const char* vs, const char* fs);
     virtual void beforeDraw();
