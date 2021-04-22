@@ -180,7 +180,7 @@
             oneFaceDict[@"faceRect"] = @(bounds);
             float facePointFloat[18];
             facePointFloat[0] = bounds.origin.x + bounds.size.width * 0.5f;
-            facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.5f;
+            facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.4f;
             facePointFloat[2] = bounds.origin.x;
             facePointFloat[3] = bounds.origin.y;
             facePointFloat[4] = bounds.origin.x;
@@ -189,13 +189,13 @@
             facePointFloat[7] = bounds.origin.y;
             facePointFloat[8] = bounds.origin.x + bounds.size.width;
             facePointFloat[9] = bounds.origin.y + bounds.size.height;
-            facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.25f;
+            facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.2f;
             facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.25f;
-            facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.25f;
+            facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.2f;
             facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.25f;
-            facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.25f;
+            facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.2f;
             facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.25f;
-            facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.25f;
+            facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.2f;
             facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.25f;
             oneFaceDict[@"facePoints"] = @[@(facePointFloat[0]),
                                            @(facePointFloat[1]),
