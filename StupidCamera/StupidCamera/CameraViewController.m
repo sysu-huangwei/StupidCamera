@@ -185,10 +185,10 @@
             facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.4f;
             facePointFloat[2] = bounds.origin.x;
             facePointFloat[3] = bounds.origin.y;
-            facePointFloat[4] = bounds.origin.x;
-            facePointFloat[5] = bounds.origin.y + bounds.size.height;
-            facePointFloat[6] = bounds.origin.x + bounds.size.width;
-            facePointFloat[7] = bounds.origin.y;
+            facePointFloat[4] = bounds.origin.x + bounds.size.width;
+            facePointFloat[5] = bounds.origin.y;
+            facePointFloat[6] = bounds.origin.x;
+            facePointFloat[7] = bounds.origin.y + bounds.size.height;
             facePointFloat[8] = bounds.origin.x + bounds.size.width;
             facePointFloat[9] = bounds.origin.y + bounds.size.height;
             facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.2f;

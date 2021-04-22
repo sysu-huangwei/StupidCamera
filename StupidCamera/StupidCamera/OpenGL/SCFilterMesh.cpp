@@ -29,7 +29,7 @@ const char *kSCFilterMeshFragmentShaderString = SHADER_STRING_CPP
  void main()
  {
     vec4 srcColor = texture2D(u_texture,texcoordOut);
-    gl_FragColor = srcColor;
+    gl_FragColor = vec4(1,0,0,1);//srcColor;
  }
 );
 
@@ -85,7 +85,7 @@ unsigned SCFilterMesh::render() {
     glBindTexture(GL_TEXTURE_2D, srcTextureID);
     glUniform1i(inputImageTextureUniform, 2);
     
-    glDrawElements(GL_TRIANGLES, meshArrayCount * 2, GL_UNSIGNED_INT, (void *)meshIndex);
+    glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
     
     afterDraw();
     return SCFilterBase::render();
