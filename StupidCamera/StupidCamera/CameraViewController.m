@@ -12,6 +12,7 @@
 #import "GPUImageLutFilter.h"
 #import "GPUImageFacePointFilter.h"
 #import "GPUImageFaceLineFilter.h"
+#import "GPUImageFaceMeshFilter.h"
 
 @interface CameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) UISlider *lutAlphaSlider;
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
 @property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
+@property (strong, nonatomic) GPUImageFaceMeshFilter *faceMeshFilter;
 
 @property (strong, nonatomic) NSMutableArray<NSMutableDictionary *> *faceDataDict;
 
@@ -145,9 +147,9 @@
         [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
         [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
         [_camera enableFaceDetect:YES];
-        _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
-        [_camera addTarget:_faceLineFilter];
-        [_faceLineFilter addTarget:self.imageView];
+        _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
+        [_camera addTarget:_faceMeshFilter];
+        [_faceMeshFilter addTarget:self.imageView];
     }
 }
 
@@ -171,7 +173,7 @@
             NSMutableDictionary *oneFaceDict = [[NSMutableDictionary alloc] init];
             oneFaceDict[@"faceID"] = @(faceObject.faceID);
             //iOS原生的人脸检测坐标是xy颠倒的，这里需要重新计算一下
-            CGRect boundsOrigin = faceObject.bounds;
+            CGRect boundsOrigin = CGRectMake(0.25, 0.25, 0.5, 0.5);// faceObject.bounds;
             CGRect bounds;
             bounds.origin.x = boundsOrigin.origin.y;
             bounds.origin.y = boundsOrigin.origin.x;
@@ -222,7 +224,7 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
-    [_faceLineFilter setFaceDataDict:_faceDataDict];
+    [_faceMeshFilter setFaceDataDict:_faceDataDict];
 }
 
 

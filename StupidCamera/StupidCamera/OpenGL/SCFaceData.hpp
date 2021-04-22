@@ -16,6 +16,16 @@
 #define FACE_POINT_COUNT 9
 #define FACE_POINT_FLOAT_ARRAY_SIZE FACE_POINT_COUNT << 1
 
+#define FACE_TRIANGLE_COUNT 12
+#define FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE FACE_TRIANGLE_COUNT * 3
+#define FACE_TRIANGLE_FLOAT_ARRAY_SIZE FACE_TRIANGLE_COUNT * 6
+
+unsigned int FaceTriangleIndex[FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE] = {
+    0,1,3, 0,1,2, 0,3,4, 0,2,4,
+    1,2,5, 2,4,6, 2,5,6, 1,3,7, 1,5,7, 4,6,8, 3,4,8, 3,7,8
+    
+};
+
 typedef struct {
     int faceID;
     
@@ -23,6 +33,7 @@ typedef struct {
     float rectWidth, rectHeight;
     
     float facePoints[FACE_POINT_FLOAT_ARRAY_SIZE];
+    float faceTrianlges[FACE_TRIANGLE_FLOAT_ARRAY_SIZE];
     
     bool hasRollAngle;
     float rollAngle;
