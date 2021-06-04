@@ -101,7 +101,8 @@
         [self.backButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [self.backButton setTitleColor:UIColor.lightGrayColor forState:UIControlStateHighlighted];
     }
-    self.backButton.backgroundColor = UIColor.redColor;
+    UIImage *image = [UIImage imageNamed:@"back"];
+    [self.backButton setImage:image forState:UIControlStateNormal];
     self.backButton.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:self.backButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.backButton.superview attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
     [self.topView addConstraint:ConstraintTop];
