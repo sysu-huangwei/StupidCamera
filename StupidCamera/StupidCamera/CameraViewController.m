@@ -36,13 +36,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initCaptureButton];
-    [self initLutAlphaSlider];
-    [self initLutAlphaLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self initCaptureButton];
+    [self initLutAlphaSlider];
+    [self initLutAlphaLabel];
     [self initCamera];
     [_camera startCameraCapture];
     _faceDataDict = [[NSMutableArray alloc] init];
@@ -66,15 +66,21 @@
         [_captureButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [_captureButton setTitleColor:UIColor.lightGrayColor forState:UIControlStateHighlighted];
     }
-    _captureButton.backgroundColor = UIColor.redColor;
+    CGFloat captureWidthHeight = 80;
+    CGFloat toTop = (self.bottomView.bounds.size.height - captureWidthHeight) * 0.5;
+    CGFloat toLeft = (self.bottomView.bounds.size.width - captureWidthHeight) * 0.5;
+    CGRect rect = self.bottomView.bounds;
+    CGRect rect1 = self.bottomView.frame;
+    UIImage *image = [UIImage imageNamed:@"camera_capture"];
+    [_captureButton setImage:image forState:UIControlStateNormal];
     _captureButton.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeTop multiplier:1.0 constant:50];
+    NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeTop multiplier:1.0 constant:toTop];
     [self.bottomView addConstraint:ConstraintTop];
-    NSLayoutConstraint *ConstraintLeft = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:100];
+    NSLayoutConstraint *ConstraintLeft = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:toLeft];
     [self.bottomView addConstraint:ConstraintLeft];
-    NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-100];
+    NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-toLeft];
     [self.bottomView addConstraint:ConstraintRight];
-    NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-50];
+    NSLayoutConstraint *ConstraintBottom = [NSLayoutConstraint constraintWithItem:_captureButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-toTop];
     [self.bottomView addConstraint:ConstraintBottom];
     [_captureButton addTarget:self action:@selector(takePhotoClick:) forControlEvents:UIControlEventTouchUpInside];
 }
