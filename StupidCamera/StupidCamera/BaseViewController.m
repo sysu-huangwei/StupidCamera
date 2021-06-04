@@ -33,7 +33,7 @@
         self.topView = [[UIView alloc] init];
         [self.view addSubview:self.topView];
     }
-    self.topView.backgroundColor = UIColor.darkGrayColor;
+    self.topView.backgroundColor = UIColor.whiteColor;
     self.topView.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *constraintHeight = [NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:TOP_VIEW_HEIGHT];
     [self.topView addConstraint:constraintHeight];
@@ -81,7 +81,7 @@
         self.bottomView = [[UIView alloc] init];
         [self.view addSubview:self.bottomView];
     }
-    self.bottomView.backgroundColor = UIColor.yellowColor;
+    self.bottomView.backgroundColor = UIColor.whiteColor;
     self.bottomView.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:self.bottomView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.showView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
     [self.view addConstraint:ConstraintTop];
