@@ -300,6 +300,15 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
     
     [_captureSession commitConfiguration];
     
+    if (@available(iOS 7.0, *)) {
+        NSError *error;
+        [_inputCamera lockForConfiguration:&error];
+        _inputCamera.videoZoomFactor = 1.3056994819;
+        [_inputCamera unlockForConfiguration];
+    } else {
+        // Fallback on earlier versions
+    }
+    
 	return self;
 }
 
