@@ -29,7 +29,7 @@ const char *kSCFilterMeshFragmentShaderString = SHADER_STRING_CPP
  void main()
  {
     vec4 srcColor = texture2D(u_texture,texcoordOut);
-    gl_FragColor = vec4(1,0,0,1);//srcColor;
+    gl_FragColor = srcColor;
  }
 );
 

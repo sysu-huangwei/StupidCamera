@@ -173,7 +173,7 @@
             NSMutableDictionary *oneFaceDict = [[NSMutableDictionary alloc] init];
             oneFaceDict[@"faceID"] = @(faceObject.faceID);
             //iOS原生的人脸检测坐标是xy颠倒的，这里需要重新计算一下
-            CGRect boundsOrigin = CGRectMake(0.25, 0.25, 0.5, 0.5);// faceObject.bounds;
+            CGRect boundsOrigin = faceObject.bounds;
             CGRect bounds;
             bounds.origin.x = boundsOrigin.origin.y;
             bounds.origin.y = boundsOrigin.origin.x;
