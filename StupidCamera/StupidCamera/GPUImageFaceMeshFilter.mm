@@ -15,6 +15,7 @@
 {
     SCFilterBackgroundMesh *backgroundMeshFilter;
 }
+@property (nonatomic, copy) dispatch_block_t setFacedataBlock;
 @end
 
 @implementation GPUImageFaceMeshFilter
@@ -57,6 +58,9 @@
     {
         [outputFramebuffer lock];
     }
+    if (_setFacedataBlock) {
+        _setFacedataBlock();
+    }
     self->backgroundMeshFilter->setSrcTextureID(firstInputFramebuffer.texture);
     self->backgroundMeshFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
     self->backgroundMeshFilter->render();
@@ -70,10 +74,12 @@
 }
 
 - (void)setFaceDataDict:(NSArray<NSDictionary *> *)faceDataDict {
-    runSynchronouslyOnVideoProcessingQueue(^{
-        self->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
+    __weak typeof(self) weakSelf = self;
+    _setFacedataBlock = ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
         if (faceDataDict.count > 0) {
-            NSArray<NSNumber *> *facePointsArray = self->_faceDataDict[0][@"facePoints"];
+            NSArray<NSNumber *> *facePointsArray = faceDataDict[0][@"facePoints"];
             if (facePointsArray.count >= 18) {
                 float facePointFloat[18];
                 facePointFloat[0] = [facePointsArray[0] floatValue];
@@ -111,12 +117,12 @@
                     faceTriangleLines[12 * i + 10] = faceTriangle[6 * i + 4];
                     faceTriangleLines[12 * i + 11] = faceTriangle[6 * i + 5];
                 }
-                self->backgroundMeshFilter->setMesh(facePointFloat, 18, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
+                strongSelf->backgroundMeshFilter->setMesh(facePointFloat, 18, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
                 delete [] faceTriangle;
                 delete [] faceTriangleLines;
             }
         }
-    });
+    };
 }
 
 @end
