@@ -50,7 +50,7 @@
         self.showView = [[UIView alloc] init];
         [self.view addSubview:self.showView];
     }
-    self.showView.backgroundColor = UIColor.systemBlueColor;
+    self.showView.backgroundColor = UIColor.whiteColor;
     self.showView.translatesAutoresizingMaskIntoConstraints = NO;
     CGFloat height = self.view.bounds.size.width / 3.0 * 4.0;
     NSLayoutConstraint *constraintHeight = [NSLayoutConstraint constraintWithItem:self.showView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:height];
