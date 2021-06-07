@@ -23,6 +23,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         runSynchronouslyOnVideoProcessingQueue(^{
+            [GPUImageContext useImageProcessingContext];
             self->backgroundMeshFilter = new SCFilterBackgroundMesh();
             self->backgroundMeshFilter->init();
         });
@@ -32,6 +33,7 @@
 
 - (void)dealloc {
     runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
         self->backgroundMeshFilter->release();
         delete self->backgroundMeshFilter;
     });
@@ -40,6 +42,7 @@
 - (void)setupFilterForSize:(CGSize)filterFrameSize;
 {
     runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
         self->backgroundMeshFilter->resize(filterFrameSize.width, filterFrameSize.height);
     });
 }
