@@ -163,7 +163,7 @@
     if (!block) {
         return;
     }
-    [self->_camera capturePhotoAsImageProcessedUpToFilter:_lutFilter withCompletionHandler:^(UIImage *image, NSError *error) {
+    [self->_camera capturePhotoAsImageProcessedUpToFilter:_faceMeshFilter withCompletionHandler:^(UIImage *image, NSError *error) {
         [self->_camera stopCameraCapture];
         block(image);
     }];
