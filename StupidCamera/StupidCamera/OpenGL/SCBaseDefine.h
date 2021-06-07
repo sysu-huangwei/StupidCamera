@@ -19,13 +19,13 @@
 #endif
 
 #ifndef SAFE_DELETE
-#define SAFE_DELETE(x) { if (x) delete (x); (x) = NULL; }
+#define SAFE_DELETE(x) { if (x) delete (x); (x) = nullptr; }
 #endif
 #ifndef SAFE_DELETE_ARRAY
-#define SAFE_DELETE_ARRAY(x) { if (x) delete [] (x); (x) = NULL; }
+#define SAFE_DELETE_ARRAY(x) { if (x) delete [] (x); (x) = nullptr; }
 #endif
 #ifndef SAFE_FREE
-#define SAFE_FREE(p) if(p != NULL) {free(p); p = NULL;}
+#define SAFE_FREE(p) if(p != NULL) {free(p); p = nullptr;}
 #endif
 
 //链接字符串的宏定义

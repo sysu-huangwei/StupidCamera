@@ -7,13 +7,13 @@
 
 #import "GPUImageFaceMeshFilter.h"
 
-#import "SCFilterMesh.hpp"
+#import "SCFilterBackgroundMesh.hpp"
 #import "DelaunayTriangle.hpp"
 #import "SCFaceData.hpp"
 
 @interface GPUImageFaceMeshFilter()
 {
-    SCFilterMesh *meshFilter;
+    SCFilterBackgroundMesh *backgroundMeshFilter;
 }
 @end
 
@@ -22,8 +22,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         runSynchronouslyOnVideoProcessingQueue(^{
-            self->meshFilter = new SCFilterMesh();
-            self->meshFilter->init();
+            self->backgroundMeshFilter = new SCFilterBackgroundMesh();
+            self->backgroundMeshFilter->init();
         });
     }
     return self;
@@ -31,15 +31,15 @@
 
 - (void)dealloc {
     runSynchronouslyOnVideoProcessingQueue(^{
-        self->meshFilter->release();
-        delete self->meshFilter;
+        self->backgroundMeshFilter->release();
+        delete self->backgroundMeshFilter;
     });
 }
 
 - (void)setupFilterForSize:(CGSize)filterFrameSize;
 {
     runSynchronouslyOnVideoProcessingQueue(^{
-        self->meshFilter->resize(filterFrameSize.width, filterFrameSize.height);
+        self->backgroundMeshFilter->resize(filterFrameSize.width, filterFrameSize.height);
     });
 }
 
@@ -57,9 +57,9 @@
     {
         [outputFramebuffer lock];
     }
-    self->meshFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    self->meshFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    self->meshFilter->render();
+    self->backgroundMeshFilter->setSrcTextureID(firstInputFramebuffer.texture);
+    self->backgroundMeshFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    self->backgroundMeshFilter->render();
     
     [firstInputFramebuffer unlock];
     
@@ -70,8 +70,8 @@
 }
 
 - (void)setFaceDataDict:(NSArray<NSDictionary *> *)faceDataDict {
-    runAsynchronouslyOnVideoProcessingQueue(^{
-        self->_faceDataDict = [faceDataDict mutableCopy];
+    runSynchronouslyOnVideoProcessingQueue(^{
+        self->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
         if (faceDataDict.count > 0) {
             NSArray<NSNumber *> *facePointsArray = self->_faceDataDict[0][@"facePoints"];
             if (facePointsArray.count >= 18) {
@@ -111,7 +111,7 @@
                     faceTriangleLines[12 * i + 10] = faceTriangle[6 * i + 4];
                     faceTriangleLines[12 * i + 11] = faceTriangle[6 * i + 5];
                 }
-                self->meshFilter->setMesh(facePointFloat, 18, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
+                self->backgroundMeshFilter->setMesh(facePointFloat, 18, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
                 delete [] faceTriangle;
                 delete [] faceTriangleLines;
             }

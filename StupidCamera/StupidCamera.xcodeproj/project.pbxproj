@@ -16,6 +16,7 @@
 		FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC6A355F2624358100CA4434 /* LaunchScreen.storyboard */; };
 		FC6A35642624358100CA4434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35632624358100CA4434 /* main.m */; };
 		FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC794A97262446E1009E46A6 /* CameraViewController.m */; };
+		FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */; };
 		FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */; };
 		FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78EA2626C31700F20ED0 /* BaseViewController.m */; };
 		FCEF7A9C2626E10300F20ED0 /* GPUImageBaseFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */; };
@@ -55,6 +56,8 @@
 		FC6A35632624358100CA4434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC794A96262446E1009E46A6 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		FC794A97262446E1009E46A6 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundMesh.cpp; sourceTree = "<group>"; };
+		FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundMesh.hpp; sourceTree = "<group>"; };
 		FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		FCEF78E92626C31700F20ED0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				FCEF7D03262EF4CB00F20ED0 /* SCFilterLine.hpp */,
 				FCEF7E1A26316CFC00F20ED0 /* SCFilterMesh.cpp */,
 				FCEF7E1B26316CFC00F20ED0 /* SCFilterMesh.hpp */,
+				FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */,
+				FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */,
 				FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */,
 			);
 			path = OpenGL;
@@ -357,6 +362,7 @@
 				FCEF7CFB262ECE3700F20ED0 /* vector2.cpp in Sources */,
 				FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */,
 				FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */,
+				FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */,
 				FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */,
 				FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */,
 				FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */,
