@@ -42,6 +42,7 @@ unsigned SCFilterBackgroundMesh::render() {
 }
 
 void SCFilterBackgroundMesh::setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside) {
+    copyFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
     meshFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
 }
 
