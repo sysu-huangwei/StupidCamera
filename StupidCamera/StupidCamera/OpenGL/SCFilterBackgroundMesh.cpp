@@ -46,6 +46,6 @@ void SCFilterBackgroundMesh::setOutsideTextureAndFbo(unsigned textureIDOutside, 
     meshFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
 }
 
-void SCFilterBackgroundMesh::setMesh(float *mesh, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
-    meshFilter->setMesh(mesh, meshArrayCount, meshIndex, indexArrayCount);
+void SCFilterBackgroundMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
+    meshFilter->setMesh(mesh, meshStd, meshArrayCount, meshIndex, indexArrayCount);
 }

@@ -124,6 +124,7 @@
 - (void)lutAlphaSliderChange:(UISlider *)slider {
     _lutAlphaLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
     [_lutFilter setAlpha:slider.value];
+    [_faceMeshFilter setSmallFaceDegree:slider.value];
 }
 
 - (void)showViewGesture:(UISwipeGestureRecognizer *)recognizer {

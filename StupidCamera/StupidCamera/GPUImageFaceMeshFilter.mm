@@ -11,6 +11,8 @@
 #import "DelaunayTriangle.hpp"
 #import "SCFaceData.hpp"
 
+#define MAX_SMALL_FACE_DEGREE 0.2
+
 @interface GPUImageFaceMeshFilter()
 {
     SCFilterBackgroundMesh *backgroundMeshFilter;
@@ -22,6 +24,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        _smallFaceDegree = 0.0f;
         runSynchronouslyOnVideoProcessingQueue(^{
             [GPUImageContext useImageProcessingContext];
             self->backgroundMeshFilter = new SCFilterBackgroundMesh();
@@ -103,6 +106,9 @@
                 facePointFloat[15] = [facePointsArray[15] floatValue];
                 facePointFloat[16] = [facePointsArray[16] floatValue];
                 facePointFloat[17] = [facePointsArray[17] floatValue];
+                float facePointFloatChanged[18];
+                memcpy(facePointFloatChanged, facePointFloat, sizeof(float) * 18);
+                [strongSelf changeSmallFacePoint:facePointFloatChanged];
                 int trianglesCountOutput;
                 float *faceTriangle = DelaunayTriangle::getTriangles(facePointFloat, 9, trianglesCountOutput);
                 float *faceTriangleLines = new float[trianglesCountOutput * 3 * 4];
@@ -120,12 +126,26 @@
                     faceTriangleLines[12 * i + 10] = faceTriangle[6 * i + 4];
                     faceTriangleLines[12 * i + 11] = faceTriangle[6 * i + 5];
                 }
-                strongSelf->backgroundMeshFilter->setMesh(facePointFloat, 18, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
+                strongSelf->backgroundMeshFilter->setMesh(facePointFloatChanged, facePointFloat, 18, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
                 delete [] faceTriangle;
                 delete [] faceTriangleLines;
             }
         }
     };
+}
+
+- (void)changeSmallFacePoint:(float *)facePointFloat {
+    facePointFloat[2] += (facePointFloat[0] - facePointFloat[2]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[3] += (facePointFloat[1] - facePointFloat[3]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    
+    facePointFloat[4] -= (facePointFloat[4] - facePointFloat[0]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[5] += (facePointFloat[1] - facePointFloat[5]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    
+    facePointFloat[6] += (facePointFloat[0] - facePointFloat[6]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[7] -= (facePointFloat[7] - facePointFloat[1]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    
+    facePointFloat[8] -= (facePointFloat[8] - facePointFloat[0]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[9] -= (facePointFloat[9] - facePointFloat[1]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
 }
 
 @end

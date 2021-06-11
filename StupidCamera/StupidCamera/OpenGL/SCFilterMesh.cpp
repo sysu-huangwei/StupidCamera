@@ -10,12 +10,12 @@
 const char *kSCFilterMeshVertexShaderString = SHADER_STRING_CPP
 (
  attribute vec2 a_position;
- attribute vec2 a_texCoord;
+ attribute vec2 a_position_std;
  varying vec2 texcoordOut;
  
  void main()
  {
-    texcoordOut = a_position;
+    texcoordOut = a_position_std;
     gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
  }
 );
@@ -51,7 +51,7 @@ SCFilterMesh::~SCFilterMesh() {
 void SCFilterMesh::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterMeshVertexShaderString, kSCFilterMeshFragmentShaderString);
     positionAttribute = glGetAttribLocation(programID, "a_position");
-    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
+    positionStdAttribute = glGetAttribLocation(programID, "a_position_std");
     inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
@@ -78,8 +78,8 @@ unsigned SCFilterMesh::render() {
     glEnableVertexAttribArray(positionAttribute);
     glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, mesh);
     
-    glEnableVertexAttribArray(textureCoordinateAttribute);
-    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
+    glEnableVertexAttribArray(positionStdAttribute);
+    glVertexAttribPointer(positionStdAttribute, 2, GL_FLOAT, false, 0, meshStd);
     
     glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, srcTextureID);
@@ -92,14 +92,19 @@ unsigned SCFilterMesh::render() {
 }
 
 
-void SCFilterMesh::setMesh(float *mesh, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
+void SCFilterMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
     if (meshArrayCount != this->meshArrayCount) {
         if (this->mesh) {
             delete [] this->mesh;
             this->mesh = nullptr;
         }
+        if (this->meshStd) {
+            delete [] this->meshStd;
+            this->meshStd = nullptr;
+        }
         this->meshArrayCount = meshArrayCount;
         this->mesh = new float[meshArrayCount];
+        this->meshStd = new float[meshArrayCount];
     }
     if (indexArrayCount != this->indexArrayCount) {
         if (this->meshIndex) {
@@ -111,6 +116,9 @@ void SCFilterMesh::setMesh(float *mesh, int meshArrayCount, unsigned int *meshIn
     }
     if (mesh && meshArrayCount > 0) {
         memcpy(this->mesh, mesh, sizeof(float) * meshArrayCount);
+    }
+    if (meshStd && meshArrayCount > 0) {
+        memcpy(this->meshStd, meshStd, sizeof(float) * meshArrayCount);
     }
     if (meshIndex && meshArrayCount > 0) {
         memcpy(this->meshIndex, meshIndex, sizeof(unsigned int) * indexArrayCount);
