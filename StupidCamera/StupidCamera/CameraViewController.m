@@ -124,6 +124,7 @@
 - (void)lutAlphaSliderChange:(UISlider *)slider {
     _lutAlphaLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
     [_lutFilter setAlpha:slider.value];
+    [_faceLineFilter setSmallFaceDegree:slider.value];
     [_faceMeshFilter setSmallFaceDegree:slider.value];
 }
 
@@ -155,8 +156,10 @@
         [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
         [_camera enableFaceDetect:YES];
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
+        _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:self.imageView];
+        [_faceMeshFilter addTarget:_faceLineFilter];
+        [_faceLineFilter addTarget:self.imageView];
     }
 }
 
@@ -180,7 +183,7 @@
             NSMutableDictionary *oneFaceDict = [[NSMutableDictionary alloc] init];
             oneFaceDict[@"faceID"] = @(faceObject.faceID);
             //iOS原生的人脸检测坐标是xy颠倒的，这里需要重新计算一下
-            CGRect boundsOrigin = faceObject.bounds;
+            CGRect boundsOrigin = CGRectMake(0.25, 0.25, 0.5, 0.5);//faceObject.bounds;
             CGRect bounds;
             bounds.origin.x = boundsOrigin.origin.y;
             bounds.origin.y = boundsOrigin.origin.x;
@@ -192,20 +195,20 @@
             facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.4f;
             facePointFloat[2] = bounds.origin.x;
             facePointFloat[3] = bounds.origin.y;
-            facePointFloat[4] = bounds.origin.x + bounds.size.width;
-            facePointFloat[5] = bounds.origin.y;
-            facePointFloat[6] = bounds.origin.x;
-            facePointFloat[7] = bounds.origin.y + bounds.size.height;
-            facePointFloat[8] = bounds.origin.x + bounds.size.width;
-            facePointFloat[9] = bounds.origin.y + bounds.size.height;
-            facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.2f;
-            facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.25f;
-            facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.2f;
-            facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.25f;
-            facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.2f;
-            facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.25f;
-            facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.2f;
-            facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.25f;
+            facePointFloat[4] = bounds.origin.x + bounds.size.width + 0.00001;
+            facePointFloat[5] = bounds.origin.y + 0.00001;
+            facePointFloat[6] = bounds.origin.x + 0.00002;
+            facePointFloat[7] = bounds.origin.y + bounds.size.height + 0.00002;
+            facePointFloat[8] = bounds.origin.x + bounds.size.width + 0.00003;
+            facePointFloat[9] = bounds.origin.y + bounds.size.height + 0.00003;
+            facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.2f + 0.00004;
+            facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.25f + 0.00004;
+            facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.2 + 0.00005;
+            facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.25f + 0.00005;
+            facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.2 + 0.00006;
+            facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.25f + 0.00006;
+            facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.2f + 0.00007;
+            facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.25 + 0.00007;
             oneFaceDict[@"facePoints"] = @[@(facePointFloat[0]),
                                            @(facePointFloat[1]),
                                            @(facePointFloat[2]),
@@ -232,6 +235,7 @@
         }
     }
     [_faceMeshFilter setFaceDataDict:_faceDataDict];
+    [_faceLineFilter setFaceDataDict:_faceDataDict];
 }
 
 

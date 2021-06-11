@@ -9,9 +9,9 @@
 
 const char *kSCFilterMeshVertexShaderString = SHADER_STRING_CPP
 (
- attribute vec2 a_position;
- attribute vec2 a_position_std;
- varying vec2 texcoordOut;
+ attribute highp vec2 a_position;
+ attribute highp vec2 a_position_std;
+ varying highp vec2 texcoordOut;
  
  void main()
  {
@@ -25,7 +25,7 @@ const char *kSCFilterMeshFragmentShaderString = SHADER_STRING_CPP
  precision highp float;
  
  uniform sampler2D  u_texture;
- varying vec2 texcoordOut;
+ varying highp vec2 texcoordOut;
  void main()
  {
     vec4 srcColor = texture2D(u_texture,texcoordOut);
@@ -70,8 +70,8 @@ unsigned SCFilterMesh::render() {
     
     glViewport(0, 0, width, height);
     
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    glClearColor(0.0f,0.0f,0.0f,1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
     
     glUseProgram(programID);
     
