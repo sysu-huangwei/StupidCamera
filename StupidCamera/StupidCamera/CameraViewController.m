@@ -124,6 +124,7 @@
 - (void)lutAlphaSliderChange:(UISlider *)slider {
     _lutAlphaLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
     [_lutFilter setAlpha:slider.value];
+    [_facePointFilter setSmallFaceDegree:slider.value];
     [_faceLineFilter setSmallFaceDegree:slider.value];
     [_faceMeshFilter setSmallFaceDegree:slider.value];
 }
@@ -157,9 +158,10 @@
         [_camera enableFaceDetect:YES];
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
+        _facePointFilter = [[GPUImageFacePointFilter alloc] init];
         [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:self.imageView];
-//        [_faceLineFilter addTarget:self.imageView];
+        [_faceMeshFilter addTarget:_facePointFilter];
+        [_facePointFilter addTarget:self.imageView];
     }
 }
 
@@ -250,6 +252,7 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
+    [_facePointFilter setFaceDataDict:_faceDataDict];
     [_faceMeshFilter setFaceDataDict:_faceDataDict];
     [_faceLineFilter setFaceDataDict:_faceDataDict];
 }

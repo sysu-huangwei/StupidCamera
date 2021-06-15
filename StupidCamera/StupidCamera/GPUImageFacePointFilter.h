@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSArray<NSDictionary *> *faceDataDict;
 
+@property (assign, nonatomic) float smallFaceDegree;
+
 @end
 
 NS_ASSUME_NONNULL_END

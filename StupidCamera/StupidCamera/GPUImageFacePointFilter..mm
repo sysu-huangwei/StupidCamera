@@ -8,16 +8,20 @@
 #import "GPUImageFacePointFilter.h"
 #import "SCFilterPoint.hpp"
 
+#define MAX_SMALL_FACE_DEGREE 0.2
+
 @interface GPUImageFacePointFilter()
 {
     SCFilterPoint *pointFilter;
 }
+@property (nonatomic, copy) dispatch_block_t setFacedataBlock;
 @end
 
 @implementation GPUImageFacePointFilter
 
 - (instancetype)init {
     if (self = [super init]) {
+        _smallFaceDegree = 0.0f;
         runSynchronouslyOnVideoProcessingQueue(^{
             self->pointFilter = new SCFilterPoint();
             self->pointFilter->init();
@@ -54,6 +58,11 @@
     {
         [outputFramebuffer lock];
     }
+    
+    if (_setFacedataBlock) {
+        _setFacedataBlock();
+    }
+    
     self->pointFilter->setSrcTextureID(firstInputFramebuffer.texture);
     self->pointFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
     self->pointFilter->render();
@@ -67,12 +76,14 @@
 }
 
 - (void)setFaceDataDict:(NSArray<NSDictionary *> *)faceDataDict {
-    runAsynchronouslyOnVideoProcessingQueue(^{
-        self->_faceDataDict = [faceDataDict mutableCopy];
+    __weak typeof(self) weakSelf = self;
+    _setFacedataBlock = ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
         if (faceDataDict.count > 0) {
-            NSArray<NSNumber *> *facePointsArray = self->_faceDataDict[0][@"facePoints"];
-            if (facePointsArray.count >= 18) {
-                float facePointFloat[18];
+            NSArray<NSNumber *> *facePointsArray = faceDataDict[0][@"facePoints"];
+            if (facePointsArray.count >= 26) {
+                float facePointFloat[26];
                 facePointFloat[0] = [facePointsArray[0] floatValue];
                 facePointFloat[1] = [facePointsArray[1] floatValue];
                 facePointFloat[2] = [facePointsArray[2] floatValue];
@@ -91,10 +102,35 @@
                 facePointFloat[15] = [facePointsArray[15] floatValue];
                 facePointFloat[16] = [facePointsArray[16] floatValue];
                 facePointFloat[17] = [facePointsArray[17] floatValue];
-                self->pointFilter->setPoints(facePointFloat, 9);
+                facePointFloat[18] = [facePointsArray[18] floatValue];
+                facePointFloat[19] = [facePointsArray[19] floatValue];
+                facePointFloat[20] = [facePointsArray[20] floatValue];
+                facePointFloat[21] = [facePointsArray[21] floatValue];
+                facePointFloat[22] = [facePointsArray[22] floatValue];
+                facePointFloat[23] = [facePointsArray[23] floatValue];
+                facePointFloat[24] = [facePointsArray[24] floatValue];
+                facePointFloat[25] = [facePointsArray[25] floatValue];
+                float facePointFloatChanged[26];
+                memcpy(facePointFloatChanged, facePointFloat, sizeof(float) * 26);
+                [strongSelf changeSmallFacePoint:facePointFloatChanged];
+                strongSelf->pointFilter->setPoints(facePointFloatChanged, 13);
             }
         }
-    });
+    };
+}
+
+- (void)changeSmallFacePoint:(float *)facePointFloat {
+    facePointFloat[2] += (facePointFloat[0] - facePointFloat[2]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[3] += (facePointFloat[1] - facePointFloat[3]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    
+    facePointFloat[4] -= (facePointFloat[4] - facePointFloat[0]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[5] += (facePointFloat[1] - facePointFloat[5]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    
+    facePointFloat[6] += (facePointFloat[0] - facePointFloat[6]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[7] -= (facePointFloat[7] - facePointFloat[1]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    
+    facePointFloat[8] -= (facePointFloat[8] - facePointFloat[0]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
+    facePointFloat[9] -= (facePointFloat[9] - facePointFloat[1]) * MAX_SMALL_FACE_DEGREE * _smallFaceDegree;
 }
 
 @end
