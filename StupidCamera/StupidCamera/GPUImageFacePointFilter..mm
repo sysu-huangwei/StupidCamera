@@ -6,13 +6,13 @@
 //
 
 #import "GPUImageFacePointFilter.h"
-#import "SCFilterPoint.hpp"
+#import "SCFilterBackgroundPoint.hpp"
 
 #define MAX_SMALL_FACE_DEGREE 0.2
 
 @interface GPUImageFacePointFilter()
 {
-    SCFilterPoint *pointFilter;
+    SCFilterBackgroundPoint *pointFilter;
 }
 @property (nonatomic, copy) dispatch_block_t setFacedataBlock;
 @end
@@ -23,7 +23,7 @@
     if (self = [super init]) {
         _smallFaceDegree = 0.0f;
         runSynchronouslyOnVideoProcessingQueue(^{
-            self->pointFilter = new SCFilterPoint();
+            self->pointFilter = new SCFilterBackgroundPoint();
             self->pointFilter->init();
         });
     }
