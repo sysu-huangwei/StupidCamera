@@ -160,8 +160,8 @@
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
         [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:_facePointFilter];
-        [_facePointFilter addTarget:self.imageView];
+        [_faceMeshFilter addTarget:_faceLineFilter];
+        [_faceLineFilter addTarget:self.imageView];
     }
 }
 

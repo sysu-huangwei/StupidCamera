@@ -15,6 +15,7 @@
 {
     SCFilterBackgroundLine *lineFilter;
 }
+@property (nonatomic, copy) dispatch_block_t setFacedataBlock;
 @end
 
 @implementation GPUImageFaceLineFilter
@@ -58,6 +59,11 @@
     {
         [outputFramebuffer lock];
     }
+    
+    if (_setFacedataBlock) {
+        _setFacedataBlock();
+    }
+    
     self->lineFilter->setSrcTextureID(firstInputFramebuffer.texture);
     self->lineFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
     self->lineFilter->render();
@@ -71,12 +77,14 @@
 }
 
 - (void)setFaceDataDict:(NSArray<NSDictionary *> *)faceDataDict {
-    runAsynchronouslyOnVideoProcessingQueue(^{
-        self->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
+    __weak typeof(self) weakSelf = self;
+    _setFacedataBlock = ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
         if (faceDataDict.count > 0) {
-            NSArray<NSNumber *> *facePointsArray = self->_faceDataDict[0][@"facePoints"];
-            if (facePointsArray.count >= 18) {
-                float facePointFloat[18];
+            NSArray<NSNumber *> *facePointsArray = faceDataDict[0][@"facePoints"];
+            if (facePointsArray.count >= 26) {
+                float facePointFloat[26];
                 facePointFloat[0] = [facePointsArray[0] floatValue];
                 facePointFloat[1] = [facePointsArray[1] floatValue];
                 facePointFloat[2] = [facePointsArray[2] floatValue];
@@ -95,30 +103,35 @@
                 facePointFloat[15] = [facePointsArray[15] floatValue];
                 facePointFloat[16] = [facePointsArray[16] floatValue];
                 facePointFloat[17] = [facePointsArray[17] floatValue];
-                [self changeSmallFacePoint:facePointFloat];
-                int trianglesCountOutput;
-                float *faceTriangle = DelaunayTriangle::getTriangles(facePointFloat, 9, trianglesCountOutput);
-                float *faceTriangleLines = new float[trianglesCountOutput * 3 * 4];
-                for (int i = 0; i < trianglesCountOutput; i++) {
-                    faceTriangleLines[12 * i] = faceTriangle[6 * i];
-                    faceTriangleLines[12 * i + 1] = faceTriangle[6 * i + 1];
-                    faceTriangleLines[12 * i + 2] = faceTriangle[6 * i + 2];
-                    faceTriangleLines[12 * i + 3] = faceTriangle[6 * i + 3];
-                    faceTriangleLines[12 * i + 4] = faceTriangle[6 * i];
-                    faceTriangleLines[12 * i + 5] = faceTriangle[6 * i + 1];
-                    faceTriangleLines[12 * i + 6] = faceTriangle[6 * i + 4];
-                    faceTriangleLines[12 * i + 7] = faceTriangle[6 * i + 5];
-                    faceTriangleLines[12 * i + 8] = faceTriangle[6 * i + 2];
-                    faceTriangleLines[12 * i + 9] = faceTriangle[6 * i + 3];
-                    faceTriangleLines[12 * i + 10] = faceTriangle[6 * i + 4];
-                    faceTriangleLines[12 * i + 11] = faceTriangle[6 * i + 5];
+                facePointFloat[18] = [facePointsArray[18] floatValue];
+                facePointFloat[19] = [facePointsArray[19] floatValue];
+                facePointFloat[20] = [facePointsArray[20] floatValue];
+                facePointFloat[21] = [facePointsArray[21] floatValue];
+                facePointFloat[22] = [facePointsArray[22] floatValue];
+                facePointFloat[23] = [facePointsArray[23] floatValue];
+                facePointFloat[24] = [facePointsArray[24] floatValue];
+                facePointFloat[25] = [facePointsArray[25] floatValue];
+                float facePointFloatChanged[26];
+                memcpy(facePointFloatChanged, facePointFloat, sizeof(float) * 26);
+                [strongSelf changeSmallFacePoint:facePointFloatChanged];
+                int lineIndex[56] = {
+                    0,1,  0,2,  0,3,  0,4,
+                    1,2,  2,4,  4,3,  3,1,
+                    5,10, 10,6, 6,11, 11,8, 8,12, 12,7, 7,9, 9,5,
+                    1,5,  1,10, 10,2, 2,6,  2,11, 4,11, 4,8, 4,12, 3,12, 3,7, 3,9, 1,9
+                };
+                float lines[112];
+                for (int i = 0; i < 112; i += 4) {
+                    int currentIndex = i / 4;
+                    lines[i] = facePointFloatChanged[2 * lineIndex[2 * currentIndex]];
+                    lines[i + 1] = facePointFloatChanged[2 * lineIndex[2 * currentIndex] + 1];
+                    lines[i + 2] = facePointFloatChanged[2 * lineIndex[2 * currentIndex + 1]];
+                    lines[i + 3] = facePointFloatChanged[2 * lineIndex[2 * currentIndex + 1] + 1];
                 }
-                self->lineFilter->setLines(faceTriangleLines, trianglesCountOutput * 3);
-                delete [] faceTriangle;
-                delete [] faceTriangleLines;
+                strongSelf->lineFilter->setLines(lines, 28);
             }
         }
-    });
+    };
 }
 
 - (void)changeSmallFacePoint:(float *)facePointFloat {
