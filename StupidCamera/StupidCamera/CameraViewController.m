@@ -158,8 +158,8 @@
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:_faceLineFilter];
-        [_faceLineFilter addTarget:self.imageView];
+        [_faceMeshFilter addTarget:self.imageView];
+//        [_faceLineFilter addTarget:self.imageView];
     }
 }
 
@@ -190,7 +190,7 @@
             bounds.size.width = boundsOrigin.size.height;
             bounds.size.height = boundsOrigin.size.width;
             oneFaceDict[@"faceRect"] = @(bounds);
-            float facePointFloat[18];
+            float facePointFloat[26];
             facePointFloat[0] = bounds.origin.x + bounds.size.width * 0.5f;
             facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.4f;
             facePointFloat[2] = bounds.origin.x;
@@ -209,6 +209,14 @@
             facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.25f + 0.00006;
             facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.2f + 0.00007;
             facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.25 + 0.00007;
+            facePointFloat[18] = (facePointFloat[10] + facePointFloat[14]) * 0.5;
+            facePointFloat[19] = (facePointFloat[11] + facePointFloat[15]) * 0.5;
+            facePointFloat[20] = (facePointFloat[10] + facePointFloat[12]) * 0.5;
+            facePointFloat[21] = (facePointFloat[11] + facePointFloat[13]) * 0.5;
+            facePointFloat[22] = (facePointFloat[12] + facePointFloat[16]) * 0.5;
+            facePointFloat[23] = (facePointFloat[13] + facePointFloat[17]) * 0.5;
+            facePointFloat[24] = (facePointFloat[14] + facePointFloat[16]) * 0.5;
+            facePointFloat[25] = (facePointFloat[15] + facePointFloat[17]) * 0.5;
             oneFaceDict[@"facePoints"] = @[@(facePointFloat[0]),
                                            @(facePointFloat[1]),
                                            @(facePointFloat[2]),
@@ -226,7 +234,15 @@
                                            @(facePointFloat[14]),
                                            @(facePointFloat[15]),
                                            @(facePointFloat[16]),
-                                           @(facePointFloat[17])];
+                                           @(facePointFloat[17]),
+                                           @(facePointFloat[18]),
+                                           @(facePointFloat[19]),
+                                           @(facePointFloat[20]),
+                                           @(facePointFloat[21]),
+                                           @(facePointFloat[22]),
+                                           @(facePointFloat[23]),
+                                           @(facePointFloat[24]),
+                                           @(facePointFloat[25])];
             oneFaceDict[@"hasRollAngle"] = @(faceObject.hasRollAngle);
             oneFaceDict[@"rollAngle"] = @(faceObject.rollAngle);
             oneFaceDict[@"hasYawAngle"] = @(faceObject.hasYawAngle);
