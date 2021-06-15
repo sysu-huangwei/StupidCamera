@@ -38,3 +38,28 @@ float *DelaunayTriangle::getTriangles(float *points, int pointsCount, int& trian
     
     return result;
 }
+
+std::vector<SCTriangle> DelaunayTriangle::getTriangles(std::vector<SCPoint> points) {
+    std::vector<SCTriangle> result;
+    
+    Delaunay<float> instance;
+    vector<Vector2<float>> vertices;
+    for (int i = 0; i < points.size(); i++) {
+        vertices.push_back(Vector2<float>(points[i].x, points[i].y));
+    }
+    
+    std::vector<Triangle<float>> triangles = instance.triangulate(vertices);
+    
+    for (int i = 0; triangles.size(); i++) {
+        SCTriangle triangle;
+        triangle.p0.x = triangles[i].a->x;
+        triangle.p0.y = triangles[i].a->y;
+        triangle.p1.x = triangles[i].b->x;
+        triangle.p1.y = triangles[i].b->y;
+        triangle.p2.x = triangles[i].c->x;
+        triangle.p2.y = triangles[i].c->y;
+        result.push_back(triangle);
+    }
+    
+    return result;
+}

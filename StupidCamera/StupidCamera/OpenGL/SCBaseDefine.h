@@ -33,4 +33,15 @@
 #define STRINGIZE2(x) STRINGIZE(x)
 #define SHADER_STRING_CPP(text) STRINGIZE2(text)
 
+typedef struct {
+    float x;
+    float y;
+} SCPoint;
+
+typedef struct {
+    SCPoint p0;
+    SCPoint p1;
+    SCPoint p2;
+} SCTriangle;
+
 #endif //SCBASEDEFINE_H

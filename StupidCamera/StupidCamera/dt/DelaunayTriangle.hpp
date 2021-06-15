@@ -7,6 +7,9 @@
 #ifndef DelaunayTriangle_hpp
 #define DelaunayTriangle_hpp
 
+#include <vector>
+#include "SCBaseDefine.h"
+
 class DelaunayTriangle {
 public:
     
@@ -16,6 +19,11 @@ public:
     /// @param trianglesCountOutput 输出三角形的数量
     /// @return 三角形的点【内存外部去delete】
     static float *getTriangles(float *points, int pointsCount, int& trianglesCountOutput);
+    
+    /// 三角剖分算法
+    /// @param points 输入点，归一化，0~1
+    /// @return 三角形
+    static std::vector<SCTriangle> getTriangles(std::vector<SCPoint> points);
 };
 
 #endif /* DelaunayTriangle_hpp */
