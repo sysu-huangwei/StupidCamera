@@ -33,11 +33,11 @@ void SCFilterBackgroundMesh::resize(int width, int height) {
 
 void SCFilterBackgroundMesh::setSrcTextureID(unsigned srcTextureID) {
     copyFilter->setSrcTextureID(srcTextureID);
+    meshFilter->setSrcTextureID(srcTextureID);
 }
 
 unsigned SCFilterBackgroundMesh::render() {
-    GLuint backgroundTextureID = copyFilter->render();
-    meshFilter->setSrcTextureID(backgroundTextureID);
+    copyFilter->render();
     return meshFilter->render();
 }
 

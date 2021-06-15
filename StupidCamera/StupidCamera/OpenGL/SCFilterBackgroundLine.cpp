@@ -34,11 +34,11 @@ void SCFilterBackgroundLine::resize(int width, int height) {
 
 void SCFilterBackgroundLine::setSrcTextureID(unsigned srcTextureID) {
     copyFilter->setSrcTextureID(srcTextureID);
+    lineFilter->setSrcTextureID(srcTextureID);
 }
 
 unsigned SCFilterBackgroundLine::render() {
-    GLuint backgroundTextureID = copyFilter->render();
-    lineFilter->setSrcTextureID(backgroundTextureID);
+    copyFilter->render();
     return lineFilter->render();
 }
 

@@ -34,11 +34,11 @@ void SCFilterBackgroundPoint::resize(int width, int height) {
 
 void SCFilterBackgroundPoint::setSrcTextureID(unsigned srcTextureID) {
     copyFilter->setSrcTextureID(srcTextureID);
+    pointFilter->setSrcTextureID(srcTextureID);
 }
 
 unsigned SCFilterBackgroundPoint::render() {
-    GLuint backgroundTextureID = copyFilter->render();
-    pointFilter->setSrcTextureID(backgroundTextureID);
+    copyFilter->render();
     return pointFilter->render();
 }
 

@@ -160,8 +160,8 @@
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
         [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:_faceLineFilter];
-        [_faceLineFilter addTarget:self.imageView];
+        [_faceMeshFilter addTarget:self.imageView];
+//        [_faceLineFilter addTarget:self.imageView];
     }
 }
 
@@ -194,7 +194,7 @@
             oneFaceDict[@"faceRect"] = @(bounds);
             float facePointFloat[26];
             facePointFloat[0] = bounds.origin.x + bounds.size.width * 0.5f;
-            facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.4f;
+            facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.5f;
             facePointFloat[2] = bounds.origin.x;
             facePointFloat[3] = bounds.origin.y;
             facePointFloat[4] = bounds.origin.x + bounds.size.width;
