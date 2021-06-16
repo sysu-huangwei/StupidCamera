@@ -192,59 +192,21 @@
             bounds.size.width = boundsOrigin.size.height;
             bounds.size.height = boundsOrigin.size.width;
             oneFaceDict[@"faceRect"] = @(bounds);
-            float facePointFloat[26];
-            facePointFloat[0] = bounds.origin.x + bounds.size.width * 0.5f;
-            facePointFloat[1] = bounds.origin.y + bounds.size.height * 0.5f;
-            facePointFloat[2] = bounds.origin.x;
-            facePointFloat[3] = bounds.origin.y;
-            facePointFloat[4] = bounds.origin.x + bounds.size.width;
-            facePointFloat[5] = bounds.origin.y;
-            facePointFloat[6] = bounds.origin.x ;
-            facePointFloat[7] = bounds.origin.y + bounds.size.height;
-            facePointFloat[8] = bounds.origin.x + bounds.size.width;
-            facePointFloat[9] = bounds.origin.y + bounds.size.height;
-            facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.2f;
-            facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.4f;
-            facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.2f;
-            facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.4f;
-            facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.2f;
-            facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.3f;
-            facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.2f;
-            facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.3f;
-            facePointFloat[18] = (facePointFloat[10] + facePointFloat[14]) * 0.5;
-            facePointFloat[19] = (facePointFloat[11] + facePointFloat[15]) * 0.5;
-            facePointFloat[20] = (facePointFloat[10] + facePointFloat[12]) * 0.5;
-            facePointFloat[21] = (facePointFloat[11] + facePointFloat[13]) * 0.5;
-            facePointFloat[22] = (facePointFloat[12] + facePointFloat[16]) * 0.5;
-            facePointFloat[23] = (facePointFloat[13] + facePointFloat[17]) * 0.5;
-            facePointFloat[24] = (facePointFloat[14] + facePointFloat[16]) * 0.5;
-            facePointFloat[25] = (facePointFloat[15] + facePointFloat[17]) * 0.5;
-            oneFaceDict[@"facePoints"] = @[@(facePointFloat[0]),
-                                           @(facePointFloat[1]),
-                                           @(facePointFloat[2]),
-                                           @(facePointFloat[3]),
-                                           @(facePointFloat[4]),
-                                           @(facePointFloat[5]),
-                                           @(facePointFloat[6]),
-                                           @(facePointFloat[7]),
-                                           @(facePointFloat[8]),
-                                           @(facePointFloat[9]),
-                                           @(facePointFloat[10]),
-                                           @(facePointFloat[11]),
-                                           @(facePointFloat[12]),
-                                           @(facePointFloat[13]),
-                                           @(facePointFloat[14]),
-                                           @(facePointFloat[15]),
-                                           @(facePointFloat[16]),
-                                           @(facePointFloat[17]),
-                                           @(facePointFloat[18]),
-                                           @(facePointFloat[19]),
-                                           @(facePointFloat[20]),
-                                           @(facePointFloat[21]),
-                                           @(facePointFloat[22]),
-                                           @(facePointFloat[23]),
-                                           @(facePointFloat[24]),
-                                           @(facePointFloat[25])];
+            NSMutableArray<NSValue *> *facePoints = [[NSMutableArray alloc] init];
+            [facePoints addObject:@(CGPointMake(bounds.origin.x + bounds.size.width * 0.5f, bounds.origin.y + bounds.size.height * 0.5f))]; // 0
+            [facePoints addObject:@(CGPointMake(bounds.origin.x, bounds.origin.y))]; // 1
+            [facePoints addObject:@(CGPointMake(bounds.origin.x + bounds.size.width, bounds.origin.y))]; // 2
+            [facePoints addObject:@(CGPointMake(bounds.origin.x, bounds.origin.y + bounds.size.height))]; // 3
+            [facePoints addObject:@(CGPointMake(bounds.origin.x + bounds.size.width, bounds.origin.y + bounds.size.height))]; // 4
+            [facePoints addObject:@(CGPointMake(bounds.origin.x - bounds.size.width * 0.2f, bounds.origin.y - bounds.size.height * 0.4f))]; // 5
+            [facePoints addObject:@(CGPointMake(bounds.origin.x + bounds.size.width * 1.2f, bounds.origin.y - bounds.size.height * 0.4f))]; // 6
+            [facePoints addObject:@(CGPointMake(bounds.origin.x - bounds.size.width * 0.2f, bounds.origin.y + bounds.size.height * 1.3f))]; // 7
+            [facePoints addObject:@(CGPointMake(bounds.origin.x + bounds.size.width * 1.2f, bounds.origin.y + bounds.size.height * 1.3f))]; // 8
+            [facePoints addObject:@(CGPointMake((facePoints[5].CGPointValue.x + facePoints[7].CGPointValue.x) * 0.5, (facePoints[5].CGPointValue.y + facePoints[7].CGPointValue.y) * 0.5))]; // 9
+            [facePoints addObject:@(CGPointMake((facePoints[5].CGPointValue.x + facePoints[6].CGPointValue.x) * 0.5, (facePoints[5].CGPointValue.y + facePoints[6].CGPointValue.y) * 0.5))]; // 10
+            [facePoints addObject:@(CGPointMake((facePoints[6].CGPointValue.x + facePoints[8].CGPointValue.x) * 0.5, (facePoints[6].CGPointValue.y + facePoints[8].CGPointValue.y) * 0.5))]; // 11
+            [facePoints addObject:@(CGPointMake((facePoints[7].CGPointValue.x + facePoints[8].CGPointValue.x) * 0.5, (facePoints[7].CGPointValue.y + facePoints[8].CGPointValue.y) * 0.5))]; // 12
+            oneFaceDict[@"facePoints"] = facePoints;
             oneFaceDict[@"hasRollAngle"] = @(faceObject.hasRollAngle);
             oneFaceDict[@"rollAngle"] = @(faceObject.rollAngle);
             oneFaceDict[@"hasYawAngle"] = @(faceObject.hasYawAngle);

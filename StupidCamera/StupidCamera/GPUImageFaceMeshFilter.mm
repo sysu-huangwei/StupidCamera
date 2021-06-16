@@ -85,35 +85,13 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         strongSelf->_faceDataDict = [NSMutableArray arrayWithArray:faceDataDict];
         if (faceDataDict.count > 0) {
-            NSArray<NSNumber *> *facePointsArray = faceDataDict[0][@"facePoints"];
-            if (facePointsArray.count >= 26) {
+            NSArray<NSValue *> *facePointsArray = faceDataDict[0][@"facePoints"];
+            if (facePointsArray.count >= 13) {
                 float facePointFloat[26];
-                facePointFloat[0] = [facePointsArray[0] floatValue];
-                facePointFloat[1] = [facePointsArray[1] floatValue];
-                facePointFloat[2] = [facePointsArray[2] floatValue];
-                facePointFloat[3] = [facePointsArray[3] floatValue];
-                facePointFloat[4] = [facePointsArray[4] floatValue];
-                facePointFloat[5] = [facePointsArray[5] floatValue];
-                facePointFloat[6] = [facePointsArray[6] floatValue];
-                facePointFloat[7] = [facePointsArray[7] floatValue];
-                facePointFloat[8] = [facePointsArray[8] floatValue];
-                facePointFloat[9] = [facePointsArray[9] floatValue];
-                facePointFloat[10] = [facePointsArray[10] floatValue];
-                facePointFloat[11] = [facePointsArray[11] floatValue];
-                facePointFloat[12] = [facePointsArray[12] floatValue];
-                facePointFloat[13] = [facePointsArray[13] floatValue];
-                facePointFloat[14] = [facePointsArray[14] floatValue];
-                facePointFloat[15] = [facePointsArray[15] floatValue];
-                facePointFloat[16] = [facePointsArray[16] floatValue];
-                facePointFloat[17] = [facePointsArray[17] floatValue];
-                facePointFloat[18] = [facePointsArray[18] floatValue];
-                facePointFloat[19] = [facePointsArray[19] floatValue];
-                facePointFloat[20] = [facePointsArray[20] floatValue];
-                facePointFloat[21] = [facePointsArray[21] floatValue];
-                facePointFloat[22] = [facePointsArray[22] floatValue];
-                facePointFloat[23] = [facePointsArray[23] floatValue];
-                facePointFloat[24] = [facePointsArray[24] floatValue];
-                facePointFloat[25] = [facePointsArray[25] floatValue];
+                for (int i = 0; i < 13; i++) {
+                    facePointFloat[2 * i] = facePointsArray[i].CGPointValue.x;
+                    facePointFloat[2 * i + 1] = facePointsArray[i].CGPointValue.y;
+                }
                 float facePointFloatChanged[26];
                 memcpy(facePointFloatChanged, facePointFloat, sizeof(float) * 26);
                 [strongSelf changeSmallFacePoint:facePointFloatChanged];
