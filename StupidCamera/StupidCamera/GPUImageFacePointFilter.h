@@ -5,21 +5,11 @@
 //  Created by rayyy on 2021/4/16.
 //
 
-#if __cplusplus
-extern "C" {
-#endif
-#import <GPUImage/GPUImage.h>
-#if __cplusplus
-}
-#endif
+#import "GPUImageFaceBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPUImageFacePointFilter : GPUImageFilter
-
-@property (strong, nonatomic) NSArray<NSDictionary *> *faceDataDict;
-
-@property (assign, nonatomic) float smallFaceDegree;
+@interface GPUImageFacePointFilter : GPUImageFaceBase
 
 @end
 
