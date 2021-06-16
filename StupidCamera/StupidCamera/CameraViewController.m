@@ -185,7 +185,7 @@
             NSMutableDictionary *oneFaceDict = [[NSMutableDictionary alloc] init];
             oneFaceDict[@"faceID"] = @(faceObject.faceID);
             //iOS原生的人脸检测坐标是xy颠倒的，这里需要重新计算一下
-            CGRect boundsOrigin = CGRectMake(0.25, 0.25, 0.5, 0.5);//faceObject.bounds;
+            CGRect boundsOrigin = faceObject.bounds;
             CGRect bounds;
             bounds.origin.x = boundsOrigin.origin.y;
             bounds.origin.y = boundsOrigin.origin.x;
@@ -204,13 +204,13 @@
             facePointFloat[8] = bounds.origin.x + bounds.size.width;
             facePointFloat[9] = bounds.origin.y + bounds.size.height;
             facePointFloat[10] = bounds.origin.x - bounds.size.width * 0.2f;
-            facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.25f;
+            facePointFloat[11] = bounds.origin.y - bounds.size.height * 0.4f;
             facePointFloat[12] = bounds.origin.x + bounds.size.width * 1.2f;
-            facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.25f;
+            facePointFloat[13] = bounds.origin.y - bounds.size.height * 0.4f;
             facePointFloat[14] = bounds.origin.x - bounds.size.width * 0.2f;
-            facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.25f;
+            facePointFloat[15] = bounds.origin.y + bounds.size.height * 1.3f;
             facePointFloat[16] = bounds.origin.x + bounds.size.width * 1.2f;
-            facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.25;
+            facePointFloat[17] = bounds.origin.y + bounds.size.height * 1.3f;
             facePointFloat[18] = (facePointFloat[10] + facePointFloat[14]) * 0.5;
             facePointFloat[19] = (facePointFloat[11] + facePointFloat[15]) * 0.5;
             facePointFloat[20] = (facePointFloat[10] + facePointFloat[12]) * 0.5;
