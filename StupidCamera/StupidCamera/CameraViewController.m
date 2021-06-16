@@ -12,7 +12,6 @@
 #import "GPUImageLutFilter.h"
 #import "GPUImageFacePointFilter.h"
 #import "GPUImageFaceLineFilter.h"
-#import "GPUImageFaceMeshFilter.h"
 #import "GPUImageSmallHeadFilter.h"
 
 @interface CameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
@@ -25,7 +24,6 @@
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
 @property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
-@property (strong, nonatomic) GPUImageFaceMeshFilter *faceMeshFilter;
 @property (strong, nonatomic) GPUImageSmallHeadFilter *smallHeadFilter;
 
 @property (strong, nonatomic) NSMutableArray<NSMutableDictionary *> *faceDataDict;
@@ -71,8 +69,6 @@
     CGFloat captureWidthHeight = 80;
     CGFloat toTop = (self.bottomView.bounds.size.height - captureWidthHeight) * 0.5;
     CGFloat toLeft = (self.bottomView.bounds.size.width - captureWidthHeight) * 0.5;
-    CGRect rect = self.bottomView.bounds;
-    CGRect rect1 = self.bottomView.frame;
     UIImage *image = [UIImage imageNamed:@"camera_capture"];
     [_captureButton setImage:image forState:UIControlStateNormal];
     _captureButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -126,7 +122,6 @@
 - (void)lutAlphaSliderChange:(UISlider *)slider {
     _lutAlphaLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
     [_lutFilter setAlpha:slider.value];
-    [_faceMeshFilter setSmallFaceDegree:slider.value];
     [_smallHeadFilter setSmallHeadDegree:slider.value];
 }
 
@@ -157,7 +152,6 @@
         [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
         [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
         [_camera enableFaceDetect:YES];
-        _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
         _smallHeadFilter = [[GPUImageSmallHeadFilter alloc] init];
@@ -171,7 +165,7 @@
     if (!block) {
         return;
     }
-    [self->_camera capturePhotoAsImageProcessedUpToFilter:_faceMeshFilter withCompletionHandler:^(UIImage *image, NSError *error) {
+    [self->_camera capturePhotoAsImageProcessedUpToFilter:_smallHeadFilter withCompletionHandler:^(UIImage *image, NSError *error) {
         [self->_camera stopCameraCapture];
         block(image);
     }];
@@ -217,8 +211,6 @@
         }
     }
     [_facePointFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
-//    [_faceMeshFilter setFaceDataDict:_faceDataDict];
-    [_faceMeshFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
     [_smallHeadFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
     [_faceLineFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
 }
