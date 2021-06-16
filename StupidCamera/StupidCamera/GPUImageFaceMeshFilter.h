@@ -13,12 +13,15 @@ extern "C" {
 }
 #endif
 
+#import "SCFaceDataIOS.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GPUImageFaceMeshFilter : GPUImageFilter
 
 @property (strong, nonatomic) NSArray<NSDictionary *> *faceDataDict;
+@property (strong, nonatomic) SCFaceDataIOS *faceData;
 
 @property (assign, nonatomic) float smallFaceDegree;
 

@@ -64,9 +64,9 @@
     {
         [outputFramebuffer lock];
     }
-    if (_setFacedataBlock) {
-        _setFacedataBlock();
-    }
+//    if (_setFacedataBlock) {
+//        _setFacedataBlock();
+//    }
     self->backgroundMeshFilter->setSrcTextureID(firstInputFramebuffer.texture);
     self->backgroundMeshFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
     self->backgroundMeshFilter->render();
@@ -99,6 +99,16 @@
             }
         }
     };
+}
+
+- (void)setFaceData:(SCFaceDataIOS *)faceData {
+    runAsynchronouslyOnVideoProcessingQueue(^{
+        self->_faceData = [faceData copy];
+        float facePointFloatChanged[26];
+        memcpy(facePointFloatChanged, self->_faceData.faceData->faces[0].facePoints, sizeof(float) * 26);
+        [self changeSmallFacePoint:facePointFloatChanged];
+        self->backgroundMeshFilter->setMesh(facePointFloatChanged, self->_faceData.faceData->faces[0].facePoints, 26, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
+    });
 }
 
 - (void)changeSmallFacePoint:(float *)facePointFloat {

@@ -54,7 +54,7 @@ static SCFaceData* createSCFaceData() {
 static SCFaceData* copySCFaceData(const SCFaceData *anotherFaceData) {
     SCFaceData *faceData = NULL;
     if (anotherFaceData) {
-        SCFaceData *faceData = (SCFaceData *)malloc(sizeof(SCFaceData));
+        faceData = (SCFaceData *)malloc(sizeof(SCFaceData));
         memcpy(faceData, anotherFaceData, sizeof(SCFaceData));
     }
     return faceData;

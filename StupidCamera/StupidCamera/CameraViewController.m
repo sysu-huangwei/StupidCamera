@@ -215,7 +215,8 @@
         }
     }
     [_facePointFilter setFaceDataDict:_faceDataDict];
-    [_faceMeshFilter setFaceDataDict:_faceDataDict];
+//    [_faceMeshFilter setFaceDataDict:_faceDataDict];
+    [_faceMeshFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
     [_faceLineFilter setFaceDataDict:_faceDataDict];
 }
 
