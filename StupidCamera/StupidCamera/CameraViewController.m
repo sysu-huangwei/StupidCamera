@@ -16,6 +16,7 @@
 @interface CameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) UISlider *lutAlphaSlider;
 @property (strong, nonatomic) UILabel *lutAlphaLabel;
+@property (strong, nonatomic) UIStackView *stackView;
 @property (strong, nonatomic) UIButton *captureButton;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
@@ -41,6 +42,7 @@
     [self initCaptureButton];
     [self initLutAlphaSlider];
     [self initLutAlphaLabel];
+    [self initStackView];
     [self initCamera];
     [_camera startCameraCapture];
     _faceDataDict = [[NSMutableArray alloc] init];
@@ -113,6 +115,30 @@
         [_lutAlphaLabel addConstraint:ConstraintWidth];
         NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_lutAlphaLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-10];
         [self.bottomView addConstraint:ConstraintRight];
+    }
+}
+
+- (void)initStackView {
+    if (!_stackView) {
+        _stackView = [[UIStackView alloc] init];
+        [self.bottomView addSubview:_stackView];
+        
+        _stackView.translatesAutoresizingMaskIntoConstraints = NO;
+        _stackView.axis = UILayoutConstraintAxisHorizontal;
+        
+        NSLayoutConstraint *ConstraintTop = [NSLayoutConstraint constraintWithItem:_stackView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeTop multiplier:1.0 constant:40];
+        [self.bottomView addConstraint:ConstraintTop];
+        NSLayoutConstraint *ConstraintLeft = [NSLayoutConstraint constraintWithItem:_stackView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:20];
+        [self.bottomView addConstraint:ConstraintLeft];
+        NSLayoutConstraint *ConstraintRight = [NSLayoutConstraint constraintWithItem:_stackView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.bottomView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-20];
+        [self.bottomView addConstraint:ConstraintRight];
+        
+        UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        view1.backgroundColor = UIColor.blueColor;
+        UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        view2.backgroundColor = UIColor.redColor;
+        [_stackView addArrangedSubview:view1];
+        [_stackView addArrangedSubview:view2];
     }
 }
 

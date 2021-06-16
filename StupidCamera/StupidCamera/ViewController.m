@@ -6,7 +6,7 @@
 //
 
 #import "ViewController.h"
-#import "CameraViewController.h"
+#import "SCCameraViewController.h"
 
 @interface ViewController ()
 @end
@@ -19,7 +19,7 @@
 }
 
 - (IBAction)openCamera:(id)sender {
-    CameraViewController* cameraViewController = [[CameraViewController alloc] init];
+    SCCameraViewController* cameraViewController = [[SCCameraViewController alloc] init];
     cameraViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:cameraViewController animated:YES completion:nil];
 }
