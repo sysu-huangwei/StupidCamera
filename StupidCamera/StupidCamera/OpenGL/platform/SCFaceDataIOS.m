@@ -61,7 +61,7 @@
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
     SCFaceDataIOS *faceDataIOS = [[SCFaceDataIOS allocWithZone:zone] initWithFaceDataDictArray:nil];
-    faceDataIOS->_faceData = copySCFaceData(_faceData);
+    faceDataIOS->_faceData = newAndCopySCFaceData(_faceData);
     return faceDataIOS;
 }
 

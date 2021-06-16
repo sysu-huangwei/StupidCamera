@@ -51,13 +51,19 @@ static SCFaceData* createSCFaceData() {
     return faceData;
 }
 
-static SCFaceData* copySCFaceData(const SCFaceData *anotherFaceData) {
+static SCFaceData* newAndCopySCFaceData(const SCFaceData *srcFaceData) {
     SCFaceData *faceData = NULL;
-    if (anotherFaceData) {
+    if (srcFaceData) {
         faceData = (SCFaceData *)malloc(sizeof(SCFaceData));
-        memcpy(faceData, anotherFaceData, sizeof(SCFaceData));
+        memcpy(faceData, srcFaceData, sizeof(SCFaceData));
     }
     return faceData;
+}
+
+static void copySCFaceData(const SCFaceData *srcFaceData, SCFaceData *dstFaceData) {
+    if (srcFaceData && dstFaceData) {
+        memcpy(dstFaceData, srcFaceData, sizeof(SCFaceData));
+    }
 }
 
 static void freeSCFaceData(SCFaceData **faceData) {

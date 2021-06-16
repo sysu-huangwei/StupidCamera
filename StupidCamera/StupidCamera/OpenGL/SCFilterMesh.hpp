@@ -28,7 +28,7 @@ public:
     /// @param meshArrayCount mesh数组长度
     /// @param meshIndex 下标索引数组
     /// @param indexArrayCount meshIndex数组长度
-    void setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount);
+    virtual void setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount);
     
 protected:
     int positionStdAttribute = -1;
