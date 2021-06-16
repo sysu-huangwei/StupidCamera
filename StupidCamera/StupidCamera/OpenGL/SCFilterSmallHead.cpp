@@ -7,7 +7,7 @@
 #include "SCFilterSmallHead.hpp"
 #include <algorithm>
 
-#define MAX_SMALL_FACE_DEGREE 0.02
+#define MAX_SMALL_FACE_DEGREE 0.03
 
 void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
     SCFilterFaceBase::setFaceData(faceData);

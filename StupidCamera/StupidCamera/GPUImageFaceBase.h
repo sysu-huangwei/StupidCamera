@@ -1,8 +1,8 @@
 //
-//  GPUImageMeshFilter.h
+//  GPUImageFaceBase.h
 //  StupidCamera
 //
-//  Created by rayyy on 2021/4/22.
+//  Created by rayyy on 2021/6/16.
 //
 
 #if __cplusplus
@@ -17,12 +17,9 @@ extern "C" {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPUImageFaceMeshFilter : GPUImageFilter
+@interface GPUImageFaceBase : GPUImageFilter
 
-@property (strong, nonatomic) NSArray<NSDictionary *> *faceDataDict;
 @property (strong, nonatomic) SCFaceDataIOS *faceData;
-
-@property (assign, nonatomic) float smallFaceDegree;
 
 @end
 

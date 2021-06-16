@@ -13,6 +13,7 @@
 #import "GPUImageFacePointFilter.h"
 #import "GPUImageFaceLineFilter.h"
 #import "GPUImageFaceMeshFilter.h"
+#import "GPUImageSmallHeadFilter.h"
 
 @interface CameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) UISlider *lutAlphaSlider;
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
 @property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
 @property (strong, nonatomic) GPUImageFaceMeshFilter *faceMeshFilter;
+@property (strong, nonatomic) GPUImageSmallHeadFilter *smallHeadFilter;
 
 @property (strong, nonatomic) NSMutableArray<NSMutableDictionary *> *faceDataDict;
 
@@ -127,6 +129,7 @@
     [_facePointFilter setSmallFaceDegree:slider.value];
     [_faceLineFilter setSmallFaceDegree:slider.value];
     [_faceMeshFilter setSmallFaceDegree:slider.value];
+    [_smallHeadFilter setSmallHeadDegree:slider.value];
 }
 
 - (void)showViewGesture:(UISwipeGestureRecognizer *)recognizer {
@@ -159,8 +162,9 @@
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
-        [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:self.imageView];
+        _smallHeadFilter = [[GPUImageSmallHeadFilter alloc] init];
+        [_camera addTarget:_smallHeadFilter];
+        [_smallHeadFilter addTarget:self.imageView];
 //        [_faceLineFilter addTarget:self.imageView];
     }
 }
@@ -217,6 +221,7 @@
     [_facePointFilter setFaceDataDict:_faceDataDict];
 //    [_faceMeshFilter setFaceDataDict:_faceDataDict];
     [_faceMeshFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
+    [_smallHeadFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
     [_faceLineFilter setFaceDataDict:_faceDataDict];
 }
 
