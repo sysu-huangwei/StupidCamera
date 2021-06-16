@@ -29,7 +29,6 @@
 		FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */; };
 		FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */; };
 		FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78EA2626C31700F20ED0 /* BaseViewController.m */; };
-		FCEF7A9C2626E10300F20ED0 /* GPUImageBaseFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */; };
 		FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */; };
 		FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */; };
 		FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */; };
@@ -90,8 +89,6 @@
 		FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		FCEF78E92626C31700F20ED0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		FCEF78EA2626C31700F20ED0 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		FCEF7A9A2626E10300F20ED0 /* GPUImageBaseFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageBaseFilter.h; sourceTree = "<group>"; };
-		FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageBaseFilter.mm; sourceTree = "<group>"; };
 		FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseLog.h; sourceTree = "<group>"; };
 		FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBase.cpp; sourceTree = "<group>"; };
 		FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterCopy.hpp; sourceTree = "<group>"; };
@@ -202,8 +199,6 @@
 				FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */,
 				FCEF78E92626C31700F20ED0 /* BaseViewController.h */,
 				FCEF78EA2626C31700F20ED0 /* BaseViewController.m */,
-				FCEF7A9A2626E10300F20ED0 /* GPUImageBaseFilter.h */,
-				FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */,
 				FCEF7B142627181D00F20ED0 /* GPUImageLutFilter.h */,
 				FCEF7B152627181D00F20ED0 /* GPUImageLutFilter.mm */,
 				FC892B7F2679E3A6000F4513 /* GPUImageFaceBase.h */,
@@ -416,7 +411,6 @@
 				FC892B812679E3A6000F4513 /* GPUImageFaceBase.m in Sources */,
 				FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */,
 				FCEF7E1C26316CFD00F20ED0 /* SCFilterMesh.cpp in Sources */,
-				FCEF7A9C2626E10300F20ED0 /* GPUImageBaseFilter.mm in Sources */,
 				FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */,
 				FC892B6E267996EB000F4513 /* SCFaceDataIOS.m in Sources */,
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,

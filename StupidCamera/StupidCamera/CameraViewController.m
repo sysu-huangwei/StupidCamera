@@ -8,7 +8,6 @@
 #import "CameraViewController.h"
 #import <GPUImage/GPUImage.h>
 #import "EditPhotoViewController.h"
-#import "GPUImageBaseFilter.h"
 #import "GPUImageLutFilter.h"
 #import "GPUImageFacePointFilter.h"
 #import "GPUImageFaceLineFilter.h"
@@ -20,7 +19,6 @@
 @property (strong, nonatomic) UIButton *captureButton;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
-@property (strong, nonatomic) GPUImageBaseFilter *baseFilter;
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
 @property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
