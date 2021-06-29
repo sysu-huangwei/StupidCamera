@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,8 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SCCameraViewController">
             <connections>
+                <outlet property="_degreeSlider" destination="yqc-tP-etN" id="aec-fP-18z"/>
+                <outlet property="lutButton" destination="RQM-cV-5Zt" id="WB1-MT-kQd"/>
                 <outlet property="showView" destination="2qm-Nb-WpJ" id="ONE-Ef-hfu"/>
                 <outlet property="sliderLabel" destination="0FR-BK-gBO" id="AUJ-O6-NEB"/>
+                <outlet property="smallHeadButton" destination="Gbp-PM-URd" id="SzA-kv-4yj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -64,13 +67,13 @@
                                 <action selector="takePhoto:" destination="-1" eventType="touchUpInside" id="2qk-qw-W3D"/>
                             </connections>
                         </button>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yqc-tP-etN">
+                        <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yqc-tP-etN">
                             <rect key="frame" x="8" y="10" width="358" height="31"/>
                             <connections>
                                 <action selector="sliderChange:" destination="-1" eventType="valueChanged" id="l5w-ud-Txy"/>
                             </connections>
                         </slider>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-BK-gBO">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-BK-gBO">
                             <rect key="frame" x="374" y="14.5" width="30" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="I5e-TM-Pbp"/>
@@ -89,11 +92,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <color key="backgroundColor" systemColor="systemTealColor"/>
                                             <state key="normal" title="滤镜"/>
+                                            <connections>
+                                                <action selector="lutSelected:" destination="-1" eventType="touchUpInside" id="1iO-iC-F8U"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbp-PM-URd">
                                             <rect key="frame" x="80" y="0.0" width="80" height="80"/>
                                             <color key="backgroundColor" systemColor="systemTealColor"/>
-                                            <state key="normal" title="瘦脸"/>
+                                            <state key="normal" title="小头"/>
+                                            <connections>
+                                                <action selector="smallHeadSelected:" destination="-1" eventType="touchUpInside" id="Oaj-he-Kgp"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>

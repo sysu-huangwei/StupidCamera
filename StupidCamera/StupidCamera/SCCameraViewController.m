@@ -13,18 +13,20 @@
 #import "GPUImageSmallHeadFilter.h"
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *sliderLabel;
-@property (strong, nonatomic) IBOutlet UIView *showView;
-
 @property (strong, nonatomic) GPUImageView *imageView;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
-@property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
-@property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
 @property (strong, nonatomic) GPUImageSmallHeadFilter *smallHeadFilter;
 
+@property (strong, nonatomic) NSArray *lutImagePaths;
+@property (assign, nonatomic) NSUInteger currintLutIndex;
+
 @property (strong, nonatomic) NSMutableArray<NSMutableDictionary *> *faceDataDict;
+
+@property (assign, nonatomic) SCEffectType currentSelectEffectType;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, UIButton *> *effectButton;
+@property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSNumber *> *effectDegree;
 
 @end
 
@@ -43,14 +45,61 @@
 
 - (IBAction)sliderChange:(UISlider *)slider {
     _sliderLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
-    [_smallHeadFilter setSmallHeadDegree:slider.value];
+    _effectDegree[@(_currentSelectEffectType)] = @(slider.value);
+    switch (_currentSelectEffectType) {
+        case SCEffectType_Lut:
+            [_lutFilter setAlpha:slider.value];
+            break;
+        case SCEffectType_SmallHead:
+            [_smallHeadFilter setSmallHeadDegree:slider.value];
+            break;
+        default:
+            break;
+    }
 }
 
 - (IBAction)takePhoto:(UIButton *)button {
     
 }
 
+- (IBAction)lutSelected:(UIButton *)button {
+    [self selectEffect:SCEffectType_Lut];
+}
+
+- (IBAction)smallHeadSelected:(UIButton *)button {
+    [self selectEffect:SCEffectType_SmallHead];
+}
+
+- (void)selectEffect:(SCEffectType)effectType {
+    SCEffectType lastType = _currentSelectEffectType;
+    if (lastType != effectType) {
+        _degreeSlider.hidden = NO;
+        _sliderLabel.hidden = NO;
+        _currentSelectEffectType = effectType;
+        float effectDegree = [_effectDegree[@(effectType)] floatValue];
+        _sliderLabel.text = [NSString stringWithFormat:@"%d", (int)(effectDegree * 100)];
+        [_degreeSlider setValue:effectDegree];
+        if(_effectButton[@(lastType)]) {
+            _effectButton[@(lastType)].backgroundColor = UIColor.systemTealColor;
+        }
+        _effectButton[@(effectDegree)].backgroundColor = UIColor.systemOrangeColor;
+    } else {
+        _degreeSlider.hidden = YES;
+        _sliderLabel.hidden = YES;
+        _currentSelectEffectType = SCEffectType_None;
+    }
+}
+
 - (void)initCamera {
+    _currentSelectEffectType = SCEffectType_None;
+    _effectDegree = [[NSMutableDictionary alloc] initWithDictionary:@{
+        @(SCEffectType_Lut) : @(0.0),
+        @(SCEffectType_SmallHead) : @(0.0),
+    }];
+    _effectButton = [[NSMutableDictionary alloc] initWithDictionary:@{
+        @(SCEffectType_Lut) : _lutButton,
+        @(SCEffectType_SmallHead) : _smallHeadButton,
+    }];
     _imageView = [[GPUImageView alloc] initWithFrame:_showView.bounds];
     [_showView addSubview:_imageView];
     _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
@@ -59,12 +108,20 @@
     [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
     [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
     [_camera enableFaceDetect:YES];
-    _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
-    _facePointFilter = [[GPUImageFacePointFilter alloc] init];
     _smallHeadFilter = [[GPUImageSmallHeadFilter alloc] init];
-    [_camera addTarget:_smallHeadFilter];
-    [_smallHeadFilter addTarget:_faceLineFilter];
-    [_faceLineFilter addTarget:self.imageView];
+    _lutFilter = [[GPUImageLutFilter alloc] init];
+    [_camera addTarget:_lutFilter];
+    [_lutFilter addTarget:_smallHeadFilter];
+    [_smallHeadFilter addTarget:self.imageView];
+    
+    _lutImagePaths = @[
+        @"",
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_miss_etikate.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_1.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_2.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_amatorka.png"],
+    ];
+    _currintLutIndex = 0;
     
     [_camera startCameraCapture];
 }
@@ -108,9 +165,7 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
-    [_facePointFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
     [_smallHeadFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
-    [_faceLineFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
 }
 
 @end
