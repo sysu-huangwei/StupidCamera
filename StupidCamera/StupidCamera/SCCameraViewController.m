@@ -80,10 +80,11 @@
         _sliderLabel.text = [NSString stringWithFormat:@"%d", (int)(effectDegree * 100)];
         [_degreeSlider setValue:effectDegree];
         if(_effectButton[@(lastType)]) {
-            _effectButton[@(lastType)].backgroundColor = UIColor.systemTealColor;
+            [_effectButton[@(lastType)] setBackgroundColor:UIColor.systemTealColor];
         }
-        _effectButton[@(effectDegree)].backgroundColor = UIColor.systemOrangeColor;
+        [_effectButton[@(effectType)] setBackgroundColor:UIColor.systemOrangeColor];
     } else {
+        [_effectButton[@(_currentSelectEffectType)] setBackgroundColor:UIColor.systemTealColor];
         _degreeSlider.hidden = YES;
         _sliderLabel.hidden = YES;
         _currentSelectEffectType = SCEffectType_None;
