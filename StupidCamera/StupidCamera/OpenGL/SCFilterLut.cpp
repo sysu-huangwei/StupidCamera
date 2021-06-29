@@ -87,9 +87,6 @@ void SCFilterLut::release() {
 }
 
 unsigned SCFilterLut::render() {
-    if (lutTextureID == 0) {
-        return isRenderToOutside ? textureIDOutside : srcTextureID;
-    }
     beforeDraw();
     
     glActiveTexture(GL_TEXTURE2);
@@ -100,7 +97,12 @@ unsigned SCFilterLut::render() {
     glBindTexture(GL_TEXTURE_2D, lutTextureID);
     glUniform1i(lutTextureUniform, 3);
     
-    glUniform1f(alphaUniform, alpha);
+    if (lutTextureID > 0) {
+        glUniform1f(alphaUniform, alpha);
+    } else {
+        glUniform1f(alphaUniform, 0.0f);
+    }
+    
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
