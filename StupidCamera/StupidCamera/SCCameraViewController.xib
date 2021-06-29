@@ -49,9 +49,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qm-Nb-WpJ" userLabel="showView">
                     <rect key="frame" x="0.0" y="104" width="414" height="552"/>
                     <color key="backgroundColor" systemColor="systemBlueColor"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="2qm-Nb-WpJ" secondAttribute="height" multiplier="3:4" id="Coa-CQ-VWD"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Wkm-yF-zGr" appends="YES" id="kqT-xP-tAO"/>
+                        <outletCollection property="gestureRecognizers" destination="FR9-Le-GHh" appends="YES" id="I21-sp-vwY"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHT-lV-WCD" userLabel="bottomView">
                     <rect key="frame" x="0.0" y="656" width="414" height="240"/>
@@ -163,6 +168,16 @@
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="107.8125"/>
         </view>
+        <swipeGestureRecognizer direction="left" id="Wkm-yF-zGr">
+            <connections>
+                <action selector="changeLutGesture:" destination="-1" id="gNU-lN-4YO"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <swipeGestureRecognizer direction="right" id="FR9-Le-GHh">
+            <connections>
+                <action selector="changeLutGesture:" destination="-1" id="6C6-LY-C7e"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
     <resources>
         <image name="back" width="44" height="44"/>

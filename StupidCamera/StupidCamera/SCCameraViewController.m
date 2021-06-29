@@ -91,6 +91,17 @@
     }
 }
 
+
+- (IBAction)changeLutGesture:(UISwipeGestureRecognizer *)recognizer {
+    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        _currintLutIndex = _currintLutIndex == _lutImagePaths.count - 1 ? 0 : _currintLutIndex + 1;
+    }
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        _currintLutIndex = _currintLutIndex == 0 ? _lutImagePaths.count - 1 : _currintLutIndex - 1;
+    }
+}
+
 - (void)initCamera {
     _currentSelectEffectType = SCEffectType_None;
     _effectDegree = [[NSMutableDictionary alloc] initWithDictionary:@{
