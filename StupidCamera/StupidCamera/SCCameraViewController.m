@@ -11,13 +11,15 @@
 #import "GPUImageFacePointFilter.h"
 #import "GPUImageFaceLineFilter.h"
 #import "GPUImageSmallHeadFilter.h"
+#import "GPUImageSCEffectFilter.h"
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) GPUImageView *imageView;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
-@property (strong, nonatomic) GPUImageLutFilter *lutFilter;
-@property (strong, nonatomic) GPUImageSmallHeadFilter *smallHeadFilter;
+//@property (strong, nonatomic) GPUImageLutFilter *lutFilter;
+//@property (strong, nonatomic) GPUImageSmallHeadFilter *smallHeadFilter;
+@property (strong, nonatomic) GPUImageSCEffectFilter *effectFilter;
 
 @property (strong, nonatomic) NSArray *lutImagePaths;
 @property (assign, nonatomic) NSUInteger currintLutIndex;
@@ -48,10 +50,12 @@
     _effectDegree[@(_currentSelectEffectType)] = @(slider.value);
     switch (_currentSelectEffectType) {
         case SCEffectType_Lut:
-            [_lutFilter setAlpha:slider.value];
+            [_effectFilter setLutDegree:slider.value];
+//            [_lutFilter setAlpha:slider.value];
             break;
         case SCEffectType_SmallHead:
-            [_smallHeadFilter setSmallHeadDegree:slider.value];
+            [_effectFilter setSmallHeadDegree:slider.value];
+//            [_smallHeadFilter setSmallHeadDegree:slider.value];
             break;
         default:
             break;
@@ -93,7 +97,8 @@
 
 
 - (IBAction)changeLutGesture:(UISwipeGestureRecognizer *)recognizer {
-    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
+    [_effectFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
+//    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         _currintLutIndex = _currintLutIndex == _lutImagePaths.count - 1 ? 0 : _currintLutIndex + 1;
     }
@@ -120,11 +125,17 @@
     [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
     [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
     [_camera enableFaceDetect:YES];
-    _smallHeadFilter = [[GPUImageSmallHeadFilter alloc] init];
-    _lutFilter = [[GPUImageLutFilter alloc] init];
-    [_camera addTarget:_lutFilter];
-    [_lutFilter addTarget:_smallHeadFilter];
-    [_smallHeadFilter addTarget:self.imageView];
+    
+    _effectFilter = [[GPUImageSCEffectFilter alloc] init];
+    [_camera addTarget:_effectFilter];
+    [_effectFilter addTarget:self.imageView];
+    
+//
+//    _smallHeadFilter = [[GPUImageSmallHeadFilter alloc] init];
+//    _lutFilter = [[GPUImageLutFilter alloc] init];
+//    [_camera addTarget:_lutFilter];
+//    [_lutFilter addTarget:_smallHeadFilter];
+//    [_smallHeadFilter addTarget:self.imageView];
     
     _lutImagePaths = @[
         @"",
@@ -177,7 +188,8 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
-    [_smallHeadFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
+//    [_smallHeadFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
+        [_effectFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
 }
 
 @end
