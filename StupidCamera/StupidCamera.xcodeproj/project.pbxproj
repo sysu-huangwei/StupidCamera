@@ -10,6 +10,7 @@
 		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
 		FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */; };
+		FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */; };
 		FC6A35532624358100CA4434 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35522624358100CA4434 /* AppDelegate.m */; };
 		FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35552624358100CA4434 /* SceneDelegate.m */; };
 		FC6A35592624358100CA4434 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35582624358100CA4434 /* ViewController.m */; };
@@ -60,6 +61,8 @@
 		FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCEffectEngine.hpp; sourceTree = "<group>"; };
 		FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageSCEffectFilter.h; sourceTree = "<group>"; };
 		FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageSCEffectFilter.mm; sourceTree = "<group>"; };
+		FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBuffer.hpp; sourceTree = "<group>"; };
 		FC6A354E2624358100CA4434 /* StupidCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StupidCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6A35512624358100CA4434 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC6A35522624358100CA4434 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 				FC892B71267999D5000F4513 /* SCFaceData.cpp */,
 				FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */,
 				FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */,
+				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
+				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,
 				FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */,
 				FCEF7B5B2629820B00F20ED0 /* GPUImageFacePointFilter..mm in Sources */,
+				FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */,
 				FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */,
 				FCEF7B5626297CE600F20ED0 /* SCFilterPoint.cpp in Sources */,
 				FC6A35532624358100CA4434 /* AppDelegate.m in Sources */,

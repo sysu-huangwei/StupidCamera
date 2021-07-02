@@ -113,3 +113,7 @@ void SCFilterBase::setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned f
     this->fboIDOutside = fboIDOutside;
     isRenderToOutside = textureIDOutside != 0 && fboIDOutside != 0;
 }
+
+void SCFilterBase::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    
+}

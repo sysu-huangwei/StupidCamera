@@ -8,6 +8,7 @@
 #define SCFilterBase_hpp
 
 #include "SCBaseGLUtils.hpp"
+#include "FrameBuffer.hpp"
 
 // 顶点坐标
 const static float imageVertices[8] = {
@@ -54,6 +55,8 @@ public:
     /// @param textureIDOutside 外部的纹理ID
     /// @param fboIDOutside 外部的FBO
     virtual void setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside);
+    
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
     
 protected:
     int width = 0, height = 0;

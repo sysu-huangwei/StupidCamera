@@ -59,3 +59,27 @@ unsigned SCFilterCopy::render() {
     afterDraw();
     return SCFilterBase::render();
 }
+
+
+void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    outputFrameBuffer->activeFrameBuffer();
+    
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
+    
+    glUseProgram(programID);
+    
+    glEnableVertexAttribArray(positionAttribute);
+    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, imageVertices);
+    
+    glEnableVertexAttribArray(textureCoordinateAttribute);
+    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, srcTextureID);
+    glUniform1i(inputImageTextureUniform, 2);
+    
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+}

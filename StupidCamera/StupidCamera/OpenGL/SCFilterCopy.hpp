@@ -21,6 +21,8 @@ public:
     /// 渲染，必须在GL线程
     /// @return 结果纹理ID
     virtual unsigned render() override;
+    
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
 
 };
 

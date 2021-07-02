@@ -33,6 +33,8 @@ public:
     /// @param alpha 滤镜程度，0.0 ~ 1.0
     void setAlpha(float alpha);
     
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
+    
 protected:
     int lutTextureUniform = -1, alphaUniform = -1;
     unsigned lutTextureID = 0;

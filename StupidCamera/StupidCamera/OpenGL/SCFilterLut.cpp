@@ -122,3 +122,37 @@ void SCFilterLut::setLutImagePath(const char *path) {
 void SCFilterLut::setAlpha(float alpha) {
     this->alpha = alpha;
 }
+
+void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    outputFrameBuffer->activeFrameBuffer();
+    
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
+    
+    glUseProgram(programID);
+    
+    glEnableVertexAttribArray(positionAttribute);
+    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, imageVertices);
+    
+    glEnableVertexAttribArray(textureCoordinateAttribute);
+    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, srcTextureID);
+    glUniform1i(inputImageTextureUniform, 2);
+    
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, lutTextureID);
+    glUniform1i(lutTextureUniform, 3);
+    
+    if (lutTextureID > 0) {
+        glUniform1f(alphaUniform, alpha);
+    } else {
+        glUniform1f(alphaUniform, 0.0f);
+    }
+    
+    
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+}

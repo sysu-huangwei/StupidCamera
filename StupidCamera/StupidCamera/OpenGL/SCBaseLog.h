@@ -46,6 +46,7 @@ extern "C" int BASE_GetLogLevel();
 
 #else // !PLATFORM_ANDROID
 
+#include <stdio.h>
 #define  LOGV(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_VERBOSE) {printf("[" LOG_TAG "] VERBOSE:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
 #define  LOGD(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_DEBUG) {printf("<[" LOG_TAG "] DEBUG:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
 #define  LOGI(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_INFO) {printf("<[" LOG_TAG "] INFO:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
