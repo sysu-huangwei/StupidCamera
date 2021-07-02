@@ -36,14 +36,9 @@ void SCFilterBackgroundMesh::setSrcTextureID(unsigned srcTextureID) {
     meshFilter->setSrcTextureID(srcTextureID);
 }
 
-unsigned SCFilterBackgroundMesh::render() {
+FrameBuffer *SCFilterBackgroundMesh::render() {
     copyFilter->render();
     return meshFilter->render();
-}
-
-void SCFilterBackgroundMesh::setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside) {
-    copyFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
-    meshFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
 }
 
 void SCFilterBackgroundMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {

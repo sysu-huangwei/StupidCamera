@@ -16,7 +16,7 @@ public:
     
     /// 设置人脸数据
     /// @param faceData 人脸数据
-    virtual void setFaceData(SCFaceData *faceData);
+    virtual void setFaceData(SCFaceData *faceData) override;
     
     /// 设置小头程度
     /// @param smallHeadDegree 小头程度，0~1

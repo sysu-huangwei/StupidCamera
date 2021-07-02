@@ -37,14 +37,9 @@ void SCFilterBackgroundPoint::setSrcTextureID(unsigned srcTextureID) {
     pointFilter->setSrcTextureID(srcTextureID);
 }
 
-unsigned SCFilterBackgroundPoint::render() {
+FrameBuffer *SCFilterBackgroundPoint::render() {
     copyFilter->render();
     return pointFilter->render();
-}
-
-void SCFilterBackgroundPoint::setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside) {
-    copyFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
-    pointFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
 }
 
 void SCFilterBackgroundPoint::setPoints(float *points, int pointsCount) {

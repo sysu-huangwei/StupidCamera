@@ -86,7 +86,7 @@ void SCFilterLut::release() {
     }
 }
 
-unsigned SCFilterLut::render() {
+FrameBuffer *SCFilterLut::render() {
     beforeDraw();
     
     glActiveTexture(GL_TEXTURE2);

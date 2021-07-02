@@ -19,8 +19,8 @@ public:
     virtual void init() override;
     
     /// 渲染，必须在GL线程
-    /// @return 结果纹理ID
-    virtual unsigned render() override;
+    /// @return 结果FrameBuffer
+    virtual FrameBuffer *render() override;
     
     /// 设置需要画的网格，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param mesh 点位信息，{x1, y1, x2, y2……}

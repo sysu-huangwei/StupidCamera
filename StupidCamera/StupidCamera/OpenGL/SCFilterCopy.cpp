@@ -47,7 +47,7 @@ void SCFilterCopy::init() {
     inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
-unsigned SCFilterCopy::render() {
+FrameBuffer *SCFilterCopy::render() {
     beforeDraw();
     
     glActiveTexture(GL_TEXTURE2);
@@ -57,7 +57,7 @@ unsigned SCFilterCopy::render() {
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
     afterDraw();
-    return SCFilterBase::render();
+    return frameBuffer;
 }
 
 

@@ -58,8 +58,12 @@
         [outputFramebuffer lock];
     }
     self->drawAlphaFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    self->drawAlphaFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    self->drawAlphaFilter->render();
+    CGSize size = [self sizeOfFBO];
+    FrameBuffer *frameBuffer = new FrameBuffer();
+    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    
+    self->drawAlphaFilter->renderToFrameBuffer(frameBuffer);
+    delete frameBuffer;
     
     [firstInputFramebuffer unlock];
     

@@ -19,6 +19,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         runSynchronouslyOnVideoProcessingQueue(^{
+            [GPUImageContext useImageProcessingContext];
             self->effectEngine = new SCEffectEngine();
             self->effectEngine->init();
         });
@@ -28,6 +29,7 @@
 
 - (void)dealloc {
     runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
         self->effectEngine->release();
         delete self->effectEngine;
     });
@@ -36,6 +38,7 @@
 - (void)setupFilterForSize:(CGSize)filterFrameSize;
 {
     runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
         self->effectEngine->resize(filterFrameSize.width, filterFrameSize.height);
     });
 }
@@ -55,8 +58,12 @@
         [outputFramebuffer lock];
     }
     self->effectEngine->setSrcTextureID(firstInputFramebuffer.texture);
-    self->effectEngine->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    self->effectEngine->render();
+    CGSize size = [self sizeOfFBO];
+    FrameBuffer *frameBuffer = new FrameBuffer();
+    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    
+    self->effectEngine->renderToFrameBuffer(frameBuffer);
+    delete frameBuffer;
     
     [firstInputFramebuffer unlock];
     

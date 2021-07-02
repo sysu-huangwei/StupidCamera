@@ -62,8 +62,12 @@
     self->lineFilter->setFaceData(self.faceData.faceData);
     
     self->lineFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    self->lineFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    self->lineFilter->render();
+    CGSize size = [self sizeOfFBO];
+    FrameBuffer *frameBuffer = new FrameBuffer();
+    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    
+    self->lineFilter->renderToFrameBuffer(frameBuffer);
+    delete frameBuffer;
     
     [firstInputFramebuffer unlock];
     

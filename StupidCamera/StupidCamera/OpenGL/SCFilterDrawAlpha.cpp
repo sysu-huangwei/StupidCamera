@@ -54,7 +54,7 @@ void SCFilterDrawAlpha::release() {
     SCFilterBase::release();
 }
 
-unsigned SCFilterDrawAlpha::render() {
+FrameBuffer *SCFilterDrawAlpha::render() {
     beforeDraw();
     
     glActiveTexture(GL_TEXTURE2);

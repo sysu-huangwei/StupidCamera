@@ -61,8 +61,12 @@
     self->smallHeadFilter->setFaceData(self.faceData.faceData);
     
     self->smallHeadFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    self->smallHeadFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    self->smallHeadFilter->render();
+    CGSize size = [self sizeOfFBO];
+    FrameBuffer *frameBuffer = new FrameBuffer();
+    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    
+    self->smallHeadFilter->renderToFrameBuffer(frameBuffer);
+    delete frameBuffer;
     
     [firstInputFramebuffer unlock];
     

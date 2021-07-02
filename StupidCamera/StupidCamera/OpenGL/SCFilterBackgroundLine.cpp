@@ -37,14 +37,9 @@ void SCFilterBackgroundLine::setSrcTextureID(unsigned srcTextureID) {
     lineFilter->setSrcTextureID(srcTextureID);
 }
 
-unsigned SCFilterBackgroundLine::render() {
+FrameBuffer *SCFilterBackgroundLine::render() {
     copyFilter->render();
     return lineFilter->render();
-}
-
-void SCFilterBackgroundLine::setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside) {
-    copyFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
-    lineFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
 }
 
 void SCFilterBackgroundLine::setLines(float *lines, int linesCount) {

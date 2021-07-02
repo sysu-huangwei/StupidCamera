@@ -48,19 +48,14 @@ public:
     virtual void setSrcTextureID(unsigned srcTextureID);
     
     /// 渲染，必须在GL线程
-    /// @return 结果纹理ID
-    virtual unsigned render() = 0;
-    
-    /// 设置外部的纹理ID和FBO，如果都设置了>0的合法值，渲染的时候会绘制到这个buffer上，如果需要重新绘制到内置的FBO，设置0, 0
-    /// @param textureIDOutside 外部的纹理ID
-    /// @param fboIDOutside 外部的FBO
-    virtual void setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside);
+    /// @return 结果FrameBuffer
+    virtual FrameBuffer *render() = 0;
     
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
     
 protected:
-    int width = 0, height = 0;
-    unsigned textureID = 0, fboID = 0, programID = 0;
+    FrameBuffer *frameBuffer = nullptr;
+    unsigned programID = 0;
     int positionAttribute = -1, textureCoordinateAttribute = -1;
     
     int inputImageTextureUniform = -1;
@@ -69,9 +64,6 @@ protected:
     virtual void initWithVertexStringAndFragmentString(const char* vs, const char* fs);
     virtual void beforeDraw();
     virtual void afterDraw();
-    
-    unsigned textureIDOutside = 0, fboIDOutside = 0;
-    bool isRenderToOutside = false;
 };
 
 #endif /* SCFilterBase_hpp */

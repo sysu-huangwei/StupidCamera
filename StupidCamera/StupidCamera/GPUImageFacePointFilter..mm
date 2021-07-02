@@ -60,8 +60,13 @@
     self->pointFilter->setFaceData(self.faceData.faceData);
     
     self->pointFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    self->pointFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    self->pointFilter->render();
+    
+    CGSize size = [self sizeOfFBO];
+    FrameBuffer *frameBuffer = new FrameBuffer();
+    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    
+    self->pointFilter->renderToFrameBuffer(frameBuffer);
+    delete frameBuffer;
     
     [firstInputFramebuffer unlock];
     

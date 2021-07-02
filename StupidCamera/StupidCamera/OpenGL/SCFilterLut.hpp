@@ -23,7 +23,7 @@ public:
     
     /// 渲染，必须在GL线程
     /// @return 结果纹理ID
-    virtual unsigned render() override;
+    virtual FrameBuffer *render() override;
     
     /// 设置LUT图路径，底层加载
     /// @param path LUT图的路径

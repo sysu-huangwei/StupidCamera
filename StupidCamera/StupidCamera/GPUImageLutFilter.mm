@@ -55,7 +55,6 @@
         [outputFramebuffer lock];
     }
     self->lutFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    self->lutFilter->setOutsideTextureAndFbo(outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     CGSize size = [self sizeOfFBO];
     FrameBuffer *frameBuffer = new FrameBuffer();

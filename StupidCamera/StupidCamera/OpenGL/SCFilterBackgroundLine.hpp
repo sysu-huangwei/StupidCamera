@@ -33,13 +33,8 @@ public:
     virtual void setSrcTextureID(unsigned srcTextureID);
     
     /// 渲染，必须在GL线程
-    /// @return 结果纹理ID
-    virtual unsigned render();
-    
-    /// 设置外部的纹理ID和FBO，如果都设置了>0的合法值，渲染的时候会绘制到这个buffer上，如果需要重新绘制到内置的FBO，设置0, 0
-    /// @param textureIDOutside 外部的纹理ID
-    /// @param fboIDOutside 外部的FBO
-    virtual void setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside);
+    /// @return 结果FrameBuffer
+    virtual FrameBuffer *render() override;
     
     /// 设置需要画的线，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param lines 线信息，每个线2个顶点(4个float) {line1.A.x, line1.A.y, line1.B.x, line1.B.y, line2.A.x, line2.A.y, line2.B.x……}  需要归一化到0到1的点

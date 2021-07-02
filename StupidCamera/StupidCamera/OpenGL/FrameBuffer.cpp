@@ -12,12 +12,16 @@ void FrameBuffer::init(int width, int height, bool isOnlyTexture, GLuint texture
     this->height = height;
     this->isOnlyTexture = isOnlyTexture;
     
+    GLuint err = glGetError();
+    
     if (textureID == 0) {
         createTexture();
     } else {
         this->textureID = textureID;
         isNeedReleaseTexture = false;
     }
+    
+    err = glGetError();
     
     if (!isOnlyTexture) {
         if (frameBufferID == 0) {
@@ -27,6 +31,9 @@ void FrameBuffer::init(int width, int height, bool isOnlyTexture, GLuint texture
             isNeedReleaseFrameBuffer = false;
         }
     }
+    
+    err = glGetError();
+    err = glGetError();
 }
 
 void FrameBuffer::release() {
@@ -62,7 +69,7 @@ void FrameBuffer::createAndBindFrameBuffer() {
 
     glBindTexture(GL_TEXTURE_2D, textureID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, GL_UNSIGNED_BYTE, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureID, 0);
 
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (status != GL_FRAMEBUFFER_COMPLETE) {

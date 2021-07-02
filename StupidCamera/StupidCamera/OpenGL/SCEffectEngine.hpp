@@ -32,13 +32,8 @@ public:
     void setSrcTextureID(unsigned srcTextureID);
     
     /// 渲染，必须在GL线程
-    /// @return 结果纹理ID
-    unsigned render();
-    
-    /// 设置外部的纹理ID和FBO，如果都设置了>0的合法值，渲染的时候会绘制到这个buffer上，如果需要重新绘制到内置的FBO，设置0, 0
-    /// @param textureIDOutside 外部的纹理ID
-    /// @param fboIDOutside 外部的FBO
-    void setOutsideTextureAndFbo(unsigned textureIDOutside, unsigned fboIDOutside);
+    /// @return 结果FrameBuffer
+    FrameBuffer *render();
     
     /// 设置人脸数据
     /// @param faceData 人脸数据
@@ -51,6 +46,8 @@ public:
     void setLutDegree(float degree);
     
     void setSmallHeadDegree(float degree);
+    
+    void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
     
 private:
     SCFaceData *faceData;

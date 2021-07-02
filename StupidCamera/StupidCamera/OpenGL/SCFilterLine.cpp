@@ -46,20 +46,12 @@ void SCFilterLine::init() {
 //    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
-unsigned SCFilterLine::render() {
+FrameBuffer *SCFilterLine::render() {
     if (!this->lines) {
-        return isRenderToOutside ? textureIDOutside : srcTextureID;
+        return frameBuffer;
     }
     
-    if (isRenderToOutside) {
-        glBindFramebuffer(GL_FRAMEBUFFER, fboIDOutside);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureIDOutside, 0);
-    } else {
-        glBindFramebuffer(GL_FRAMEBUFFER, fboID);
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureID, 0);
-    }
-    
-    glViewport(0, 0, width, height);
+    frameBuffer->activeFrameBuffer();
     
 //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //    glClearColor(0.0f,0.0f,0.0f,1.0f);

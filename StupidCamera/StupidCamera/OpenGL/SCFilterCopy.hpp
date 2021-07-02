@@ -19,8 +19,8 @@ public:
     virtual void init() override;
     
     /// 渲染，必须在GL线程
-    /// @return 结果纹理ID
-    virtual unsigned render() override;
+    /// @return 结果FrameBuffer
+    virtual FrameBuffer *render() override;
     
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
 
