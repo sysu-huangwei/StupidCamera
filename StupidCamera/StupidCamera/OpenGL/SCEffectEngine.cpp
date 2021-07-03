@@ -8,24 +8,24 @@
 
 SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
-//    smallHeadFilter = new SCFilterSmallHead();
+    smallHeadFilter = new SCFilterSmallHead();
 }
 
 SCEffectEngine::~SCEffectEngine() {
     SAFE_DELETE(lutFilter);
-//    SAFE_DELETE(smallHeadFilter);
+    SAFE_DELETE(smallHeadFilter);
 }
 
 /// 初始化，必须在GL线程
 void SCEffectEngine::init() {
     lutFilter->init();
-//    smallHeadFilter->init();
+    smallHeadFilter->init();
 }
 
 /// 释放资源，必须在GL线程
 void SCEffectEngine::release() {
     lutFilter->init();
-//    smallHeadFilter->init();
+    smallHeadFilter->init();
 }
 
 /// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO
@@ -33,7 +33,7 @@ void SCEffectEngine::release() {
 /// @param height 高
 void SCEffectEngine::resize(int width, int height) {
     lutFilter->resize(width, height);
-//    smallHeadFilter->resize(width, height);
+    smallHeadFilter->resize(width, height);
 }
 
 /// 设置输入图像的纹理ID
@@ -69,8 +69,7 @@ void SCEffectEngine::setSmallHeadDegree(float degree) {
 }
 
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    lutFilter->renderToFrameBuffer(outputFrameBuffer);
-//    FrameBuffer *lutResultTexture = lutFilter->render();
-//    smallHeadFilter->setSrcTextureID(lutResultTexture->getTextureID());
-//    smallHeadFilter->render();
+    FrameBuffer *lutResultTexture = lutFilter->render();
+    smallHeadFilter->setSrcTextureID(lutResultTexture->getTextureID());
+    smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
 }

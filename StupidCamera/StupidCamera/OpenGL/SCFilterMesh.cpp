@@ -83,6 +83,25 @@ FrameBuffer *SCFilterMesh::render() {
     return SCFilterBase::render();
 }
 
+void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    outputFrameBuffer->activeFrameBuffer();
+    
+    glUseProgram(programID);
+    
+    glEnableVertexAttribArray(positionAttribute);
+    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, mesh);
+    
+    glEnableVertexAttribArray(positionStdAttribute);
+    glVertexAttribPointer(positionStdAttribute, 2, GL_FLOAT, false, 0, meshStd);
+    
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, srcTextureID);
+    glUniform1i(inputImageTextureUniform, 2);
+    
+    glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+}
 
 void SCFilterMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
     if (meshArrayCount != this->meshArrayCount) {

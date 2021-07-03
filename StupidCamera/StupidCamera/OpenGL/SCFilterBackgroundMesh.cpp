@@ -36,6 +36,11 @@ void SCFilterBackgroundMesh::setSrcTextureID(unsigned srcTextureID) {
     meshFilter->setSrcTextureID(srcTextureID);
 }
 
+void SCFilterBackgroundMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    copyFilter->renderToFrameBuffer(outputFrameBuffer);
+    meshFilter->renderToFrameBuffer(outputFrameBuffer);
+}
+
 FrameBuffer *SCFilterBackgroundMesh::render() {
     copyFilter->render();
     return meshFilter->render();

@@ -14,6 +14,8 @@
 class SCFilterSmallHead : public SCFilterBackgroundMesh, SCFilterFaceBase {
 public:
     
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
+    
     /// 设置人脸数据
     /// @param faceData 人脸数据
     virtual void setFaceData(SCFaceData *faceData) override;

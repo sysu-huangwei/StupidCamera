@@ -9,6 +9,10 @@
 
 #define MAX_SMALL_FACE_DEGREE 0.03
 
+void SCFilterSmallHead::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    SCFilterBackgroundMesh::renderToFrameBuffer(outputFrameBuffer);
+}
+
 void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
     SCFilterFaceBase::setFaceData(faceData);
     if (this->faceData) {
