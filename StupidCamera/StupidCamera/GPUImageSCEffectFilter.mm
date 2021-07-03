@@ -7,6 +7,7 @@
 
 #import "GPUImageSCEffectFilter.h"
 #import "SCEffectEngine.hpp"
+#import "FrameBufferPool.hpp"
 
 @interface GPUImageSCEffectFilter()
 {
@@ -59,11 +60,10 @@
     }
     self->effectEngine->setSrcTextureID(firstInputFramebuffer.texture);
     CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = new FrameBuffer();
-    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     self->effectEngine->renderToFrameBuffer(frameBuffer);
-    delete frameBuffer;
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
     
     [firstInputFramebuffer unlock];
     

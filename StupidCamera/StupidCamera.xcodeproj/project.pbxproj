@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
+		710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 710F63642690134700976E1A /* FrameBufferPool.cpp */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
 		FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */; };
 		FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */; };
@@ -57,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		0DFE828F9FB7D34B38FA0C91 /* Pods-StupidCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.debug.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		710F63642690134700976E1A /* FrameBufferPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBufferPool.cpp; sourceTree = "<group>"; };
+		710F63652690134700976E1A /* FrameBufferPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBufferPool.hpp; sourceTree = "<group>"; };
 		FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCEffectEngine.cpp; sourceTree = "<group>"; };
 		FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCEffectEngine.hpp; sourceTree = "<group>"; };
 		FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageSCEffectFilter.h; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 				FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */,
 				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
 				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
+				710F63642690134700976E1A /* FrameBufferPool.cpp */,
+				710F63652690134700976E1A /* FrameBufferPool.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 				FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */,
 				FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */,
 				FC892B812679E3A6000F4513 /* GPUImageFaceBase.m in Sources */,
+				710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */,
 				FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */,
 				FCEF7E1C26316CFD00F20ED0 /* SCFilterMesh.cpp in Sources */,
 				FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */,

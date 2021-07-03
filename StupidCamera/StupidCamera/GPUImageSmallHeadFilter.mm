@@ -7,6 +7,7 @@
 
 #import "GPUImageSmallHeadFilter.h"
 #import "SCFilterSmallHead.hpp"
+#import "FrameBufferPool.hpp"
 
 @interface GPUImageSmallHeadFilter()
 {
@@ -62,11 +63,10 @@
     
     self->smallHeadFilter->setSrcTextureID(firstInputFramebuffer.texture);
     CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = new FrameBuffer();
-    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     self->smallHeadFilter->renderToFrameBuffer(frameBuffer);
-    delete frameBuffer;
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
     
     [firstInputFramebuffer unlock];
     

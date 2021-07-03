@@ -7,6 +7,7 @@
 
 #import "GPUImageFacePointFilter.h"
 #import "SCFilterFacePoint.hpp"
+#import "FrameBufferPool.hpp"
 
 #define MAX_SMALL_FACE_DEGREE 0.2
 
@@ -62,11 +63,10 @@
     self->pointFilter->setSrcTextureID(firstInputFramebuffer.texture);
     
     CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = new FrameBuffer();
-    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     self->pointFilter->renderToFrameBuffer(frameBuffer);
-    delete frameBuffer;
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
     
     [firstInputFramebuffer unlock];
     

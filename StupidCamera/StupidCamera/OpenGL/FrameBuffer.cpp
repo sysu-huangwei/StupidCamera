@@ -12,16 +12,12 @@ void FrameBuffer::init(int width, int height, bool isOnlyTexture, GLuint texture
     this->height = height;
     this->isOnlyTexture = isOnlyTexture;
     
-    GLuint err = glGetError();
-    
     if (textureID == 0) {
         createTexture();
     } else {
         this->textureID = textureID;
         isNeedReleaseTexture = false;
     }
-    
-    err = glGetError();
     
     if (!isOnlyTexture) {
         if (frameBufferID == 0) {
@@ -31,9 +27,6 @@ void FrameBuffer::init(int width, int height, bool isOnlyTexture, GLuint texture
             isNeedReleaseFrameBuffer = false;
         }
     }
-    
-    err = glGetError();
-    err = glGetError();
 }
 
 void FrameBuffer::release() {
@@ -77,5 +70,17 @@ void FrameBuffer::createAndBindFrameBuffer() {
              "glerror = %d, isTexture = %d, isFramebuffer = %d.",
              status, width, height,
              glGetError(), glIsTexture(textureID), glIsFramebuffer(frameBufferID));
+    }
+}
+
+void FrameBuffer::lock() {
+    referenceCount++;
+}
+
+void FrameBuffer::unlock() {
+    if (referenceCount > 0) {
+        referenceCount--;
+    } else {
+        LOGE("Error: FrameBuffer::unlock()  referenceCount < 0");
     }
 }

@@ -8,6 +8,7 @@
 #import "GPUImageFaceLineFilter.h"
 #import "SCFilterFaceLine.hpp"
 #import "DelaunayTriangle.hpp"
+#import "FrameBufferPool.hpp"
 
 #define MAX_SMALL_FACE_DEGREE 0.2
 
@@ -63,11 +64,10 @@
     
     self->lineFilter->setSrcTextureID(firstInputFramebuffer.texture);
     CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = new FrameBuffer();
-    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     self->lineFilter->renderToFrameBuffer(frameBuffer);
-    delete frameBuffer;
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
     
     [firstInputFramebuffer unlock];
     

@@ -7,6 +7,7 @@
 
 #import "GPUImageDrawAlphaFilter.h"
 #import "SCFilterDrawAlpha.hpp"
+#import "FrameBufferPool.hpp"
 
 @interface GPUImageDrawAlphaFilter()
 {
@@ -59,11 +60,10 @@
     }
     self->drawAlphaFilter->setSrcTextureID(firstInputFramebuffer.texture);
     CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = new FrameBuffer();
-    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     self->drawAlphaFilter->renderToFrameBuffer(frameBuffer);
-    delete frameBuffer;
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
     
     [firstInputFramebuffer unlock];
     

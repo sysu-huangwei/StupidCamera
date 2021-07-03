@@ -7,6 +7,7 @@
 
 #import "GPUImageLutFilter.h"
 #import "SCFilterLut.hpp"
+#import "FrameBufferPool.hpp"
 
 @interface GPUImageLutFilter()
 {
@@ -57,8 +58,7 @@
     self->lutFilter->setSrcTextureID(firstInputFramebuffer.texture);
     
     CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = new FrameBuffer();
-    frameBuffer->init(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
     self->lutFilter->renderToFrameBuffer(frameBuffer);
     delete frameBuffer;

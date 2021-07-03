@@ -5,6 +5,7 @@
 //
 
 #include "SCFilterBase.hpp"
+#include "FrameBufferPool.hpp"
 
 SCFilterBase::SCFilterBase() {
     programID = 0;
@@ -29,13 +30,12 @@ void SCFilterBase::initWithVertexStringAndFragmentString(const char* vs, const c
 
 void SCFilterBase::resize(int width, int height) {
     if (!frameBuffer) {
-        frameBuffer = new FrameBuffer();
-        frameBuffer->init(width, height);
+        frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
     }
 }
 
 void SCFilterBase::release() {
-    frameBuffer->release();
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
     if (programID > 0) {
         glDeleteProgram(programID);
         programID = 0;
