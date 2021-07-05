@@ -241,15 +241,31 @@
 			path = StupidCamera;
 			sourceTree = "<group>";
 		};
-		FCEF7AF02627045700F20ED0 /* OpenGL */ = {
+		FC7AAADE269332F100CA4E75 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				FCEF7B0D2627104800F20ED0 /* platform */,
 				FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */,
 				FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */,
 				FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */,
 				FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */,
 				FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */,
+				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
+				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
+				710F63642690134700976E1A /* FrameBufferPool.cpp */,
+				710F63652690134700976E1A /* FrameBufferPool.hpp */,
+				FC7AAAA92692B2B500CA4E75 /* Program.cpp */,
+				FC7AAAAA2692B2B500CA4E75 /* Program.hpp */,
+				FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */,
+				FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		FCEF7AF02627045700F20ED0 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				FC7AAADE269332F100CA4E75 /* base */,
+				FCEF7B0D2627104800F20ED0 /* platform */,
 				FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */,
 				FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */,
 				FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */,
@@ -280,14 +296,6 @@
 				FC892B71267999D5000F4513 /* SCFaceData.cpp */,
 				FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */,
 				FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */,
-				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
-				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
-				710F63642690134700976E1A /* FrameBufferPool.cpp */,
-				710F63652690134700976E1A /* FrameBufferPool.hpp */,
-				FC7AAAA92692B2B500CA4E75 /* Program.cpp */,
-				FC7AAAAA2692B2B500CA4E75 /* Program.hpp */,
-				FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */,
-				FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
