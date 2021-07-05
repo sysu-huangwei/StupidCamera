@@ -20,6 +20,8 @@
 		FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC6A355F2624358100CA4434 /* LaunchScreen.storyboard */; };
 		FC6A35642624358100CA4434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35632624358100CA4434 /* main.m */; };
 		FC794A99262446E1009E46A6 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC794A97262446E1009E46A6 /* CameraViewController.m */; };
+		FC7AAAAB2692B2B500CA4E75 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAA92692B2B500CA4E75 /* Program.cpp */; };
+		FC7AAAAF2692E1C200CA4E75 /* ProgramPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */; };
 		FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */; };
 		FC892A782673651C000F4513 /* SCFilterBackgroundLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */; };
 		FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */; };
@@ -80,6 +82,10 @@
 		FC6A35632624358100CA4434 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FC794A96262446E1009E46A6 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		FC794A97262446E1009E46A6 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		FC7AAAA92692B2B500CA4E75 /* Program.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
+		FC7AAAAA2692B2B500CA4E75 /* Program.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Program.hpp; sourceTree = "<group>"; };
+		FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramPool.cpp; sourceTree = "<group>"; };
+		FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProgramPool.hpp; sourceTree = "<group>"; };
 		FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundMesh.cpp; sourceTree = "<group>"; };
 		FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundMesh.hpp; sourceTree = "<group>"; };
 		FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundLine.cpp; sourceTree = "<group>"; };
@@ -288,6 +294,10 @@
 				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
 				710F63642690134700976E1A /* FrameBufferPool.cpp */,
 				710F63652690134700976E1A /* FrameBufferPool.hpp */,
+				FC7AAAA92692B2B500CA4E75 /* Program.cpp */,
+				FC7AAAAA2692B2B500CA4E75 /* Program.hpp */,
+				FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */,
+				FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
@@ -458,6 +468,7 @@
 				FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */,
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,
 				FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */,
+				FC7AAAAB2692B2B500CA4E75 /* Program.cpp in Sources */,
 				FCEF7B5B2629820B00F20ED0 /* GPUImageFacePointFilter..mm in Sources */,
 				FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */,
 				FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */,
@@ -476,6 +487,7 @@
 				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,
 				FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */,
 				FC892B7A2679DA36000F4513 /* SCFilterFaceBase.cpp in Sources */,
+				FC7AAAAF2692E1C200CA4E75 /* ProgramPool.cpp in Sources */,
 				FC892A782673651C000F4513 /* SCFilterBackgroundLine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
