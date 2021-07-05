@@ -52,29 +52,6 @@ void SCFilterMesh::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterMeshVertexShaderString, kSCFilterMeshFragmentShaderString);
 }
 
-FrameBuffer *SCFilterMesh::render() {
-    if (!this->mesh) {
-        return frameBuffer;
-    }
-
-    frameBuffer->activeFrameBuffer();
-    
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    glClearColor(0.0f,0.0f,0.0f,1.0f);
-    
-    program->use();
-    
-    program->setVertexAttribPointer("a_position", mesh);
-    program->setVertexAttribPointer("a_position_std", meshStd);
-    
-    program->setTextureAtIndex("u_texture", srcTextureID, 2);
-    
-    glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
-    
-    afterDraw();
-    return SCFilterBase::render();
-}
-
 void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     outputFrameBuffer->activeFrameBuffer();
     

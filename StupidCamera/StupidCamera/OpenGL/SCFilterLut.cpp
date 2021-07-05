@@ -81,49 +81,11 @@ void SCFilterLut::release() {
     }
 }
 
-FrameBuffer *SCFilterLut::render() {
-    beforeDraw();
-    
-    program->use();
-    
-    program->setVertexAttribPointer("a_position", imageVertices);
-    program->setVertexAttribPointer("a_texCoord", textureCoordinates);
-    
-    program->setTextureAtIndex("u_texture", srcTextureID, 2);
-    program->setTextureAtIndex("u_lut", lutTextureID, 3);
-    
-    if (lutTextureID > 0) {
-        program->setUniform1f("alpha", alpha);
-    } else {
-        program->setUniform1f("alpha", 0.0f);
-    }
-    
-    
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    
-    afterDraw();
-    return SCFilterBase::render();
-}
-
-void SCFilterLut::setLutImagePath(const char *path) {
-    int width, height;
-    if (lutTextureID > 0) {
-        glDeleteTextures(1, &lutTextureID);
-        lutTextureID = 0;
-    }
-    this->lutTextureID = BaseGLUtils::LoadTexture_File(path, &width, &height);
-}
-
-void SCFilterLut::setAlpha(float alpha) {
-    this->alpha = alpha;
-}
-
 void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     outputFrameBuffer->activeFrameBuffer();
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.0f,0.0f,0.0f,1.0f);
-    
     
     program->use();
     
@@ -143,4 +105,17 @@ void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+}
+
+void SCFilterLut::setLutImagePath(const char *path) {
+    int width, height;
+    if (lutTextureID > 0) {
+        glDeleteTextures(1, &lutTextureID);
+        lutTextureID = 0;
+    }
+    this->lutTextureID = BaseGLUtils::LoadTexture_File(path, &width, &height);
+}
+
+void SCFilterLut::setAlpha(float alpha) {
+    this->alpha = alpha;
 }

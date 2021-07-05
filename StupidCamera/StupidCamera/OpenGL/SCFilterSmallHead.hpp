@@ -14,6 +14,8 @@
 class SCFilterSmallHead : public SCFilterBackgroundMesh, SCFilterFaceBase {
 public:
     
+    /// 渲染，必须在GL线程
+    /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
     /// 设置人脸数据

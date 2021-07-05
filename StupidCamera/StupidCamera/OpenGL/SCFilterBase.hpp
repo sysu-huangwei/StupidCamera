@@ -50,18 +50,18 @@ public:
     
     /// 渲染，必须在GL线程
     /// @return 结果FrameBuffer
-    virtual FrameBuffer *render() = 0;
+    virtual FrameBuffer *render();
     
-    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
+    /// 渲染，必须在GL线程
+    /// @param outputFrameBuffer 目标FBO
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) = 0;
     
 protected:
-    FrameBuffer *frameBuffer = nullptr;
+    int width = 0, height = 0;
     Program *program = nullptr;
     unsigned srcTextureID = 0;
     
     virtual void initWithVertexStringAndFragmentString(const char* vs, const char* fs);
-    virtual void beforeDraw();
-    virtual void afterDraw();
 };
 
 #endif /* SCFilterBase_hpp */

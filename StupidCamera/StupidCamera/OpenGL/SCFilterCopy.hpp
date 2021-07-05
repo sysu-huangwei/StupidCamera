@@ -19,9 +19,7 @@ public:
     virtual void init() override;
     
     /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer
-    virtual FrameBuffer *render() override;
-    
+    /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
 
 };

@@ -22,8 +22,8 @@ public:
     virtual void release() override;
     
     /// 渲染，必须在GL线程
-    /// @return 结果纹理ID
-    virtual FrameBuffer *render() override;
+    /// @param outputFrameBuffer 目标FBO
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
     /// 设置LUT图路径，底层加载
     /// @param path LUT图的路径
@@ -32,8 +32,6 @@ public:
     /// 设置滤镜程度
     /// @param alpha 滤镜程度，0.0 ~ 1.0
     void setAlpha(float alpha);
-    
-    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
 protected:
     int lutTextureUniform = -1, alphaUniform = -1;

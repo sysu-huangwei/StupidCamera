@@ -47,6 +47,8 @@ public:
     
     void setSmallHeadDegree(float degree);
     
+    /// 渲染，必须在GL线程
+    /// @param outputFrameBuffer 目标FBO
     void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
     
 private:

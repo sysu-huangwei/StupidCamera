@@ -41,36 +41,23 @@ SCFilterLine::~SCFilterLine() {
 
 void SCFilterLine::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterLineVertexShaderString, kSCFilterLineFragmentShaderString);
-//    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
-//    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
-FrameBuffer *SCFilterLine::render() {
+void SCFilterLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     if (!this->lines) {
-        return frameBuffer;
+        return;
     }
     
-    frameBuffer->activeFrameBuffer();
-    
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    glClearColor(0.0f,0.0f,0.0f,1.0f);
+    outputFrameBuffer->activeFrameBuffer();
     
     program->use();
     
     program->setVertexAttribPointer("a_position", lines);
     
-//    glEnableVertexAttribArray(textureCoordinateAttribute);
-//    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
-    
-//    glActiveTexture(GL_TEXTURE2);
-//    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-//    glUniform1i(inputImageTextureUniform, 2);
-    
     glLineWidth(5.0f);
     glDrawArrays(GL_LINES, 0, linesCount * 2);
     
-    afterDraw();
-    return SCFilterBase::render();
+    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
 }
 
 

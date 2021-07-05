@@ -32,9 +32,7 @@ public:
     virtual void setSrcTextureID(unsigned srcTextureID);
     
     /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer
-    virtual FrameBuffer *render() override;
-    
+    /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
     /// 设置需要画的网格，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】

@@ -5,6 +5,7 @@
 //
 
 #include "SCFilterCopy.hpp"
+#include "FrameBufferPool.hpp"
 
 const char *kSCFilterCopyVertexShaderString = SHADER_STRING_CPP
 (
@@ -43,18 +44,6 @@ SCFilterCopy::~SCFilterCopy() {
 void SCFilterCopy::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterCopyVertexShaderString, kSCFilterCopyFragmentShaderString);
 }
-
-FrameBuffer *SCFilterCopy::render() {
-    beforeDraw();
-    
-    program->setTextureAtIndex("u_texture", srcTextureID, 2);
-    
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    
-    afterDraw();
-    return frameBuffer;
-}
-
 
 void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     outputFrameBuffer->activeFrameBuffer();

@@ -18,23 +18,23 @@ public:
     ~SCFilterBackgroundPoint();
     
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
-    virtual void init();
+    virtual void init() override;
     
     /// 释放资源，必须在GL线程，子类实现这个方法去做GL相关的释放操作
-    virtual void release();
+    virtual void release() override;
     
     /// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO
     /// @param width 宽
     /// @param height 高
-    virtual void resize(int width, int height);
+    virtual void resize(int width, int height) override;
     
     /// 设置输入图像的纹理ID
     /// @param srcTextureID 输入图像的纹理ID
-    virtual void setSrcTextureID(unsigned srcTextureID);
+    virtual void setSrcTextureID(unsigned srcTextureID) override;
     
     /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer
-    virtual FrameBuffer *render() override;
+    /// @param outputFrameBuffer 目标FBO
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
     /// 设置需要画的点，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param points 点位信息，{x1,y1,x2,y2……}  需要归一化到0到1的点

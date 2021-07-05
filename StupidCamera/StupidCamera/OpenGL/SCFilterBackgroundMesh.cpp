@@ -41,11 +41,6 @@ void SCFilterBackgroundMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer)
     meshFilter->renderToFrameBuffer(outputFrameBuffer);
 }
 
-FrameBuffer *SCFilterBackgroundMesh::render() {
-    copyFilter->render();
-    return meshFilter->render();
-}
-
 void SCFilterBackgroundMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
     meshFilter->setMesh(mesh, meshStd, meshArrayCount, meshIndex, indexArrayCount);
 }

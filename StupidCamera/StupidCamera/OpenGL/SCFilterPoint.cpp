@@ -42,16 +42,14 @@ SCFilterPoint::~SCFilterPoint() {
 
 void SCFilterPoint::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterPointVertexShaderString, kSCFilterPointFragmentShaderString);
-//    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
-//    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
-FrameBuffer *SCFilterPoint::render() {
+void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     if (!this->points) {
-        return frameBuffer;
+        return;
     }
     
-    frameBuffer->activeFrameBuffer();
+    outputFrameBuffer->activeFrameBuffer();
     
     program->use();
     
@@ -59,8 +57,7 @@ FrameBuffer *SCFilterPoint::render() {
     
     glDrawArrays(GL_POINTS, 0, pointsCount);
     
-    afterDraw();
-    return SCFilterBase::render();
+    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
 }
 
 

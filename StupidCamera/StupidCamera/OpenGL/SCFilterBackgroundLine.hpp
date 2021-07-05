@@ -33,8 +33,8 @@ public:
     virtual void setSrcTextureID(unsigned srcTextureID);
     
     /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer
-    virtual FrameBuffer *render() override;
+    /// @param outputFrameBuffer 目标FBO
+    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
     /// 设置需要画的线，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param lines 线信息，每个线2个顶点(4个float) {line1.A.x, line1.A.y, line1.B.x, line1.B.y, line2.A.x, line2.A.y, line2.B.x……}  需要归一化到0到1的点
