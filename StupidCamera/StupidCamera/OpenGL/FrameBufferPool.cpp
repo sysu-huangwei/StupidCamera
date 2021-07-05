@@ -5,6 +5,7 @@
 //
 
 #include "FrameBufferPool.hpp"
+#include "SCBaseLog.h"
 
 static std::shared_ptr<FrameBufferPool> sharedInstance;
 static std::mutex sharedInstanceLock;
@@ -20,7 +21,12 @@ std::shared_ptr<FrameBufferPool> FrameBufferPool::getSharedInstance() {
 }
 
 FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture, GLuint textureID, GLuint frameBufferID) {
-    std::string key = std::to_string(width) + "_" + std::to_string(height) + "_" + std::to_string(isOnlyTexture) + "_" + std::to_string(textureID) + "_" + std::to_string(frameBufferID);
+    std::string key =
+            std::to_string(width)
+            + "_" + std::to_string(height)
+            + "_" + std::to_string(isOnlyTexture)
+            + "_" + std::to_string(textureID)
+            + "_" + std::to_string(frameBufferID);
     if (frameBufferCache.find(key) != frameBufferCache.end()) {
         frameBufferCache.at(key)->lock();
         return frameBufferCache.at(key);
@@ -35,7 +41,17 @@ FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bo
 
 void FrameBufferPool::returnFrameBufferToPool(FrameBuffer *frameBuffer) {
     if (frameBuffer) {
-        frameBuffer->unlock();
+        std::string key =
+                std::to_string(frameBuffer->getWidth())
+                + "_" + std::to_string(frameBuffer->getHeight())
+                + "_" + std::to_string(frameBuffer->getIsOnlyTexture())
+                + "_" + std::to_string(frameBuffer->getTextureID())
+                + "_" + std::to_string(frameBuffer->getFrameBufferID());
+        if (frameBufferCache.find(key) != frameBufferCache.end()) {
+            frameBuffer->unlock();
+        } else {
+            LOGE("Error: FrameBufferPool::returnFrameBufferToPool  frameBuffer not exist in pool key = %s", key.c_str());
+        }
     }
 }
 

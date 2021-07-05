@@ -21,7 +21,17 @@
 class FrameBuffer {
 public:
     
+    void init(int width, int height, bool isOnlyTexture = false, GLuint textureID = 0, GLuint frameBufferID = 0);
+    
+    void release();
+    
     void activeFrameBuffer();
+    
+    int getWidth() const { return width; }
+    
+    int getHeight() const { return height; }
+    
+    bool getIsOnlyTexture() const { return isOnlyTexture; }
     
     GLuint getTextureID() const { return textureID; }
     
@@ -34,8 +44,6 @@ private:
     bool isNeedReleaseTexture = false, isNeedReleaseFrameBuffer = false;
 
     friend class FrameBufferPool;
-    void init(int width, int height, bool isOnlyTexture = false, GLuint textureID = 0, GLuint frameBufferID = 0);
-    void release();
     int referenceCount = 0;
     void lock();
     void unlock();
