@@ -9,6 +9,7 @@
 
 #include "SCBaseGLUtils.hpp"
 #include "FrameBuffer.hpp"
+#include "Program.hpp"
 
 // 顶点坐标
 const static float imageVertices[8] = {
@@ -55,10 +56,7 @@ public:
     
 protected:
     FrameBuffer *frameBuffer = nullptr;
-    unsigned programID = 0;
-    int positionAttribute = -1, textureCoordinateAttribute = -1;
-    
-    int inputImageTextureUniform = -1;
+    Program *program = nullptr;
     unsigned srcTextureID = 0;
     
     virtual void initWithVertexStringAndFragmentString(const char* vs, const char* fs);

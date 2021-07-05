@@ -29,6 +29,8 @@ public:
     
     void use();
     
+    void setVertexAttribPointer(std::string name, const GLvoid* ptr);
+    
     void setUniform1i(std::string name, int x);
     
     void setUniform1f(std::string name, float x);
@@ -36,6 +38,8 @@ public:
     void setUniform2i(std::string name, int x, int y);
     
     void setUniform2f(std::string name, float x, float y);
+    
+    void setTextureAtIndex(std::string name, GLuint textureID, int index);
     
 private:
     

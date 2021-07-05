@@ -71,11 +71,6 @@ SCFilterLut::~SCFilterLut() {
 
 void SCFilterLut::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterLutVertexShaderString, kSCFilterLutFragmentShaderString);
-    positionAttribute = glGetAttribLocation(programID, "a_position");
-    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
-    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
-    lutTextureUniform = glGetUniformLocation(programID, "u_lut");
-    alphaUniform = glGetUniformLocation(programID, "alpha");
 }
 
 void SCFilterLut::release() {
@@ -89,18 +84,18 @@ void SCFilterLut::release() {
 FrameBuffer *SCFilterLut::render() {
     beforeDraw();
     
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
+    program->use();
     
-    glActiveTexture(GL_TEXTURE3);
-    glBindTexture(GL_TEXTURE_2D, lutTextureID);
-    glUniform1i(lutTextureUniform, 3);
+    program->setVertexAttribPointer("a_position", imageVertices);
+    program->setVertexAttribPointer("a_texCoord", textureCoordinates);
+    
+    program->setTextureAtIndex("u_texture", srcTextureID, 2);
+    program->setTextureAtIndex("u_lut", lutTextureID, 3);
     
     if (lutTextureID > 0) {
-        glUniform1f(alphaUniform, alpha);
+        program->setUniform1f("alpha", alpha);
     } else {
-        glUniform1f(alphaUniform, 0.0f);
+        program->setUniform1f("alpha", 0.0f);
     }
     
     
@@ -129,26 +124,19 @@ void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.0f,0.0f,0.0f,1.0f);
     
-    glUseProgram(programID);
     
-    glEnableVertexAttribArray(positionAttribute);
-    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, imageVertices);
+    program->use();
     
-    glEnableVertexAttribArray(textureCoordinateAttribute);
-    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
+    program->setVertexAttribPointer("a_position", imageVertices);
+    program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
-    
-    glActiveTexture(GL_TEXTURE3);
-    glBindTexture(GL_TEXTURE_2D, lutTextureID);
-    glUniform1i(lutTextureUniform, 3);
+    program->setTextureAtIndex("u_texture", srcTextureID, 2);
+    program->setTextureAtIndex("u_lut", lutTextureID, 3);
     
     if (lutTextureID > 0) {
-        glUniform1f(alphaUniform, alpha);
+        program->setUniform1f("alpha", alpha);
     } else {
-        glUniform1f(alphaUniform, 0.0f);
+        program->setUniform1f("alpha", 0.0f);
     }
     
     

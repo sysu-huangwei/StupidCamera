@@ -42,17 +42,12 @@ SCFilterCopy::~SCFilterCopy() {
 
 void SCFilterCopy::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterCopyVertexShaderString, kSCFilterCopyFragmentShaderString);
-    positionAttribute = glGetAttribLocation(programID, "a_position");
-    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
-    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
 FrameBuffer *SCFilterCopy::render() {
     beforeDraw();
     
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
+    program->setTextureAtIndex("u_texture", srcTextureID, 2);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
@@ -67,17 +62,12 @@ void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.0f,0.0f,0.0f,1.0f);
     
-    glUseProgram(programID);
+    program->use();
     
-    glEnableVertexAttribArray(positionAttribute);
-    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, imageVertices);
+    program->setVertexAttribPointer("a_position", imageVertices);
+    program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    glEnableVertexAttribArray(textureCoordinateAttribute);
-    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
-    
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
+    program->setTextureAtIndex("u_texture", srcTextureID, 2);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     

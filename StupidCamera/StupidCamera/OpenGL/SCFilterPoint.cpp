@@ -42,7 +42,6 @@ SCFilterPoint::~SCFilterPoint() {
 
 void SCFilterPoint::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterPointVertexShaderString, kSCFilterPointFragmentShaderString);
-    positionAttribute = glGetAttribLocation(programID, "a_position");
 //    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
 //    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
@@ -54,20 +53,9 @@ FrameBuffer *SCFilterPoint::render() {
     
     frameBuffer->activeFrameBuffer();
     
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    glClearColor(0.0f,0.0f,0.0f,1.0f);
+    program->use();
     
-    glUseProgram(programID);
-    
-    glEnableVertexAttribArray(positionAttribute);
-    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, points);
-    
-//    glEnableVertexAttribArray(textureCoordinateAttribute);
-//    glVertexAttribPointer(textureCoordinateAttribute, 2, GL_FLOAT, false, 0, textureCoordinates);
-    
-//    glActiveTexture(GL_TEXTURE2);
-//    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-//    glUniform1i(inputImageTextureUniform, 2);
+    program->setVertexAttribPointer("a_position", points);
     
     glDrawArrays(GL_POINTS, 0, pointsCount);
     

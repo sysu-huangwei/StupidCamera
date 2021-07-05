@@ -50,9 +50,6 @@ SCFilterMesh::~SCFilterMesh() {
 
 void SCFilterMesh::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterMeshVertexShaderString, kSCFilterMeshFragmentShaderString);
-    positionAttribute = glGetAttribLocation(programID, "a_position");
-    positionStdAttribute = glGetAttribLocation(programID, "a_position_std");
-    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
 
 FrameBuffer *SCFilterMesh::render() {
@@ -65,17 +62,12 @@ FrameBuffer *SCFilterMesh::render() {
 //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //    glClearColor(0.0f,0.0f,0.0f,1.0f);
     
-    glUseProgram(programID);
+    program->use();
     
-    glEnableVertexAttribArray(positionAttribute);
-    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, mesh);
+    program->setVertexAttribPointer("a_position", mesh);
+    program->setVertexAttribPointer("a_position_std", meshStd);
     
-    glEnableVertexAttribArray(positionStdAttribute);
-    glVertexAttribPointer(positionStdAttribute, 2, GL_FLOAT, false, 0, meshStd);
-    
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
+    program->setTextureAtIndex("u_texture", srcTextureID, 2);
     
     glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
     
@@ -86,17 +78,12 @@ FrameBuffer *SCFilterMesh::render() {
 void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     outputFrameBuffer->activeFrameBuffer();
     
-    glUseProgram(programID);
+    program->use();
     
-    glEnableVertexAttribArray(positionAttribute);
-    glVertexAttribPointer(positionAttribute, 2, GL_FLOAT, false, 0, mesh);
+    program->setVertexAttribPointer("a_position", mesh);
+    program->setVertexAttribPointer("a_position_std", meshStd);
     
-    glEnableVertexAttribArray(positionStdAttribute);
-    glVertexAttribPointer(positionStdAttribute, 2, GL_FLOAT, false, 0, meshStd);
-    
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, srcTextureID);
-    glUniform1i(inputImageTextureUniform, 2);
+    program->setTextureAtIndex("u_texture", srcTextureID, 2);
     
     glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
     

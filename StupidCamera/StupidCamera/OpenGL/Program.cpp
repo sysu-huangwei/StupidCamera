@@ -82,6 +82,12 @@ GLuint Program::createProgram(const char *vertexSource, const char *fragmentSour
     return program;
 }
 
+void Program::setVertexAttribPointer(std::string name, const GLvoid* ptr) {
+    GLint location = getAttributeLocation(name);
+    glEnableVertexAttribArray(location);
+    glVertexAttribPointer(location, 2, GL_FLOAT, false, 0, ptr);
+}
+
 void Program::setUniform1i(std::string name, int x) {
     GLint location = getUniformLocation(name);
     glUniform1i(location, x);
@@ -100,6 +106,13 @@ void Program::setUniform2i(std::string name, int x, int y) {
 void Program::setUniform2f(std::string name, float x, float y) {
     GLint location = getUniformLocation(name);
     glUniform2f(location, x, y);
+}
+
+void Program::setTextureAtIndex(std::string name, GLuint textureID, int index) {
+    GLint location = getUniformLocation(name);
+    glActiveTexture(GL_TEXTURE0 + index);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glUniform1i(location, index);
 }
 
 GLint Program::getUniformLocation(std:: string name) {
