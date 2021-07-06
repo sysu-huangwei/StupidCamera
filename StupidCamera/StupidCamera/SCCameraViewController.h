@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import <GPUImage/GPUImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSUInteger, SCEffectType) {
 @property (strong, nonatomic) IBOutlet UIButton *smallHeadButton;
 @property (strong, nonatomic) IBOutlet UIButton *lutButton;
 @property (strong, nonatomic) IBOutlet UILabel *sliderLabel;
-@property (strong, nonatomic) IBOutlet UIView *showView;
+@property (strong, nonatomic) IBOutlet GPUImageView *showView;
 @property (strong, nonatomic) IBOutlet UISlider *degreeSlider;
 @end
 

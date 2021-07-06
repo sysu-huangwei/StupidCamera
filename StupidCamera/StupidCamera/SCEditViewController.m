@@ -36,10 +36,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    for (UIView *view in _showView.subviews) {
-        [view removeFromSuperview];
-    }
-    [_originPicture processImage];
+    [_originPicture processImageWithCompletionHandler:^{
+        for (UIView *view in self->_showView.subviews) {
+            [view removeFromSuperview];
+        }
+    }];
 }
 
 - (IBAction)back:(id)sender {
