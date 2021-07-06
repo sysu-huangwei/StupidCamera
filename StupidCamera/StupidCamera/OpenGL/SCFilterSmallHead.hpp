@@ -14,6 +14,9 @@
 class SCFilterSmallHead : public SCFilterBackgroundMesh, SCFilterFaceBase {
 public:
     
+    /// 滤镜的唯一ID
+    std::string filterName() override { return SCFilterType_SmallHead; }
+    
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;

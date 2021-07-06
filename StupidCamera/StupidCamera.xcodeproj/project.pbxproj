@@ -84,6 +84,7 @@
 		FC7AAAAA2692B2B500CA4E75 /* Program.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Program.hpp; sourceTree = "<group>"; };
 		FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramPool.cpp; sourceTree = "<group>"; };
 		FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProgramPool.hpp; sourceTree = "<group>"; };
+		FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterConstant.hpp; sourceTree = "<group>"; };
 		FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundMesh.cpp; sourceTree = "<group>"; };
 		FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundMesh.hpp; sourceTree = "<group>"; };
 		FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundLine.cpp; sourceTree = "<group>"; };
@@ -266,6 +267,7 @@
 			children = (
 				FC7AAADE269332F100CA4E75 /* base */,
 				FCEF7B0D2627104800F20ED0 /* platform */,
+				FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */,
 				FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */,
 				FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */,
 				FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */,

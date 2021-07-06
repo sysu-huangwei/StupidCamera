@@ -14,9 +14,12 @@
 class SCFilterFacePoint : public SCFilterBackgroundPoint, SCFilterFaceBase {
 public:
     
+    /// 滤镜的唯一ID
+    std::string filterName() override { return SCFilterType_FacePoint; }
+    
     /// 设置人脸数据
     /// @param faceData 人脸数据
-    virtual void setFaceData(SCFaceData *faceData);
+    virtual void setFaceData(SCFaceData *faceData) override;
 };
 
 #endif /* SCFilterFacePoint_hpp */

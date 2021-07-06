@@ -8,6 +8,7 @@
 #define SCFilterBase_hpp
 
 #include "SCBaseGLUtils.hpp"
+#include "SCFilterConstant.hpp"
 #include "FrameBuffer.hpp"
 #include "Program.hpp"
 
@@ -32,6 +33,9 @@ class SCFilterBase {
 public:
     SCFilterBase();
     ~SCFilterBase();
+    
+    /// 滤镜的唯一ID
+    virtual std::string filterName() = 0;
     
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
     virtual void init();

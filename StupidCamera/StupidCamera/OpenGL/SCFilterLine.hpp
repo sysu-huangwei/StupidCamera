@@ -15,6 +15,9 @@ public:
     SCFilterLine();
     ~SCFilterLine();
     
+    /// 滤镜的唯一ID
+    std::string filterName() override { return SCFilterType_Line; }
+    
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
     virtual void init() override;
     
