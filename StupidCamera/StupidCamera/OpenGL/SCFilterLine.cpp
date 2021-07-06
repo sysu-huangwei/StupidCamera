@@ -58,6 +58,8 @@ void SCFilterLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glDrawArrays(GL_LINES, 0, linesCount * 2);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+    
+    inputFrameBuffer->unlock();
 }
 
 

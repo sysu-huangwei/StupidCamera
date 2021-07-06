@@ -69,6 +69,8 @@ void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+    
+    inputFrameBuffer->unlock();
 }
 
 void SCFilterMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {

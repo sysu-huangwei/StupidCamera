@@ -105,10 +105,11 @@ void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
         program->setUniform1f("alpha", 0.0f);
     }
     
-    
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+    
+    inputFrameBuffer->unlock();
 }
 
 void SCFilterLut::setLutImagePath(const char *path) {

@@ -58,6 +58,8 @@ void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glDrawArrays(GL_POINTS, 0, pointsCount);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+    
+    inputFrameBuffer->unlock();
 }
 
 

@@ -65,4 +65,6 @@ void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+    
+    inputFrameBuffer->unlock();
 }

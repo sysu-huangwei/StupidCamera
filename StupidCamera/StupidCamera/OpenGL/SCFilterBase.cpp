@@ -41,6 +41,5 @@ void SCFilterBase::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
 FrameBuffer *SCFilterBase::render() {
     FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
     renderToFrameBuffer(outputFrameBuffer);
-    inputFrameBuffer->unlock();
     return outputFrameBuffer;
 }
