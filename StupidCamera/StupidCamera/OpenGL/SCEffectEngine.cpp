@@ -5,6 +5,8 @@
 //
 
 #include "SCEffectEngine.hpp"
+#include "FrameBufferPool.hpp"
+#include "ProgramPool.hpp"
 
 SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
@@ -24,8 +26,10 @@ void SCEffectEngine::init() {
 
 /// 释放资源，必须在GL线程
 void SCEffectEngine::release() {
-    lutFilter->init();
-    smallHeadFilter->init();
+    lutFilter->release();
+    smallHeadFilter->release();
+    FrameBufferPool::getSharedInstance()->clearFrameBufferPool();
+    ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
 
 /// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO

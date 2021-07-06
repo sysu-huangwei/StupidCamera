@@ -7,17 +7,17 @@
 #include "FrameBufferPool.hpp"
 #include "SCBaseLog.h"
 
-static std::shared_ptr<FrameBufferPool> sharedInstance;
-static std::mutex sharedInstanceLock;
+static std::shared_ptr<FrameBufferPool> frameBufferPoolSharedInstance;
+static std::mutex frameBufferPoolSharedInstanceLock;
 
 std::shared_ptr<FrameBufferPool> FrameBufferPool::getSharedInstance() {
-    if (sharedInstance == nullptr) {
-        std::lock_guard<std::mutex> lock(sharedInstanceLock);
-        if (sharedInstance == nullptr) {
-            sharedInstance = std::make_shared<FrameBufferPool>();
+    if (frameBufferPoolSharedInstance == nullptr) {
+        std::lock_guard<std::mutex> lock(frameBufferPoolSharedInstanceLock);
+        if (frameBufferPoolSharedInstance == nullptr) {
+            frameBufferPoolSharedInstance = std::make_shared<FrameBufferPool>();
         }
     }
-    return sharedInstance;
+    return frameBufferPoolSharedInstance;
 }
 
 FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture, GLuint textureID, GLuint frameBufferID) {
