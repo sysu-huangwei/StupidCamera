@@ -55,13 +55,14 @@
     {
         [outputFramebuffer lock];
     }
-    self->lutFilter->setSrcTextureID(firstInputFramebuffer.texture);
     
-    CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *inputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(firstInputFramebuffer.size.width, firstInputFramebuffer.size.height, false, firstInputFramebuffer.texture, firstInputFramebuffer.framebuffer);
+    self->lutFilter->setInputFrameBuffer(inputFrameBuffer);
+    FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(outputFramebuffer.size.width, outputFramebuffer.size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
-    self->lutFilter->renderToFrameBuffer(frameBuffer);
-    delete frameBuffer;
+    self->lutFilter->renderToFrameBuffer(outputFrameBuffer);
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(inputFrameBuffer);
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(outputFrameBuffer);
     
     [firstInputFramebuffer unlock];
     

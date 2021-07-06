@@ -33,8 +33,8 @@ void SCFilterBase::release() {
     
 }
 
-void SCFilterBase::setSrcTextureID(unsigned srcTextureID) {
-    this->srcTextureID = srcTextureID;
+void SCFilterBase::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+    this->inputFrameBuffer = inputFrameBuffer;
 }
 
 FrameBuffer *SCFilterBase::render() {

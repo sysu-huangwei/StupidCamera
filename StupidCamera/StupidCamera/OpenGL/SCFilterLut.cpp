@@ -82,6 +82,10 @@ void SCFilterLut::release() {
 }
 
 void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    if (!inputFrameBuffer) {
+        return;
+    }
+    
     outputFrameBuffer->activeFrameBuffer();
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -92,7 +96,7 @@ void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     program->setVertexAttribPointer("a_position", imageVertices);
     program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    program->setTextureAtIndex("u_texture", srcTextureID, 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
     program->setTextureAtIndex("u_lut", lutTextureID, 3);
     
     if (lutTextureID > 0) {

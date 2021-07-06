@@ -28,9 +28,9 @@ public:
     /// @param height 高
     virtual void resize(int width, int height) override;
     
-    /// 设置输入图像的纹理ID
-    /// @param srcTextureID 输入图像的纹理ID
-    virtual void setSrcTextureID(unsigned srcTextureID) override;
+    /// 设置输入图像的FBO
+    /// @param inputFrameBuffer 输入图像的FBO
+    virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer) override;
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO

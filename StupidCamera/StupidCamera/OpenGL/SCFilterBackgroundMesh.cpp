@@ -31,9 +31,9 @@ void SCFilterBackgroundMesh::resize(int width, int height) {
     meshFilter->resize(width, height);
 }
 
-void SCFilterBackgroundMesh::setSrcTextureID(unsigned srcTextureID) {
-    copyFilter->setSrcTextureID(srcTextureID);
-    meshFilter->setSrcTextureID(srcTextureID);
+void SCFilterBackgroundMesh::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+    copyFilter->setInputFrameBuffer(inputFrameBuffer);
+    meshFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 void SCFilterBackgroundMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

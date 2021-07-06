@@ -37,14 +37,14 @@ void SCEffectEngine::resize(int width, int height) {
 }
 
 /// 设置输入图像的纹理ID
-/// @param srcTextureID 输入图像的纹理ID
-void SCEffectEngine::setSrcTextureID(unsigned srcTextureID) {
-    lutFilter->setSrcTextureID(srcTextureID);
+/// @param inputFrameBuffer 输入图像的FBO
+void SCEffectEngine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+    lutFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 FrameBuffer *SCEffectEngine::render() {
-    FrameBuffer *lutResultTexture = lutFilter->render();
-    smallHeadFilter->setSrcTextureID(lutResultTexture->getTextureID());
+    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
+    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
     return smallHeadFilter->render();
 }
 
@@ -69,7 +69,7 @@ void SCEffectEngine::setSmallHeadDegree(float degree) {
 }
 
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    FrameBuffer *lutResultTexture = lutFilter->render();
-    smallHeadFilter->setSrcTextureID(lutResultTexture->getTextureID());
+    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
+    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
     smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
 }

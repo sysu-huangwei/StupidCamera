@@ -27,9 +27,9 @@ public:
     /// @param height 高
     void resize(int width, int height);
     
-    /// 设置输入图像的纹理ID
-    /// @param srcTextureID 输入图像的纹理ID
-    void setSrcTextureID(unsigned srcTextureID);
+    /// 设置输入图像的FBO
+    /// @param inputFrameBuffer 输入图像的FBO
+    void setInputFrameBuffer(FrameBuffer *inputFrameBuffer);
     
     /// 渲染，必须在GL线程
     /// @return 结果FrameBuffer

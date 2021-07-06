@@ -32,9 +32,9 @@ void SCFilterBackgroundPoint::resize(int width, int height) {
     pointFilter->resize(width, height);
 }
 
-void SCFilterBackgroundPoint::setSrcTextureID(unsigned srcTextureID) {
-    copyFilter->setSrcTextureID(srcTextureID);
-    pointFilter->setSrcTextureID(srcTextureID);
+void SCFilterBackgroundPoint::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+    copyFilter->setInputFrameBuffer(inputFrameBuffer);
+    pointFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 void SCFilterBackgroundPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

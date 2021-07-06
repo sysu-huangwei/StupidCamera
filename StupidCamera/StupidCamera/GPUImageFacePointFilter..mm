@@ -60,13 +60,13 @@
     
     self->pointFilter->setFaceData(self.faceData.faceData);
     
-    self->pointFilter->setSrcTextureID(firstInputFramebuffer.texture);
+    FrameBuffer *inputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(firstInputFramebuffer.size.width, firstInputFramebuffer.size.height, false, firstInputFramebuffer.texture, firstInputFramebuffer.framebuffer);
+    self->pointFilter->setInputFrameBuffer(inputFrameBuffer);
+    FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(outputFramebuffer.size.width, outputFramebuffer.size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
-    CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
-    
-    self->pointFilter->renderToFrameBuffer(frameBuffer);
-    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
+    self->pointFilter->renderToFrameBuffer(outputFrameBuffer);
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(inputFrameBuffer);
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(outputFrameBuffer);
     
     [firstInputFramebuffer unlock];
     

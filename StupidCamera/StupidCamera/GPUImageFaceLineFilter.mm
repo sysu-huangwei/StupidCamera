@@ -62,12 +62,13 @@
     
     self->lineFilter->setFaceData(self.faceData.faceData);
     
-    self->lineFilter->setSrcTextureID(firstInputFramebuffer.texture);
-    CGSize size = [self sizeOfFBO];
-    FrameBuffer *frameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(size.width, size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer *inputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(firstInputFramebuffer.size.width, firstInputFramebuffer.size.height, false, firstInputFramebuffer.texture, firstInputFramebuffer.framebuffer);
+    self->lineFilter->setInputFrameBuffer(inputFrameBuffer);
+    FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(outputFramebuffer.size.width, outputFramebuffer.size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
     
-    self->lineFilter->renderToFrameBuffer(frameBuffer);
-    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(frameBuffer);
+    self->lineFilter->renderToFrameBuffer(outputFrameBuffer);
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(inputFrameBuffer);
+    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(outputFrameBuffer);
     
     [firstInputFramebuffer unlock];
     

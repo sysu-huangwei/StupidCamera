@@ -53,6 +53,10 @@ void SCFilterMesh::init() {
 }
 
 void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    if (!inputFrameBuffer) {
+        return;
+    }
+    
     outputFrameBuffer->activeFrameBuffer();
     
     program->use();
@@ -60,7 +64,7 @@ void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     program->setVertexAttribPointer("a_position", mesh);
     program->setVertexAttribPointer("a_position_std", meshStd);
     
-    program->setTextureAtIndex("u_texture", srcTextureID, 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
     
     glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
     

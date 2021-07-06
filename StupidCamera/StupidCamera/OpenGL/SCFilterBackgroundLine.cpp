@@ -32,9 +32,9 @@ void SCFilterBackgroundLine::resize(int width, int height) {
     lineFilter->resize(width, height);
 }
 
-void SCFilterBackgroundLine::setSrcTextureID(unsigned srcTextureID) {
-    copyFilter->setSrcTextureID(srcTextureID);
-    lineFilter->setSrcTextureID(srcTextureID);
+void SCFilterBackgroundLine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+    copyFilter->setInputFrameBuffer(inputFrameBuffer);
+    lineFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 void SCFilterBackgroundLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
