@@ -7,7 +7,6 @@
 #ifndef SCFilterBase_hpp
 #define SCFilterBase_hpp
 
-#include "SCBaseGLUtils.hpp"
 #include "SCFilterConstant.hpp"
 #include "FrameBuffer.hpp"
 #include "Program.hpp"

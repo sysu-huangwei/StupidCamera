@@ -6,7 +6,7 @@
 //
 
 #include "SCFilterLut.hpp"
-#include <stdio.h>
+#include "SCBaseGLUtils.hpp"
 
 const char *kSCFilterLutVertexShaderString = SHADER_STRING_CPP
 (
