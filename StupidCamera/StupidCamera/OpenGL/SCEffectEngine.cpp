@@ -49,6 +49,7 @@ void SCEffectEngine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
 FrameBuffer *SCEffectEngine::render() {
     FrameBuffer *lutResultFrameBuffer = lutFilter->render();
     smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
+    lutResultFrameBuffer->unlock();
     return smallHeadFilter->render();
 }
 
@@ -75,5 +76,6 @@ void SCEffectEngine::setSmallHeadDegree(float degree) {
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     FrameBuffer *lutResultFrameBuffer = lutFilter->render();
     smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
+    lutResultFrameBuffer->unlock();
     smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
 }
