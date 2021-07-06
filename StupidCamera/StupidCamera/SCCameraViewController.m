@@ -6,7 +6,7 @@
 //
 
 #import "SCCameraViewController.h"
-
+#import "SCEditViewController.h"
 #import "GPUImageSCEffectFilter.h"
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
@@ -57,7 +57,12 @@
 }
 
 - (IBAction)takePhoto:(UIButton *)button {
-    
+    [_camera capturePhotoAsImageProcessedUpToFilter:_effectFilter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+        [self->_camera stopCameraCapture];
+        SCEditViewController *editViewController = [[SCEditViewController alloc] initWithUIImage:processedImage];
+        editViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:editViewController animated:YES completion:nil];
+    }];
 }
 
 - (IBAction)lutSelected:(UIButton *)button {

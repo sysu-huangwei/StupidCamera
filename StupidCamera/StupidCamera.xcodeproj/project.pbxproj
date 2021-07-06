@@ -21,6 +21,8 @@
 		FC6A35642624358100CA4434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35632624358100CA4434 /* main.m */; };
 		FC7AAAAB2692B2B500CA4E75 /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAA92692B2B500CA4E75 /* Program.cpp */; };
 		FC7AAAAF2692E1C200CA4E75 /* ProgramPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */; };
+		FC7AAAE72694477500CA4E75 /* SCEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAE52694477400CA4E75 /* SCEditViewController.m */; };
+		FC7AAAE82694477500CA4E75 /* SCEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7AAAE62694477400CA4E75 /* SCEditViewController.xib */; };
 		FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */; };
 		FC892A782673651C000F4513 /* SCFilterBackgroundLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */; };
 		FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */; };
@@ -77,6 +79,9 @@
 		FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramPool.cpp; sourceTree = "<group>"; };
 		FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProgramPool.hpp; sourceTree = "<group>"; };
 		FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterConstant.hpp; sourceTree = "<group>"; };
+		FC7AAAE42694477400CA4E75 /* SCEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEditViewController.h; sourceTree = "<group>"; };
+		FC7AAAE52694477400CA4E75 /* SCEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCEditViewController.m; sourceTree = "<group>"; };
+		FC7AAAE62694477400CA4E75 /* SCEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCEditViewController.xib; sourceTree = "<group>"; };
 		FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundMesh.cpp; sourceTree = "<group>"; };
 		FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundMesh.hpp; sourceTree = "<group>"; };
 		FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundLine.cpp; sourceTree = "<group>"; };
@@ -202,6 +207,9 @@
 				FC892B98267A1294000F4513 /* SCCameraViewController.h */,
 				FC892B99267A1294000F4513 /* SCCameraViewController.m */,
 				FC892B9A267A1294000F4513 /* SCCameraViewController.xib */,
+				FC7AAAE42694477400CA4E75 /* SCEditViewController.h */,
+				FC7AAAE52694477400CA4E75 /* SCEditViewController.m */,
+				FC7AAAE62694477400CA4E75 /* SCEditViewController.xib */,
 				FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */,
 				FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */,
 				FCEF78E92626C31700F20ED0 /* BaseViewController.h */,
@@ -359,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC7AAAE82694477500CA4E75 /* SCEditViewController.xib in Resources */,
 				FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */,
 				FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */,
 				FC6A355E2624358100CA4434 /* Assets.xcassets in Resources */,
@@ -418,6 +427,7 @@
 				FCEF7CFB262ECE3700F20ED0 /* vector2.cpp in Sources */,
 				FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */,
 				FC892B8B2679E854000F4513 /* SCFilterFacePoint.cpp in Sources */,
+				FC7AAAE72694477500CA4E75 /* SCEditViewController.m in Sources */,
 				FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */,
 				FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */,
 				FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */,
