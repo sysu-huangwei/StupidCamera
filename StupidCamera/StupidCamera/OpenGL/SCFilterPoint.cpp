@@ -45,7 +45,7 @@ void SCFilterPoint::init() {
 }
 
 void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!this->points) {
+    if (!this->points || !outputFrameBuffer) {
         return;
     }
     

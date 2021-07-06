@@ -46,7 +46,7 @@ void SCFilterCopy::init() {
 }
 
 void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!inputFrameBuffer) {
+    if (!inputFrameBuffer || !outputFrameBuffer) {
         return;
     }
     

@@ -27,6 +27,10 @@ public:
     
     void activeFrameBuffer();
     
+    void lock();
+    
+    void unlock();
+    
     int getWidth() const { return width; }
     
     int getHeight() const { return height; }
@@ -45,8 +49,6 @@ private:
 
     friend class FrameBufferPool;
     int referenceCount = 0;
-    void lock();
-    void unlock();
     
     void createTexture();
     void createAndBindFrameBuffer();

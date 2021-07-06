@@ -35,10 +35,12 @@ void SCFilterBase::release() {
 
 void SCFilterBase::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
     this->inputFrameBuffer = inputFrameBuffer;
+    this->inputFrameBuffer->lock();
 }
 
 FrameBuffer *SCFilterBase::render() {
     FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
     renderToFrameBuffer(outputFrameBuffer);
+    inputFrameBuffer->unlock();
     return outputFrameBuffer;
 }

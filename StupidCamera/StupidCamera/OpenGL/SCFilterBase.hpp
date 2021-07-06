@@ -49,7 +49,7 @@ public:
     virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer);
     
     /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer
+    /// @return 结果FrameBuffer【使用完该FrameBuffer之后需要放回Pool】
     virtual FrameBuffer *render();
     
     /// 渲染，必须在GL线程
