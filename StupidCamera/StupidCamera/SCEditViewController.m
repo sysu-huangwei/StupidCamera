@@ -13,7 +13,6 @@
 @property (strong, nonatomic) UIImage *originImage;
 @property (strong, nonatomic) UIImage *resultImage;
 @property (strong, nonatomic) GPUImagePicture *originPicture;
-@property (strong, nonatomic) GPUImageView *imageView;
 
 @end
 
@@ -29,20 +28,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _originPicture = [[GPUImagePicture alloc] initWithImage:_originImage];
-    _imageView = [[GPUImageView alloc] initWithFrame:_showView.bounds];
-    [_showView addSubview:_imageView];
-    
+    [_originPicture addTarget:_showView];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:_showView.bounds];
+    [imageView setImage:_originImage];
+    [_showView addSubview:imageView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    GPUImageFilter *filter = [[GPUImageFilter alloc] init];
-    [_originPicture addTarget:filter];
-    [filter addTarget:self.imageView];
-    [_originPicture useNextFrameForImageCapture];
-    [filter useNextFrameForImageCapture];
-    [_originPicture processImageUpToFilter:filter withCompletionHandler:^(UIImage *processedImage) {
-        self->_resultImage = processedImage;
-    }];
+    [super viewDidAppear:animated];
+    for (UIView *view in _showView.subviews) {
+        [view removeFromSuperview];
+    }
+    [_originPicture processImage];
 }
 
 - (IBAction)back:(id)sender {
