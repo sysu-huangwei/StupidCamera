@@ -7,6 +7,7 @@
 #ifndef SCEffectEngine_hpp
 #define SCEffectEngine_hpp
 
+#include <vector>
 #include "SCFaceData.hpp"
 #include "SCFilterLut.hpp"
 #include "SCFilterSmallHead.hpp"
@@ -35,24 +36,21 @@ public:
     /// @return 结果FrameBuffer
     FrameBuffer *render();
     
-    /// 设置人脸数据
-    /// @param faceData 人脸数据
-    void setFaceData(SCFaceData *faceData);
-    
-    /// 替换Lut图，切换滤镜用
-    /// @param path LUT图的路径
-    void replaceLutImagePath(const char *path);
-    
-    void setLutDegree(float degree);
-    
-    void setSmallHeadDegree(float degree);
-    
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
     void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
     
+    /// 设置人脸数据
+    /// @param faceData 人脸数据
+    void setFaceData(SCFaceData *faceData);
+    
+    /// 设置各种参数
+    /// @param params 参数，key为滤镜的名称，value是一整个map，是给这个滤镜具体的参数。
+    void setParams(const std::map<std::string, std::map<std::string, std::string> > &params);
+    
 private:
     SCFaceData *faceData;
+    std::vector<SCFilterBase *> currentFilters;
     SCFilterLut *lutFilter;
     SCFilterSmallHead *smallHeadFilter;
 };

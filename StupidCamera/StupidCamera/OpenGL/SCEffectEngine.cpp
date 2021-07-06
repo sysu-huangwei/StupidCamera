@@ -11,6 +11,8 @@
 SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
     smallHeadFilter = new SCFilterSmallHead();
+    currentFilters.push_back(lutFilter);
+    currentFilters.push_back(smallHeadFilter);
 }
 
 SCEffectEngine::~SCEffectEngine() {
@@ -53,29 +55,26 @@ FrameBuffer *SCEffectEngine::render() {
     return smallHeadFilter->render();
 }
 
+void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
+    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
+    lutResultFrameBuffer->unlock();
+    smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
+}
+
 /// 设置人脸数据
 /// @param faceData 人脸数据
 void SCEffectEngine::setFaceData(SCFaceData *faceData) {
     smallHeadFilter->setFaceData(faceData);
 }
 
-/// 替换Lut图，切换滤镜用
-/// @param path LUT图的路径
-void SCEffectEngine::replaceLutImagePath(const char *path) {
-    lutFilter->setLutImagePath(path);
-}
-
-void SCEffectEngine::setLutDegree(float degree) {
-    lutFilter->setAlpha(degree);
-}
-
-void SCEffectEngine::setSmallHeadDegree(float degree) {
-    smallHeadFilter->setSmallHeadDegree(degree);
-}
-
-void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
-    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
-    lutResultFrameBuffer->unlock();
-    smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
+void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string, std::string> > &params) {
+    std::map<std::string, std::map<std::string, std::string> >::const_iterator it;
+    for (it = params.begin(); it != params.end(); it++) {
+        for (SCFilterBase *filter : currentFilters) {
+            if (filter->filterName() == (*it).first) {
+                filter->setParams((*it).second);
+            }
+        }
+    }
 }

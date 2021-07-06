@@ -7,18 +7,12 @@
 
 #import "SCCameraViewController.h"
 
-#import "GPUImageLutFilter.h"
-#import "GPUImageFacePointFilter.h"
-#import "GPUImageFaceLineFilter.h"
-#import "GPUImageSmallHeadFilter.h"
 #import "GPUImageSCEffectFilter.h"
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) GPUImageView *imageView;
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
-//@property (strong, nonatomic) GPUImageLutFilter *lutFilter;
-//@property (strong, nonatomic) GPUImageSmallHeadFilter *smallHeadFilter;
 @property (strong, nonatomic) GPUImageSCEffectFilter *effectFilter;
 
 @property (strong, nonatomic) NSArray *lutImagePaths;

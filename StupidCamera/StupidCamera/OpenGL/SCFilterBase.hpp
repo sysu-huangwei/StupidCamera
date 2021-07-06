@@ -59,6 +59,10 @@ public:
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) = 0;
     
+    /// 设置参数
+    /// @param param 参数
+    virtual void setParams(const std::map<std::string, std::string> &param);
+    
 protected:
     int width = 0, height = 0;
     Program *program = nullptr;

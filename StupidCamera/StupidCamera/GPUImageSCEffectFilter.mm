@@ -77,16 +77,32 @@
 
 - (void)setLutImagePath:(NSString *)lutImagePath {
     runSynchronouslyOnVideoProcessingQueue(^{
-        self->effectEngine->replaceLutImagePath(lutImagePath.UTF8String);
+        [GPUImageContext useImageProcessingContext];
+        std::map<std::string, std::map<std::string, std::string> > params = {
+            { SCFilterType_Lut, {
+                { SCFilterParam_LutPath, std::string(lutImagePath.UTF8String) }
+            } }
+        };
+        self->effectEngine->setParams(params);
     });
 }
 
 - (void)setLutDegree:(float)degree {
-    self->effectEngine->setLutDegree(degree);
+    std::map<std::string, std::map<std::string, std::string> > params = {
+        { SCFilterType_Lut, {
+            { SCFilterParam_LutAlpha, std::to_string(degree) }
+        } }
+    };
+    self->effectEngine->setParams(params);
 }
 
 - (void)setSmallHeadDegree:(float)degree {
-    self->effectEngine->setSmallHeadDegree(degree);
+    std::map<std::string, std::map<std::string, std::string> > params = {
+        { SCFilterType_SmallHead, {
+            { SCFilterParam_SmallHeadDegree, std::to_string(degree) }
+        } }
+    };
+    self->effectEngine->setParams(params);
 }
 
 - (void)setFaceData:(SCFaceDataIOS *)faceData {

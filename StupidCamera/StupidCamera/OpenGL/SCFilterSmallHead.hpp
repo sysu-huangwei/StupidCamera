@@ -25,14 +25,18 @@ public:
     /// @param faceData 人脸数据
     virtual void setFaceData(SCFaceData *faceData) override;
     
-    /// 设置小头程度
-    /// @param smallHeadDegree 小头程度，0~1
-    virtual void setSmallHeadDegree(float smallHeadDegree);
+    /// 设置参数
+    /// @param param 参数
+    virtual void setParams(const std::map<std::string, std::string> &param) override;
     
 protected:
     float smallHeadDegree = 0.0f;
     
     void changeSmallFacePoint(float *facePointFloat);
+    
+    /// 设置小头程度
+    /// @param smallHeadDegree 小头程度，0~1
+    virtual void setSmallHeadDegree(float smallHeadDegree);
 };
 
 #endif /* SCFilterSmallHead_hpp */

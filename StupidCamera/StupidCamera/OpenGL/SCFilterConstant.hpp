@@ -19,4 +19,8 @@
 #define SCFilterType_BackgroundMesh "SCFilterType_BackgroundMesh"
 #define SCFilterType_SmallHead "SCFilterType_SmallHead"
 
+#define SCFilterParam_LutPath "SCFilterParam_LutPath"
+#define SCFilterParam_LutAlpha "SCFilterParam_LutAlpha"
+#define SCFilterParam_SmallHeadDegree "SCFilterParam_SmallHeadDegree"
+
 #endif /* SCFilterConstant_hpp */

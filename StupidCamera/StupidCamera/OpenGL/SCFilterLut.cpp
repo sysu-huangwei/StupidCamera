@@ -124,3 +124,14 @@ void SCFilterLut::setLutImagePath(const char *path) {
 void SCFilterLut::setAlpha(float alpha) {
     this->alpha = alpha;
 }
+
+void SCFilterLut::setParams(const std::map<std::string, std::string> &param) {
+    std::map<std::string, std::string>::const_iterator it;
+    for (it = param.begin(); it != param.end(); it++) {
+        if ((*it).first == SCFilterParam_LutPath) {
+            setLutImagePath((*it).second.c_str());
+        } else if ((*it).first == SCFilterParam_LutAlpha) {
+            setAlpha(std::stof((*it).second));
+        }
+    }
+}

@@ -43,3 +43,7 @@ FrameBuffer *SCFilterBase::render() {
     renderToFrameBuffer(outputFrameBuffer);
     return outputFrameBuffer;
 }
+
+void SCFilterBase::setParams(const std::map<std::string, std::string> &param) {
+    
+}
