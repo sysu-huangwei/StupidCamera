@@ -12,6 +12,7 @@
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
 		FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */; };
 		FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */; };
+		FC255650269834E80083C675 /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = FC25564F269834E80083C675 /* Resource */; };
 		FC6A35532624358100CA4434 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35522624358100CA4434 /* AppDelegate.m */; };
 		FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35552624358100CA4434 /* SceneDelegate.m */; };
 		FC6A35592624358100CA4434 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC6A35582624358100CA4434 /* ViewController.m */; };
@@ -62,6 +63,7 @@
 		FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GPUImageSCEffectFilter.mm; sourceTree = "<group>"; };
 		FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
 		FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBuffer.hpp; sourceTree = "<group>"; };
+		FC25564F269834E80083C675 /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resource; sourceTree = "<group>"; };
 		FC6A354E2624358100CA4434 /* StupidCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StupidCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6A35512624358100CA4434 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC6A35522624358100CA4434 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				FCEF78EA2626C31700F20ED0 /* BaseViewController.m */,
 				FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */,
 				FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */,
+				FC25564F269834E80083C675 /* Resource */,
 			);
 			path = StupidCamera;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC255650269834E80083C675 /* Resource in Resources */,
 				FC7AAAE82694477500CA4E75 /* SCEditViewController.xib in Resources */,
 				FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */,
 				FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */,

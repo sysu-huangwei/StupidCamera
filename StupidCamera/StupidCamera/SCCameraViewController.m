@@ -94,14 +94,14 @@
 
 
 - (IBAction)changeLutGesture:(UISwipeGestureRecognizer *)recognizer {
-    [_effectFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
-//    [_lutFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         _currintLutIndex = _currintLutIndex == _lutImagePaths.count - 1 ? 0 : _currintLutIndex + 1;
     }
     if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         _currintLutIndex = _currintLutIndex == 0 ? _lutImagePaths.count - 1 : _currintLutIndex - 1;
     }
+    NSLog(@"_currintLutIndex = %d direction = %d", _currintLutIndex, recognizer.direction);
+    [_effectFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
 }
 
 - (void)initCamera {
@@ -134,10 +134,10 @@
     
     _lutImagePaths = @[
         @"",
-        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_miss_etikate.png"],
-        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_1.png"],
-        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_soft_elegance_2.png"],
-        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"lookup_amatorka.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Resource/brunch1.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Resource/brunch2.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Resource/brunch3.png"],
+        [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Resource/brunch4.png"],
     ];
     _currintLutIndex = 0;
     
