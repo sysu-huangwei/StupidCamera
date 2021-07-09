@@ -43,11 +43,9 @@
     switch (_currentSelectEffectType) {
         case SCEffectType_Lut:
             [_effectFilter setLutDegree:slider.value];
-//            [_lutFilter setAlpha:slider.value];
             break;
         case SCEffectType_SmallHead:
             [_effectFilter setSmallHeadDegree:slider.value];
-//            [_smallHeadFilter setSmallHeadDegree:slider.value];
             break;
         default:
             break;
@@ -100,7 +98,6 @@
     if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         _currintLutIndex = _currintLutIndex == 0 ? _lutImagePaths.count - 1 : _currintLutIndex - 1;
     }
-    NSLog(@"_currintLutIndex = %d direction = %d", _currintLutIndex, recognizer.direction);
     [_effectFilter setLutImagePath:_lutImagePaths[_currintLutIndex]];
 }
 
@@ -124,13 +121,6 @@
     _effectFilter = [[GPUImageSCEffectFilter alloc] init];
     [_camera addTarget:_effectFilter];
     [_effectFilter addTarget:_showView];
-    
-//
-//    _smallHeadFilter = [[GPUImageSmallHeadFilter alloc] init];
-//    _lutFilter = [[GPUImageLutFilter alloc] init];
-//    [_camera addTarget:_lutFilter];
-//    [_lutFilter addTarget:_smallHeadFilter];
-//    [_smallHeadFilter addTarget:self.imageView];
     
     _lutImagePaths = @[
         @"",
@@ -183,7 +173,6 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
-//    [_smallHeadFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
         [_effectFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
 }
 

@@ -35,8 +35,6 @@
 		FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */; };
 		FC892B9B267A1294000F4513 /* SCCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC892B99267A1294000F4513 /* SCCameraViewController.m */; };
 		FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC892B9A267A1294000F4513 /* SCCameraViewController.xib */; };
-		FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */; };
-		FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78EA2626C31700F20ED0 /* BaseViewController.m */; };
 		FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */; };
 		FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */; };
 		FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */; };
@@ -104,10 +102,6 @@
 		FC892B98267A1294000F4513 /* SCCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCCameraViewController.h; sourceTree = "<group>"; };
 		FC892B99267A1294000F4513 /* SCCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCCameraViewController.m; sourceTree = "<group>"; };
 		FC892B9A267A1294000F4513 /* SCCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCCameraViewController.xib; sourceTree = "<group>"; };
-		FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
-		FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
-		FCEF78E92626C31700F20ED0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		FCEF78EA2626C31700F20ED0 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseLog.h; sourceTree = "<group>"; };
 		FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBase.cpp; sourceTree = "<group>"; };
 		FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterCopy.hpp; sourceTree = "<group>"; };
@@ -212,10 +206,6 @@
 				FC7AAAE42694477400CA4E75 /* SCEditViewController.h */,
 				FC7AAAE52694477400CA4E75 /* SCEditViewController.m */,
 				FC7AAAE62694477400CA4E75 /* SCEditViewController.xib */,
-				FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */,
-				FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */,
-				FCEF78E92626C31700F20ED0 /* BaseViewController.h */,
-				FCEF78EA2626C31700F20ED0 /* BaseViewController.m */,
 				FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */,
 				FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */,
 				FC25564F269834E80083C675 /* Resource */,
@@ -439,7 +429,6 @@
 				FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */,
 				FC892B9B267A1294000F4513 /* SCCameraViewController.m in Sources */,
 				FC892B762679D9C2000F4513 /* SCFilterSmallHead.cpp in Sources */,
-				FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */,
 				FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */,
 				710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */,
 				FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */,
@@ -457,7 +446,6 @@
 				FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */,
 				FCEF7CFA262ECE3700F20ED0 /* triangle.cpp in Sources */,
 				FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */,
-				FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */,
 				FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,
 				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,
