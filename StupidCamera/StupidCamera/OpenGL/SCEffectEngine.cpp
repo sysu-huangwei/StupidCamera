@@ -11,25 +11,30 @@
 SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
     smallHeadFilter = new SCFilterSmallHead();
+    blurFilter = new SCFilterBlur();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
+    currentFilters.push_back(blurFilter);
 }
 
 SCEffectEngine::~SCEffectEngine() {
     SAFE_DELETE(lutFilter);
     SAFE_DELETE(smallHeadFilter);
+    SAFE_DELETE(blurFilter);
 }
 
 /// 初始化，必须在GL线程
 void SCEffectEngine::init() {
     lutFilter->init();
     smallHeadFilter->init();
+    blurFilter->init();
 }
 
 /// 释放资源，必须在GL线程
 void SCEffectEngine::release() {
     lutFilter->release();
     smallHeadFilter->release();
+    blurFilter->release();
     FrameBufferPool::getSharedInstance()->clearFrameBufferPool();
     ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
@@ -40,26 +45,30 @@ void SCEffectEngine::release() {
 void SCEffectEngine::resize(int width, int height) {
     lutFilter->resize(width, height);
     smallHeadFilter->resize(width, height);
+    blurFilter->resize(width, height);
 }
 
 /// 设置输入图像的纹理ID
 /// @param inputFrameBuffer 输入图像的FBO
 void SCEffectEngine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
-    lutFilter->setInputFrameBuffer(inputFrameBuffer);
+//    lutFilter->setInputFrameBuffer(inputFrameBuffer);
+    blurFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 FrameBuffer *SCEffectEngine::render() {
-    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
-    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
-    lutResultFrameBuffer->unlock();
-    return smallHeadFilter->render();
+    return blurFilter->render();
+//    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
+//    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
+//    lutResultFrameBuffer->unlock();
+//    return smallHeadFilter->render();
 }
 
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
-    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
-    lutResultFrameBuffer->unlock();
-    smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
+    blurFilter->renderToFrameBuffer(outputFrameBuffer);
+//    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
+//    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
+//    lutResultFrameBuffer->unlock();
+//    smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
 }
 
 /// 设置人脸数据
