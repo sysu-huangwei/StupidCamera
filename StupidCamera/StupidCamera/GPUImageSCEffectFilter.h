@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setLutDegree:(float)degree;
 
+- (void)setBlurDegree:(float)degree;
+
 - (void)setSmallHeadDegree:(float)degree;
 
 - (void)setFaceData:(SCFaceDataIOS *)faceData;

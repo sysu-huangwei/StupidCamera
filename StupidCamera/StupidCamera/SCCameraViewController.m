@@ -43,6 +43,7 @@
     switch (_currentSelectEffectType) {
         case SCEffectType_Lut:
             [_effectFilter setLutDegree:slider.value];
+            [_effectFilter setBlurDegree:slider.value];
             break;
         case SCEffectType_SmallHead:
             [_effectFilter setSmallHeadDegree:slider.value];

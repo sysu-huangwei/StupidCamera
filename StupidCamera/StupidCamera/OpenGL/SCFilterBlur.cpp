@@ -46,13 +46,41 @@ const char *kSCFilter3x3AverageBlurFragmentShaderString = SHADER_STRING_CPP
  {
     vec4 srcColor = texture2D(u_texture, texcoordOut);
     
-    vec3 sum = srcColor.rgb;
+    vec4 sum = srcColor.rgb;
     for (int i = 0; i < 8; i++) {
         sum += texture2D(u_texture, texcoordOutNear[i]);
     }
     sum *= 0.1111111;
     
-    gl_FragColor = vec4(mix(srcColor.rgb, sum, alpha), srcColor.a);
+    gl_FragColor = vec4(mix(srcColor, sum, alpha).rgb, srcColor.a);
+}
+ );
+
+const char *kSCFilter3x3GaussianBlurFragmentShaderString = SHADER_STRING_CPP
+(
+ precision highp float;
+ 
+ uniform sampler2D u_texture;
+ varying vec2 texcoordOut;
+ varying vec2 texcoordOutNear[8];
+ 
+ uniform float alpha;
+ 
+ void main()
+ {
+    vec4 srcColor = texture2D(u_texture, texcoordOut);
+    
+    vec4 sum = srcColor * 0.147761;
+    sum += texture2D(u_texture, texcoordOutNear[0]) * 0.118318;
+    sum += texture2D(u_texture, texcoordOutNear[1]) * 0.118318;
+    sum += texture2D(u_texture, texcoordOutNear[2]) * 0.118318;
+    sum += texture2D(u_texture, texcoordOutNear[3]) * 0.118318;
+    sum += texture2D(u_texture, texcoordOutNear[4]) * 0.094742;
+    sum += texture2D(u_texture, texcoordOutNear[5]) * 0.094742;
+    sum += texture2D(u_texture, texcoordOutNear[6]) * 0.094742;
+    sum += texture2D(u_texture, texcoordOutNear[7]) * 0.094742;
+    
+    gl_FragColor = vec4(mix(srcColor, sum, alpha).rgb, srcColor.a);
 }
  );
 
@@ -65,7 +93,7 @@ SCFilterBlur::~SCFilterBlur() {
 }
 
 void SCFilterBlur::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilter3x3SampleVertexShaderString, kSCFilter3x3AverageBlurFragmentShaderString);
+    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilter3x3SampleVertexShaderString, kSCFilter3x3GaussianBlurFragmentShaderString);
 }
 
 void SCFilterBlur::release() {
@@ -75,8 +103,8 @@ void SCFilterBlur::release() {
 void SCFilterBlur::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
     SCFilterBase::setInputFrameBuffer(inputFrameBuffer);
     if (inputFrameBuffer) {
-        widthOffset = 1.0f / inputFrameBuffer->getWidth();
-        heightOffset = 1.0f / inputFrameBuffer->getHeight();
+        widthOffset = 5.0f / inputFrameBuffer->getWidth();
+        heightOffset = 5.0f / inputFrameBuffer->getHeight();
     }
 }
 

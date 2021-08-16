@@ -54,7 +54,7 @@ private:
     std::vector<SCFilterBase *> currentFilters;
     SCFilterLut *lutFilter;
     SCFilterSmallHead *smallHeadFilter;
-    SCFilterBlur *blurFilter
+    SCFilterBlur *blurFilter;
 };
 
 #endif /* SCEffectEngine_hpp */

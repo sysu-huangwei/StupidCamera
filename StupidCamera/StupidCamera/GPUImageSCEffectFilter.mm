@@ -96,6 +96,15 @@
     self->effectEngine->setParams(params);
 }
 
+- (void)setBlurDegree:(float)degree {
+    std::map<std::string, std::map<std::string, std::string> > params = {
+        { SCFilterType_Blur, {
+            { SCFilterParam_BlurAlpha, std::to_string(degree) }
+        } }
+    };
+    self->effectEngine->setParams(params);
+}
+
 - (void)setSmallHeadDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
         { SCFilterType_SmallHead, {
