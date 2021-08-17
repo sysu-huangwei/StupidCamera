@@ -7,9 +7,11 @@
 #ifndef SCFilterBlur_hpp
 #define SCFilterBlur_hpp
 
-#include "SCFilterBase.hpp"
+#define DEFAULT_MAX_LENGTH 320
 
-/// 模糊
+#include "SCFilterBlurSub.hpp"
+
+/// 模糊封装
 class SCFilterBlur : public SCFilterBase {
 public:
     SCFilterBlur();
@@ -24,6 +26,11 @@ public:
     /// 释放资源，必须在GL线程，子类实现这个方法去做GL相关的释放操作
     virtual void release() override;
     
+    /// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO
+    /// @param width 宽
+    /// @param height 高
+    virtual void resize(int width, int height) override;
+    
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
     virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer) override;
@@ -37,12 +44,18 @@ public:
     virtual void setParams(const std::map<std::string, std::string> &param) override;
     
 protected:
-    int alphaUniform = -1, offsetUniform = -1;
-    float alpha = 1.0f, widthOffset = 0.0f, heightOffset = 0.0f;
+    SCFilterBlurSub blurFilterH;
+    SCFilterBlurSub blurFilterV;
     
     /// 设置滤镜程度
     /// @param alpha 滤镜程度，0.0 ~ 1.0
     void setAlpha(float alpha);
+    
+    /// 对宽高进行缩放，把短边控制在最大maxLength内
+    /// @param width 宽，输入和输出
+    /// @param height  高，输入和输出
+    /// @param maxLength 短边最大的长度
+    void scaleWH(int &width, int &height, int maxLength = DEFAULT_MAX_LENGTH);
 };
 
 #endif /* SCFilterBlur_hpp */
