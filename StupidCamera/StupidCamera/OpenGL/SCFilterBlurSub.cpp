@@ -113,10 +113,6 @@ void SCFilterBlurSub::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilter3x3SampleVertexShaderString, kSCFilter3x3GaussianBlurFragmentShaderString);
 }
 
-void SCFilterBlurSub::release() {
-    SCFilterBase::release();
-}
-
 void SCFilterBlurSub::resize(int width, int height) {
     SCFilterBase::resize(width, height);
     if (width > 0 && height > 0) {
