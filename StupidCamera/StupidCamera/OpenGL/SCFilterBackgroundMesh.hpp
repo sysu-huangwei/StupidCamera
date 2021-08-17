@@ -13,8 +13,6 @@
 /// 画背景+三角网格的滤镜
 class SCFilterBackgroundMesh : public SCFilterBase {
 public:
-    SCFilterBackgroundMesh();
-    ~SCFilterBackgroundMesh();
     
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_BackgroundMesh; }
@@ -47,8 +45,8 @@ public:
     virtual void setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount);
     
 protected:
-    SCFilterCopy *copyFilter;
-    SCFilterMesh *meshFilter;
+    SCFilterCopy copyFilter;
+    SCFilterMesh meshFilter;
 };
 
 #endif /* SCFilterBackgroundMesh_hpp */

@@ -7,9 +7,6 @@
 #include "SCFilterFaceBase.hpp"
 
 
-SCFilterFaceBase::SCFilterFaceBase() {
-    
-}
 
 SCFilterFaceBase::~SCFilterFaceBase() {
     if (faceData) {

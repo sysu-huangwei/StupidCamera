@@ -12,8 +12,6 @@
 /// 画原图的滤镜
 class SCFilterCopy : public SCFilterBase {
 public:
-    SCFilterCopy();
-    ~SCFilterCopy();
     
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_Copy; }

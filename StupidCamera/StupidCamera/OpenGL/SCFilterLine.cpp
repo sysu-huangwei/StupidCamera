@@ -28,9 +28,6 @@ const char *kSCFilterLineFragmentShaderString = SHADER_STRING_CPP
  }
 );
 
-SCFilterLine::SCFilterLine():SCFilterBase() {
-    
-}
 
 SCFilterLine::~SCFilterLine() {
     if (this->lines) {

@@ -12,7 +12,6 @@
 /// 画线的滤镜
 class SCFilterLine : public SCFilterBase {
 public:
-    SCFilterLine();
     ~SCFilterLine();
     
     /// 滤镜的唯一ID

@@ -13,7 +13,6 @@
 class SCFilterFaceBase {
 public:
 
-    SCFilterFaceBase();
     ~SCFilterFaceBase();
     
     /// 设置人脸数据

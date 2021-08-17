@@ -14,8 +14,6 @@
 /// 画背景+线格的滤镜
 class SCFilterBackgroundLine : public SCFilterBase {
 public:
-    SCFilterBackgroundLine();
-    ~SCFilterBackgroundLine();
     
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_BackgroundLine; }
@@ -45,8 +43,8 @@ public:
     virtual void setLines(float *lines, int linesCount);
     
 protected:
-    SCFilterCopy *copyFilter;
-    SCFilterLine *lineFilter;
+    SCFilterCopy copyFilter;
+    SCFilterLine lineFilter;
 };
 
 #endif /* SCFilterBackgroundLine_hpp */

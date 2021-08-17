@@ -33,13 +33,6 @@ const char *kSCFilterCopyFragmentShaderString = SHADER_STRING_CPP
 }
  );
 
-SCFilterCopy::SCFilterCopy():SCFilterBase() {
-    
-}
-
-SCFilterCopy::~SCFilterCopy() {
-    
-}
 
 void SCFilterCopy::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterCopyVertexShaderString, kSCFilterCopyFragmentShaderString);

@@ -33,9 +33,6 @@ const char *kSCFilterMeshFragmentShaderString = SHADER_STRING_CPP
  }
 );
 
-SCFilterMesh::SCFilterMesh():SCFilterBase() {
-    
-}
 
 SCFilterMesh::~SCFilterMesh() {
     if (this->mesh) {

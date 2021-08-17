@@ -12,7 +12,6 @@
 /// 画点的滤镜
 class SCFilterPoint : public SCFilterBase {
 public:
-    SCFilterPoint();
     ~SCFilterPoint();
     
     /// 滤镜的唯一ID

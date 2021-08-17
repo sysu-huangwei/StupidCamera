@@ -61,13 +61,6 @@ const char *kSCFilterLutFragmentShaderString = SHADER_STRING_CPP
 }
  );
 
-SCFilterLut::SCFilterLut():SCFilterBase() {
-    
-}
-
-SCFilterLut::~SCFilterLut() {
-    
-}
 
 void SCFilterLut::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterLutVertexShaderString, kSCFilterLutFragmentShaderString);

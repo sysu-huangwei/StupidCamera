@@ -12,8 +12,6 @@
 /// LUT
 class SCFilterLut : public SCFilterBase {
 public:
-    SCFilterLut();
-    ~SCFilterLut();
     
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_Lut; }

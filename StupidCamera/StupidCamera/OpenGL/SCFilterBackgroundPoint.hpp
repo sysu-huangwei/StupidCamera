@@ -14,8 +14,6 @@
 /// 画背景+点的滤镜
 class SCFilterBackgroundPoint : public SCFilterBase {
 public:
-    SCFilterBackgroundPoint();
-    ~SCFilterBackgroundPoint();
     
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_BackgroundPoint; }
@@ -45,8 +43,8 @@ public:
     virtual void setPoints(float *points, int pointsCount);
     
 protected:
-    SCFilterCopy *copyFilter;
-    SCFilterPoint *pointFilter;
+    SCFilterCopy copyFilter;
+    SCFilterPoint pointFilter;
 };
 
 

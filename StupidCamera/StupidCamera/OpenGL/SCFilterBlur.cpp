@@ -6,13 +6,6 @@
 
 #include "SCFilterBlur.hpp"
 
-SCFilterBlur::SCFilterBlur():SCFilterBase() {
-    
-}
-
-SCFilterBlur::~SCFilterBlur() {
-    
-}
 
 void SCFilterBlur::init() {
     blurFilterH.init();

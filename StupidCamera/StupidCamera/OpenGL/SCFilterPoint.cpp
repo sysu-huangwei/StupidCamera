@@ -29,9 +29,6 @@ const char *kSCFilterPointFragmentShaderString = SHADER_STRING_CPP
  }
 );
 
-SCFilterPoint::SCFilterPoint():SCFilterBase() {
-    
-}
 
 SCFilterPoint::~SCFilterPoint() {
     if (this->points) {

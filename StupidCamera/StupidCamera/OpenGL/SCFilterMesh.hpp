@@ -12,7 +12,6 @@
 /// 画三角网格的滤镜
 class SCFilterMesh : public SCFilterBase {
 public:
-    SCFilterMesh();
     ~SCFilterMesh();
     
     /// 滤镜的唯一ID

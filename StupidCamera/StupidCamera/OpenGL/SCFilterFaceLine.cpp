@@ -23,6 +23,6 @@ void SCFilterFaceLine::setFaceData(SCFaceData *faceData) {
             lines[i + 2] = this->faceData->faces[0].facePoints[2 * lineIndex[2 * currentIndex + 1]];
             lines[i + 3] = this->faceData->faces[0].facePoints[2 * lineIndex[2 * currentIndex + 1] + 1];
         }
-        lineFilter->setLines(lines, 28);
+        lineFilter.setLines(lines, 28);
     }
 }

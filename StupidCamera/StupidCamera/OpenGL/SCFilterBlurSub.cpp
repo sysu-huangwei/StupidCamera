@@ -101,13 +101,6 @@ const char *kSCFilter3x3BilateralBlurFragmentShaderString = SHADER_STRING_CPP
 }
  );
 
-SCFilterBlurSub::SCFilterBlurSub():SCFilterBase() {
-    
-}
-
-SCFilterBlurSub::~SCFilterBlurSub() {
-    
-}
 
 void SCFilterBlurSub::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilter3x3SampleVertexShaderString, kSCFilter3x3GaussianBlurFragmentShaderString);

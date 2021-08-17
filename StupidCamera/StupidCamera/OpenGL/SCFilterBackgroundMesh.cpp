@@ -6,41 +6,32 @@
 
 #include "SCFilterBackgroundMesh.hpp"
 
-SCFilterBackgroundMesh::SCFilterBackgroundMesh():SCFilterBase() {
-    copyFilter = new SCFilterCopy();
-    meshFilter = new SCFilterMesh();
-}
-
-SCFilterBackgroundMesh::~SCFilterBackgroundMesh() {
-    SAFE_DELETE(copyFilter);
-    SAFE_DELETE(meshFilter);
-}
 
 void SCFilterBackgroundMesh::init() {
-    copyFilter->init();
-    meshFilter->init();
+    copyFilter.init();
+    meshFilter.init();
 }
 
 void SCFilterBackgroundMesh::release() {
-    copyFilter->release();
-    meshFilter->release();
+    copyFilter.release();
+    meshFilter.release();
 }
 
 void SCFilterBackgroundMesh::resize(int width, int height) {
-    copyFilter->resize(width, height);
-    meshFilter->resize(width, height);
+    copyFilter.resize(width, height);
+    meshFilter.resize(width, height);
 }
 
 void SCFilterBackgroundMesh::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
-    copyFilter->setInputFrameBuffer(inputFrameBuffer);
-    meshFilter->setInputFrameBuffer(inputFrameBuffer);
+    copyFilter.setInputFrameBuffer(inputFrameBuffer);
+    meshFilter.setInputFrameBuffer(inputFrameBuffer);
 }
 
 void SCFilterBackgroundMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    copyFilter->renderToFrameBuffer(outputFrameBuffer);
-    meshFilter->renderToFrameBuffer(outputFrameBuffer);
+    copyFilter.renderToFrameBuffer(outputFrameBuffer);
+    meshFilter.renderToFrameBuffer(outputFrameBuffer);
 }
 
 void SCFilterBackgroundMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
-    meshFilter->setMesh(mesh, meshStd, meshArrayCount, meshIndex, indexArrayCount);
+    meshFilter.setMesh(mesh, meshStd, meshArrayCount, meshIndex, indexArrayCount);
 }

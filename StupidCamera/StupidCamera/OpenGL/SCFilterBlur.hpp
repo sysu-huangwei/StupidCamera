@@ -14,8 +14,6 @@
 /// 模糊封装
 class SCFilterBlur : public SCFilterBase {
 public:
-    SCFilterBlur();
-    ~SCFilterBlur();
     
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_Blur; }

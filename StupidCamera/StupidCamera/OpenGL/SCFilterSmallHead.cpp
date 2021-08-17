@@ -19,7 +19,7 @@ void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
         float facePointFloatChanged[FACE_POINT_FLOAT_ARRAY_SIZE];
         memcpy(facePointFloatChanged, this->faceData->faces[0].facePoints, sizeof(float) * FACE_POINT_FLOAT_ARRAY_SIZE);
         changeSmallFacePoint(facePointFloatChanged);
-        this->meshFilter->setMesh(facePointFloatChanged, this->faceData->faces[0].facePoints, FACE_POINT_FLOAT_ARRAY_SIZE, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
+        meshFilter.setMesh(facePointFloatChanged, this->faceData->faces[0].facePoints, FACE_POINT_FLOAT_ARRAY_SIZE, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
     }
 }
 

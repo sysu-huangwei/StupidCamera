@@ -30,8 +30,6 @@ const static float textureCoordinates[8] = {
 /// 滤镜基类
 class SCFilterBase {
 public:
-    SCFilterBase();
-    ~SCFilterBase();
     
     /// 滤镜的唯一ID
     virtual std::string filterName() = 0;

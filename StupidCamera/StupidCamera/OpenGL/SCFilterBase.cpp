@@ -8,13 +8,6 @@
 #include "FrameBufferPool.hpp"
 #include "ProgramPool.hpp"
 
-SCFilterBase::SCFilterBase() {
-    
-}
-
-SCFilterBase::~SCFilterBase() {
-    
-}
 
 void SCFilterBase::init() {
     
