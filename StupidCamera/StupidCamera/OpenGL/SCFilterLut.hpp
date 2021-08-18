@@ -1,7 +1,7 @@
 //
 //  SCFilterLut.hpp
 //
-//  Created by rayyy on 2021/4/14.
+//  Created by rayyyhuang on 2021/4/14.
 //
 
 #ifndef SCFilterLut_hpp

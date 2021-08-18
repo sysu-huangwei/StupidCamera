@@ -1,8 +1,7 @@
 //
 //  SCEditViewController.h
-//  StupidCamera
 //
-//  Created by rayyy on 2021/7/6.
+//  Created by rayyyhuang on 2021/7/6.
 //
 
 #import "ViewController.h"

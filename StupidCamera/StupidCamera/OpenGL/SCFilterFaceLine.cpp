@@ -1,7 +1,7 @@
 //
 //  SCFilterFaceLine.cpp
 //
-//  Created by rayyy on 2021/6/16.
+//  Created by rayyyhuang on 2021/6/16.
 //
 
 #include "SCFilterFaceLine.hpp"

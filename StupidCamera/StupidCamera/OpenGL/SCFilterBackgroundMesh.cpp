@@ -1,7 +1,7 @@
 //
 //  SCFilterBackgroundMesh.cpp
 //
-//  Created by rayyy on 2021/6/7.
+//  Created by rayyyhuang on 2021/6/7.
 //
 
 #include "SCFilterBackgroundMesh.hpp"

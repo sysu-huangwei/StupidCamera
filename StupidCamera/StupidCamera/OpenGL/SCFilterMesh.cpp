@@ -1,7 +1,7 @@
 //
 //  SCFilterMesh.cpp
 //
-//  Created by rayyy on 2021/4/22.
+//  Created by rayyyhuang on 2021/4/22.
 //
 
 #include "SCFilterMesh.hpp"

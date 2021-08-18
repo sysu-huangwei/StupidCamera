@@ -1,7 +1,7 @@
 //
 //  SCFilterBlurSub.hpp
 //
-//  Created by rayyy on 2021/8/17.
+//  Created by rayyyhuang on 2021/8/17.
 //
 
 #ifndef SCFilterBlurSub_hpp

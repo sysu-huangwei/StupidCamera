@@ -1,8 +1,7 @@
 //
 //  SCFilterLut.cpp
-//  StupidCamera
 //
-//  Created by rayyy on 2021/4/14.
+//  Created by rayyyhuang on 2021/4/14.
 //
 
 #include "SCFilterLut.hpp"

@@ -1,7 +1,7 @@
 //
 //  SCFilterBase.cpp
 //
-//  Created by rayyy on 2020/11/26.
+//  Created by rayyyhuang on 2020/11/26.
 //
 
 #include "SCFilterBase.hpp"

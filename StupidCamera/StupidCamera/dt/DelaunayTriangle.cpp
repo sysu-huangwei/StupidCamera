@@ -1,7 +1,7 @@
 //
 //  DelaunayTriangle.cpp
 //
-//  Created by rayyy on 2021/4/20.
+//  Created by rayyyhuang on 2021/4/20.
 //
 
 #include "DelaunayTriangle.hpp"

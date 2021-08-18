@@ -1,7 +1,7 @@
 //
 //  SCFaceData.hpp
 //
-//  Created by rayyy on 2021/4/16.
+//  Created by rayyyhuang on 2021/4/16.
 //
 
 #ifndef SCFaceData_h

@@ -1,7 +1,7 @@
 //
 //  SCEffectEngine.hpp
 //
-//  Created by rayyy on 2021/6/30.
+//  Created by rayyyhuang on 2021/6/30.
 //
 
 #ifndef SCEffectEngine_hpp

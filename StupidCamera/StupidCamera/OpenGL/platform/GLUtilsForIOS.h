@@ -1,7 +1,7 @@
 //
 //  GLUtilsForIOS.h
 //
-//  Created by rayyy on 2021/8/18.
+//  Created by rayyyhuang on 2021/8/18.
 //
 
 #import <Foundation/Foundation.h>

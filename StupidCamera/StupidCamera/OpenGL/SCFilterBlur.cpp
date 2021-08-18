@@ -1,7 +1,7 @@
 //
 //  SCFilterBlur.cpp
 //
-//  Created by rayyy on 2021/8/16.
+//  Created by rayyyhuang on 2021/8/16.
 //
 
 #include "SCFilterBlur.hpp"
