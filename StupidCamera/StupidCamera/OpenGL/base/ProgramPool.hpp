@@ -10,13 +10,19 @@
 #include <map>
 #include "Program.hpp"
 
+/// 全局Program缓存池
 class ProgramPool {
 public:
     
+    /// 获取全局单例
     static std::shared_ptr<ProgramPool> getSharedInstance();
     
+    /// 从缓存池获取一个Program，需要在GL线程
+    /// @param vertexSource 顶点着色器
+    /// @param fragmentSource 片段着色器
     Program* fetchProgramFromPool(std::string vertexSource, std::string fragmentSource);
     
+    /// 清空缓存池，需要在GL线程
     void clearProgramFromPool();
     
 private:

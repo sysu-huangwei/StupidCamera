@@ -5,6 +5,7 @@
 //
 
 #include "FrameBufferPool.hpp"
+#include <mutex>
 #include "SCBaseLog.h"
 
 static std::shared_ptr<FrameBufferPool> frameBufferPoolSharedInstance;
