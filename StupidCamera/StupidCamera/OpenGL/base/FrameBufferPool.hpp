@@ -9,6 +9,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include "FrameBuffer.hpp"
 
 /// 全局FBO缓存池
@@ -35,7 +36,7 @@ public:
     
 private:
     
-    std::map<std::string, FrameBuffer *> frameBufferCache;
+    std::map<std::string, std::vector<FrameBuffer *> > frameBufferCache;
 };
 
 #endif /* FrameBufferPool_hpp */

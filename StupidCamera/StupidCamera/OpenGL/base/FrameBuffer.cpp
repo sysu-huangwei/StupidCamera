@@ -6,6 +6,7 @@
 
 #include "FrameBuffer.hpp"
 #include "SCBaseLog.h"
+#include "FrameBufferPool.hpp"
 
 void FrameBuffer::init(int width, int height, bool isOnlyTexture, GLuint textureID, GLuint frameBufferID) {
     this->width = width;
@@ -74,13 +75,24 @@ void FrameBuffer::createAndBindFrameBuffer() {
 }
 
 void FrameBuffer::lock() {
-    referenceCount++;
+    if (enableReferenceCount) {
+        referenceCount++;
+    }
 }
 
 void FrameBuffer::unlock() {
-    if (referenceCount > 0) {
-        referenceCount--;
-    } else {
-        LOGE("Error: FrameBuffer::unlock()  referenceCount < 0");
+    if (enableReferenceCount) {
+        if (referenceCount > 0) {
+            referenceCount--;
+            if (referenceCount == 0) {
+                FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(this);
+            }
+        } else {
+            LOGE("Error: FrameBuffer::unlock()  referenceCount < 0");
+        }
     }
+}
+
+void FrameBuffer::setEnableReferenceCount(bool enableReferenceCount) {
+    this->enableReferenceCount = enableReferenceCount;
 }

@@ -22,6 +22,7 @@ std::shared_ptr<FrameBufferPool> FrameBufferPool::getSharedInstance() {
 }
 
 FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture, GLuint textureID, GLuint frameBufferID) {
+    FrameBuffer *frameBuffer = nullptr;
     std::string key =
             std::to_string(width)
             + "_" + std::to_string(height)
@@ -29,19 +30,26 @@ FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bo
             + "_" + std::to_string(textureID)
             + "_" + std::to_string(frameBufferID);
     if (frameBufferCache.find(key) != frameBufferCache.end()) {
-        frameBufferCache.at(key)->lock();
-        return frameBufferCache.at(key);
+        std::vector<FrameBuffer *> frameBuffers = frameBufferCache.at(key);
+        if (!frameBuffers.empty()) {
+            frameBuffer = frameBuffers.back();
+            frameBuffers.pop_back();
+            if (frameBuffers.empty()) {
+                frameBufferCache.erase(key);
+            }
+        }
     } else {
-        FrameBuffer *frameBuffer = new FrameBuffer();
+        frameBuffer = new FrameBuffer();
         frameBuffer->init(width, height, isOnlyTexture, textureID, frameBufferID);
-        frameBuffer->lock();
-        frameBufferCache[key] = frameBuffer;
-        return frameBuffer;
+        frameBuffer->setEnableReferenceCount(true);
     }
+    frameBuffer->lock();
+    return frameBuffer;
 }
 
 void FrameBufferPool::returnFrameBufferToPool(FrameBuffer *frameBuffer) {
     if (frameBuffer) {
+        frameBuffer->referenceCount = 0;
         std::string key =
                 std::to_string(frameBuffer->getWidth())
                 + "_" + std::to_string(frameBuffer->getHeight())
@@ -49,22 +57,23 @@ void FrameBufferPool::returnFrameBufferToPool(FrameBuffer *frameBuffer) {
                 + "_" + std::to_string(frameBuffer->getTextureID())
                 + "_" + std::to_string(frameBuffer->getFrameBufferID());
         if (frameBufferCache.find(key) != frameBufferCache.end()) {
-            frameBuffer->unlock();
+            std::vector<FrameBuffer *> frameBuffers = frameBufferCache.at(key);
+            frameBufferCache.at(key).push_back(frameBuffer);
         } else {
-            LOGE("Error: FrameBufferPool::returnFrameBufferToPool  frameBuffer not exist in pool key = %s", key.c_str());
+            std::vector<FrameBuffer *> frameBuffers {frameBuffer};
+            frameBufferCache[key] = frameBuffers;
         }
     }
 }
 
 void FrameBufferPool::clearFrameBufferPool() {
-    std::map<std::string, FrameBuffer *>::iterator it;
-    for (it = frameBufferCache.begin(); it != frameBufferCache.end();) {
-        if ((*it).second->referenceCount == 0) {
-            (*it).second->release();
-            SAFE_DELETE((*it).second);
-            frameBufferCache.erase(it++);
-        } else {
-            it++;
+    std::map<std::string, std::vector<FrameBuffer *> >::iterator it;
+    for (it = frameBufferCache.begin(); it != frameBufferCache.end(); it++) {
+        std::vector<FrameBuffer *> frameBuffers = (*it).second;
+        for (FrameBuffer *frameBuffer : frameBuffers) {
+            frameBuffer->release();
+            SAFE_DELETE(frameBuffer);
         }
     }
+    frameBufferCache.clear();
 }

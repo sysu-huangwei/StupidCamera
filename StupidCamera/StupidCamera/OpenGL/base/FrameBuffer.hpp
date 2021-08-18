@@ -36,6 +36,12 @@ public:
     /// 激活此FBO
     void activeFrameBuffer();
     
+    /// 是否启用计数
+    /// 不启用计数时，需要使用者自行管理 init 和 release 的配对调用
+    /// 启用计数时，当计数为0，会自动释放到FrameBufferPool缓存池里。这种情况需要直接通过FrameBufferPool管理FrameBuffer
+    /// @param enableReferenceCount 是否启用计数
+    void setEnableReferenceCount(bool enableReferenceCount);
+    
     /// 当启用计数时，引用+1
     void lock();
     
@@ -59,6 +65,7 @@ private:
     bool isNeedReleaseTexture = false, isNeedReleaseFrameBuffer = false;
 
     friend class FrameBufferPool;
+    bool enableReferenceCount = false;
     int referenceCount = 0;
     
     void createTexture();
