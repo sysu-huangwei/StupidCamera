@@ -8,6 +8,7 @@
 #import "GPUImageSCEffectFilter.h"
 #import "SCEffectEngine.hpp"
 #import "FrameBufferPool.hpp"
+#import "GLUtilsForIOS.h"
 
 @interface GPUImageSCEffectFilter()
 {
@@ -59,13 +60,12 @@
         [outputFramebuffer lock];
     }
     
-    FrameBuffer *inputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(firstInputFramebuffer.size.width, firstInputFramebuffer.size.height, false, firstInputFramebuffer.texture, firstInputFramebuffer.framebuffer);
-    self->effectEngine->setInputFrameBuffer(inputFrameBuffer);
-    FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(outputFramebuffer.size.width, outputFramebuffer.size.height, false, outputFramebuffer.texture, outputFramebuffer.framebuffer);
+    FrameBuffer inputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(firstInputFramebuffer);
+    FrameBuffer outputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(outputFramebuffer);
     
-    self->effectEngine->renderToFrameBuffer(outputFrameBuffer);
-    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(inputFrameBuffer);
-    FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(outputFrameBuffer);
+    self->effectEngine->setInputFrameBuffer(&inputFrameBuffer);
+    
+    self->effectEngine->renderToFrameBuffer(&outputFrameBuffer);
     
     [firstInputFramebuffer unlock];
     

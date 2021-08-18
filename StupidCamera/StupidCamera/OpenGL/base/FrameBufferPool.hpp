@@ -23,9 +23,8 @@ public:
     /// @param width 宽
     /// @param height 高
     /// @param isOnlyTexture 是否只生成纹理，不生成FrameBuffer
-    /// @param textureID 外部指定的纹理ID，若>0，则内部不会生成纹理
-    /// @param frameBufferID 外部指定的FBO，若>0，则内部不会生成FBO
-    FrameBuffer *fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture = false, GLuint textureID = 0, GLuint frameBufferID = 0);
+    /// @param textureOptions 纹理相关参数
+    FrameBuffer *fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture = false, TextureOptions textureOptions = defaultTextureOptions);
     
     /// 把一个FBO放回缓存池
     /// @param frameBuffer FBO
@@ -37,6 +36,8 @@ public:
 private:
     
     std::map<std::string, std::vector<FrameBuffer *> > frameBufferCache;
+    
+    std::string getTextureKey(int width, int height, bool isOnlyTexture, TextureOptions textureOptions);
 };
 
 #endif /* FrameBufferPool_hpp */

@@ -18,6 +18,18 @@
 #import <OpenGLES/ES2/glext.h>
 #endif
 
+typedef struct TextureOptions {
+    GLenum minFilter;
+    GLenum magFilter;
+    GLenum wrapS;
+    GLenum wrapT;
+    GLenum internalFormat;
+    GLenum format;
+    GLenum type;
+} TextureOptions;
+
+extern const TextureOptions defaultTextureOptions;
+
 // GL FBO封装
 class FrameBuffer {
 public:
@@ -26,9 +38,10 @@ public:
     /// @param width 宽
     /// @param height 高
     /// @param isOnlyTexture 是否只生成纹理，不生成FrameBuffer
+    /// @param textureOptions 纹理相关参数
     /// @param textureID 外部指定的纹理ID，若>0，则内部不会生成纹理
     /// @param frameBufferID 外部指定的FBO，若>0，则内部不会生成FBO
-    void init(int width, int height, bool isOnlyTexture = false, GLuint textureID = 0, GLuint frameBufferID = 0);
+    void init(int width, int height, bool isOnlyTexture = false, TextureOptions textureOptions = defaultTextureOptions, GLuint textureID = 0, GLuint frameBufferID = 0);
     
     /// 释放GL相关资源，必须在GL线程
     void release();
@@ -54,6 +67,8 @@ public:
     
     bool getIsOnlyTexture() const { return isOnlyTexture; }
     
+    TextureOptions getTextureOptions() const { return textureOptions; }
+    
     GLuint getTextureID() const { return textureID; }
     
     GLuint getFrameBufferID() const { return frameBufferID; }
@@ -62,6 +77,7 @@ private:
     int width = 0, height = 0;
     GLuint textureID = 0, frameBufferID = 0;
     bool isOnlyTexture = false;
+    TextureOptions textureOptions = defaultTextureOptions;
     bool isNeedReleaseTexture = false, isNeedReleaseFrameBuffer = false;
 
     friend class FrameBufferPool;

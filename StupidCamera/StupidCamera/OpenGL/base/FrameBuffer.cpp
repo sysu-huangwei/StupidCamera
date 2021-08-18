@@ -8,10 +8,13 @@
 #include "SCBaseLog.h"
 #include "FrameBufferPool.hpp"
 
-void FrameBuffer::init(int width, int height, bool isOnlyTexture, GLuint textureID, GLuint frameBufferID) {
+const TextureOptions defaultTextureOptions { GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_RGBA, GL_BGRA, GL_UNSIGNED_BYTE };
+
+void FrameBuffer::init(int width, int height, bool isOnlyTexture, TextureOptions textureOptions, GLuint textureID, GLuint frameBufferID) {
     this->width = width;
     this->height = height;
     this->isOnlyTexture = isOnlyTexture;
+    this->textureOptions = textureOptions;
     
     if (textureID == 0) {
         createTexture();

@@ -31,6 +31,7 @@ void SCFilterBlur::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     FrameBuffer *resultFrameBufferInternal = blurFilterH.render();
     blurFilterV.setInputFrameBuffer(resultFrameBufferInternal);
     blurFilterV.renderToFrameBuffer(outputFrameBuffer);
+    resultFrameBufferInternal->unlock();
 }
 
 void SCFilterBlur::setAlpha(float alpha) {

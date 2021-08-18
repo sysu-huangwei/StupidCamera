@@ -6,7 +6,7 @@
 
 #include "FrameBufferPool.hpp"
 #include <mutex>
-#include "SCBaseLog.h"
+#include "SCBaseDefine.h"
 
 static std::shared_ptr<FrameBufferPool> frameBufferPoolSharedInstance;
 static std::mutex frameBufferPoolSharedInstanceLock;
@@ -21,14 +21,9 @@ std::shared_ptr<FrameBufferPool> FrameBufferPool::getSharedInstance() {
     return frameBufferPoolSharedInstance;
 }
 
-FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture, GLuint textureID, GLuint frameBufferID) {
+FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture, TextureOptions textureOptions) {
     FrameBuffer *frameBuffer = nullptr;
-    std::string key =
-            std::to_string(width)
-            + "_" + std::to_string(height)
-            + "_" + std::to_string(isOnlyTexture)
-            + "_" + std::to_string(textureID)
-            + "_" + std::to_string(frameBufferID);
+    std::string key = getTextureKey(width, height, isOnlyTexture, textureOptions);
     if (frameBufferCache.find(key) != frameBufferCache.end()) {
         std::vector<FrameBuffer *> frameBuffers = frameBufferCache.at(key);
         if (!frameBuffers.empty()) {
@@ -40,7 +35,7 @@ FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bo
         }
     } else {
         frameBuffer = new FrameBuffer();
-        frameBuffer->init(width, height, isOnlyTexture, textureID, frameBufferID);
+        frameBuffer->init(width, height, isOnlyTexture, textureOptions);
         frameBuffer->setEnableReferenceCount(true);
     }
     frameBuffer->lock();
@@ -50,12 +45,7 @@ FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bo
 void FrameBufferPool::returnFrameBufferToPool(FrameBuffer *frameBuffer) {
     if (frameBuffer) {
         frameBuffer->referenceCount = 0;
-        std::string key =
-                std::to_string(frameBuffer->getWidth())
-                + "_" + std::to_string(frameBuffer->getHeight())
-                + "_" + std::to_string(frameBuffer->getIsOnlyTexture())
-                + "_" + std::to_string(frameBuffer->getTextureID())
-                + "_" + std::to_string(frameBuffer->getFrameBufferID());
+        std::string key = getTextureKey(frameBuffer->getWidth(), frameBuffer->getHeight(), frameBuffer->getIsOnlyTexture(), frameBuffer->getTextureOptions());
         if (frameBufferCache.find(key) != frameBufferCache.end()) {
             std::vector<FrameBuffer *> frameBuffers = frameBufferCache.at(key);
             frameBufferCache.at(key).push_back(frameBuffer);
@@ -76,4 +66,20 @@ void FrameBufferPool::clearFrameBufferPool() {
         }
     }
     frameBufferCache.clear();
+}
+
+
+std::string FrameBufferPool::getTextureKey(int width, int height, bool isOnlyTexture, TextureOptions textureOptions) {
+    std::string key;
+    key += std::to_string(width) + "_";
+    key += std::to_string(height) + "_";
+    key += std::to_string(isOnlyTexture) + "_";
+    key += std::to_string(textureOptions.minFilter) + "_";
+    key += std::to_string(textureOptions.magFilter) + "_";
+    key += std::to_string(textureOptions.wrapS) + "_";
+    key += std::to_string(textureOptions.wrapT) + "_";
+    key += std::to_string(textureOptions.internalFormat) + "_";
+    key += std::to_string(textureOptions.format) + "_";
+    key += std::to_string(textureOptions.type) + "_";
+    return key;
 }
