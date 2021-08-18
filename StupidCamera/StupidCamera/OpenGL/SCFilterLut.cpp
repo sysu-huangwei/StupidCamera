@@ -74,7 +74,7 @@ void SCFilterLut::release() {
 }
 
 void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!inputFrameBuffer || !outputFrameBuffer) {
+    if (!enableRender && !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }
     

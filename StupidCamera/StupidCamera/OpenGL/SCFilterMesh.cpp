@@ -50,7 +50,7 @@ void SCFilterMesh::init() {
 }
 
 void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!inputFrameBuffer || !outputFrameBuffer) {
+    if (!enableRender && !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }
     

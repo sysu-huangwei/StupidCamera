@@ -57,6 +57,10 @@ public:
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) = 0;
     
+    /// 设置是否开启绘制，禁用绘制的时候会直接返回输入的FrameBuffer
+    /// @param enableRender 是否开启绘制
+    virtual void setEnableRender(bool enableRender);
+    
     /// 设置参数
     /// @param param 参数
     virtual void setParams(const std::map<std::string, std::string> &param);
@@ -65,6 +69,8 @@ protected:
     int width = 0, height = 0;
     Program *program = nullptr;
     FrameBuffer *inputFrameBuffer = nullptr;
+    
+    bool enableRender = true;
     
     virtual void initWithVertexStringAndFragmentString(const char* vs, const char* fs);
 };

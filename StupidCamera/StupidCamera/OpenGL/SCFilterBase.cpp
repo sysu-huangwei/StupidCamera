@@ -32,9 +32,16 @@ void SCFilterBase::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
 }
 
 FrameBuffer *SCFilterBase::render() {
+    if (!enableRender) {
+        return inputFrameBuffer;
+    }
     FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
     renderToFrameBuffer(outputFrameBuffer);
     return outputFrameBuffer;
+}
+
+void SCFilterBase::setEnableRender(bool enableRender) {
+    this->enableRender = enableRender;
 }
 
 void SCFilterBase::setParams(const std::map<std::string, std::string> &param) {
