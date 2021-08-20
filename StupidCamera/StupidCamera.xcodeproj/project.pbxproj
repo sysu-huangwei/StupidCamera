@@ -242,11 +242,56 @@
 			path = base;
 			sourceTree = "<group>";
 		};
-		FCEF7AF02627045700F20ED0 /* OpenGL */ = {
+		FCEB086926CF566D001ACDEF /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				FC7AAADE269332F100CA4E75 /* base */,
-				FCEF7B0D2627104800F20ED0 /* platform */,
+				FCEB086C26CF56AD001ACDEF /* face */,
+				FCEB086B26CF5695001ACDEF /* filters */,
+				FCEB086A26CF5680001ACDEF /* utils */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		FCEB086A26CF5680001ACDEF /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF7B0E262710B900F20ED0 /* FileUtilsForIOS.h */,
+				FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */,
+				FCEB086226CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.h */,
+				FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		FCEB086B26CF5695001ACDEF /* filters */ = {
+			isa = PBXGroup;
+			children = (
+				FC892B892679E854000F4513 /* SCFilterFacePoint.cpp */,
+				FC892B8A2679E854000F4513 /* SCFilterFacePoint.hpp */,
+				FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */,
+				FC892B8F2679EC3C000F4513 /* SCFilterFaceLine.hpp */,
+				FC892B742679D9C2000F4513 /* SCFilterSmallHead.cpp */,
+				FC892B752679D9C2000F4513 /* SCFilterSmallHead.hpp */,
+				FC892B782679DA36000F4513 /* SCFilterFaceBase.cpp */,
+				FC892B792679DA36000F4513 /* SCFilterFaceBase.hpp */,
+			);
+			path = filters;
+			sourceTree = "<group>";
+		};
+		FCEB086C26CF56AD001ACDEF /* face */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */,
+				FC892B71267999D5000F4513 /* SCFaceData.cpp */,
+				FC892B6C267996EB000F4513 /* SCFaceDataIOS.h */,
+				FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */,
+			);
+			path = face;
+			sourceTree = "<group>";
+		};
+		FCEB086D26CF57AB001ACDEF /* filters */ = {
+			isa = PBXGroup;
+			children = (
 				FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */,
 				FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */,
 				FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */,
@@ -262,24 +307,24 @@
 				FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */,
 				FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */,
 				FC892B692678CE45000F4513 /* SCFilterBackgroundPoint.hpp */,
-				FC892B892679E854000F4513 /* SCFilterFacePoint.cpp */,
-				FC892B8A2679E854000F4513 /* SCFilterFacePoint.hpp */,
 				FCEF7D02262EF4CB00F20ED0 /* SCFilterLine.cpp */,
 				FCEF7D03262EF4CB00F20ED0 /* SCFilterLine.hpp */,
 				FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */,
 				FC892A772673651C000F4513 /* SCFilterBackgroundLine.hpp */,
-				FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */,
-				FC892B8F2679EC3C000F4513 /* SCFilterFaceLine.hpp */,
 				FCEF7E1A26316CFC00F20ED0 /* SCFilterMesh.cpp */,
 				FCEF7E1B26316CFC00F20ED0 /* SCFilterMesh.hpp */,
 				FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */,
 				FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */,
-				FC892B742679D9C2000F4513 /* SCFilterSmallHead.cpp */,
-				FC892B752679D9C2000F4513 /* SCFilterSmallHead.hpp */,
-				FC892B782679DA36000F4513 /* SCFilterFaceBase.cpp */,
-				FC892B792679DA36000F4513 /* SCFilterFaceBase.hpp */,
-				FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */,
-				FC892B71267999D5000F4513 /* SCFaceData.cpp */,
+			);
+			path = filters;
+			sourceTree = "<group>";
+		};
+		FCEF7AF02627045700F20ED0 /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				FCEB086D26CF57AB001ACDEF /* filters */,
+				FC7AAADE269332F100CA4E75 /* base */,
+				FCEF7B0D2627104800F20ED0 /* platform */,
 				FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */,
 				FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */,
 			);
@@ -289,12 +334,7 @@
 		FCEF7B0D2627104800F20ED0 /* platform */ = {
 			isa = PBXGroup;
 			children = (
-				FCEF7B0E262710B900F20ED0 /* FileUtilsForIOS.h */,
-				FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */,
-				FC892B6C267996EB000F4513 /* SCFaceDataIOS.h */,
-				FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */,
-				FCEB086226CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.h */,
-				FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */,
+				FCEB086926CF566D001ACDEF /* iOS */,
 			);
 			path = platform;
 			sourceTree = "<group>";
