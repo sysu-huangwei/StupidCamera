@@ -7,14 +7,15 @@
 #include "SCFilterBase.hpp"
 #include "FrameBufferPool.hpp"
 #include "ProgramPool.hpp"
-
+#include "SCBaseGLUtils.hpp"
 
 void SCFilterBase::init() {
     
 }
 
-void SCFilterBase::initWithVertexStringAndFragmentString(const char* vs, const char* fs) {
-    program = ProgramPool::getSharedInstance()->fetchProgramFromPool(vs, fs);
+void SCFilterBase::initWithVertexStringAndFragmentString(const char* vertexShaderName, const char* fragmentShaderName) {
+    program = ProgramPool::getSharedInstance()->fetchProgramFromPool(BaseGLUtils::getVertexShaderSourceByName(vertexShaderName),
+                                                                     BaseGLUtils::getFragmengShaderSourceByName(fragmentShaderName));
 }
 
 void SCFilterBase::resize(int width, int height) {

@@ -7,33 +7,6 @@
 #include "SCFilterMesh.hpp"
 #include <string.h>
 
-const char *kSCFilterMeshVertexShaderString = SHADER_STRING_CPP
-(
- attribute highp vec2 a_position;
- attribute highp vec2 a_position_std;
- varying highp vec2 texcoordOut;
- 
- void main()
- {
-    texcoordOut = a_position_std;
-    gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
- }
-);
-
-const char *kSCFilterMeshFragmentShaderString = SHADER_STRING_CPP
-(
- precision highp float;
- 
- uniform sampler2D  u_texture;
- varying highp vec2 texcoordOut;
- void main()
- {
-    vec4 srcColor = texture2D(u_texture,texcoordOut);
-    gl_FragColor = srcColor;
- }
-);
-
-
 SCFilterMesh::~SCFilterMesh() {
     if (this->mesh) {
         delete [] this->mesh;
@@ -46,7 +19,7 @@ SCFilterMesh::~SCFilterMesh() {
 }
 
 void SCFilterMesh::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterMeshVertexShaderString, kSCFilterMeshFragmentShaderString);
+    SCFilterBase::initWithVertexStringAndFragmentString("mesh", "mesh");
 }
 
 void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

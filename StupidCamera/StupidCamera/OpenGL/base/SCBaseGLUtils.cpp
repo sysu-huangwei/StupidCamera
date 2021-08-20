@@ -6,10 +6,25 @@
 
 #include "SCBaseGLUtils.hpp"
 #include <stdio.h>
+#include <string>
 #include <cstring>
 #ifdef PLATFORM_IOS
 #include "FileUtilsForIOS.h"
 #endif
+
+std::string BaseGLUtils::getResourcePath() {
+#ifdef PLATFORM_IOS
+    return getResourcePathForIOS();
+#endif
+}
+
+std::string BaseGLUtils::getVertexShaderSourceByName(std::string shaderName) {
+    return getShaderSourceByName(shaderName, GL_VERTEX_SHADER);
+}
+
+std::string BaseGLUtils::getFragmengShaderSourceByName(std::string shaderName) {
+    return getShaderSourceByName(shaderName, GL_FRAGMENT_SHADER);
+}
 
 unsigned char *BaseGLUtils::loadImageFileToRGBAPixels(const char *filePath, int &outWidth, int &outHeight) {
     outWidth = 0;
@@ -21,9 +36,9 @@ unsigned char *BaseGLUtils::loadImageFileToRGBAPixels(const char *filePath, int 
     }
     
     unsigned long dataSize;
-    char *memoryData = (char *) loadImageFileToMemory(filePath, dataSize);
+    char *memoryData = (char *) loadFileToMemory(filePath, dataSize);
     if (memoryData == NULL || dataSize == 0) {
-        LOGE("ERROR: loadImageFileToRGBAPixels: loadImageFileToMemory failed: filePath = %s", filePath);
+        LOGE("ERROR: loadImageFileToRGBAPixels: loadFileToMemory failed: filePath = %s", filePath);
         return NULL;
     }
     
@@ -61,8 +76,31 @@ GLuint BaseGLUtils::loadImageFileToTexture(const char *filePath, int &outWidth, 
 }
 
 
+std::string BaseGLUtils::getShaderSourceByName(std::string shaderName, GLenum shaderType) {
+    std::string filePath = "";
+    switch (shaderType) {
+        case GL_VERTEX_SHADER:
+            filePath = getResourcePath() + "/shaders/" + shaderName + ".vs";
+            break;
+        case GL_FRAGMENT_SHADER:
+            filePath = getResourcePath() + "/shaders/" + shaderName + ".fs";
+            break;
+        default:
+            break;
+    }
+    unsigned long dataSize;
+    const char *memoryData = loadFileToMemory(filePath.c_str(), dataSize);
+    if (memoryData == NULL || dataSize == 0) {
+        LOGE("ERROR: getShaderSourceByName: loadFileToMemory failed: filePath = %s", filePath.c_str());
+        return "";
+    } else {
+        std::string shaderSource = std::string(memoryData);
+        SAFE_DELETE_ARRAY(memoryData);
+        return shaderSource;
+    }
+}
 
-char *BaseGLUtils::loadImageFileToMemory(const char *filePath, unsigned long &outDataSize) {
+char *BaseGLUtils::loadFileToMemory(const char *filePath, unsigned long &outDataSize) {
     char *data = NULL;
     FILE *file = fopen(filePath, "r");
     if (file) {
@@ -77,12 +115,12 @@ char *BaseGLUtils::loadImageFileToMemory(const char *filePath, unsigned long &ou
             fread(data, length, 1, file);
             outDataSize = length;
         } else {
-            LOGE("ERROR: loadImageFileToMemory file size < 0: %ld", length);
+            LOGE("ERROR: loadFileToMemory file size < 0: %ld", length);
         }
         
         fclose(file);
     } else {
-        LOGE("ERROR: loadImageFileToMemory failed to open file, filePath = %s", filePath);
+        LOGE("ERROR: loadFileToMemory failed to open file, filePath = %s", filePath);
     }
     return data;
 }

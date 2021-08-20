@@ -7,35 +7,8 @@
 #include "SCFilterCopy.hpp"
 #include "FrameBufferPool.hpp"
 
-const char *kSCFilterCopyVertexShaderString = SHADER_STRING_CPP
-(
- attribute vec2 a_position;
- attribute vec2 a_texCoord;
- varying vec2 texcoordOut;
- 
- void main()
- {
-    texcoordOut = a_texCoord;
-    gl_Position = vec4(a_position,0.0,1.0);
-}
- );
-
-const char *kSCFilterCopyFragmentShaderString = SHADER_STRING_CPP
-(
- precision highp float;
- 
- uniform sampler2D  u_texture;
- varying vec2 texcoordOut;
- void main()
- {
-    vec4 srcColor = texture2D(u_texture,texcoordOut);
-    gl_FragColor = srcColor;
-}
- );
-
-
 void SCFilterCopy::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterCopyVertexShaderString, kSCFilterCopyFragmentShaderString);
+    SCFilterBase::initWithVertexStringAndFragmentString("simple", "simple");
 }
 
 void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

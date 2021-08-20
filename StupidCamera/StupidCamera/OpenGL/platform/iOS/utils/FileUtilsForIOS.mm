@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SCBaseDefine.h"
 
+const char *getResourcePathForIOS() {
+    return [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"GLResource"].UTF8String;
+}
+
 //Alpha为原始图像的透明度
 unsigned char* RGBADataWithAlpha(UIImage* image)
 {

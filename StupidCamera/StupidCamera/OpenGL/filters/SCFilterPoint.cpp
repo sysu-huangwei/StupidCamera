@@ -8,28 +8,6 @@
 #include <string.h>
 #include "DelaunayTriangle.hpp"
 
-const char *kSCFilterPointVertexShaderString = SHADER_STRING_CPP
-(
- attribute vec2 a_position;
- 
- void main()
- {
-    gl_PointSize = 5.0;
-    gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
- }
-);
-
-const char *kSCFilterPointFragmentShaderString = SHADER_STRING_CPP
-(
- precision highp float;
- 
- void main()
- {
-    gl_FragColor = vec4(1,0,0,1);
- }
-);
-
-
 SCFilterPoint::~SCFilterPoint() {
     if (this->points) {
         delete [] this->points;
@@ -38,7 +16,7 @@ SCFilterPoint::~SCFilterPoint() {
 }
 
 void SCFilterPoint::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterPointVertexShaderString, kSCFilterPointFragmentShaderString);
+    SCFilterBase::initWithVertexStringAndFragmentString("point", "point");
 }
 
 void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

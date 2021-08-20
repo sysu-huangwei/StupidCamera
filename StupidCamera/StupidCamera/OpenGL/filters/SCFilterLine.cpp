@@ -7,37 +7,8 @@
 #include "SCFilterLine.hpp"
 #include <string.h>
 
-const char *kSCFilterLineVertexShaderString = SHADER_STRING_CPP
-(
- attribute vec2 a_position;
- 
- void main()
- {
-    gl_PointSize = 5.0;
-    gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
- }
-);
-
-const char *kSCFilterLineFragmentShaderString = SHADER_STRING_CPP
-(
- precision highp float;
- 
- void main()
- {
-    gl_FragColor = vec4(1,0,0,1);
- }
-);
-
-
-SCFilterLine::~SCFilterLine() {
-    if (this->lines) {
-        delete [] this->lines;
-        this->lines = nullptr;
-    }
-}
-
 void SCFilterLine::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterLineVertexShaderString, kSCFilterLineFragmentShaderString);
+    SCFilterBase::initWithVertexStringAndFragmentString("line", "line");
 }
 
 void SCFilterLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

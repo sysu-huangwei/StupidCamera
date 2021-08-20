@@ -72,7 +72,7 @@ protected:
     
     bool enableRender = true;
     
-    virtual void initWithVertexStringAndFragmentString(const char* vs, const char* fs);
+    virtual void initWithVertexStringAndFragmentString(const char* vertexShaderName, const char* fragmentShaderName);
 };
 
 #endif /* SCFilterBase_hpp */
