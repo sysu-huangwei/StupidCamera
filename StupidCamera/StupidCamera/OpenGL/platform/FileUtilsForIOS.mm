@@ -84,46 +84,15 @@ unsigned char* RGBADataWithAlpha(UIImage* image)
 }
 
 
-unsigned char *IOS_LoadTextureData(unsigned char *memoryData, long length,int *nWidth,int *nHeight)
-{
-    NSData *nsData = [NSData dataWithBytesNoCopy:memoryData length:length freeWhenDone:NO];
+unsigned char *loadMemoryToRGBAPixelsForIOS(const char *memoryData, unsigned long dataSize, int &outWidth, int &outHeight) {
+    NSData *nsData = [NSData dataWithBytesNoCopy:(char *)memoryData length:dataSize freeWhenDone:NO];
     UIImage *image = [UIImage imageWithData:nsData];
     if (image == nil) {
-        *nWidth = 0;
-        *nHeight = 0;
+        outWidth = 0;
+        outHeight = 0;
         return NULL;
     }
-    *nWidth = image.size.width;
-    *nHeight = image.size.height;
+    outWidth = image.size.width;
+    outHeight = image.size.height;
     return RGBADataWithAlpha(image);
-}
-
-char *file2string(const char *filePath, long &outDataSize) {
-    char* data = NULL;
-    FILE *file = NULL;
-    file = fopen(filePath,"r");
-    long dataSize = 0;
-    if(file)
-    {
-        // 先读取大小
-        fseek(file,0,SEEK_END);
-        dataSize = ftell(file);
-        fseek(file,0,SEEK_SET);
-        
-        int firstInt = 0 ;
-        fread(&firstInt,sizeof(int),1,file);
-        if ((dataSize - sizeof(int)) == firstInt) { // 带头数据
-            dataSize -= sizeof(int);
-        }
-        else {
-            fseek(file, 0, SEEK_SET);
-        }
-        
-        data = new char[dataSize+1];
-        memset(data,0,dataSize+1);
-        fread(data,dataSize,1,file);
-        outDataSize = dataSize;
-        fclose(file);
-    }
-    return data;
 }

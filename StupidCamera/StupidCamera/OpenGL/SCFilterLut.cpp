@@ -74,7 +74,7 @@ void SCFilterLut::release() {
 }
 
 void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!enableRender && !inputFrameBuffer || !outputFrameBuffer) {
+    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }
     
@@ -105,12 +105,12 @@ void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 }
 
 void SCFilterLut::setLutImagePath(const char *path) {
-    int width, height;
     if (lutTextureID > 0) {
         glDeleteTextures(1, &lutTextureID);
         lutTextureID = 0;
     }
-    this->lutTextureID = BaseGLUtils::LoadTexture_File(path, &width, &height);
+    int width, height;
+    this->lutTextureID = BaseGLUtils::loadImageFileToTexture(path, width, height);
 }
 
 void SCFilterLut::setAlpha(float alpha) {

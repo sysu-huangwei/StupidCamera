@@ -115,7 +115,7 @@ void SCFilterBlurSub::resize(int width, int height) {
 }
 
 void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!enableRender && !inputFrameBuffer || !outputFrameBuffer) {
+    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }
     

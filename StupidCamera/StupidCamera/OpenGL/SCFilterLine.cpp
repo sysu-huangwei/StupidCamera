@@ -41,7 +41,7 @@ void SCFilterLine::init() {
 }
 
 void SCFilterLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    if (!enableRender && !this->lines || !outputFrameBuffer) {
+    if (!enableRender || !this->lines || !outputFrameBuffer) {
         return;
     }
     
