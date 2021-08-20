@@ -37,7 +37,7 @@
 		FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC892B9A267A1294000F4513 /* SCCameraViewController.xib */; };
 		FCEB082D26CA4C11001ACDEF /* SCFilterBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */; };
 		FCEB086026CBA4E3001ACDEF /* SCFilterBlurSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */; };
-		FCEB086426CD2DD0001ACDEF /* GLUtilsForIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEB086326CD2DD0001ACDEF /* GLUtilsForIOS.mm */; };
+		FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */; };
 		FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */; };
 		FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */; };
 		FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */; };
@@ -109,8 +109,8 @@
 		FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlur.hpp; sourceTree = "<group>"; };
 		FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlurSub.cpp; sourceTree = "<group>"; };
 		FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlurSub.hpp; sourceTree = "<group>"; };
-		FCEB086226CD2DD0001ACDEF /* GLUtilsForIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUtilsForIOS.h; sourceTree = "<group>"; };
-		FCEB086326CD2DD0001ACDEF /* GLUtilsForIOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLUtilsForIOS.mm; sourceTree = "<group>"; };
+		FCEB086226CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUtilsForIOSGPUImage.h; sourceTree = "<group>"; };
+		FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLUtilsForIOSGPUImage.mm; sourceTree = "<group>"; };
 		FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseLog.h; sourceTree = "<group>"; };
 		FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBase.cpp; sourceTree = "<group>"; };
 		FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterCopy.hpp; sourceTree = "<group>"; };
@@ -293,8 +293,8 @@
 				FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */,
 				FC892B6C267996EB000F4513 /* SCFaceDataIOS.h */,
 				FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */,
-				FCEB086226CD2DD0001ACDEF /* GLUtilsForIOS.h */,
-				FCEB086326CD2DD0001ACDEF /* GLUtilsForIOS.mm */,
+				FCEB086226CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.h */,
+				FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */,
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 				FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */,
 				FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */,
 				FCEF7B5626297CE600F20ED0 /* SCFilterPoint.cpp in Sources */,
-				FCEB086426CD2DD0001ACDEF /* GLUtilsForIOS.mm in Sources */,
+				FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */,
 				FC6A35532624358100CA4434 /* AppDelegate.m in Sources */,
 				FC6A35642624358100CA4434 /* main.m in Sources */,
 				FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */,

@@ -1,5 +1,5 @@
 //
-//  GLUtilsForIOS.h
+//  GLUtilsForIOSGPUImage.h
 //
 //  Created by rayyyhuang on 2021/8/18.
 //

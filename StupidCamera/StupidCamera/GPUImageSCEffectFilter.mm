@@ -7,7 +7,7 @@
 #import "GPUImageSCEffectFilter.h"
 #import "SCEffectEngine.hpp"
 #import "FrameBufferPool.hpp"
-#import "GLUtilsForIOS.h"
+#import "GLUtilsForIOSGPUImage.h"
 
 @interface GPUImageSCEffectFilter()
 {

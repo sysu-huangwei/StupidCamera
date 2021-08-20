@@ -1,10 +1,10 @@
 //
-//  GLUtilsForIOS.mm
+//  GLUtilsForIOSGPUImage.mm
 //
 //  Created by rayyyhuang on 2021/8/18.
 //
 
-#import "GLUtilsForIOS.h"
+#import "GLUtilsForIOSGPUImage.h"
 
 FrameBuffer getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer) {
     TextureOptions textureOptions;
