@@ -11,7 +11,7 @@
 #include "SCFaceData.hpp"
 #include "SCFilterLut.hpp"
 #include "SCFilterSmallHead.hpp"
-#include "SCFilterBlur.hpp"
+#include "SCFilterSmooth.hpp"
 
 class SCEffectEngine {
 public:
@@ -54,7 +54,7 @@ private:
     std::vector<SCFilterBase *> currentFilters;
     SCFilterLut *lutFilter;
     SCFilterSmallHead *smallHeadFilter;
-    SCFilterBlur *blurFilter;
+    SCFilterSmooth *smoothFilter;
 };
 
 #endif /* SCEffectEngine_hpp */

@@ -4,8 +4,6 @@ uniform sampler2D u_texture;
 varying vec2 texcoordOut;
 varying vec2 texcoordOutNear[3];
 
-uniform float alpha;
-
 void main()
 {
     vec4 srcColor = texture2D(u_texture, texcoordOut);
@@ -15,5 +13,5 @@ void main()
     sum += texture2D(u_texture, texcoordOutNear[1]) * 0.50;
     sum += texture2D(u_texture, texcoordOutNear[2]) * 0.25;
     
-    gl_FragColor = vec4(mix(srcColor, sum, alpha).rgb, srcColor.a);
+    gl_FragColor = vec4(sum.rgb, srcColor.a);
 }

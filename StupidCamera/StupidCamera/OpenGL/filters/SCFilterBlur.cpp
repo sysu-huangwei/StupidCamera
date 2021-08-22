@@ -18,14 +18,25 @@ void SCFilterBlur::release() {
 }
 
 void SCFilterBlur::resize(int width, int height) {
+    SCFilterBase::resize(width, height);
     scaleWH(width, height);
     blurFilterH.resize(width, height);
-    blurFilterV.resize(width, height);
+    blurFilterH.resize(width, height);
+    blurFilterH.setOffset(1.0f / (float)width, 0);
+    blurFilterH.setOffset(0, 1.0f / (float)height);
 }
 
 void SCFilterBlur::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
     blurFilterH.setInputFrameBuffer(inputFrameBuffer);
 }
+
+
+//FrameBuffer *SCFilterBlur::render() {
+//    FrameBuffer *resultFrameBufferInternal = blurFilterH.render();
+//    blurFilterV.setInputFrameBuffer(resultFrameBufferInternal);
+//    blurFilterV.renderToFrameBuffer(outputFrameBuffer);
+//    resultFrameBufferInternal->unlock();
+//}
 
 void SCFilterBlur::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     FrameBuffer *resultFrameBufferInternal = blurFilterH.render();
@@ -33,21 +44,6 @@ void SCFilterBlur::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     blurFilterV.renderToFrameBuffer(outputFrameBuffer);
     resultFrameBufferInternal->unlock();
 }
-
-void SCFilterBlur::setAlpha(float alpha) {
-    blurFilterH.setAlpha(alpha);
-    blurFilterV.setAlpha(alpha);
-}
-
-void SCFilterBlur::setParams(const std::map<std::string, std::string> &param) {
-    std::map<std::string, std::string>::const_iterator it;
-    for (it = param.begin(); it != param.end(); it++) {
-        if ((*it).first == SCFilterParam_BlurAlpha) {
-            setAlpha(std::stof((*it).second));
-        }
-    }
-}
-
 
 void SCFilterBlur::scaleWH(int &width, int &height, int maxLength) {
     int shortEdge = std::min(width, height);

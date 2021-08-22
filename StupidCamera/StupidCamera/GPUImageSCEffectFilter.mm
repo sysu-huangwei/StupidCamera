@@ -97,7 +97,7 @@
 
 - (void)setBlurDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
-        { SCFilterType_Blur, {
+        { SCFilterType_Smooth, {
             { SCFilterParam_BlurAlpha, std::to_string(degree) }
         } }
     };

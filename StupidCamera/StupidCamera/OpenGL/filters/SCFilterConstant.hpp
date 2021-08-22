@@ -10,6 +10,7 @@
 #define SCFilterType_Copy "SCFilterType_Copy"
 #define SCFilterType_Lut "SCFilterType_Lut"
 #define SCFilterType_Blur "SCFilterType_Blur"
+#define SCFilterType_Smooth "SCFilterType_Smooth"
 #define SCFilterType_Point "SCFilterType_Point"
 #define SCFilterType_BackgroundPoint "SCFilterType_BackgroundPoint"
 #define SCFilterType_FacePoint "SCFilterType_FacePoint"

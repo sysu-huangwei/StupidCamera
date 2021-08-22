@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
 		710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 710F63642690134700976E1A /* FrameBufferPool.cpp */; };
+		71E05CBD26D23A340061DE6D /* 磨皮原图.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */; };
+		71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
 		FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */; };
 		FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */; };
@@ -60,6 +62,9 @@
 		0DFE828F9FB7D34B38FA0C91 /* Pods-StupidCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.debug.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		710F63642690134700976E1A /* FrameBufferPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBufferPool.cpp; sourceTree = "<group>"; };
 		710F63652690134700976E1A /* FrameBufferPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBufferPool.hpp; sourceTree = "<group>"; };
+		71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "磨皮原图.jpeg"; sourceTree = "<group>"; };
+		71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSmooth.cpp; sourceTree = "<group>"; };
+		71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSmooth.hpp; sourceTree = "<group>"; };
 		FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCEffectEngine.cpp; sourceTree = "<group>"; };
 		FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCEffectEngine.hpp; sourceTree = "<group>"; };
 		FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageSCEffectFilter.h; sourceTree = "<group>"; };
@@ -183,6 +188,7 @@
 		FC6A35452624358100CA4434 = {
 			isa = PBXGroup;
 			children = (
+				71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */,
 				FC6A35502624358100CA4434 /* StupidCamera */,
 				FC6A354F2624358100CA4434 /* Products */,
 				712F004BBF0E3CDCE92ED728 /* Pods */,
@@ -310,6 +316,8 @@
 				FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */,
 				FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */,
 				FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */,
+				71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */,
+				71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */,
 				FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */,
 				FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */,
 				FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */,
@@ -423,6 +431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71E05CBD26D23A340061DE6D /* 磨皮原图.jpeg in Resources */,
 				FC255650269834E80083C675 /* Resource in Resources */,
 				FC7AAAE82694477500CA4E75 /* SCEditViewController.xib in Resources */,
 				FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */,
@@ -515,6 +524,7 @@
 				FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */,
 				FCADC6D026CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,
+				71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */,
 				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,
 				FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */,
 				FC892B7A2679DA36000F4513 /* SCFilterFaceBase.cpp in Sources */,

@@ -9,7 +9,8 @@
 #import "GPUImageSCEffectFilter.h"
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
-@property (strong, nonatomic) GPUImageStillCamera *camera;
+//@property (strong, nonatomic) GPUImageStillCamera *camera;
+@property (strong, nonatomic) GPUImagePicture *picture;
 @property (strong, nonatomic) GPUImageSCEffectFilter *effectFilter;
 
 @property (strong, nonatomic) NSArray *lutImagePaths;
@@ -50,15 +51,19 @@
         default:
             break;
     }
+    [_picture processImage];
 }
 
 - (IBAction)takePhoto:(UIButton *)button {
-    [_camera capturePhotoAsImageProcessedUpToFilter:_effectFilter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
-        [self->_camera stopCameraCapture];
-        SCEditViewController *editViewController = [[SCEditViewController alloc] initWithUIImage:processedImage];
-        editViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:editViewController animated:YES completion:nil];
+    [_picture processImageUpToFilter:_effectFilter withCompletionHandler:^(UIImage *processedImage) {
+        NSLog(@"1");
     }];
+//    [_camera capturePhotoAsImageProcessedUpToFilter:_effectFilter withCompletionHandler:^(UIImage *processedImage, NSError *error) {
+//        [self->_camera stopCameraCapture];
+//        SCEditViewController *editViewController = [[SCEditViewController alloc] initWithUIImage:processedImage];
+//        editViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+//        [self presentViewController:editViewController animated:YES completion:nil];
+//    }];
 }
 
 - (IBAction)lutSelected:(UIButton *)button {
@@ -111,16 +116,23 @@
         @(SCEffectType_Lut) : _lutButton,
         @(SCEffectType_SmallHead) : _smallHeadButton,
     }];
-    _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
-    _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
-    _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
-    [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
-    [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
-    [_camera enableFaceDetect:YES];
+    
+    NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"磨皮原图.jpeg"];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+    _picture = [[GPUImagePicture alloc] initWithImage:image];
+    
+//    _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
+//    _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
+//    _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
+//    [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
+//    [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
+//    [_camera enableFaceDetect:YES];
     
     _effectFilter = [[GPUImageSCEffectFilter alloc] init];
-    [_camera addTarget:_effectFilter];
+    [_picture addTarget:_effectFilter];
+//    [_camera addTarget:_effectFilter];
     [_effectFilter addTarget:_showView];
+    [_picture processImage];
     
     _lutImagePaths = @[
         @"",
@@ -131,7 +143,7 @@
     ];
     _currintLutIndex = 0;
     
-    [_camera startCameraCapture];
+//    [_camera startCameraCapture];
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate

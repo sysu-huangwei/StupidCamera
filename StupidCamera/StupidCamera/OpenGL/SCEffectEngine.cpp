@@ -11,30 +11,30 @@
 SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
     smallHeadFilter = new SCFilterSmallHead();
-    blurFilter = new SCFilterBlur();
+    smoothFilter = new SCFilterSmooth();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
-    currentFilters.push_back(blurFilter);
+    currentFilters.push_back(smoothFilter);
 }
 
 SCEffectEngine::~SCEffectEngine() {
     SAFE_DELETE(lutFilter);
     SAFE_DELETE(smallHeadFilter);
-    SAFE_DELETE(blurFilter);
+    SAFE_DELETE(smoothFilter);
 }
 
 /// 初始化，必须在GL线程
 void SCEffectEngine::init() {
     lutFilter->init();
     smallHeadFilter->init();
-    blurFilter->init();
+    smoothFilter->init();
 }
 
 /// 释放资源，必须在GL线程
 void SCEffectEngine::release() {
     lutFilter->release();
     smallHeadFilter->release();
-    blurFilter->release();
+    smoothFilter->release();
     FrameBufferPool::getSharedInstance()->clearFrameBufferPool();
     ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
@@ -45,18 +45,18 @@ void SCEffectEngine::release() {
 void SCEffectEngine::resize(int width, int height) {
     lutFilter->resize(width, height);
     smallHeadFilter->resize(width, height);
-    blurFilter->resize(width, height);
+    smoothFilter->resize(width, height);
 }
 
 /// 设置输入图像的纹理ID
 /// @param inputFrameBuffer 输入图像的FBO
 void SCEffectEngine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
 //    lutFilter->setInputFrameBuffer(inputFrameBuffer);
-    blurFilter->setInputFrameBuffer(inputFrameBuffer);
+    smoothFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 FrameBuffer *SCEffectEngine::render() {
-    return blurFilter->render();
+    return smoothFilter->render();
 //    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
 //    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
 //    lutResultFrameBuffer->unlock();
@@ -64,7 +64,7 @@ FrameBuffer *SCEffectEngine::render() {
 }
 
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    blurFilter->renderToFrameBuffer(outputFrameBuffer);
+    smoothFilter->renderToFrameBuffer(outputFrameBuffer);
 //    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
 //    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
 //    lutResultFrameBuffer->unlock();

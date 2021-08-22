@@ -10,14 +10,6 @@ void SCFilterBlurSub::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("sample_3x3", "blur_gaussian_3x3");
 }
 
-void SCFilterBlurSub::resize(int width, int height) {
-    SCFilterBase::resize(width, height);
-    if (width > 0 && height > 0) {
-        widthOffset = 1.0f / width;
-        heightOffset = 1.0f / height;
-    }
-}
-
 void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
@@ -35,7 +27,6 @@ void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     
     program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
     program->setUniform2f("offset", widthOffset, heightOffset);
-    program->setUniform1f("alpha", alpha);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
@@ -44,6 +35,7 @@ void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     inputFrameBuffer->unlock();
 }
 
-void SCFilterBlurSub::setAlpha(float alpha) {
-    this->alpha = alpha;
+void SCFilterBlurSub::setOffset(float widthOffset, float heightOffset) {
+    this->widthOffset = widthOffset;
+    this->heightOffset = heightOffset;
 }
