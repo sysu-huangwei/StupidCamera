@@ -21,13 +21,13 @@ void main()
     sumWeight += sampleWeight;
     sum += srcColor * sampleWeight;
     
-    nearColor = texture2D(u_texture, texcoordOutNear[0].xy);
+    nearColor = texture2D(u_texture, texcoordOutNear.xy);
     colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
     sampleWeight = 1.0 - colorDistance;
     sumWeight += sampleWeight;
     sum += nearColor * sampleWeight;
     
-    nearColor = texture2D(u_texture, texcoordOutNear[0].zw);
+    nearColor = texture2D(u_texture, texcoordOutNear.zw);
     colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
     sampleWeight = 1.0 - colorDistance;
     sumWeight += sampleWeight;
