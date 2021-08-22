@@ -21,9 +21,9 @@ void SCFilterBlur::resize(int width, int height) {
     SCFilterBase::resize(width, height);
     scaleWH(width, height);
     blurFilterH.resize(width, height);
-    blurFilterH.resize(width, height);
+    blurFilterV.resize(width, height);
     blurFilterH.setOffset(1.0f / (float)width, 0);
-    blurFilterH.setOffset(0, 1.0f / (float)height);
+    blurFilterV.setOffset(0, 1.0f / (float)height);
 }
 
 void SCFilterBlur::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {

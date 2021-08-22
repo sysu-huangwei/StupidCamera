@@ -2,7 +2,7 @@ precision highp float;
 
 uniform sampler2D u_texture;
 varying vec2 texcoordOut;
-varying vec2 texcoordOutNear[3];
+varying vec4 texcoordOutNear;
 
 void main()
 {
@@ -17,17 +17,17 @@ void main()
     vec4 sum = vec4(0.0);
     float sumWeight = 0.0;
     
-    nearColor = texture2D(u_texture, texcoordOutNear[0]);
+    sampleWeight = 0.5;
+    sumWeight += sampleWeight;
+    sum += srcColor * sampleWeight;
+    
+    nearColor = texture2D(u_texture, texcoordOutNear.xy);
     colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
     sampleWeight = 0.25 * (1.0 - colorDistance);
     sumWeight += sampleWeight;
     sum += nearColor * sampleWeight;
     
-    sampleWeight = 0.5;
-    sumWeight += sampleWeight;
-    sum += srcColor * sampleWeight;
-    
-    nearColor = texture2D(u_texture, texcoordOutNear[2]);
+    nearColor = texture2D(u_texture, texcoordOutNear.zw);
     colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
     sampleWeight = 0.25 * (1.0 - colorDistance);
     sumWeight += sampleWeight;
