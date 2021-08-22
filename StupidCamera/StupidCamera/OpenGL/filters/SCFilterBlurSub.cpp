@@ -7,7 +7,7 @@
 #include "SCFilterBlurSub.hpp"
 
 void SCFilterBlurSub::init() {
-    SCFilterBase::initWithVertexStringAndFragmentString("sample_3x3", "blur_gaussian_3x3");
+    SCFilterBase::initWithVertexStringAndFragmentString("sample_3x3", "blur_bilatera_3x3");
 }
 
 void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {

@@ -7,7 +7,7 @@
 #ifndef SCFilterBlur_hpp
 #define SCFilterBlur_hpp
 
-#define DEFAULT_MAX_LENGTH 320
+#define DEFAULT_MAX_LENGTH 180
 
 #include "SCFilterBlurSub.hpp"
 

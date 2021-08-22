@@ -8,10 +8,30 @@ void main()
 {
     vec4 srcColor = texture2D(u_texture, texcoordOut);
     
-    vec4 sum = vec4(0.0);
-    sum += texture2D(u_texture, texcoordOutNear[0]) * 0.25;
-    sum += texture2D(u_texture, texcoordOutNear[1]) * 0.50;
-    sum += texture2D(u_texture, texcoordOutNear[2]) * 0.25;
+    float tolerance_factor = 5.2486386;
     
-    gl_FragColor = vec4(sum.rgb, srcColor.a);
+    vec4 nearColor;
+    float colorDistance;
+    float sampleWeight;
+    
+    vec4 sum = vec4(0.0);
+    float sumWeight = 0.0;
+    
+    nearColor = texture2D(u_texture, texcoordOutNear[0]);
+    colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
+    sampleWeight = 0.25 * (1.0 - colorDistance);
+    sumWeight += sampleWeight;
+    sum += nearColor * sampleWeight;
+    
+    sampleWeight = 0.5;
+    sumWeight += sampleWeight;
+    sum += srcColor * sampleWeight;
+    
+    nearColor = texture2D(u_texture, texcoordOutNear[2]);
+    colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
+    sampleWeight = 0.25 * (1.0 - colorDistance);
+    sumWeight += sampleWeight;
+    sum += nearColor * sampleWeight;
+    
+    gl_FragColor = sum / sumWeight;
 }
