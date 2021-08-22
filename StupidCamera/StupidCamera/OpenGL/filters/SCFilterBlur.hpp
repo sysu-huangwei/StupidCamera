@@ -29,10 +29,6 @@ public:
     /// @param height 高
     virtual void resize(int width, int height) override;
     
-    /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer【使用完该FrameBuffer之后需要放回Pool】
-//    virtual FrameBuffer *render() override;
-    
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
     virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer) override;

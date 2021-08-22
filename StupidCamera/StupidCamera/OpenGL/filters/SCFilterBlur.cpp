@@ -30,14 +30,6 @@ void SCFilterBlur::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
     blurFilterH.setInputFrameBuffer(inputFrameBuffer);
 }
 
-
-//FrameBuffer *SCFilterBlur::render() {
-//    FrameBuffer *resultFrameBufferInternal = blurFilterH.render();
-//    blurFilterV.setInputFrameBuffer(resultFrameBufferInternal);
-//    blurFilterV.renderToFrameBuffer(outputFrameBuffer);
-//    resultFrameBufferInternal->unlock();
-//}
-
 void SCFilterBlur::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     FrameBuffer *resultFrameBufferInternal = blurFilterH.render();
     blurFilterV.setInputFrameBuffer(resultFrameBufferInternal);
