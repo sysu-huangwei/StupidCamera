@@ -31,7 +31,6 @@ public:
     virtual void setParams(const std::map<std::string, std::string> &param) override;
     
 protected:
-    int lutTextureUniform = -1, alphaUniform = -1;
     unsigned lutTextureID = 0;
     float alpha = 1.0f;
     

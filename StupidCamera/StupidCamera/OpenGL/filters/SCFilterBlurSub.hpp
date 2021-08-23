@@ -29,7 +29,6 @@ public:
     virtual void setOffset(float widthOffset, float heightOffset);
     
 protected:
-    int offsetUniform = -1;
     float widthOffset = 0.0f, heightOffset = 0.0f;
 };
 

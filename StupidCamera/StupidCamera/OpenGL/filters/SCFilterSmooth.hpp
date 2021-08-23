@@ -40,7 +40,6 @@ public:
     virtual void setParams(const std::map<std::string, std::string> &param) override;
     
 protected:
-    int alphaUniform = -1;
     float alpha = 1.0f;
     
     SCFilterBlur blurFilter;
