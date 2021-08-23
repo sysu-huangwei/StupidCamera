@@ -43,11 +43,15 @@
     switch (_currentSelectEffectType) {
         case SCEffectType_Lut:
             [_effectFilter setLutDegree:slider.value];
-            [_effectFilter setBlurDegree:slider.value];
-            [_effectFilter setSharpenDegree:slider.value];
             break;
         case SCEffectType_SmallHead:
             [_effectFilter setSmallHeadDegree:slider.value];
+            break;
+        case SCEffectType_Smooth:
+            [_effectFilter setBlurDegree:slider.value];
+            break;
+        case SCEffectType_Sharpen:
+            [_effectFilter setSharpenDegree:slider.value];
             break;
         default:
             break;
@@ -73,6 +77,14 @@
 
 - (IBAction)smallHeadSelected:(UIButton *)button {
     [self selectEffect:SCEffectType_SmallHead];
+}
+
+- (IBAction)smoothSelected:(UIButton *)button {
+    [self selectEffect:SCEffectType_Smooth];
+}
+
+- (IBAction)sharpenSelected:(UIButton *)button {
+    [self selectEffect:SCEffectType_Sharpen];
 }
 
 - (void)selectEffect:(SCEffectType)effectType {
@@ -112,10 +124,14 @@
     _effectDegree = [[NSMutableDictionary alloc] initWithDictionary:@{
         @(SCEffectType_Lut) : @(0.0),
         @(SCEffectType_SmallHead) : @(0.0),
+        @(SCEffectType_Smooth) : @(0.0),
+        @(SCEffectType_Sharpen) : @(0.0),
     }];
     _effectButton = [[NSMutableDictionary alloc] initWithDictionary:@{
         @(SCEffectType_Lut) : _lutButton,
         @(SCEffectType_SmallHead) : _smallHeadButton,
+        @(SCEffectType_Smooth) : _smoothButton,
+        @(SCEffectType_Sharpen) : _sharpenButton,
     }];
     
     NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"磨皮原图.jpeg"];

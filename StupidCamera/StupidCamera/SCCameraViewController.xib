@@ -13,9 +13,11 @@
             <connections>
                 <outlet property="_degreeSlider" destination="yqc-tP-etN" id="aec-fP-18z"/>
                 <outlet property="lutButton" destination="RQM-cV-5Zt" id="WB1-MT-kQd"/>
+                <outlet property="sharpenButton" destination="nOW-jx-adU" id="tbm-Rw-zOy"/>
                 <outlet property="showView" destination="2qm-Nb-WpJ" id="ONE-Ef-hfu"/>
                 <outlet property="sliderLabel" destination="0FR-BK-gBO" id="AUJ-O6-NEB"/>
                 <outlet property="smallHeadButton" destination="Gbp-PM-URd" id="SzA-kv-4yj"/>
+                <outlet property="smoothButton" destination="d4B-aw-b14" id="HMF-hZ-v42"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -109,19 +111,43 @@
                                                 <action selector="smallHeadSelected:" destination="-1" eventType="touchUpInside" id="Oaj-he-Kgp"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4B-aw-b14">
+                                            <rect key="frame" x="160" y="0.0" width="80" height="80"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                            <state key="normal" title="磨皮"/>
+                                            <connections>
+                                                <action selector="smoothSelected:" destination="-1" eventType="touchUpInside" id="bbV-qJ-xap"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOW-jx-adU">
+                                            <rect key="frame" x="240" y="0.0" width="80" height="80"/>
+                                            <color key="backgroundColor" systemColor="systemTealColor"/>
+                                            <state key="normal" title="锐化"/>
+                                            <connections>
+                                                <action selector="sharpenSelected:" destination="-1" eventType="touchUpInside" id="6N2-4e-ocg"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="nOW-jx-adU" firstAttribute="width" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="2TE-cj-PF7"/>
+                                        <constraint firstItem="d4B-aw-b14" firstAttribute="leading" secondItem="Gbp-PM-URd" secondAttribute="trailing" id="677-hU-9d8"/>
                                         <constraint firstItem="Gbp-PM-URd" firstAttribute="width" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="6Gd-ho-B7f"/>
                                         <constraint firstItem="RQM-cV-5Zt" firstAttribute="width" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="6Mu-SX-HKj"/>
+                                        <constraint firstItem="d4B-aw-b14" firstAttribute="height" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="Bdb-GD-KOY"/>
                                         <constraint firstAttribute="height" constant="80" id="FOg-wW-M5w"/>
                                         <constraint firstItem="RQM-cV-5Zt" firstAttribute="height" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="FhL-hI-V9t"/>
                                         <constraint firstItem="Gbp-PM-URd" firstAttribute="leading" secondItem="RQM-cV-5Zt" secondAttribute="trailing" id="Lis-oz-9Qc"/>
                                         <constraint firstItem="Gbp-PM-URd" firstAttribute="height" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="ONl-Ik-5ir"/>
+                                        <constraint firstItem="nOW-jx-adU" firstAttribute="height" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="QLq-hd-RBr"/>
                                         <constraint firstItem="RQM-cV-5Zt" firstAttribute="centerY" secondItem="5Jf-Qg-hxo" secondAttribute="centerY" id="S8N-RH-c2S"/>
+                                        <constraint firstItem="d4B-aw-b14" firstAttribute="width" secondItem="5Jf-Qg-hxo" secondAttribute="height" id="Xme-iM-gEu"/>
                                         <constraint firstItem="Gbp-PM-URd" firstAttribute="centerY" secondItem="5Jf-Qg-hxo" secondAttribute="centerY" id="b3v-0I-oO0"/>
                                         <constraint firstAttribute="width" constant="500" id="bc5-8F-V2x"/>
+                                        <constraint firstItem="d4B-aw-b14" firstAttribute="centerY" secondItem="5Jf-Qg-hxo" secondAttribute="centerY" id="g0Q-F9-859"/>
+                                        <constraint firstItem="nOW-jx-adU" firstAttribute="leading" secondItem="d4B-aw-b14" secondAttribute="trailing" id="jvu-cf-iVN"/>
                                         <constraint firstItem="RQM-cV-5Zt" firstAttribute="leading" secondItem="5Jf-Qg-hxo" secondAttribute="leading" id="mRG-Zv-uch"/>
+                                        <constraint firstItem="nOW-jx-adU" firstAttribute="centerY" secondItem="5Jf-Qg-hxo" secondAttribute="centerY" id="p7V-oP-kvY"/>
                                     </constraints>
                                 </view>
                             </subviews>
