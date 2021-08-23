@@ -12,15 +12,18 @@ SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
     smallHeadFilter = new SCFilterSmallHead();
     smoothFilter = new SCFilterSmooth();
+    sharpenFilter = new SCFilterSharpenUSM();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
     currentFilters.push_back(smoothFilter);
+    currentFilters.push_back(sharpenFilter);
 }
 
 SCEffectEngine::~SCEffectEngine() {
     SAFE_DELETE(lutFilter);
     SAFE_DELETE(smallHeadFilter);
     SAFE_DELETE(smoothFilter);
+    SAFE_DELETE(sharpenFilter);
 }
 
 /// 初始化，必须在GL线程
@@ -28,6 +31,7 @@ void SCEffectEngine::init() {
     lutFilter->init();
     smallHeadFilter->init();
     smoothFilter->init();
+    sharpenFilter->init();
 }
 
 /// 释放资源，必须在GL线程
@@ -35,6 +39,7 @@ void SCEffectEngine::release() {
     lutFilter->release();
     smallHeadFilter->release();
     smoothFilter->release();
+    sharpenFilter->release();
     FrameBufferPool::getSharedInstance()->clearFrameBufferPool();
     ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
@@ -46,17 +51,18 @@ void SCEffectEngine::resize(int width, int height) {
     lutFilter->resize(width, height);
     smallHeadFilter->resize(width, height);
     smoothFilter->resize(width, height);
+    sharpenFilter->resize(width, height);
 }
 
 /// 设置输入图像的纹理ID
 /// @param inputFrameBuffer 输入图像的FBO
 void SCEffectEngine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
 //    lutFilter->setInputFrameBuffer(inputFrameBuffer);
-    smoothFilter->setInputFrameBuffer(inputFrameBuffer);
+    sharpenFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 FrameBuffer *SCEffectEngine::render() {
-    return smoothFilter->render();
+    return sharpenFilter->render();
 //    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
 //    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
 //    lutResultFrameBuffer->unlock();
@@ -64,7 +70,7 @@ FrameBuffer *SCEffectEngine::render() {
 }
 
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    smoothFilter->renderToFrameBuffer(outputFrameBuffer);
+    sharpenFilter->renderToFrameBuffer(outputFrameBuffer);
 //    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
 //    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
 //    lutResultFrameBuffer->unlock();

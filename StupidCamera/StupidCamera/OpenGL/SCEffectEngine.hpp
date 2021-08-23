@@ -12,6 +12,7 @@
 #include "SCFilterLut.hpp"
 #include "SCFilterSmallHead.hpp"
 #include "SCFilterSmooth.hpp"
+#include "SCFilterSharpenUSM.hpp"
 
 class SCEffectEngine {
 public:
@@ -55,6 +56,7 @@ private:
     SCFilterLut *lutFilter;
     SCFilterSmallHead *smallHeadFilter;
     SCFilterSmooth *smoothFilter;
+    SCFilterSharpenUSM *sharpenFilter;
 };
 
 #endif /* SCEffectEngine_hpp */

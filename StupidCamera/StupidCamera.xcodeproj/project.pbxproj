@@ -11,6 +11,7 @@
 		710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 710F63642690134700976E1A /* FrameBufferPool.cpp */; };
 		71E05CBD26D23A340061DE6D /* 磨皮原图.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */; };
 		71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */; };
+		FC0BE59C26D3BEC1000F848E /* SCFilterSharpenUSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
 		FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */; };
 		FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */; };
@@ -65,6 +66,8 @@
 		71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "磨皮原图.jpeg"; sourceTree = "<group>"; };
 		71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSmooth.cpp; sourceTree = "<group>"; };
 		71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSmooth.hpp; sourceTree = "<group>"; };
+		FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSharpenUSM.cpp; sourceTree = "<group>"; };
+		FC0BE59B26D3BEC1000F848E /* SCFilterSharpenUSM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSharpenUSM.hpp; sourceTree = "<group>"; };
 		FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCEffectEngine.cpp; sourceTree = "<group>"; };
 		FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCEffectEngine.hpp; sourceTree = "<group>"; };
 		FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageSCEffectFilter.h; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 				FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */,
 				71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */,
 				71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */,
+				FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */,
+				FC0BE59B26D3BEC1000F848E /* SCFilterSharpenUSM.hpp */,
 				FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */,
 				FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */,
 				FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */,
@@ -497,6 +502,7 @@
 				FC892B8B2679E854000F4513 /* SCFilterFacePoint.cpp in Sources */,
 				FC7AAAE72694477500CA4E75 /* SCEditViewController.m in Sources */,
 				FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */,
+				FC0BE59C26D3BEC1000F848E /* SCFilterSharpenUSM.cpp in Sources */,
 				FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */,
 				FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */,
 				FC892B72267999D5000F4513 /* SCFaceData.cpp in Sources */,

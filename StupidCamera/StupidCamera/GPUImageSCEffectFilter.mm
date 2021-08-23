@@ -104,6 +104,15 @@
     self->effectEngine->setParams(params);
 }
 
+- (void)setSharpenDegree:(float)degree {
+    std::map<std::string, std::map<std::string, std::string> > params = {
+        { SCFilterType_SharpenUSM, {
+            { SCFilterParam_SharpenAlpha, std::to_string(degree) }
+        } }
+    };
+    self->effectEngine->setParams(params);
+}
+
 - (void)setSmallHeadDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
         { SCFilterType_SmallHead, {
