@@ -18,6 +18,7 @@ void SCFilterBackgroundMesh::release() {
 }
 
 void SCFilterBackgroundMesh::resize(int width, int height) {
+    SCFilterBase::resize(width, height);
     copyFilter.resize(width, height);
     meshFilter.resize(width, height);
 }

@@ -25,7 +25,7 @@ FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bo
     FrameBuffer *frameBuffer = nullptr;
     std::string key = getTextureKey(width, height, isOnlyTexture, textureOptions);
     if (frameBufferCache.find(key) != frameBufferCache.end()) {
-        std::vector<FrameBuffer *> frameBuffers = frameBufferCache.at(key);
+        std::vector<FrameBuffer *> &frameBuffers = frameBufferCache.at(key);
         if (!frameBuffers.empty()) {
             frameBuffer = frameBuffers.back();
             frameBuffers.pop_back();

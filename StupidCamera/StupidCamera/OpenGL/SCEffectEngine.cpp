@@ -26,7 +26,6 @@ SCEffectEngine::~SCEffectEngine() {
     SAFE_DELETE(sharpenFilter);
 }
 
-/// 初始化，必须在GL线程
 void SCEffectEngine::init() {
     lutFilter->init();
     smallHeadFilter->init();
@@ -34,7 +33,6 @@ void SCEffectEngine::init() {
     sharpenFilter->init();
 }
 
-/// 释放资源，必须在GL线程
 void SCEffectEngine::release() {
     lutFilter->release();
     smallHeadFilter->release();
@@ -44,9 +42,6 @@ void SCEffectEngine::release() {
     ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
 
-/// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO
-/// @param width 宽
-/// @param height 高
 void SCEffectEngine::resize(int width, int height) {
     lutFilter->resize(width, height);
     smallHeadFilter->resize(width, height);
@@ -54,11 +49,8 @@ void SCEffectEngine::resize(int width, int height) {
     sharpenFilter->resize(width, height);
 }
 
-/// 设置输入图像的纹理ID
-/// @param inputFrameBuffer 输入图像的FBO
 void SCEffectEngine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
-//    lutFilter->setInputFrameBuffer(inputFrameBuffer);
-    sharpenFilter->setInputFrameBuffer(inputFrameBuffer);
+    lutFilter->setInputFrameBuffer(inputFrameBuffer);
 }
 
 FrameBuffer *SCEffectEngine::render() {
@@ -70,15 +62,21 @@ FrameBuffer *SCEffectEngine::render() {
 }
 
 void SCEffectEngine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+    FrameBuffer *lutResult = lutFilter->render();
+    smallHeadFilter->setInputFrameBuffer(lutResult);
+    lutResult->unlock();
+    
+    FrameBuffer *smallHeadResult = smallHeadFilter->render();
+    smoothFilter->setInputFrameBuffer(smallHeadResult);
+    smallHeadResult->unlock();
+    
+    FrameBuffer *smoothResult = smoothFilter->render();
+    sharpenFilter->setInputFrameBuffer(smoothResult);
+    smoothResult->unlock();
+    
     sharpenFilter->renderToFrameBuffer(outputFrameBuffer);
-//    FrameBuffer *lutResultFrameBuffer = lutFilter->render();
-//    smallHeadFilter->setInputFrameBuffer(lutResultFrameBuffer);
-//    lutResultFrameBuffer->unlock();
-//    smallHeadFilter->renderToFrameBuffer(outputFrameBuffer);
 }
 
-/// 设置人脸数据
-/// @param faceData 人脸数据
 void SCEffectEngine::setFaceData(SCFaceData *faceData) {
     smallHeadFilter->setFaceData(faceData);
 }
