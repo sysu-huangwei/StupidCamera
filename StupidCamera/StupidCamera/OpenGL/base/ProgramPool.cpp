@@ -6,6 +6,7 @@
 
 #include "ProgramPool.hpp"
 #include <mutex>
+#include "SCBaseDefine.h"
 
 static std::shared_ptr<ProgramPool> programPoolSharedInstance;
 static std::mutex programPoolSharedInstanceLock;

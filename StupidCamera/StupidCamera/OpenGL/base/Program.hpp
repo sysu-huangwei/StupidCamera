@@ -9,7 +9,7 @@
 
 #include <string>
 #include <map>
-#include "SCBaseDefine.h"
+#include "SCPlatform.h"
 
 #if PLATFORM_ANDROID
 #include <GLES2/gl2.h>

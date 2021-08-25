@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <string>
 #include <cstring>
+#include "SCBaseDefine.h"
+#include "SCBaseLog.h"
 #ifdef PLATFORM_IOS
 #include "FileUtilsForIOS.h"
 #endif

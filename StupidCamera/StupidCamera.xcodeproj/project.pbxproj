@@ -118,6 +118,7 @@
 		FCADC6CB26CF92F700AF2497 /* GLResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GLResource; sourceTree = "<group>"; };
 		FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBaseTwoInput.cpp; sourceTree = "<group>"; };
 		FCADC6CF26CFAB6F00AF2497 /* SCFilterBaseTwoInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBaseTwoInput.hpp; sourceTree = "<group>"; };
+		FCD3E4C126D636BD00F8D3BE /* SCPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCPlatform.h; sourceTree = "<group>"; };
 		FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlur.cpp; sourceTree = "<group>"; };
 		FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlur.hpp; sourceTree = "<group>"; };
 		FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlurSub.cpp; sourceTree = "<group>"; };
@@ -240,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */,
+				FCD3E4C126D636BD00F8D3BE /* SCPlatform.h */,
 				FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */,
 				FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */,
 				FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */,

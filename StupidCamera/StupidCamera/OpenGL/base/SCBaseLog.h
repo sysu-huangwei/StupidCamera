@@ -5,7 +5,7 @@
 #ifndef SCBASELOG_H
 #define SCBASELOG_H
 
-#include "SCBaseDefine.h"
+#include "SCPlatform.h"
 
 #define LOG_TAG "rayyy"
 
