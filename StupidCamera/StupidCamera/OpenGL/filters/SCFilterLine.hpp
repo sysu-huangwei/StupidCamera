@@ -8,6 +8,8 @@
 #define SCFilterLine_hpp
 
 #include "SCFilterBase.hpp"
+#include <vector>
+#include "SCBaseDefine.h"
 
 /// 画线的滤镜
 class SCFilterLine : public SCFilterBase {
@@ -24,10 +26,9 @@ public:
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
     
-    /// 设置需要画的线，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
-    /// @param lines 线信息，每个线2个顶点(4个float) {line1.A.x, line1.A.y, line1.B.x, line1.B.y, line2.A.x, line2.A.y, line2.B.x……}  需要归一化到0到1的点
-    /// @param linesCount 线的数量，一般是points的长度/4
-    virtual void setLines(float *lines, int linesCount);
+    /// 设置需要画的线【此接口和render并行调用会有线程问题，需要保证先后顺序】
+    /// @param lines 线信息，需要归一化到0到1的点
+    virtual void setLines(std::vector<SCLine> lines);
     
 protected:
     float *lines = nullptr;

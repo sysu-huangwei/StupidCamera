@@ -30,8 +30,8 @@
                     NSArray<NSValue *> *facePoints = faceDataDict[FACEDATA_KEY_FACEPOINTS];
                     int facePointsCount = facePoints.count > FACE_POINT_COUNT ? FACE_POINT_COUNT : (int)facePoints.count;
                     for (int j = 0; j < facePointsCount; j++) {
-                        _faceData->faces[i].facePoints[2 * j] = [facePoints[j] CGPointValue].x;
-                        _faceData->faces[i].facePoints[2 * j + 1] = [facePoints[j] CGPointValue].y;
+                        _faceData->faces[i].facePoints[j].x = [facePoints[j] CGPointValue].x;
+                        _faceData->faces[i].facePoints[j].y = [facePoints[j] CGPointValue].y;
                     }
                 }
                 if ([faceDataDict[FACEDATA_KEY_HASROLLANGLE] isKindOfClass:[NSNumber class]]) {

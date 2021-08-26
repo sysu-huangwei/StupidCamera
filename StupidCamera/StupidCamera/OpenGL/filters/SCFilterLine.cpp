@@ -31,16 +31,13 @@ void SCFilterLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 }
 
 
-void SCFilterLine::setLines(float *lines, int linesCount) {
-    if (linesCount != this->linesCount) {
-        if (this->lines) {
-            delete [] this->lines;
-            this->lines = nullptr;
-        }
-        this->linesCount = linesCount;
+void SCFilterLine::setLines(std::vector<SCLine> lines) {
+    if ((int)lines.size() != linesCount) {
+        SAFE_DELETE_ARRAY(this->lines);
+        linesCount = (int)lines.size();
         this->lines = new float[linesCount * 4];
     }
-    if (lines && linesCount > 0) {
-        memcpy(this->lines, lines, sizeof(float) * linesCount * 4);
+    if (linesCount > 0) {
+        memcpy(this->lines, &lines[0], sizeof(SCLine) * lines.size());
     }
 }

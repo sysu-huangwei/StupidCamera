@@ -10,11 +10,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "SCBaseDefine.h"
 
 #define MAX_FACE_COUNT 5
 
 #define FACE_POINT_COUNT 13
-#define FACE_POINT_FLOAT_ARRAY_SIZE FACE_POINT_COUNT << 1
 
 #define FACE_TRIANGLE_COUNT 16
 #define FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE FACE_TRIANGLE_COUNT * 3
@@ -28,8 +28,8 @@ typedef struct {
     float rectOriginX, rectOriginY;
     float rectWidth, rectHeight;
     
-    float facePoints[FACE_POINT_FLOAT_ARRAY_SIZE];
-    float faceTrianlges[FACE_TRIANGLE_FLOAT_ARRAY_SIZE];
+    SCPoint facePoints[FACE_POINT_COUNT];
+    SCTriangle faceTrianlges[FACE_TRIANGLE_COUNT];
     
     bool hasRollAngle;
     float rollAngle;

@@ -28,6 +28,11 @@ typedef struct {
 typedef struct {
     SCPoint p0;
     SCPoint p1;
+} SCLine;
+
+typedef struct {
+    SCPoint p0;
+    SCPoint p1;
     SCPoint p2;
 } SCTriangle;
 

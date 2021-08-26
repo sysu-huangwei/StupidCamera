@@ -9,10 +9,7 @@
 #include "DelaunayTriangle.hpp"
 
 SCFilterPoint::~SCFilterPoint() {
-    if (this->points) {
-        delete [] this->points;
-        this->points = nullptr;
-    }
+    SAFE_DELETE_ARRAY(this->points);
 }
 
 void SCFilterPoint::init() {
@@ -38,16 +35,13 @@ void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 }
 
 
-void SCFilterPoint::setPoints(float *points, int pointsCount) {
-    if (pointsCount != this->pointsCount) {
-        if (this->points) {
-            delete [] this->points;
-            this->points = nullptr;
-        }
-        this->pointsCount = pointsCount;
-        this->points = new float[pointsCount * 2];
+void SCFilterPoint::setPoints(std::vector<SCPoint> points) {
+    if ((int)points.size() != pointsCount) {
+        SAFE_DELETE_ARRAY(this->points);
+        this->pointsCount = (int)points.size();
+        this->points = new float[points.size() * 2];
     }
-    if (points && pointsCount > 0) {
-        memcpy(this->points, points, sizeof(float) * pointsCount * 2);
+    if (pointsCount > 0) {
+        memcpy(this->points, &points[0], sizeof(SCPoint) * points.size());
     }
 }

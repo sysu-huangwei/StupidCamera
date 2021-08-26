@@ -15,11 +15,14 @@ void SCFilterSmallHead::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 
 void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
     SCFilterFaceBase::setFaceData(faceData);
-    if (this->faceData) {
-        float facePointFloatChanged[FACE_POINT_FLOAT_ARRAY_SIZE];
-        memcpy(facePointFloatChanged, this->faceData->faces[0].facePoints, sizeof(float) * FACE_POINT_FLOAT_ARRAY_SIZE);
-        changeSmallFacePoint(facePointFloatChanged);
-        meshFilter.setMesh(facePointFloatChanged, this->faceData->faces[0].facePoints, FACE_POINT_FLOAT_ARRAY_SIZE, FaceTriangleIndex, FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
+    if (faceData) {
+        SCPoint facePointChanged[FACE_POINT_COUNT];
+        memcpy(facePointChanged, faceData->faces[0].facePoints, sizeof(SCPoint) * FACE_POINT_COUNT);
+        changeSmallFacePoint(facePointChanged);
+        meshFilter.setMesh(std::vector<SCPoint>(facePointChanged, facePointChanged + sizeof(facePointChanged) / sizeof(SCPoint)),
+                           std::vector<SCPoint>(faceData->faces[0].facePoints, faceData->faces[0].facePoints + sizeof(faceData->faces[0].facePoints) / sizeof(SCPoint)),
+                           FaceTriangleIndex,
+                           FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
     }
 }
 
@@ -36,17 +39,17 @@ void SCFilterSmallHead::setSmallHeadDegree(float smallHeadDegree) {
     this->smallHeadDegree = std::max(0.0f, std::min(1.0f, smallHeadDegree));
 }
 
-void SCFilterSmallHead::changeSmallFacePoint(float *facePointFloat) {
-    facePointFloat[2] += (facePointFloat[0] - facePointFloat[2]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
-    facePointFloat[3] += (facePointFloat[1] - facePointFloat[3]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+void SCFilterSmallHead::changeSmallFacePoint(SCPoint *facePoint) {
+    facePoint[1].x += (facePoint[0].x - facePoint[1].x) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[1].y += (facePoint[0].y - facePoint[1].y) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
     
-    facePointFloat[4] -= (facePointFloat[4] - facePointFloat[0]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
-    facePointFloat[5] += (facePointFloat[1] - facePointFloat[5]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[2].x -= (facePoint[2].x - facePoint[0].x) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[2].y += (facePoint[0].y - facePoint[2].y) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
     
-    facePointFloat[6] += (facePointFloat[0] - facePointFloat[6]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
-    facePointFloat[7] -= (facePointFloat[7] - facePointFloat[1]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[3].x += (facePoint[0].x - facePoint[3].x) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[3].y -= (facePoint[3].y - facePoint[0].y) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
     
-    facePointFloat[8] -= (facePointFloat[8] - facePointFloat[0]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
-    facePointFloat[9] -= (facePointFloat[9] - facePointFloat[1]) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[4].x -= (facePoint[4].x - facePoint[0].x) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
+    facePoint[4].y -= (facePoint[4].y - facePoint[0].y) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
 }
 

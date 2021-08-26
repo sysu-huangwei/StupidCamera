@@ -33,6 +33,6 @@ void SCFilterBackgroundMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer)
     meshFilter.renderToFrameBuffer(outputFrameBuffer);
 }
 
-void SCFilterBackgroundMesh::setMesh(float *mesh, float *meshStd, int meshArrayCount, unsigned int *meshIndex, int indexArrayCount) {
-    meshFilter.setMesh(mesh, meshStd, meshArrayCount, meshIndex, indexArrayCount);
+void SCFilterBackgroundMesh::setMesh(std::vector<SCPoint> mesh, std::vector<SCPoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
+    meshFilter.setMesh(mesh, meshStd, meshIndex, indexArrayCount);
 }
