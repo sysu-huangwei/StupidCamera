@@ -40,7 +40,7 @@ public:
     /// 释放资源，必须在GL线程，子类实现这个方法去做GL相关的释放操作
     virtual void release();
     
-    /// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO
+    /// 设置绘制尺寸
     /// @param width 宽
     /// @param height 高
     virtual void resize(int width, int height);
@@ -50,7 +50,7 @@ public:
     virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer);
     
     /// 渲染，必须在GL线程
-    /// @return 结果FrameBuffer【使用完该FrameBuffer之后需要放回Pool】
+    /// @return 结果FrameBuffer
     virtual FrameBuffer *render();
     
     /// 渲染，必须在GL线程
