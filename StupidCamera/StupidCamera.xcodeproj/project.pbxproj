@@ -242,8 +242,6 @@
 			children = (
 				FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */,
 				FCD3E4C126D636BD00F8D3BE /* SCPlatform.h */,
-				FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */,
-				FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */,
 				FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */,
 				FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */,
 				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
@@ -256,6 +254,15 @@
 				FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		FCCB18D026DE26F700F09C7F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */,
+				FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		FCEB086926CF566D001ACDEF /* iOS */ = {
@@ -345,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				FCADC6CB26CF92F700AF2497 /* GLResource */,
+				FCCB18D026DE26F700F09C7F /* utils */,
 				FCEB086D26CF57AB001ACDEF /* filters */,
 				FC7AAADE269332F100CA4E75 /* base */,
 				FCEF7B0D2627104800F20ED0 /* platform */,

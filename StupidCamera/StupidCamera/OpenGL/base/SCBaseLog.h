@@ -24,35 +24,34 @@
 /**
  * 设置log等级
  */
-extern "C" void BASE_SetLogLevel(int level);
+extern "C" void setBaseLogLevel(int level);
 
 /**
  * 获取log等级
  */
-extern "C" int BASE_GetLogLevel();
+extern "C" int getBaseLogLevel();
 
-#define  BASE_TARGET_LOG_LEVEL   (BASE_GetLogLevel())
+#define CURRENT_BASE_LOG_LEVEL   (getBaseLogLevel())
 
-#if defined(PLATFORM_ANDROID)
+#ifdef PLATFORM_ANDROID
 
 #include <android/log.h>
-
-#define  LOGV(...)  do { if (BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_VERBOSE) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__); } while(0)
-#define  LOGD(...)  do { if (BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_DEBUG) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__); } while(0)
-#define  LOGI(...)  do { if (BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_INFO) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__); } while(0)
-#define  LOGW(...)  do { if (BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_WARN) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__); } while(0)
-#define  LOGE(...)  do { if (BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_ERROR) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__); } while(0)
-#define  LOGF(...)  do { if (BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_FATAL) __android_log_print(ANDROID_LOG_FATAL, LOG_TAG, __VA_ARGS__); } while(0)
+#define  LOGV(...)  do { if (CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_VERBOSE) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__); } while(0)
+#define  LOGD(...)  do { if (CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_DEBUG) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__); } while(0)
+#define  LOGI(...)  do { if (CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_INFO) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__); } while(0)
+#define  LOGW(...)  do { if (CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_WARN) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__); } while(0)
+#define  LOGE(...)  do { if (CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_ERROR) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__); } while(0)
+#define  LOGF(...)  do { if (CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_FATAL) __android_log_print(ANDROID_LOG_FATAL, LOG_TAG, __VA_ARGS__); } while(0)
 
 #else // !PLATFORM_ANDROID
 
 #include <stdio.h>
-#define  LOGV(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_VERBOSE) {printf("[" LOG_TAG "] VERBOSE:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
-#define  LOGD(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_DEBUG) {printf("<[" LOG_TAG "] DEBUG:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
-#define  LOGI(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_INFO) {printf("<[" LOG_TAG "] INFO:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
-#define  LOGW(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_WARN) {printf("<[" LOG_TAG "] WARN:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
-#define  LOGE(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_ERROR) {printf("<[" LOG_TAG "] ERROR:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
-#define  LOGF(...)  do { if(BASE_TARGET_LOG_LEVEL <= BASE_LOG_LEVEL_FATAL) {printf("<[" LOG_TAG "] FATAL:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
+#define  LOGV(...)  do { if(CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_VERBOSE) {printf("[" LOG_TAG "] VERBOSE:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
+#define  LOGD(...)  do { if(CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_DEBUG) {printf("<[" LOG_TAG "] DEBUG:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
+#define  LOGI(...)  do { if(CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_INFO) {printf("<[" LOG_TAG "] INFO:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
+#define  LOGW(...)  do { if(CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_WARN) {printf("<[" LOG_TAG "] WARN:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
+#define  LOGE(...)  do { if(CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_ERROR) {printf("<[" LOG_TAG "] ERROR:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
+#define  LOGF(...)  do { if(CURRENT_BASE_LOG_LEVEL <= BASE_LOG_LEVEL_FATAL) {printf("<[" LOG_TAG "] FATAL:> ");printf(__VA_ARGS__);printf("\n");} } while(0)
 
 #endif // !PLATFORM_ANDROID
 

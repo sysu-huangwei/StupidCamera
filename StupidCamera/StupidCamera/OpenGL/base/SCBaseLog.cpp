@@ -6,10 +6,10 @@
 
 static int sBaseLogLevel = BASE_LOG_LEVEL_ALL;
 
-void BASE_SetLogLevel(int level) {
+void setBaseLogLevel(int level) {
     sBaseLogLevel = level;
 }
 
-int BASE_GetLogLevel() {
+int getBaseLogLevel() {
     return sBaseLogLevel;
 }

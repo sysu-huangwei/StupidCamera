@@ -70,7 +70,7 @@ void FrameBuffer::createAndBindFrameBuffer() {
 
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (status != GL_FRAMEBUFFER_COMPLETE) {
-        LOGE("ERROR: Incomplete filter FBO: %d; framebuffer size = %d, %d, "
+        LOGE("Error: Incomplete filter FBO: %d; framebuffer size = %d, %d, "
              "glerror = %d, isTexture = %d, isFramebuffer = %d.",
              status, width, height,
              glGetError(), glIsTexture(textureID), glIsFramebuffer(frameBufferID));

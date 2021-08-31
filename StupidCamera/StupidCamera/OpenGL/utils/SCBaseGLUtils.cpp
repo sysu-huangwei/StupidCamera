@@ -5,9 +5,6 @@
 //
 
 #include "SCBaseGLUtils.hpp"
-#include <stdio.h>
-#include <string>
-#include <cstring>
 #include "SCBaseDefine.h"
 #include "SCBaseLog.h"
 #ifdef PLATFORM_IOS
@@ -33,14 +30,14 @@ unsigned char *BaseGLUtils::loadImageFileToRGBAPixels(const char *filePath, int 
     outHeight = 0;
     
     if (filePath == NULL || strcmp(filePath, "") == 0) {
-        LOGE("ERROR: loadImageFileToRGBAPixels: filePath = NULL");
+        LOGE("Error: loadImageFileToRGBAPixels: filePath = NULL");
         return NULL;
     }
     
     unsigned long dataSize;
     char *memoryData = (char *) loadFileToMemory(filePath, dataSize);
     if (memoryData == NULL || dataSize == 0) {
-        LOGE("ERROR: loadImageFileToRGBAPixels: loadFileToMemory failed: filePath = %s", filePath);
+        LOGE("Error: loadImageFileToRGBAPixels: loadFileToMemory failed: filePath = %s", filePath);
         return NULL;
     }
     
@@ -49,7 +46,7 @@ unsigned char *BaseGLUtils::loadImageFileToRGBAPixels(const char *filePath, int 
     SAFE_DELETE_ARRAY(memoryData);
     
     if (data == NULL || outWidth == 0 || outHeight == 0) {
-        LOGE("ERROR: loadImageFileToRGBAPixels: loadMemoryToRGBAPixels failed: filePath = %s", filePath);
+        LOGE("Error: loadImageFileToRGBAPixels: loadMemoryToRGBAPixels failed: filePath = %s", filePath);
         return NULL;
     }
     
@@ -61,13 +58,13 @@ GLuint BaseGLUtils::loadImageFileToTexture(const char *filePath, int &outWidth, 
     outHeight = 0;
     
     if (filePath == NULL || strcmp(filePath, "") == 0) {
-        LOGE("ERROR: loadImageFileToTexture: filePath = NULL");
+        LOGE("Error: loadImageFileToTexture: filePath = NULL");
         return 0;
     }
     
     unsigned char *data = loadImageFileToRGBAPixels(filePath, outWidth, outHeight);
     if (data == NULL || outHeight * outHeight <= 0) {
-        LOGE("ERROR: loadImageFileToTexture failed to load image: filePath: %s, pData = %p, w * h: %d * %d", filePath, data, outHeight, outHeight);
+        LOGE("Error: loadImageFileToTexture failed to load image: filePath: %s, pData = %p, w * h: %d * %d", filePath, data, outHeight, outHeight);
         return 0;
     }
     
@@ -93,7 +90,7 @@ std::string BaseGLUtils::getShaderSourceByName(std::string shaderName, GLenum sh
     unsigned long dataSize;
     const char *memoryData = loadFileToMemory(filePath.c_str(), dataSize);
     if (memoryData == NULL || dataSize == 0) {
-        LOGE("ERROR: getShaderSourceByName: loadFileToMemory failed: filePath = %s", filePath.c_str());
+        LOGE("Error: getShaderSourceByName: loadFileToMemory failed: filePath = %s", filePath.c_str());
         return "";
     } else {
         std::string shaderSource = std::string(memoryData);
@@ -117,12 +114,12 @@ char *BaseGLUtils::loadFileToMemory(const char *filePath, unsigned long &outData
             fread(data, length, 1, file);
             outDataSize = length;
         } else {
-            LOGE("ERROR: loadFileToMemory file size < 0: %ld", length);
+            LOGE("Error: loadFileToMemory file size < 0: %ld", length);
         }
         
         fclose(file);
     } else {
-        LOGE("ERROR: loadFileToMemory failed to open file, filePath = %s", filePath);
+        LOGE("Error: loadFileToMemory failed to open file, filePath = %s", filePath);
     }
     return data;
 }
@@ -146,7 +143,7 @@ GLuint BaseGLUtils::loadPixelsToTexture(const unsigned char *data, int width, in
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         return textures;
     } else {
-        LOGE("ERROR: loadRGBAPixelsToTexture failed to glGenTextures");
+        LOGE("Error: loadRGBAPixelsToTexture failed to glGenTextures");
         return 0;
     }
 }

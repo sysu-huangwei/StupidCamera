@@ -45,12 +45,12 @@ GLuint Program::compileShader(GLenum type, const char *shaderSource) {
 GLuint Program::createProgram(const char *vertexSource, const char *fragmentSource) {
     unsigned vertexShader = compileShader(GL_VERTEX_SHADER, vertexSource);
     if (vertexShader == 0) {
-        LOGE("ERROR in load vertex shader! ");
+        LOGE("Error in load vertex shader! ");
         return 0;
     }
     unsigned pixelShader = compileShader(GL_FRAGMENT_SHADER, fragmentSource);
     if (pixelShader == 0) {
-        LOGE("ERROR in load fragment shader!");
+        LOGE("Error in load fragment shader!");
         glDeleteShader(vertexShader);
         return 0;
     }
