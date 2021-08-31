@@ -25,7 +25,7 @@ public:
     /// 释放资源，必须在GL线程
     void release();
     
-    /// 设置绘制尺寸，必须在GL线程，内部会创建对应尺寸的FBO
+    /// 设置绘制尺寸
     /// @param width 宽
     /// @param height 高
     void resize(int width, int height);
