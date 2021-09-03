@@ -8,6 +8,8 @@
 #include <mutex>
 #include "BaseDefine.h"
 
+namespace effect {
+
 static std::shared_ptr<FrameBufferPool> frameBufferPoolSharedInstance;
 static std::mutex frameBufferPoolSharedInstanceLock;
 
@@ -81,4 +83,6 @@ std::string FrameBufferPool::getTextureKey(int width, int height, bool isOnlyTex
     key += std::to_string(textureOptions.format) + "_";
     key += std::to_string(textureOptions.type) + "_";
     return key;
+}
+
 }

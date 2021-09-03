@@ -8,6 +8,8 @@
 #include <string.h>
 #include "BaseLog.h"
 
+namespace effect {
+
 SCFilterMesh::~SCFilterMesh() {
     if (this->mesh) {
         delete [] this->mesh;
@@ -74,4 +76,6 @@ void SCFilterMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> m
     if (meshIndex && meshArrayCount > 0) {
         memcpy(this->meshIndex, meshIndex, sizeof(unsigned int) * indexArrayCount);
     }
+}
+
 }

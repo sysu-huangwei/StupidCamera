@@ -10,6 +10,8 @@
 #include "SCFilterCopy.hpp"
 #include "SCFilterPoint.hpp"
 
+namespace effect {
+
 /// 画背景+点的滤镜
 class SCFilterBackgroundPoint : public SCFilterBase {
 public:
@@ -45,5 +47,6 @@ protected:
     SCFilterPoint pointFilter;
 };
 
+}
 
 #endif /* SCFilterBackgroundPoint_hpp */

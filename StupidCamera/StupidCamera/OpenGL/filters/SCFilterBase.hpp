@@ -11,6 +11,8 @@
 #include "FrameBuffer.hpp"
 #include "Program.hpp"
 
+namespace effect {
+
 // 顶点坐标
 const static float imageVertices[8] = {
     -1.0f, 1.0f, // top left
@@ -74,5 +76,7 @@ protected:
     
     virtual void initWithVertexStringAndFragmentString(const char* vertexShaderName, const char* fragmentShaderName);
 };
+
+}
 
 #endif /* SCFilterBase_hpp */

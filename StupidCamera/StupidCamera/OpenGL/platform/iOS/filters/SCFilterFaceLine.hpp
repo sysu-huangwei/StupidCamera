@@ -10,6 +10,8 @@
 #include "SCFilterBackgroundLine.hpp"
 #include "SCFilterFaceBase.hpp"
 
+namespace effect {
+
 /// 画人脸Mesh线的滤镜
 class SCFilterFaceLine : public SCFilterBackgroundLine, SCFilterFaceBase {
 public:
@@ -21,5 +23,7 @@ public:
     /// @param faceData 人脸数据
     virtual void setFaceData(SCFaceData *faceData) override;
 };
+
+}
 
 #endif /* SCFilterFaceLine_hpp */

@@ -6,6 +6,8 @@
 
 #include "SCFilterFaceLine.hpp"
 
+namespace effect {
+
 void SCFilterFaceLine::setFaceData(SCFaceData *faceData) {
     SCFilterFaceBase::setFaceData(faceData);
     if (faceData) {
@@ -24,4 +26,6 @@ void SCFilterFaceLine::setFaceData(SCFaceData *faceData) {
         }
         lineFilter.setLines(std::vector<BaseLine>(lines, lines + sizeof(lines) / sizeof(BaseLine)));
     }
+}
+
 }

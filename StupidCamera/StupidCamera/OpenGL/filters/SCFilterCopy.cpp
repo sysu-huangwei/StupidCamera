@@ -7,6 +7,8 @@
 #include "SCFilterCopy.hpp"
 #include "FrameBufferPool.hpp"
 
+namespace effect {
+
 void SCFilterCopy::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("simple", "simple");
 }
@@ -33,4 +35,6 @@ void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
     inputFrameBuffer->unlock();
+}
+
 }

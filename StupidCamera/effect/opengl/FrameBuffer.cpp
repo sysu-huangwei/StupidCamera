@@ -8,6 +8,8 @@
 #include "BaseLog.h"
 #include "FrameBufferPool.hpp"
 
+namespace effect {
+
 const TextureOptions defaultTextureOptions { GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE };
 
 void FrameBuffer::init(int width, int height, bool isOnlyTexture, TextureOptions textureOptions, GLuint textureID, GLuint frameBufferID) {
@@ -98,4 +100,6 @@ void FrameBuffer::unlock() {
 
 void FrameBuffer::setEnableReferenceCount(bool enableReferenceCount) {
     this->enableReferenceCount = enableReferenceCount;
+}
+
 }

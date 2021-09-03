@@ -7,7 +7,11 @@
 
 #include "SCFilterBaseTwoInput.hpp"
 
+namespace effect {
+
 void SCFilterBaseTwoInput::setSecondInputFrameBuffer(FrameBuffer *secondInputFrameBuffer) {
     this->secondInputFrameBuffer = secondInputFrameBuffer;
     this->secondInputFrameBuffer->lock();
+}
+
 }

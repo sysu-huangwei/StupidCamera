@@ -9,6 +9,8 @@
 #include "FrameBufferPool.hpp"
 #include "ProgramPool.hpp"
 
+namespace effect {
+
 SCEffectEngine::SCEffectEngine() {
     lutFilter = new SCFilterLut();
     smallHeadFilter = new SCFilterSmallHead();
@@ -91,4 +93,6 @@ void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string,
             }
         }
     }
+}
+
 }

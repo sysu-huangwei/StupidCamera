@@ -9,6 +9,8 @@
 
 #include "SCFilterBase.hpp"
 
+namespace effect {
+
 /// 双输入滤镜
 class SCFilterBaseTwoInput : public SCFilterBase {
 public:
@@ -22,5 +24,7 @@ protected:
     FrameBuffer *secondInputFrameBuffer = nullptr;
 
 };
+
+}
 
 #endif /* SCFilterBaseTwoInput_hpp */

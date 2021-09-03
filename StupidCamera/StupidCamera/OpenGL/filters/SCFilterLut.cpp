@@ -7,6 +7,8 @@
 #include "SCFilterLut.hpp"
 #include "SCBaseGLUtils.hpp"
 
+namespace effect {
+
 void SCFilterLut::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("simple", "lut");
 }
@@ -72,4 +74,6 @@ void SCFilterLut::setParams(const std::map<std::string, std::string> &param) {
             setAlpha(std::stof((*it).second));
         }
     }
+}
+
 }

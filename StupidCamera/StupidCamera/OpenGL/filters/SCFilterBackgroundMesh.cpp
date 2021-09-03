@@ -6,6 +6,7 @@
 
 #include "SCFilterBackgroundMesh.hpp"
 
+namespace effect {
 
 void SCFilterBackgroundMesh::init() {
     copyFilter.init();
@@ -35,4 +36,6 @@ void SCFilterBackgroundMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer)
 
 void SCFilterBackgroundMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
     meshFilter.setMesh(mesh, meshStd, meshIndex, indexArrayCount);
+}
+
 }

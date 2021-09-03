@@ -10,6 +10,8 @@
 #include <map>
 #include "Program.hpp"
 
+namespace effect {
+
 /// 全局Program缓存池
 class ProgramPool {
 public:
@@ -29,5 +31,7 @@ private:
     
     std::map<std::string, Program *> programCache;
 };
+
+}
 
 #endif /* ProgramPool_hpp */

@@ -9,6 +9,8 @@
 
 #include "SCFilterBase.hpp"
 
+namespace effect {
+
 /// 模糊
 class SCFilterBlurSub : public SCFilterBase {
 public:
@@ -31,5 +33,7 @@ public:
 protected:
     float widthOffset = 0.0f, heightOffset = 0.0f;
 };
+
+}
 
 #endif /* SCFilterBlurSub_hpp */

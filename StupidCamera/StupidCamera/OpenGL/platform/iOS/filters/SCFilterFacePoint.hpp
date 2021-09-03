@@ -10,6 +10,8 @@
 #include "SCFilterBackgroundPoint.hpp"
 #include "SCFilterFaceBase.hpp"
 
+namespace effect {
+
 /// 画人脸点的滤镜
 class SCFilterFacePoint : public SCFilterBackgroundPoint, SCFilterFaceBase {
 public:
@@ -21,5 +23,7 @@ public:
     /// @param faceData 人脸数据
     virtual void setFaceData(SCFaceData *faceData) override;
 };
+
+}
 
 #endif /* SCFilterFacePoint_hpp */

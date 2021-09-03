@@ -8,6 +8,8 @@
 #include <string.h>
 #include "DelaunayTriangle.hpp"
 
+namespace effect {
+
 SCFilterPoint::~SCFilterPoint() {
     SAFE_DELETE_ARRAY(this->points);
 }
@@ -44,4 +46,6 @@ void SCFilterPoint::setPoints(std::vector<BasePoint> points) {
     if (pointsCount > 0) {
         memcpy(this->points, &points[0], sizeof(BasePoint) * points.size());
     }
+}
+
 }

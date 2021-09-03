@@ -9,6 +9,8 @@
 
 #define MAX_SMALL_FACE_DEGREE 0.03
 
+namespace effect {
+
 void SCFilterSmallHead::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     SCFilterBackgroundMesh::renderToFrameBuffer(outputFrameBuffer);
 }
@@ -53,3 +55,4 @@ void SCFilterSmallHead::changeSmallFacePoint(BasePoint *facePoint) {
     facePoint[4].y -= (facePoint[4].y - facePoint[0].y) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
 }
 
+}

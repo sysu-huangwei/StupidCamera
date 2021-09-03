@@ -11,6 +11,8 @@
 #include <vector>
 #include "BaseDefine.h"
 
+namespace effect {
+
 /// 画线的滤镜
 class SCFilterLine : public SCFilterBase {
 public:
@@ -34,5 +36,7 @@ protected:
     float *lines = nullptr;
     int linesCount = 0;
 };
+
+}
 
 #endif /* SCFilterLine_hpp */

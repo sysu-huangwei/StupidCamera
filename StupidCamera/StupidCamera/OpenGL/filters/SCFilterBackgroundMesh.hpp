@@ -10,6 +10,8 @@
 #include "SCFilterCopy.hpp"
 #include "SCFilterMesh.hpp"
 
+namespace effect {
+
 /// 画背景+三角网格的滤镜
 class SCFilterBackgroundMesh : public SCFilterBase {
 public:
@@ -47,5 +49,7 @@ protected:
     SCFilterCopy copyFilter;
     SCFilterMesh meshFilter;
 };
+
+}
 
 #endif /* SCFilterBackgroundMesh_hpp */

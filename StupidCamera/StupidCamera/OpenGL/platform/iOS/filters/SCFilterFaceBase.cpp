@@ -6,7 +6,7 @@
 
 #include "SCFilterFaceBase.hpp"
 
-
+namespace effect {
 
 SCFilterFaceBase::~SCFilterFaceBase() {
     if (faceData) {
@@ -22,4 +22,6 @@ void SCFilterFaceBase::setFaceData(SCFaceData *faceData) {
             copySCFaceData(faceData, this->faceData);
         }
     }
+}
+
 }

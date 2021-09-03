@@ -10,6 +10,8 @@
 #include "SCFilterBackgroundMesh.hpp"
 #include "SCFilterFaceBase.hpp"
 
+namespace effect {
+
 /// 画背景+三角网格的滤镜
 class SCFilterSmallHead : public SCFilterBackgroundMesh, SCFilterFaceBase {
 public:
@@ -38,5 +40,7 @@ protected:
     /// @param smallHeadDegree 小头程度，0~1
     virtual void setSmallHeadDegree(float smallHeadDegree);
 };
+
+}
 
 #endif /* SCFilterSmallHead_hpp */

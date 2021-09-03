@@ -6,6 +6,7 @@
 
 #include "SCFilterBlur.hpp"
 
+namespace effect {
 
 void SCFilterBlur::init() {
     blurFilterH.init();
@@ -42,4 +43,6 @@ void SCFilterBlur::scaleWH(int &width, int &height, int maxLength) {
     float scale = (float)maxLength / (float)shortEdge;
     width = (int)((float)width * scale);
     height = (int)((float)height * scale);
+}
+
 }

@@ -8,6 +8,8 @@
 #include <mutex>
 #include "BaseDefine.h"
 
+namespace effect {
+
 static std::shared_ptr<ProgramPool> programPoolSharedInstance;
 static std::mutex programPoolSharedInstanceLock;
 
@@ -40,4 +42,6 @@ void ProgramPool::clearProgramFromPool() {
         SAFE_DELETE((*it).second);
     }
     programCache.clear();
+}
+
 }

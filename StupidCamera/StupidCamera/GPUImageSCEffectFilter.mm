@@ -11,7 +11,7 @@
 
 @interface GPUImageSCEffectFilter()
 {
-    SCEffectEngine *effectEngine;
+    effect::SCEffectEngine *effectEngine;
 }
 @end
 
@@ -21,7 +21,7 @@
     if (self = [super init]) {
         runSynchronouslyOnVideoProcessingQueue(^{
             [GPUImageContext useImageProcessingContext];
-            self->effectEngine = new SCEffectEngine();
+            self->effectEngine = new effect::SCEffectEngine();
             self->effectEngine->init();
         });
     }
@@ -59,8 +59,8 @@
         [outputFramebuffer lock];
     }
     
-    FrameBuffer inputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(firstInputFramebuffer);
-    FrameBuffer outputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(outputFramebuffer);
+    effect::FrameBuffer inputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(firstInputFramebuffer);
+    effect::FrameBuffer outputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(outputFramebuffer);
     
     self->effectEngine->setInputFrameBuffer(&inputFrameBuffer);
     

@@ -9,6 +9,8 @@
 #include "ProgramPool.hpp"
 #include "SCBaseGLUtils.hpp"
 
+namespace effect {
+
 void SCFilterBase::init() {
     
 }
@@ -47,4 +49,6 @@ void SCFilterBase::setEnableRender(bool enableRender) {
 
 void SCFilterBase::setParams(const std::map<std::string, std::string> &param) {
     
+}
+
 }

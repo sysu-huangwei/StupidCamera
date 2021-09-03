@@ -9,6 +9,8 @@
 
 #include "SCFilterBase.hpp"
 
+namespace effect {
+
 /// 画原图的滤镜
 class SCFilterCopy : public SCFilterBase {
 public:
@@ -24,5 +26,7 @@ public:
     virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
 
 };
+
+}
 
 #endif /* SCFilterCopy_hpp */

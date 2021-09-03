@@ -10,6 +10,8 @@
 #include "SCFilterCopy.hpp"
 #include "SCFilterLine.hpp"
 
+namespace effect {
+
 /// 画背景+线格的滤镜
 class SCFilterBackgroundLine : public SCFilterBase {
 public:
@@ -44,5 +46,7 @@ protected:
     SCFilterCopy copyFilter;
     SCFilterLine lineFilter;
 };
+
+}
 
 #endif /* SCFilterBackgroundLine_hpp */

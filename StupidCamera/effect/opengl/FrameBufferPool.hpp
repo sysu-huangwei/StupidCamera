@@ -12,6 +12,8 @@
 #include <vector>
 #include "FrameBuffer.hpp"
 
+namespace effect {
+
 /// 全局FBO缓存池
 class FrameBufferPool {
 public:
@@ -39,5 +41,7 @@ private:
     
     std::string getTextureKey(int width, int height, bool isOnlyTexture, TextureOptions textureOptions);
 };
+
+}
 
 #endif /* FrameBufferPool_hpp */

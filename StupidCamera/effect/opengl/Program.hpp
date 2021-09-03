@@ -20,6 +20,8 @@
 #import <OpenGLES/ES2/glext.h>
 #endif
 
+namespace effect {
+
 /// GL Program封装，API都需要在GL线程调用
 class Program {
 public:
@@ -80,5 +82,7 @@ private:
     std::map<std::string, GLint> locationMap;
     
 };
+
+}
 
 #endif /* Program_hpp */

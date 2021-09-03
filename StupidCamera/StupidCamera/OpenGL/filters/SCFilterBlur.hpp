@@ -11,6 +11,8 @@
 
 #include "SCFilterBlurSub.hpp"
 
+namespace effect {
+
 /// 模糊封装
 class SCFilterBlur : public SCFilterBase {
 public:
@@ -47,5 +49,7 @@ protected:
     /// @param maxLength 短边最大的长度
     void scaleWH(int &width, int &height, int maxLength = DEFAULT_MAX_LENGTH);
 };
+
+}
 
 #endif /* SCFilterBlur_hpp */

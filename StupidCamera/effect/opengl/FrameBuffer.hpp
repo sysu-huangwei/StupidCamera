@@ -18,6 +18,8 @@
 #import <OpenGLES/ES2/glext.h>
 #endif
 
+namespace effect {
+
 typedef struct TextureOptions {
     GLenum minFilter;
     GLenum magFilter;
@@ -87,5 +89,8 @@ private:
     void createTexture();
     void createAndBindFrameBuffer();
 };
+
+}
+
 
 #endif /* FrameBuffer_hpp */

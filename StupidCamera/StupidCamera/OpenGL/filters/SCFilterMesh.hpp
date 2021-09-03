@@ -11,6 +11,8 @@
 #include "SCFilterBase.hpp"
 #include "BaseDefine.h"
 
+namespace effect {
+
 /// 画三角网格的滤镜
 class SCFilterMesh : public SCFilterBase {
 public:
@@ -41,5 +43,7 @@ protected:
     unsigned int *meshIndex = nullptr;
     int indexArrayCount = 0;
 };
+
+}
 
 #endif /* SCFilterMesh_hpp */

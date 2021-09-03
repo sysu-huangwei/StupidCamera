@@ -6,6 +6,7 @@
 
 #include "SCFilterSmooth.hpp"
 
+namespace effect {
 
 void SCFilterSmooth::init() {
     blurFilter.init();
@@ -63,4 +64,6 @@ void SCFilterSmooth::setParams(const std::map<std::string, std::string> &param) 
             alpha = std::stof((*it).second);
         }
     }
+}
+
 }

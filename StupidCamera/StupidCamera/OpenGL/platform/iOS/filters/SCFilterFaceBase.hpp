@@ -9,6 +9,8 @@
 
 #include "SCFaceData.hpp"
 
+namespace effect {
+
 /// 需要用到人脸数据的所有滤镜的基类
 class SCFilterFaceBase {
 public:
@@ -22,5 +24,7 @@ public:
 protected:
     SCFaceData *faceData = NULL;
 };
+
+}
 
 #endif /* SCFilterFaceBase_hpp */

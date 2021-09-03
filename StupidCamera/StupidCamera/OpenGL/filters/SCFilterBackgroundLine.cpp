@@ -6,6 +6,7 @@
 
 #include "SCFilterBackgroundLine.hpp"
 
+namespace effect {
 
 void SCFilterBackgroundLine::init() {
     copyFilter.init();
@@ -34,4 +35,6 @@ void SCFilterBackgroundLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer)
 
 void SCFilterBackgroundLine::setLines(std::vector<BaseLine> lines) {
     lineFilter.setLines(lines);
+}
+
 }

@@ -7,6 +7,8 @@
 #include "SCFilterLine.hpp"
 #include <string.h>
 
+namespace effect {
+
 void SCFilterLine::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("line", "line");
 }
@@ -40,4 +42,6 @@ void SCFilterLine::setLines(std::vector<BaseLine> lines) {
     if (linesCount > 0) {
         memcpy(this->lines, &lines[0], sizeof(BaseLine) * lines.size());
     }
+}
+
 }

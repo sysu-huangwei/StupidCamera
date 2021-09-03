@@ -9,6 +9,8 @@
 
 #include "SCFilterBase.hpp"
 
+namespace effect {
+
 /// LUT
 class SCFilterLut : public SCFilterBase {
 public:
@@ -42,5 +44,7 @@ protected:
     /// @param alpha 滤镜程度，0.0 ~ 1.0
     void setAlpha(float alpha);
 };
+
+}
 
 #endif /* SCFilterLut_hpp */

@@ -9,6 +9,8 @@
 
 #include "SCFilterBase.hpp"
 
+namespace effect {
+
 /// 模糊
 class SCFilterSharpenUSM : public SCFilterBase {
 public:
@@ -36,5 +38,7 @@ protected:
     float widthOffset = 0.0f, heightOffset = 0.0f;
     float alpha = 1.0f;
 };
+
+}
 
 #endif /* SCFilterSharpen_hpp */

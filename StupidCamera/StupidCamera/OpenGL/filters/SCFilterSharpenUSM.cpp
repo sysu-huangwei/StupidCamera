@@ -6,6 +6,8 @@
 
 #include "SCFilterSharpenUSM.hpp"
 
+namespace effect {
+
 void SCFilterSharpenUSM::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("sharpen_USM", "sharpen_USM");
 }
@@ -49,4 +51,6 @@ void SCFilterSharpenUSM::setParams(const std::map<std::string, std::string> &par
             alpha = std::stof((*it).second);
         }
     }
+}
+
 }

@@ -6,6 +6,7 @@
 
 #include "SCFilterBackgroundPoint.hpp"
 
+namespace effect {
 
 void SCFilterBackgroundPoint::init() {
     copyFilter.init();
@@ -34,4 +35,6 @@ void SCFilterBackgroundPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer
 
 void SCFilterBackgroundPoint::setPoints(std::vector<BasePoint> points) {
     pointFilter.setPoints(points);
+}
+
 }

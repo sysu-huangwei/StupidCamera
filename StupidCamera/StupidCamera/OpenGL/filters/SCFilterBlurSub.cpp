@@ -6,6 +6,8 @@
 
 #include "SCFilterBlurSub.hpp"
 
+namespace effect {
+
 void SCFilterBlurSub::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("sample_9x9", "blur_surface_9x9");
 }
@@ -38,4 +40,6 @@ void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 void SCFilterBlurSub::setOffset(float widthOffset, float heightOffset) {
     this->widthOffset = widthOffset;
     this->heightOffset = heightOffset;
+}
+
 }

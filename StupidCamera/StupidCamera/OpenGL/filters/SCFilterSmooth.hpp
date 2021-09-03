@@ -9,6 +9,8 @@
 
 #include "SCFilterBlur.hpp"
 
+namespace effect {
+
 /// 模糊
 class SCFilterSmooth : public SCFilterBase {
 public:
@@ -44,5 +46,7 @@ protected:
     
     SCFilterBlur blurFilter;
 };
+
+}
 
 #endif /* SCFilterSmooth_hpp */

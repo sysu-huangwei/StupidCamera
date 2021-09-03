@@ -18,6 +18,6 @@ extern "C" {
 
 NS_ASSUME_NONNULL_BEGIN
 
-FrameBuffer getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer);
+effect::FrameBuffer getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer);
 
 NS_ASSUME_NONNULL_END

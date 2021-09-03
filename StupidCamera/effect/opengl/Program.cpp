@@ -7,6 +7,8 @@
 #include "Program.hpp"
 #include "BaseLog.h"
 
+namespace effect {
+
 void Program::init(std::string vertexSource, std::string fragmentSource) {
     programID = createProgram(vertexSource.c_str(), fragmentSource.c_str());
 }
@@ -133,4 +135,6 @@ GLint Program::getAttributeLocation(std:: string name) {
     } else {
         return locationMap[name];
     }
+}
+
 }

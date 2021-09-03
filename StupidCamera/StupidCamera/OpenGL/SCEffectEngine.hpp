@@ -14,6 +14,8 @@
 #include "SCFilterSmooth.hpp"
 #include "SCFilterSharpenUSM.hpp"
 
+namespace effect {
+
 class SCEffectEngine {
 public:
     SCEffectEngine();
@@ -58,5 +60,7 @@ private:
     SCFilterSmooth *smoothFilter;
     SCFilterSharpenUSM *sharpenFilter;
 };
+
+}
 
 #endif /* SCEffectEngine_hpp */

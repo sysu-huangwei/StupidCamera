@@ -11,6 +11,8 @@
 #include "SCFilterBase.hpp"
 #include "BaseDefine.h"
 
+namespace effect {
+
 /// 画点的滤镜
 class SCFilterPoint : public SCFilterBase {
 public:
@@ -34,4 +36,7 @@ protected:
     float *points = nullptr;
     int pointsCount = 0;
 };
+
+}
+
 #endif /* SCFilterPoint_hpp */
