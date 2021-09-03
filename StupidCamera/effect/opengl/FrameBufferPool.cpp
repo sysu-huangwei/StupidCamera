@@ -6,7 +6,7 @@
 
 #include "FrameBufferPool.hpp"
 #include <mutex>
-#include "SCBaseDefine.h"
+#include "BaseDefine.h"
 
 static std::shared_ptr<FrameBufferPool> frameBufferPoolSharedInstance;
 static std::mutex frameBufferPoolSharedInstanceLock;

@@ -7,7 +7,7 @@
 #import "FileUtilsForIOS.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "SCBaseDefine.h"
+#import "BaseDefine.h"
 
 const char *getResourcePathForIOS() {
     return [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"GLResource"].UTF8String;

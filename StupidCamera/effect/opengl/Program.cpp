@@ -5,7 +5,7 @@
 //
 
 #include "Program.hpp"
-#include "SCBaseLog.h"
+#include "BaseLog.h"
 
 void Program::init(std::string vertexSource, std::string fragmentSource) {
     programID = createProgram(vertexSource.c_str(), fragmentSource.c_str());

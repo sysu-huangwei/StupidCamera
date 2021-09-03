@@ -32,6 +32,6 @@ void SCFilterBackgroundLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer)
     lineFilter.renderToFrameBuffer(outputFrameBuffer);
 }
 
-void SCFilterBackgroundLine::setLines(std::vector<SCLine> lines) {
+void SCFilterBackgroundLine::setLines(std::vector<BaseLine> lines) {
     lineFilter.setLines(lines);
 }

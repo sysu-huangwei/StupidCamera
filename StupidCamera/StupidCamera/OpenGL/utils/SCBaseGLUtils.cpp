@@ -5,8 +5,8 @@
 //
 
 #include "SCBaseGLUtils.hpp"
-#include "SCBaseDefine.h"
-#include "SCBaseLog.h"
+#include "BaseDefine.h"
+#include "BaseLog.h"
 #ifdef PLATFORM_IOS
 #include "FileUtilsForIOS.h"
 #endif

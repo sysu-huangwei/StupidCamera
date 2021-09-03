@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
 		710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 710F63642690134700976E1A /* FrameBufferPool.cpp */; };
-		71E05CBD26D23A340061DE6D /* 磨皮原图.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */; };
 		71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */; };
 		FC0BE59C26D3BEC1000F848E /* SCFilterSharpenUSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
@@ -45,7 +44,7 @@
 		FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */; };
 		FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */; };
 		FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */; };
-		FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */; };
+		FCEF7AFC2627047C00F20ED0 /* BaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* BaseLog.cpp */; };
 		FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */; };
 		FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */; };
 		FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */; };
@@ -63,7 +62,6 @@
 		0DFE828F9FB7D34B38FA0C91 /* Pods-StupidCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.debug.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		710F63642690134700976E1A /* FrameBufferPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBufferPool.cpp; sourceTree = "<group>"; };
 		710F63652690134700976E1A /* FrameBufferPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBufferPool.hpp; sourceTree = "<group>"; };
-		71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "磨皮原图.jpeg"; sourceTree = "<group>"; };
 		71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSmooth.cpp; sourceTree = "<group>"; };
 		71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSmooth.hpp; sourceTree = "<group>"; };
 		FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSharpenUSM.cpp; sourceTree = "<group>"; };
@@ -118,20 +116,20 @@
 		FCADC6CB26CF92F700AF2497 /* GLResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GLResource; sourceTree = "<group>"; };
 		FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBaseTwoInput.cpp; sourceTree = "<group>"; };
 		FCADC6CF26CFAB6F00AF2497 /* SCFilterBaseTwoInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBaseTwoInput.hpp; sourceTree = "<group>"; };
-		FCD3E4C126D636BD00F8D3BE /* SCPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCPlatform.h; sourceTree = "<group>"; };
+		FCD3E4C126D636BD00F8D3BE /* BasePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePlatform.h; sourceTree = "<group>"; };
 		FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlur.cpp; sourceTree = "<group>"; };
 		FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlur.hpp; sourceTree = "<group>"; };
 		FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlurSub.cpp; sourceTree = "<group>"; };
 		FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlurSub.hpp; sourceTree = "<group>"; };
 		FCEB086226CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUtilsForIOSGPUImage.h; sourceTree = "<group>"; };
 		FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLUtilsForIOSGPUImage.mm; sourceTree = "<group>"; };
-		FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseLog.h; sourceTree = "<group>"; };
+		FCEF7AF12627047C00F20ED0 /* BaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLog.h; sourceTree = "<group>"; };
 		FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBase.cpp; sourceTree = "<group>"; };
 		FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterCopy.hpp; sourceTree = "<group>"; };
-		FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBaseDefine.h; sourceTree = "<group>"; };
+		FCEF7AF42627047C00F20ED0 /* BaseDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefine.h; sourceTree = "<group>"; };
 		FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCBaseGLUtils.cpp; sourceTree = "<group>"; };
 		FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBase.hpp; sourceTree = "<group>"; };
-		FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCBaseLog.cpp; sourceTree = "<group>"; };
+		FCEF7AF72627047C00F20ED0 /* BaseLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLog.cpp; sourceTree = "<group>"; };
 		FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterCopy.cpp; sourceTree = "<group>"; };
 		FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCBaseGLUtils.hpp; sourceTree = "<group>"; };
 		FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterLut.cpp; sourceTree = "<group>"; };
@@ -192,7 +190,7 @@
 		FC6A35452624358100CA4434 = {
 			isa = PBXGroup;
 			children = (
-				71E05CBC26D23A340061DE6D /* 磨皮原图.jpeg */,
+				FCCB1A9126E2120300F09C7F /* effect */,
 				FC6A35502624358100CA4434 /* StupidCamera */,
 				FC6A354F2624358100CA4434 /* Products */,
 				712F004BBF0E3CDCE92ED728 /* Pods */,
@@ -240,18 +238,10 @@
 		FC7AAADE269332F100CA4E75 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				FCEF7AF42627047C00F20ED0 /* SCBaseDefine.h */,
-				FCD3E4C126D636BD00F8D3BE /* SCPlatform.h */,
-				FCEF7AF72627047C00F20ED0 /* SCBaseLog.cpp */,
-				FCEF7AF12627047C00F20ED0 /* SCBaseLog.h */,
-				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
-				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
-				710F63642690134700976E1A /* FrameBufferPool.cpp */,
-				710F63652690134700976E1A /* FrameBufferPool.hpp */,
-				FC7AAAA92692B2B500CA4E75 /* Program.cpp */,
-				FC7AAAAA2692B2B500CA4E75 /* Program.hpp */,
-				FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */,
-				FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */,
+				FCEF7AF42627047C00F20ED0 /* BaseDefine.h */,
+				FCD3E4C126D636BD00F8D3BE /* BasePlatform.h */,
+				FCEF7AF72627047C00F20ED0 /* BaseLog.cpp */,
+				FCEF7AF12627047C00F20ED0 /* BaseLog.h */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -263,6 +253,30 @@
 				FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		FCCB1A9126E2120300F09C7F /* effect */ = {
+			isa = PBXGroup;
+			children = (
+				FC7AAADE269332F100CA4E75 /* base */,
+				FCCB1A9326E2206700F09C7F /* opengl */,
+			);
+			path = effect;
+			sourceTree = "<group>";
+		};
+		FCCB1A9326E2206700F09C7F /* opengl */ = {
+			isa = PBXGroup;
+			children = (
+				FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */,
+				FC22B6E3268D6251001095B2 /* FrameBuffer.hpp */,
+				710F63642690134700976E1A /* FrameBufferPool.cpp */,
+				710F63652690134700976E1A /* FrameBufferPool.hpp */,
+				FC7AAAA92692B2B500CA4E75 /* Program.cpp */,
+				FC7AAAAA2692B2B500CA4E75 /* Program.hpp */,
+				FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */,
+				FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */,
+			);
+			path = opengl;
 			sourceTree = "<group>";
 		};
 		FCEB086926CF566D001ACDEF /* iOS */ = {
@@ -354,7 +368,6 @@
 				FCADC6CB26CF92F700AF2497 /* GLResource */,
 				FCCB18D026DE26F700F09C7F /* utils */,
 				FCEB086D26CF57AB001ACDEF /* filters */,
-				FC7AAADE269332F100CA4E75 /* base */,
 				FCEF7B0D2627104800F20ED0 /* platform */,
 				FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */,
 				FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */,
@@ -446,7 +459,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71E05CBD26D23A340061DE6D /* 磨皮原图.jpeg in Resources */,
 				FC255650269834E80083C675 /* Resource in Resources */,
 				FC7AAAE82694477500CA4E75 /* SCEditViewController.xib in Resources */,
 				FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */,
@@ -536,7 +548,7 @@
 				FC6A35642624358100CA4434 /* main.m in Sources */,
 				FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */,
 				FCEF7CFA262ECE3700F20ED0 /* triangle.cpp in Sources */,
-				FCEF7AFC2627047C00F20ED0 /* SCBaseLog.cpp in Sources */,
+				FCEF7AFC2627047C00F20ED0 /* BaseLog.cpp in Sources */,
 				FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */,
 				FCADC6D026CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,

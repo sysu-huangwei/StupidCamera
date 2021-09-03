@@ -8,7 +8,7 @@
 #define DelaunayTriangle_hpp
 
 #include <vector>
-#include "SCBaseDefine.h"
+#include "BaseDefine.h"
 
 class DelaunayTriangle {
 public:
@@ -23,7 +23,7 @@ public:
     /// 三角剖分算法
     /// @param points 输入点，归一化，0~1
     /// @return 三角形
-    static std::vector<SCTriangle> getTriangles(std::vector<SCPoint> points);
+    static std::vector<BaseTriangle> getTriangles(std::vector<BasePoint> points);
 };
 
 #endif /* DelaunayTriangle_hpp */

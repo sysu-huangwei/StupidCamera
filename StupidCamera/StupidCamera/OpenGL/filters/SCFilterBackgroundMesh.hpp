@@ -41,7 +41,7 @@ public:
     /// @param meshStd 标准点位信息
     /// @param meshIndex 下标索引数组
     /// @param indexArrayCount meshIndex数组长度
-    virtual void setMesh(std::vector<SCPoint> mesh, std::vector<SCPoint> meshStd, unsigned int *meshIndex, int indexArrayCount);
+    virtual void setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount);
     
 protected:
     SCFilterCopy copyFilter;

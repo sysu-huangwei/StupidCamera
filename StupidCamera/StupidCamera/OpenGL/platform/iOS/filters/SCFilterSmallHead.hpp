@@ -32,7 +32,7 @@ public:
 protected:
     float smallHeadDegree = 0.0f;
     
-    void changeSmallFacePoint(SCPoint *facePoint);
+    void changeSmallFacePoint(BasePoint *facePoint);
     
     /// 设置小头程度
     /// @param smallHeadDegree 小头程度，0~1

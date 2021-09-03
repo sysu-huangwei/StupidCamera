@@ -35,13 +35,13 @@ void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 }
 
 
-void SCFilterPoint::setPoints(std::vector<SCPoint> points) {
+void SCFilterPoint::setPoints(std::vector<BasePoint> points) {
     if ((int)points.size() != pointsCount) {
         SAFE_DELETE_ARRAY(this->points);
         this->pointsCount = (int)points.size();
         this->points = new float[points.size() * 2];
     }
     if (pointsCount > 0) {
-        memcpy(this->points, &points[0], sizeof(SCPoint) * points.size());
+        memcpy(this->points, &points[0], sizeof(BasePoint) * points.size());
     }
 }

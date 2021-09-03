@@ -1,11 +1,11 @@
 //
-//  SCPlatform.h
+//  BasePlatform.h
 //
 //  Created by rayyy on 2021/8/25.
 //
 
-#ifndef SCPlatform_h
-#define SCPlatform_h
+#ifndef BASEPLATFORM_H
+#define BASEPLATFORM_H
 
 #if defined(WIN32) || defined(_WIN32) || defined(_WIN32_) || defined(WIN64) || defined(_WIN64) || defined(_WIN64_)
 #define PLATFORM_WINDOWS 1 //Windows平台
@@ -19,4 +19,4 @@
 #define PLATFORM_UNKNOWN 1
 #endif
 
-#endif /* SCPlatform_h */
+#endif /* BASEPLATFORM_H */

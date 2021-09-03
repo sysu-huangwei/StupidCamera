@@ -8,7 +8,7 @@
 #define SCBaseGLUtils_hpp
 
 #include <string>
-#include "SCPlatform.h"
+#include "BasePlatform.h"
 
 #if PLATFORM_ANDROID
 #include <GLES2/gl2.h>

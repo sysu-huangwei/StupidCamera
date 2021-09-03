@@ -2,10 +2,10 @@
 // Created by rayyyhuang on 2020/4/20.
 //
 
-#ifndef SCBASELOG_H
-#define SCBASELOG_H
+#ifndef BASELOG_H
+#define BASELOG_H
 
-#include "SCPlatform.h"
+#include "BasePlatform.h"
 
 #define LOG_TAG "rayyy"
 
@@ -56,4 +56,4 @@ extern "C" int getBaseLogLevel();
 #endif // !PLATFORM_ANDROID
 
 
-#endif //SCBASELOG_H
+#endif //BASELOG_H

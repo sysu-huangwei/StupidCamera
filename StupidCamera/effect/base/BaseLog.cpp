@@ -2,7 +2,7 @@
 // Created by rayyyhuang on 2020/4/20.
 //
 
-#include "SCBaseLog.h"
+#include "BaseLog.h"
 
 static int sBaseLogLevel = BASE_LOG_LEVEL_ALL;
 

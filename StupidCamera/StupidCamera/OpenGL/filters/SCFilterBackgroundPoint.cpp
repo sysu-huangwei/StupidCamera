@@ -32,6 +32,6 @@ void SCFilterBackgroundPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer
     pointFilter.renderToFrameBuffer(outputFrameBuffer);
 }
 
-void SCFilterBackgroundPoint::setPoints(std::vector<SCPoint> points) {
+void SCFilterBackgroundPoint::setPoints(std::vector<BasePoint> points) {
     pointFilter.setPoints(points);
 }

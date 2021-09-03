@@ -16,11 +16,11 @@ void SCFilterSmallHead::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
 void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
     SCFilterFaceBase::setFaceData(faceData);
     if (faceData) {
-        SCPoint facePointChanged[FACE_POINT_COUNT];
-        memcpy(facePointChanged, faceData->faces[0].facePoints, sizeof(SCPoint) * FACE_POINT_COUNT);
+        BasePoint facePointChanged[FACE_POINT_COUNT];
+        memcpy(facePointChanged, faceData->faces[0].facePoints, sizeof(BasePoint) * FACE_POINT_COUNT);
         changeSmallFacePoint(facePointChanged);
-        meshFilter.setMesh(std::vector<SCPoint>(facePointChanged, facePointChanged + sizeof(facePointChanged) / sizeof(SCPoint)),
-                           std::vector<SCPoint>(faceData->faces[0].facePoints, faceData->faces[0].facePoints + sizeof(faceData->faces[0].facePoints) / sizeof(SCPoint)),
+        meshFilter.setMesh(std::vector<BasePoint>(facePointChanged, facePointChanged + sizeof(facePointChanged) / sizeof(BasePoint)),
+                           std::vector<BasePoint>(faceData->faces[0].facePoints, faceData->faces[0].facePoints + sizeof(faceData->faces[0].facePoints) / sizeof(BasePoint)),
                            FaceTriangleIndex,
                            FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);
     }
@@ -39,7 +39,7 @@ void SCFilterSmallHead::setSmallHeadDegree(float smallHeadDegree) {
     this->smallHeadDegree = std::max(0.0f, std::min(1.0f, smallHeadDegree));
 }
 
-void SCFilterSmallHead::changeSmallFacePoint(SCPoint *facePoint) {
+void SCFilterSmallHead::changeSmallFacePoint(BasePoint *facePoint) {
     facePoint[1].x += (facePoint[0].x - facePoint[1].x) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
     facePoint[1].y += (facePoint[0].y - facePoint[1].y) * MAX_SMALL_FACE_DEGREE * smallHeadDegree;
     

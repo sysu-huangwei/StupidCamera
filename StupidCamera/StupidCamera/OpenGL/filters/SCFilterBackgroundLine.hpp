@@ -38,7 +38,7 @@ public:
     
     /// 设置需要画的线【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param lines 线信息，需要归一化到0到1的点
-    virtual void setLines(std::vector<SCLine> lines);
+    virtual void setLines(std::vector<BaseLine> lines);
     
 protected:
     SCFilterCopy copyFilter;

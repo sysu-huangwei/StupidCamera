@@ -5,7 +5,7 @@
 //
 
 #include "SCEffectEngine.hpp"
-#include "SCBaseDefine.h"
+#include "BaseDefine.h"
 #include "FrameBufferPool.hpp"
 #include "ProgramPool.hpp"
 

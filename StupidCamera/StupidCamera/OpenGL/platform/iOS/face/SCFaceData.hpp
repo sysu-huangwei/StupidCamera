@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "SCBaseDefine.h"
+#include "BaseDefine.h"
 
 #define MAX_FACE_COUNT 5
 
@@ -28,8 +28,8 @@ typedef struct {
     float rectOriginX, rectOriginY;
     float rectWidth, rectHeight;
     
-    SCPoint facePoints[FACE_POINT_COUNT];
-    SCTriangle faceTrianlges[FACE_TRIANGLE_COUNT];
+    BasePoint facePoints[FACE_POINT_COUNT];
+    BaseTriangle faceTrianlges[FACE_TRIANGLE_COUNT];
     
     bool hasRollAngle;
     float rollAngle;

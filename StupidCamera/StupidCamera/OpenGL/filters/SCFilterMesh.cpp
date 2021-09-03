@@ -6,7 +6,7 @@
 
 #include "SCFilterMesh.hpp"
 #include <string.h>
-#include "SCBaseLog.h"
+#include "BaseLog.h"
 
 SCFilterMesh::~SCFilterMesh() {
     if (this->mesh) {
@@ -44,7 +44,7 @@ void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
     inputFrameBuffer->unlock();
 }
 
-void SCFilterMesh::setMesh(std::vector<SCPoint> mesh, std::vector<SCPoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
+void SCFilterMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
     if (mesh.size() != meshStd.size() || mesh.empty()) {
         LOGE("Error: SCFilterMesh::setMesh: mesh.size() != meshStd.size(), %lud != %lud", mesh.size(), meshStd.size());
         return;
@@ -59,10 +59,10 @@ void SCFilterMesh::setMesh(std::vector<SCPoint> mesh, std::vector<SCPoint> meshS
         this->meshStd = new float[meshArrayCountNew];
     }
     if (meshArrayCountNew > 0) {
-        memcpy(this->mesh, &mesh[0], sizeof(SCPoint) * mesh.size());
+        memcpy(this->mesh, &mesh[0], sizeof(BasePoint) * mesh.size());
     }
     if (meshArrayCountNew > 0) {
-        memcpy(this->meshStd, &meshStd[0], sizeof(SCPoint) * meshStd.size());
+        memcpy(this->meshStd, &meshStd[0], sizeof(BasePoint) * meshStd.size());
     }
     
     if (indexArrayCount != this->indexArrayCount) {

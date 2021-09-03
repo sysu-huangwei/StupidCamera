@@ -5,7 +5,7 @@
 //
 
 #include "FrameBuffer.hpp"
-#include "SCBaseLog.h"
+#include "BaseLog.h"
 #include "FrameBufferPool.hpp"
 
 const TextureOptions defaultTextureOptions { GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE };

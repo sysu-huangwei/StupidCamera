@@ -7,7 +7,7 @@
 #ifndef FrameBuffer_hpp
 #define FrameBuffer_hpp
 
-#include "SCPlatform.h"
+#include "BasePlatform.h"
 
 #if PLATFORM_ANDROID
 #include <GLES2/gl2.h>

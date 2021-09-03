@@ -9,7 +9,7 @@
 
 #include <vector>
 #include "SCFilterBase.hpp"
-#include "SCBaseDefine.h"
+#include "BaseDefine.h"
 
 /// 画点的滤镜
 class SCFilterPoint : public SCFilterBase {
@@ -28,7 +28,7 @@ public:
     
     /// 设置需要画的点，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param points 点位信息，需要归一化到0到1的点
-    virtual void setPoints(std::vector<SCPoint> points);
+    virtual void setPoints(std::vector<BasePoint> points);
     
 protected:
     float *points = nullptr;
