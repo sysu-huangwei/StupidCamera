@@ -16,6 +16,9 @@ namespace effect {
 class ProgramPool {
 public:
     
+    ProgramPool(const ProgramPool &) = delete;
+    const ProgramPool &operator =(const ProgramPool &) = delete;
+    
     /// 获取全局单例
     static std::shared_ptr<ProgramPool> getSharedInstance();
     
@@ -28,6 +31,9 @@ public:
     void clearProgramFromPool();
     
 private:
+    
+    ~ProgramPool();
+    ProgramPool();
     
     std::map<std::string, Program *> programCache;
 };

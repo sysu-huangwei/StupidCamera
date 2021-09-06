@@ -17,10 +17,19 @@ std::shared_ptr<ProgramPool> ProgramPool::getSharedInstance() {
     if (programPoolSharedInstance == nullptr) {
         std::lock_guard<std::mutex> lock(programPoolSharedInstanceLock);
         if (programPoolSharedInstance == nullptr) {
-            programPoolSharedInstance = std::make_shared<ProgramPool>();
+            struct Constructor : public ProgramPool {};
+            programPoolSharedInstance = std::make_shared<Constructor>();
         }
     }
     return programPoolSharedInstance;
+}
+
+ProgramPool::ProgramPool() {
+    
+}
+
+ProgramPool::~ProgramPool() {
+    
 }
 
 Program* ProgramPool::fetchProgramFromPool(std::string vertexSource, std::string fragmentSource) {

@@ -17,10 +17,19 @@ std::shared_ptr<FrameBufferPool> FrameBufferPool::getSharedInstance() {
     if (frameBufferPoolSharedInstance == nullptr) {
         std::lock_guard<std::mutex> lock(frameBufferPoolSharedInstanceLock);
         if (frameBufferPoolSharedInstance == nullptr) {
-            frameBufferPoolSharedInstance = std::make_shared<FrameBufferPool>();
+            struct Constructor : public FrameBufferPool {};
+            frameBufferPoolSharedInstance = std::make_shared<Constructor>();
         }
     }
     return frameBufferPoolSharedInstance;
+}
+
+FrameBufferPool::FrameBufferPool() {
+    
+}
+
+FrameBufferPool::~FrameBufferPool() {
+    
 }
 
 FrameBuffer *FrameBufferPool::fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture, TextureOptions textureOptions) {
