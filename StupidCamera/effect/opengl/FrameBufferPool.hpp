@@ -18,9 +18,6 @@ namespace effect {
 class FrameBufferPool {
 public:
     
-    FrameBufferPool(const FrameBufferPool &) = delete;
-    const FrameBufferPool &operator =(const FrameBufferPool &) = delete;
-    
     /// 获取全局单例
     static std::shared_ptr<FrameBufferPool> getSharedInstance();
     
@@ -42,6 +39,8 @@ private:
     
     FrameBufferPool();
     ~FrameBufferPool();
+    FrameBufferPool(const FrameBufferPool &) = delete;
+    const FrameBufferPool &operator =(const FrameBufferPool &) = delete;
     
     std::map<std::string, std::vector<FrameBuffer *> > frameBufferCache;
     
