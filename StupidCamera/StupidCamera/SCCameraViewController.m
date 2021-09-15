@@ -33,6 +33,11 @@
     _faceDataDict = [[NSMutableArray alloc] init];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [_camera startCameraCapture];
+}
+
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -159,8 +164,6 @@
         [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Resource/brunch4.png"],
     ];
     _currintLutIndex = 0;
-    
-    [_camera startCameraCapture];
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
