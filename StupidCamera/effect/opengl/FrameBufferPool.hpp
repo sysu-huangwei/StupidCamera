@@ -26,11 +26,11 @@ public:
     /// @param height 高
     /// @param isOnlyTexture 是否只生成纹理，不生成FrameBuffer
     /// @param textureOptions 纹理相关参数
-    FrameBuffer *fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture = false, TextureOptions textureOptions = defaultTextureOptions);
+    std::shared_ptr<FrameBuffer> fetchFrameBufferFromPool(int width, int height, bool isOnlyTexture = false, TextureOptions textureOptions = defaultTextureOptions);
     
     /// 把一个FBO放回缓存池
     /// @param frameBuffer FBO
-    void returnFrameBufferToPool(FrameBuffer *frameBuffer);
+    void returnFrameBufferToPool(std::shared_ptr<FrameBuffer> frameBuffer);
     
     /// 清空缓存池，需要在GL线程
     void clearFrameBufferPool();
@@ -42,7 +42,7 @@ private:
     FrameBufferPool(const FrameBufferPool &) = delete;
     const FrameBufferPool &operator =(const FrameBufferPool &) = delete;
     
-    std::map<std::string, std::vector<FrameBuffer *> > frameBufferCache;
+    std::map<std::string, std::vector<std::shared_ptr<FrameBuffer>>> frameBufferCache;
     
     std::string getTextureKey(int width, int height, bool isOnlyTexture, TextureOptions textureOptions);
 };

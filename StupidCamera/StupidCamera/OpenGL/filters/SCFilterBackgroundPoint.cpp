@@ -23,12 +23,12 @@ void SCFilterBackgroundPoint::resize(int width, int height) {
     pointFilter.resize(width, height);
 }
 
-void SCFilterBackgroundPoint::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+void SCFilterBackgroundPoint::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
     copyFilter.setInputFrameBuffer(inputFrameBuffer);
     pointFilter.setInputFrameBuffer(inputFrameBuffer);
 }
 
-void SCFilterBackgroundPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterBackgroundPoint::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     copyFilter.renderToFrameBuffer(outputFrameBuffer);
     pointFilter.renderToFrameBuffer(outputFrameBuffer);
 }

@@ -21,7 +21,7 @@ void SCFilterLut::release() {
     }
 }
 
-void SCFilterLut::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterLut::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }

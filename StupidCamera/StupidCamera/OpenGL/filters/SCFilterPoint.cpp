@@ -18,7 +18,7 @@ void SCFilterPoint::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("point", "point");
 }
 
-void SCFilterPoint::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterPoint::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !this->points || !outputFrameBuffer) {
         return;
     }

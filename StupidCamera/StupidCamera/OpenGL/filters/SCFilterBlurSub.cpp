@@ -12,7 +12,7 @@ void SCFilterBlurSub::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("sample_9x9", "blur_surface_9x9");
 }
 
-void SCFilterBlurSub::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterBlurSub::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }

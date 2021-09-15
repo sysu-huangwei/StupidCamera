@@ -6,7 +6,7 @@
 
 #import "GLUtilsForIOSGPUImage.h"
 
-effect::FrameBuffer getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer) {
+std::shared_ptr<effect::FrameBuffer> getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer) {
     effect::TextureOptions textureOptions;
     textureOptions.minFilter = frameBuffer.textureOptions.minFilter;
     textureOptions.magFilter = frameBuffer.textureOptions.magFilter;
@@ -15,7 +15,7 @@ effect::FrameBuffer getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer
     textureOptions.internalFormat = frameBuffer.textureOptions.internalFormat;
     textureOptions.format = frameBuffer.textureOptions.format;
     textureOptions.type = frameBuffer.textureOptions.type;
-    effect::FrameBuffer frameBufferCPP;
-    frameBufferCPP.init(frameBuffer.size.width, frameBuffer.size.height, false, textureOptions, frameBuffer.texture, frameBuffer.framebuffer);
+    std::shared_ptr<effect::FrameBuffer> frameBufferCPP = std::make_shared<effect::FrameBuffer>();
+    frameBufferCPP->init(frameBuffer.size.width, frameBuffer.size.height, false, textureOptions, frameBuffer.texture, frameBuffer.framebuffer);
     return frameBufferCPP;
 }

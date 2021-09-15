@@ -13,7 +13,7 @@ void SCFilterLine::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("line", "line");
 }
 
-void SCFilterLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !this->lines || !outputFrameBuffer) {
         return;
     }

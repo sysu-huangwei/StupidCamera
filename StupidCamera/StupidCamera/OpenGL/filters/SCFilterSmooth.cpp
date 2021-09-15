@@ -23,17 +23,17 @@ void SCFilterSmooth::resize(int width, int height) {
     SCFilterBase::resize(width, height);
 }
 
-void SCFilterSmooth::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+void SCFilterSmooth::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
     blurFilter.setInputFrameBuffer(inputFrameBuffer);
     SCFilterBase::setInputFrameBuffer(inputFrameBuffer);
 }
 
-void SCFilterSmooth::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterSmooth::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }
     
-    FrameBuffer *resultFrameBufferInternal = blurFilter.render();
+    std::shared_ptr<FrameBuffer> resultFrameBufferInternal = blurFilter.render();
     
     outputFrameBuffer->activeFrameBuffer();
     

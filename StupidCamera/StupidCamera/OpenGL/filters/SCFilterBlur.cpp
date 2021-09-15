@@ -27,12 +27,12 @@ void SCFilterBlur::resize(int width, int height) {
     blurFilterV.setOffset(0, 1.0f / (float)height);
 }
 
-void SCFilterBlur::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+void SCFilterBlur::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
     blurFilterH.setInputFrameBuffer(inputFrameBuffer);
 }
 
-void SCFilterBlur::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
-    FrameBuffer *resultFrameBufferInternal = blurFilterH.render();
+void SCFilterBlur::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
+    std::shared_ptr<FrameBuffer> resultFrameBufferInternal = blurFilterH.render();
     blurFilterV.setInputFrameBuffer(resultFrameBufferInternal);
     blurFilterV.renderToFrameBuffer(outputFrameBuffer);
     resultFrameBufferInternal->unlock();

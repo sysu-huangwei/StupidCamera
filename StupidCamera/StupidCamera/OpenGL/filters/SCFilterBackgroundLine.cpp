@@ -23,12 +23,12 @@ void SCFilterBackgroundLine::resize(int width, int height) {
     lineFilter.resize(width, height);
 }
 
-void SCFilterBackgroundLine::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+void SCFilterBackgroundLine::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
     copyFilter.setInputFrameBuffer(inputFrameBuffer);
     lineFilter.setInputFrameBuffer(inputFrameBuffer);
 }
 
-void SCFilterBackgroundLine::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterBackgroundLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     copyFilter.renderToFrameBuffer(outputFrameBuffer);
     lineFilter.renderToFrameBuffer(outputFrameBuffer);
 }

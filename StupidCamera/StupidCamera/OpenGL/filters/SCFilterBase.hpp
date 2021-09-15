@@ -49,15 +49,15 @@ public:
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
-    virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer);
+    virtual void setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer);
     
     /// 渲染，必须在GL线程
     /// @return 结果FrameBuffer
-    virtual FrameBuffer *render();
+    virtual std::shared_ptr<FrameBuffer> render();
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
-    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) = 0;
+    virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) = 0;
     
     /// 设置是否开启绘制，禁用绘制的时候会直接返回输入的FrameBuffer
     /// @param enableRender 是否开启绘制
@@ -69,8 +69,8 @@ public:
     
 protected:
     int width = 0, height = 0;
-    Program *program = nullptr;
-    FrameBuffer *inputFrameBuffer = nullptr;
+    std::shared_ptr<Program> program = nullptr;
+    std::shared_ptr<FrameBuffer> inputFrameBuffer = nullptr;
     
     bool enableRender = true;
     

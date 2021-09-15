@@ -31,11 +31,11 @@ public:
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
-    virtual void setInputFrameBuffer(FrameBuffer *inputFrameBuffer) override;
+    virtual void setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) override;
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
-    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
+    virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;
     
     /// 设置参数
     /// @param param 参数

@@ -22,7 +22,7 @@ public:
     /// 从缓存池获取一个Program，需要在GL线程
     /// @param vertexSource 顶点着色器
     /// @param fragmentSource 片段着色器
-    Program* fetchProgramFromPool(std::string vertexSource, std::string fragmentSource);
+    std::shared_ptr<Program> fetchProgramFromPool(std::string vertexSource, std::string fragmentSource);
     
     /// 清空缓存池，需要在GL线程
     void clearProgramFromPool();
@@ -34,7 +34,7 @@ private:
     ProgramPool(const ProgramPool &) = delete;
     const ProgramPool &operator =(const ProgramPool &) = delete;
     
-    std::map<std::string, Program *> programCache;
+    std::map<std::string, std::shared_ptr<Program>> programCache;
 };
 
 }

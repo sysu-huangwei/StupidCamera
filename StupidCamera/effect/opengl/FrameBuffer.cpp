@@ -90,7 +90,7 @@ void FrameBuffer::unlock() {
         if (referenceCount > 0) {
             referenceCount--;
             if (referenceCount == 0) {
-                FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(this);
+                FrameBufferPool::getSharedInstance()->returnFrameBufferToPool(shared_from_this());
             }
         } else {
             LOGE("Error: FrameBuffer::unlock()  referenceCount < 0");

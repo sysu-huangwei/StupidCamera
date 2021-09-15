@@ -34,15 +34,15 @@ public:
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
-    void setInputFrameBuffer(FrameBuffer *inputFrameBuffer);
+    void setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer);
     
     /// 渲染，必须在GL线程
     /// @return 结果FrameBuffer
-    FrameBuffer *render();
+    std::shared_ptr<FrameBuffer> render();
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
-    void renderToFrameBuffer(FrameBuffer *outputFrameBuffer);
+    void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer);
     
     /// 设置人脸数据
     /// @param faceData 人脸数据

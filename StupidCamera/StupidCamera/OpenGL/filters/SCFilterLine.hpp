@@ -26,7 +26,7 @@ public:
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
-    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
+    virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;
     
     /// 设置需要画的线【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param lines 线信息，需要归一化到0到1的点

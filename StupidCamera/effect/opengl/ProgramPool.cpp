@@ -6,7 +6,6 @@
 
 #include "ProgramPool.hpp"
 #include <mutex>
-#include "BaseDefine.h"
 
 namespace effect {
 
@@ -32,12 +31,12 @@ ProgramPool::~ProgramPool() {
     
 }
 
-Program* ProgramPool::fetchProgramFromPool(std::string vertexSource, std::string fragmentSource) {
+std::shared_ptr<Program> ProgramPool::fetchProgramFromPool(std::string vertexSource, std::string fragmentSource) {
     std::string key = vertexSource + "_" + fragmentSource;
     if (programCache.find(key) != programCache.end()) {
         return programCache.at(key);
     } else {
-        Program *program = new Program();
+        std::shared_ptr<Program> program = std::make_shared<Program>();
         program->init(vertexSource, fragmentSource);
         programCache[key] = program;
         return program;
@@ -45,10 +44,9 @@ Program* ProgramPool::fetchProgramFromPool(std::string vertexSource, std::string
 }
 
 void ProgramPool::clearProgramFromPool() {
-    std::map<std::string, Program *>::iterator it;
+    std::map<std::string, std::shared_ptr<Program>>::iterator it;
     for (it = programCache.begin(); it != programCache.end(); it++) {
         (*it).second->release();
-        SAFE_DELETE((*it).second);
     }
     programCache.clear();
 }

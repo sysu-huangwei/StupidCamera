@@ -25,7 +25,7 @@ void SCFilterMesh::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("mesh", "mesh");
 }
 
-void SCFilterMesh::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterMesh::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }

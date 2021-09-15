@@ -29,16 +29,16 @@ void SCFilterBase::release() {
     
 }
 
-void SCFilterBase::setInputFrameBuffer(FrameBuffer *inputFrameBuffer) {
+void SCFilterBase::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
     this->inputFrameBuffer = inputFrameBuffer;
     this->inputFrameBuffer->lock();
 }
 
-FrameBuffer *SCFilterBase::render() {
+std::shared_ptr<FrameBuffer> SCFilterBase::render() {
     if (!enableRender) {
         return inputFrameBuffer;
     }
-    FrameBuffer *outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
+    std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
     renderToFrameBuffer(outputFrameBuffer);
     return outputFrameBuffer;
 }

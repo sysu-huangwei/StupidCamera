@@ -18,7 +18,7 @@ void SCFilterSharpenUSM::resize(int width, int height) {
     heightOffset = 1.0f / (float)height;
 }
 
-void SCFilterSharpenUSM::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterSharpenUSM::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }

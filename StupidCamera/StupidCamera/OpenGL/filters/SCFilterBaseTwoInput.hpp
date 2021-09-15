@@ -17,11 +17,11 @@ public:
     
     /// 设置第二输入图像的FBO
     /// @param secondInputFrameBuffer 第二输入图像的FBO
-    virtual void setSecondInputFrameBuffer(FrameBuffer *secondInputFrameBuffer);
+    virtual void setSecondInputFrameBuffer(std::shared_ptr<FrameBuffer> secondInputFrameBuffer);
     
 protected:
     
-    FrameBuffer *secondInputFrameBuffer = nullptr;
+    std::shared_ptr<FrameBuffer> secondInputFrameBuffer = nullptr;
 
 };
 

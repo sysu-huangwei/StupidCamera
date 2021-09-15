@@ -21,7 +21,7 @@ public:
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
-    virtual void renderToFrameBuffer(FrameBuffer *outputFrameBuffer) override;
+    virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;
     
     /// 设置人脸数据
     /// @param faceData 人脸数据

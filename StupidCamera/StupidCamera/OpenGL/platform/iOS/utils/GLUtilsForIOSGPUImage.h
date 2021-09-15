@@ -15,9 +15,10 @@ extern "C" {
 #endif
 
 #import "FrameBuffer.hpp"
+#import <memory>
 
 NS_ASSUME_NONNULL_BEGIN
 
-effect::FrameBuffer getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer);
+std::shared_ptr<effect::FrameBuffer> getCPPFrameBufferFromGPUImageFrameBuffer(GPUImageFramebuffer *frameBuffer);
 
 NS_ASSUME_NONNULL_END

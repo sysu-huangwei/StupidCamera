@@ -7,6 +7,7 @@
 #ifndef FrameBuffer_hpp
 #define FrameBuffer_hpp
 
+#include <memory>
 #include "BasePlatform.h"
 
 #if PLATFORM_ANDROID
@@ -33,7 +34,7 @@ typedef struct TextureOptions {
 extern const TextureOptions defaultTextureOptions;
 
 // GL FBO封装
-class FrameBuffer {
+class FrameBuffer : public std::enable_shared_from_this<FrameBuffer> {
 public:
     
     /// 初始化，必须在GL线程

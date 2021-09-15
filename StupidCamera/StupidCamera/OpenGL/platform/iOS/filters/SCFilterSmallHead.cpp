@@ -11,7 +11,7 @@
 
 namespace effect {
 
-void SCFilterSmallHead::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterSmallHead::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     SCFilterBackgroundMesh::renderToFrameBuffer(outputFrameBuffer);
 }
 

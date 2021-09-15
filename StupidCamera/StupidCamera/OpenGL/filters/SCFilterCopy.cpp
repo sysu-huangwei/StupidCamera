@@ -13,7 +13,7 @@ void SCFilterCopy::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("simple", "simple");
 }
 
-void SCFilterCopy::renderToFrameBuffer(FrameBuffer *outputFrameBuffer) {
+void SCFilterCopy::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
         return;
     }

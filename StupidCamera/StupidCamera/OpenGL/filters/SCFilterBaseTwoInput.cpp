@@ -9,7 +9,7 @@
 
 namespace effect {
 
-void SCFilterBaseTwoInput::setSecondInputFrameBuffer(FrameBuffer *secondInputFrameBuffer) {
+void SCFilterBaseTwoInput::setSecondInputFrameBuffer(std::shared_ptr<FrameBuffer> secondInputFrameBuffer) {
     this->secondInputFrameBuffer = secondInputFrameBuffer;
     this->secondInputFrameBuffer->lock();
 }

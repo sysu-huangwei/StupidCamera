@@ -59,12 +59,12 @@
         [outputFramebuffer lock];
     }
     
-    effect::FrameBuffer inputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(firstInputFramebuffer);
-    effect::FrameBuffer outputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(outputFramebuffer);
+    std::shared_ptr<effect::FrameBuffer> inputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(firstInputFramebuffer);
+    std::shared_ptr<effect::FrameBuffer> outputFrameBuffer = getCPPFrameBufferFromGPUImageFrameBuffer(outputFramebuffer);
     
-    self->effectEngine->setInputFrameBuffer(&inputFrameBuffer);
+    self->effectEngine->setInputFrameBuffer(inputFrameBuffer);
     
-    self->effectEngine->renderToFrameBuffer(&outputFrameBuffer);
+    self->effectEngine->renderToFrameBuffer(outputFrameBuffer);
     
     [firstInputFramebuffer unlock];
     
