@@ -53,12 +53,12 @@ public:
     void setParams(const std::map<std::string, std::map<std::string, std::string> > &params);
     
 private:
-    SCFaceData *faceData;
-    std::vector<SCFilterBase *> currentFilters;
-    SCFilterLut *lutFilter;
-    SCFilterSmallHead *smallHeadFilter;
-    SCFilterSmooth *smoothFilter;
-    SCFilterSharpenUSM *sharpenFilter;
+    std::shared_ptr<SCFaceData> faceData;
+    std::vector<std::shared_ptr<SCFilterBase>> currentFilters;
+    std::shared_ptr<SCFilterLut> lutFilter;
+    std::shared_ptr<SCFilterSmallHead> smallHeadFilter;
+    std::shared_ptr<SCFilterSmooth> smoothFilter;
+    std::shared_ptr<SCFilterSharpenUSM> sharpenFilter;
 };
 
 }

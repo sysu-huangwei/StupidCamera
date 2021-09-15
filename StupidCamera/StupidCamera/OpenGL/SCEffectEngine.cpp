@@ -12,10 +12,10 @@
 namespace effect {
 
 SCEffectEngine::SCEffectEngine() {
-    lutFilter = new SCFilterLut();
-    smallHeadFilter = new SCFilterSmallHead();
-    smoothFilter = new SCFilterSmooth();
-    sharpenFilter = new SCFilterSharpenUSM();
+    lutFilter = std::make_shared<SCFilterLut>();
+    smallHeadFilter = std::make_shared<SCFilterSmallHead>();
+    smoothFilter = std::make_shared<SCFilterSmooth>();
+    sharpenFilter = std::make_shared<SCFilterSharpenUSM>();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
     currentFilters.push_back(smoothFilter);
@@ -23,10 +23,7 @@ SCEffectEngine::SCEffectEngine() {
 }
 
 SCEffectEngine::~SCEffectEngine() {
-    SAFE_DELETE(lutFilter);
-    SAFE_DELETE(smallHeadFilter);
-    SAFE_DELETE(smoothFilter);
-    SAFE_DELETE(sharpenFilter);
+    
 }
 
 void SCEffectEngine::init() {
@@ -87,7 +84,7 @@ void SCEffectEngine::setFaceData(SCFaceData *faceData) {
 void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string, std::string> > &params) {
     std::map<std::string, std::map<std::string, std::string> >::const_iterator it;
     for (it = params.begin(); it != params.end(); it++) {
-        for (SCFilterBase *filter : currentFilters) {
+        for (std::shared_ptr<SCFilterBase> filter : currentFilters) {
             if (filter->filterName() == (*it).first) {
                 filter->setParams((*it).second);
             }
