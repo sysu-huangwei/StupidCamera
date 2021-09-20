@@ -9,10 +9,12 @@
 #import "GPUImageSCEffectFilter.h"
 
 #import <SeetaFaceDetector600/seeta/FaceDetector.h>
+#import <SeetaFaceLandmarker600/seeta/FaceLandmarker.h>
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate, GPUImageVideoCameraDelegate>
 {
     std::shared_ptr<seeta::FaceDetector> faceDetector;
+    std::shared_ptr<seeta::FaceLandmarker> faceLandmarker;
 }
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
@@ -40,9 +42,14 @@
     
     
     NSString *bundlePath = NSBundle.mainBundle.bundlePath;
-    NSString *faceDetectModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_detector.csta"];
-    seeta::ModelSetting faceDetectModel(faceDetectModelPath.UTF8String);
-    faceDetector = std::make_shared<seeta::FaceDetector>(faceDetectModel);
+    
+    NSString *faceDetectorModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_detector.csta"];
+    seeta::ModelSetting faceDetectorModel(faceDetectorModelPath.UTF8String);
+    faceDetector = std::make_shared<seeta::FaceDetector>(faceDetectorModel);
+    
+    NSString *faceLandmarkerModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_landmarker_pts5.csta"];
+    seeta::ModelSetting faceLandmarkerModel(faceLandmarkerModelPath.UTF8String);
+    faceLandmarker = std::make_shared<seeta::FaceLandmarker>(faceLandmarkerModel);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -273,6 +280,21 @@
     CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
     
     printf("%d\n", facec.size());
+    
+    if (!facec.empty()) {
+        
+        double start = CACurrentMediaTime();
+        
+        std::vector<SeetaPointF> points = faceLandmarker->mark(seetaImage, facec.front().pos);
+        
+        double end = CACurrentMediaTime();
+        
+        std::string pointsStr = "";
+        for (int i = 0; i < points.size(); i++) {
+            pointsStr += "(" + std::to_string(points[i].x) + ", " + std::to_string(points[i].y) + ")";
+        }
+        printf("%s time = %f\n", pointsStr.c_str(), (end - start));
+    }
 }
 
 @end
