@@ -258,28 +258,21 @@
 }
 
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer {
-    UIImage *img = [self changeBufferToImage:sampleBuffer];
-    
     CVImageBufferRef cvImageBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer);
+    
     CVPixelBufferLockBaseAddress(cvImageBufferRef, 0);
-    size_t width = CVPixelBufferGetWidth(cvImageBufferRef);
-    size_t height = CVPixelBufferGetHeight(cvImageBufferRef);
-    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(cvImageBufferRef);
-    size_t size = CVPixelBufferGetDataSize(cvImageBufferRef);
-    OSType type = CVPixelBufferGetPixelFormatType(cvImageBufferRef);
-    CMFormatDescriptionRef dsec = CMSampleBufferGetFormatDescription(sampleBuffer);
     
-    
+    int height = (int)CVPixelBufferGetHeightOfPlane(cvImageBufferRef, 0);
+    int bytesPerRow = (int)CVPixelBufferGetBytesPerRowOfPlane(cvImageBufferRef, 0);
     unsigned char *pImageData = (unsigned char *)CVPixelBufferGetBaseAddressOfPlane(cvImageBufferRef, 0);
     
-    seeta::ImageData seetaImage(pImageData, 1536, height, 1);
+    seeta::ImageData seetaImage(pImageData, bytesPerRow, height, 1);
     
     std::vector<SeetaFaceInfo> facec = faceDetector->detect_v2(seetaImage);
-    printf("%d\n", facec.size());
-    
-    UIImage *image = [self transferToImageWithData:pImageData withWidth:1536 withHeight:height];
     
     CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
+    
+    printf("%d\n", facec.size());
 }
 
 @end
