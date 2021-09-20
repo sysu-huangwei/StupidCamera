@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
 		710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 710F63642690134700976E1A /* FrameBufferPool.cpp */; };
+		717644FF26F87EAF00DAD7EA /* SeetaAuthorize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717644F926F87E9E00DAD7EA /* SeetaAuthorize.framework */; };
+		7176450026F87EAF00DAD7EA /* SeetaAuthorize.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 717644F926F87E9E00DAD7EA /* SeetaAuthorize.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7176450226F87EB100DAD7EA /* SeetaFaceDetector600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717644F726F87E9E00DAD7EA /* SeetaFaceDetector600.framework */; };
+		7176450326F87EB100DAD7EA /* SeetaFaceDetector600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 717644F726F87E9E00DAD7EA /* SeetaFaceDetector600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7176450426F87EB400DAD7EA /* SeetaFaceLandmarker600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717644FA26F87E9E00DAD7EA /* SeetaFaceLandmarker600.framework */; };
+		7176450526F87EB400DAD7EA /* SeetaFaceLandmarker600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 717644FA26F87E9E00DAD7EA /* SeetaFaceLandmarker600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7176450626F87EB500DAD7EA /* tennis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 717644F826F87E9E00DAD7EA /* tennis.framework */; };
+		7176450726F87EB500DAD7EA /* tennis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 717644F826F87E9E00DAD7EA /* tennis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7176450926F87ECC00DAD7EA /* model in Resources */ = {isa = PBXBuildFile; fileRef = 7176450826F87ECC00DAD7EA /* model */; };
 		71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */; };
 		FC0BE59C26D3BEC1000F848E /* SCFilterSharpenUSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
@@ -58,10 +67,32 @@
 		FCEF7E1C26316CFD00F20ED0 /* SCFilterMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7E1A26316CFC00F20ED0 /* SCFilterMesh.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7176450126F87EAF00DAD7EA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7176450026F87EAF00DAD7EA /* SeetaAuthorize.framework in Embed Frameworks */,
+				7176450726F87EB500DAD7EA /* tennis.framework in Embed Frameworks */,
+				7176450326F87EB100DAD7EA /* SeetaFaceDetector600.framework in Embed Frameworks */,
+				7176450526F87EB400DAD7EA /* SeetaFaceLandmarker600.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0DFE828F9FB7D34B38FA0C91 /* Pods-StupidCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.debug.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		710F63642690134700976E1A /* FrameBufferPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBufferPool.cpp; sourceTree = "<group>"; };
 		710F63652690134700976E1A /* FrameBufferPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBufferPool.hpp; sourceTree = "<group>"; };
+		717644F726F87E9E00DAD7EA /* SeetaFaceDetector600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceDetector600.framework; sourceTree = "<group>"; };
+		717644F826F87E9E00DAD7EA /* tennis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tennis.framework; sourceTree = "<group>"; };
+		717644F926F87E9E00DAD7EA /* SeetaAuthorize.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaAuthorize.framework; sourceTree = "<group>"; };
+		717644FA26F87E9E00DAD7EA /* SeetaFaceLandmarker600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceLandmarker600.framework; sourceTree = "<group>"; };
+		7176450826F87ECC00DAD7EA /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
 		71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSmooth.cpp; sourceTree = "<group>"; };
 		71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSmooth.hpp; sourceTree = "<group>"; };
 		FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSharpenUSM.cpp; sourceTree = "<group>"; };
@@ -163,6 +194,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7176450626F87EB500DAD7EA /* tennis.framework in Frameworks */,
+				7176450426F87EB400DAD7EA /* SeetaFaceLandmarker600.framework in Frameworks */,
+				7176450226F87EB100DAD7EA /* SeetaFaceDetector600.framework in Frameworks */,
+				717644FF26F87EAF00DAD7EA /* SeetaAuthorize.framework in Frameworks */,
 				62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,11 +222,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		717644F626F87E9E00DAD7EA /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				717644F726F87E9E00DAD7EA /* SeetaFaceDetector600.framework */,
+				717644F826F87E9E00DAD7EA /* tennis.framework */,
+				717644F926F87E9E00DAD7EA /* SeetaAuthorize.framework */,
+				717644FA26F87E9E00DAD7EA /* SeetaFaceLandmarker600.framework */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
 		FC6A35452624358100CA4434 = {
 			isa = PBXGroup;
 			children = (
+				7176450826F87ECC00DAD7EA /* model */,
 				FCCB1A9126E2120300F09C7F /* effect */,
 				FC6A35502624358100CA4434 /* StupidCamera */,
+				717644F626F87E9E00DAD7EA /* Framework */,
 				FC6A354F2624358100CA4434 /* Products */,
 				712F004BBF0E3CDCE92ED728 /* Pods */,
 				4FF61262739EE8D0565CC1A6 /* Frameworks */,
@@ -413,6 +461,7 @@
 				FC6A354B2624358100CA4434 /* Frameworks */,
 				FC6A354C2624358100CA4434 /* Resources */,
 				79CDCEE854949DA5FFB79BD0 /* [CP] Copy Pods Resources */,
+				7176450126F87EAF00DAD7EA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -465,6 +514,7 @@
 				FCADC6CC26CF92F700AF2497 /* GLResource in Resources */,
 				FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */,
 				FC6A355E2624358100CA4434 /* Assets.xcassets in Resources */,
+				7176450926F87ECC00DAD7EA /* model in Resources */,
 				FC6A355C2624358100CA4434 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +755,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WR652HR2XM;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework",
+				);
 				INFOPLIST_FILE = StupidCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -727,6 +782,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WR652HR2XM;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework",
+				);
 				INFOPLIST_FILE = StupidCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
