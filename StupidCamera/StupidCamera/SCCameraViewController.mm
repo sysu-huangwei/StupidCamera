@@ -8,7 +8,13 @@
 #import "SCEditViewController.h"
 #import "GPUImageSCEffectFilter.h"
 
-@interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate>
+#import <SeetaFaceDetector600/seeta/FaceDetector.h>
+
+@interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate, GPUImageVideoCameraDelegate>
+{
+    std::shared_ptr<seeta::FaceDetector> faceDetector;
+}
+
 @property (strong, nonatomic) GPUImageStillCamera *camera;
 //@property (strong, nonatomic) GPUImagePicture *picture;
 @property (strong, nonatomic) GPUImageSCEffectFilter *effectFilter;
@@ -31,6 +37,12 @@
     // Do any additional setup after loading the view from its nib.
     [self initCamera];
     _faceDataDict = [[NSMutableArray alloc] init];
+    
+    
+    NSString *bundlePath = NSBundle.mainBundle.bundlePath;
+    NSString *faceDetectModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_detector.csta"];
+    seeta::ModelSetting faceDetectModel(faceDetectModelPath.UTF8String);
+    faceDetector = std::make_shared<seeta::FaceDetector>(faceDetectModel);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -144,6 +156,7 @@
 //    _picture = [[GPUImagePicture alloc] initWithImage:image];
     
     _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
+    _camera.delegate = self;
     _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
     _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
     [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
@@ -206,6 +219,67 @@
         }
     }
         [_effectFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
+}
+
+- (UIImage*)changeBufferToImage:(CMSampleBufferRef)sampleBufferRef {
+    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBufferRef);
+    
+    CIImage *ciImage = [CIImage imageWithCVPixelBuffer:pixelBuffer];
+    
+    CIContext *context = [CIContext contextWithOptions:nil];//CPU
+    CGRect rect = CGRectMake(0, 0, CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
+    
+    CGImageRef cgImage = [context createCGImage:ciImage fromRect:rect];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    
+    return image;
+}
+
+- (UIImage *)transferToImageWithData:(unsigned char *)data withWidth:(int)width withHeight:(int)height {
+    int bytesPerRow;
+    CGImageAlphaInfo alphaInfo;
+    CGColorSpaceRef colorSpace;
+    bytesPerRow = (int)width;
+    alphaInfo = kCGImageAlphaNone;
+    colorSpace = CGColorSpaceCreateDeviceGray();
+    
+    CGContextRef context = CGBitmapContextCreate(data, width, height, 8, bytesPerRow, colorSpace, alphaInfo);
+    CGColorSpaceRelease(colorSpace);
+    if (context == NULL) {
+        return nil;
+    }
+    
+    CGImageRef cgImageRef = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    UIImage *grayImage = [[UIImage alloc] initWithCGImage:cgImageRef];
+    CGImageRelease(cgImageRef);
+    return grayImage;
+}
+
+- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer {
+    UIImage *img = [self changeBufferToImage:sampleBuffer];
+    
+    CVImageBufferRef cvImageBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(cvImageBufferRef, 0);
+    size_t width = CVPixelBufferGetWidth(cvImageBufferRef);
+    size_t height = CVPixelBufferGetHeight(cvImageBufferRef);
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(cvImageBufferRef);
+    size_t size = CVPixelBufferGetDataSize(cvImageBufferRef);
+    OSType type = CVPixelBufferGetPixelFormatType(cvImageBufferRef);
+    CMFormatDescriptionRef dsec = CMSampleBufferGetFormatDescription(sampleBuffer);
+    
+    
+    unsigned char *pImageData = (unsigned char *)CVPixelBufferGetBaseAddressOfPlane(cvImageBufferRef, 0);
+    
+    seeta::ImageData seetaImage(pImageData, 1536, height, 1);
+    
+    std::vector<SeetaFaceInfo> facec = faceDetector->detect_v2(seetaImage);
+    printf("%d\n", facec.size());
+    
+    UIImage *image = [self transferToImageWithData:pImageData withWidth:1536 withHeight:height];
+    
+    CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
 }
 
 @end

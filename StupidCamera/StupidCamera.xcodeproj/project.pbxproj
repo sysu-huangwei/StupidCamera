@@ -44,7 +44,7 @@
 		FC892B7A2679DA36000F4513 /* SCFilterFaceBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B782679DA36000F4513 /* SCFilterFaceBase.cpp */; };
 		FC892B8B2679E854000F4513 /* SCFilterFacePoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B892679E854000F4513 /* SCFilterFacePoint.cpp */; };
 		FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */; };
-		FC892B9B267A1294000F4513 /* SCCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC892B99267A1294000F4513 /* SCCameraViewController.m */; };
+		FC892B9B267A1294000F4513 /* SCCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC892B99267A1294000F4513 /* SCCameraViewController.mm */; };
 		FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC892B9A267A1294000F4513 /* SCCameraViewController.xib */; };
 		FCADC6CC26CF92F700AF2497 /* GLResource in Resources */ = {isa = PBXBuildFile; fileRef = FCADC6CB26CF92F700AF2497 /* GLResource */; };
 		FCADC6D026CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */; };
@@ -142,7 +142,7 @@
 		FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterFaceLine.cpp; sourceTree = "<group>"; };
 		FC892B8F2679EC3C000F4513 /* SCFilterFaceLine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterFaceLine.hpp; sourceTree = "<group>"; };
 		FC892B98267A1294000F4513 /* SCCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCCameraViewController.h; sourceTree = "<group>"; };
-		FC892B99267A1294000F4513 /* SCCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCCameraViewController.m; sourceTree = "<group>"; };
+		FC892B99267A1294000F4513 /* SCCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCCameraViewController.mm; sourceTree = "<group>"; };
 		FC892B9A267A1294000F4513 /* SCCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCCameraViewController.xib; sourceTree = "<group>"; };
 		FCADC6CB26CF92F700AF2497 /* GLResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GLResource; sourceTree = "<group>"; };
 		FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBaseTwoInput.cpp; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 				FC6A35622624358100CA4434 /* Info.plist */,
 				FC6A35632624358100CA4434 /* main.m */,
 				FC892B98267A1294000F4513 /* SCCameraViewController.h */,
-				FC892B99267A1294000F4513 /* SCCameraViewController.m */,
+				FC892B99267A1294000F4513 /* SCCameraViewController.mm */,
 				FC892B9A267A1294000F4513 /* SCCameraViewController.xib */,
 				FC7AAAE42694477400CA4E75 /* SCEditViewController.h */,
 				FC7AAAE52694477400CA4E75 /* SCEditViewController.m */,
@@ -579,7 +579,7 @@
 				FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */,
 				FC892B72267999D5000F4513 /* SCFaceData.cpp in Sources */,
 				FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */,
-				FC892B9B267A1294000F4513 /* SCCameraViewController.m in Sources */,
+				FC892B9B267A1294000F4513 /* SCCameraViewController.mm in Sources */,
 				FC892B762679D9C2000F4513 /* SCFilterSmallHead.cpp in Sources */,
 				FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */,
 				710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */,
