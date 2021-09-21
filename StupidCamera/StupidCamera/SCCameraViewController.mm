@@ -30,6 +30,8 @@
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *, UIButton *> *effectButton;
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSNumber *> *effectDegree;
 
+@property (nonatomic, assign) CGRect faceRect;
+
 @end
 
 @implementation SCCameraViewController
@@ -47,7 +49,7 @@
     seeta::ModelSetting faceDetectorModel(faceDetectorModelPath.UTF8String);
     faceDetector = std::make_shared<seeta::FaceDetector>(faceDetectorModel);
     
-    NSString *faceLandmarkerModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_landmarker_pts5.csta"];
+    NSString *faceLandmarkerModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_landmarker_pts68.csta"];
     seeta::ModelSetting faceLandmarkerModel(faceLandmarkerModelPath.UTF8String);
     faceLandmarker = std::make_shared<seeta::FaceLandmarker>(faceLandmarkerModel);
 }
@@ -194,6 +196,7 @@
         if ([object isKindOfClass:[AVMetadataFaceObject class]]) {
             AVMetadataFaceObject *faceObject = (AVMetadataFaceObject *)object;
             NSMutableDictionary *oneFaceDict = [[NSMutableDictionary alloc] init];
+            _faceRect = faceObject.bounds;
             oneFaceDict[@"faceID"] = @(faceObject.faceID);
             //iOS原生的人脸检测坐标是xy颠倒的，这里需要重新计算一下
             CGRect boundsOrigin = faceObject.bounds;
@@ -275,26 +278,44 @@
     
     seeta::ImageData seetaImage(pImageData, bytesPerRow, height, 1);
     
-    std::vector<SeetaFaceInfo> facec = faceDetector->detect_v2(seetaImage);
+//    std::vector<SeetaFaceInfo> facec = faceDetector->detect_v2(seetaImage);
     
     CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
     
-    printf("%d\n", facec.size());
+//    printf("%d\n", facec.size());
     
-    if (!facec.empty()) {
+//    if (!facec.empty()) {
         
         double start = CACurrentMediaTime();
         
-        std::vector<SeetaPointF> points = faceLandmarker->mark(seetaImage, facec.front().pos);
+        SeetaRect rect;
+        rect.x = _faceRect.origin.x * bytesPerRow;
+        rect.y = _faceRect.origin.y * height;
+        rect.width = _faceRect.size.width * bytesPerRow;
+        rect.height = _faceRect.size.height * height;
+        
+        std::vector<SeetaPointF> points = faceLandmarker->mark(seetaImage, rect);
         
         double end = CACurrentMediaTime();
+        
+//        printf("seeta rect (%.2f,  %.2f)  w = %.2f  h = %.2f\n",
+//               (float)facec.front().pos.x / (float)bytesPerRow,
+//               (float)facec.front().pos.y / (float)height,
+//               (float)facec.front().pos.width / (float)bytesPerRow,
+//               (float)facec.front().pos.height / (float)height);
+//
+//        printf("iOS rect (%.2f,  %.2f)  w = %.2f  h = %.2f\n",
+//               _faceRect.origin.x,
+//               _faceRect.origin.y,
+//               _faceRect.size.width,
+//               _faceRect.size.height);
         
         std::string pointsStr = "";
         for (int i = 0; i < points.size(); i++) {
             pointsStr += "(" + std::to_string(points[i].x) + ", " + std::to_string(points[i].y) + ")";
         }
-        printf("%s time = %f\n", pointsStr.c_str(), (end - start));
-    }
+        printf("%s time = %f\n", pointsStr.c_str(), 1000 * (end - start));
+//    }
 }
 
 @end
