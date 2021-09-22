@@ -42,6 +42,9 @@ protected:
     int meshArrayCount = 0;
     unsigned int *meshIndex = nullptr;
     int indexArrayCount = 0;
+    
+    /// 在最终渲染之前判断是否需要渲染
+    virtual bool isNeedRender() override;
 };
 
 }

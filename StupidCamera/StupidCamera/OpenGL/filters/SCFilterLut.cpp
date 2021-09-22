@@ -22,7 +22,7 @@ void SCFilterLut::release() {
 }
 
 void SCFilterLut::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -36,7 +36,7 @@ void SCFilterLut::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     program->setVertexAttribPointer("a_position", imageVertices);
     program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
     program->setTextureAtIndex("u_lut", lutTextureID, 3);
     
     if (lutTextureID > 0) {
@@ -49,7 +49,8 @@ void SCFilterLut::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
 }
 
 void SCFilterLut::setLutImagePath(const char *path) {

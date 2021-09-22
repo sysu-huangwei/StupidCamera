@@ -50,7 +50,7 @@ void SCEffectEngine::resize(int width, int height) {
 }
 
 void SCEffectEngine::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
-    lutFilter->setInputFrameBuffer(inputFrameBuffer);
+    lutFilter->setInputFrameBufferAtIndex(inputFrameBuffer, 0);
 }
 
 std::shared_ptr<FrameBuffer> SCEffectEngine::render() {
@@ -63,15 +63,15 @@ std::shared_ptr<FrameBuffer> SCEffectEngine::render() {
 
 void SCEffectEngine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     std::shared_ptr<FrameBuffer> lutResult = lutFilter->render();
-    smallHeadFilter->setInputFrameBuffer(lutResult);
+    smallHeadFilter->setInputFrameBufferAtIndex(lutResult, 0);
     lutResult->unlock();
     
     std::shared_ptr<FrameBuffer> smallHeadResult = smallHeadFilter->render();
-    smoothFilter->setInputFrameBuffer(smallHeadResult);
+    smoothFilter->setInputFrameBufferAtIndex(smallHeadResult, 0);
     smallHeadResult->unlock();
     
     std::shared_ptr<FrameBuffer> smoothResult = smoothFilter->render();
-    sharpenFilter->setInputFrameBuffer(smoothResult);
+    sharpenFilter->setInputFrameBufferAtIndex(smoothResult, 0);
     smoothResult->unlock();
     
     sharpenFilter->renderToFrameBuffer(outputFrameBuffer);

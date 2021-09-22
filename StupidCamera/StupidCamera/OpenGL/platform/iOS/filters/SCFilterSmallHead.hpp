@@ -39,6 +39,9 @@ protected:
     /// 设置小头程度
     /// @param smallHeadDegree 小头程度，0~1
     virtual void setSmallHeadDegree(float smallHeadDegree);
+    
+    /// 在最终渲染之前判断是否需要渲染
+    virtual bool isNeedRender() override { return true; }
 };
 
 }

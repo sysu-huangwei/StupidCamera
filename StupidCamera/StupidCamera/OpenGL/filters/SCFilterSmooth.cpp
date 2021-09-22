@@ -23,13 +23,13 @@ void SCFilterSmooth::resize(int width, int height) {
     SCFilterBase::resize(width, height);
 }
 
-void SCFilterSmooth::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
-    blurFilter.setInputFrameBuffer(inputFrameBuffer);
-    SCFilterBase::setInputFrameBuffer(inputFrameBuffer);
+void SCFilterSmooth::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
+    blurFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
+    SCFilterBase::setInputFrameBufferAtIndex(inputFrameBuffer, index);
 }
 
 void SCFilterSmooth::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -45,7 +45,7 @@ void SCFilterSmooth::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFram
     program->setVertexAttribPointer("a_position", imageVertices);
     program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
     program->setTextureAtIndex("u_texture1", resultFrameBufferInternal->getTextureID(), 3);
     program->setUniform1f("alpha", alpha);
     
@@ -53,7 +53,8 @@ void SCFilterSmooth::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFram
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
     resultFrameBufferInternal->unlock();
 }
 

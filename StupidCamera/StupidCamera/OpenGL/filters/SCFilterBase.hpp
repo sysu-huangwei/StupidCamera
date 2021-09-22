@@ -7,6 +7,7 @@
 #ifndef SCFilterBase_hpp
 #define SCFilterBase_hpp
 
+#include <map>
 #include "SCFilterConstant.hpp"
 #include "FrameBuffer.hpp"
 #include "Program.hpp"
@@ -49,7 +50,8 @@ public:
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
-    virtual void setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer);
+    /// @param index 这个输入的FBO纹理应该设置到当前滤镜shader的第几个位置，从0开始（通常用于多路输入的滤镜）
+    virtual void setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index);
     
     /// 渲染，必须在GL线程
     /// @return 结果FrameBuffer
@@ -70,9 +72,15 @@ public:
 protected:
     int width = 0, height = 0;
     std::shared_ptr<Program> program = nullptr;
-    std::shared_ptr<FrameBuffer> inputFrameBuffer = nullptr;
+    std::map<std::shared_ptr<FrameBuffer>, int> inputFrameBuffers;
     
     bool enableRender = true;
+    
+    /// 是否所有输入已就绪
+    virtual bool isAllInputReady();
+    
+    /// 在最终渲染之前判断是否需要渲染
+    virtual bool isNeedRender();
     
     virtual void initWithVertexStringAndFragmentString(const char* vertexShaderName, const char* fragmentShaderName);
 };

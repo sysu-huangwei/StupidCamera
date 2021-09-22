@@ -26,7 +26,7 @@ void SCFilterMesh::init() {
 }
 
 void SCFilterMesh::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -37,13 +37,14 @@ void SCFilterMesh::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameB
     program->setVertexAttribPointer("a_position", mesh);
     program->setVertexAttribPointer("a_position_std", meshStd);
     
-    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
     
     glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
 }
 
 void SCFilterMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
@@ -76,6 +77,10 @@ void SCFilterMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> m
     if (meshIndex && meshArrayCount > 0) {
         memcpy(this->meshIndex, meshIndex, sizeof(unsigned int) * indexArrayCount);
     }
+}
+
+bool SCFilterMesh::isNeedRender() {
+    return SCFilterBase::isNeedRender() && mesh && enableRender;
 }
 
 }

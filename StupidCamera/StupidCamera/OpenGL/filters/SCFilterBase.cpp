@@ -29,22 +29,29 @@ void SCFilterBase::release() {
     
 }
 
-void SCFilterBase::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
-    this->inputFrameBuffer = inputFrameBuffer;
-    this->inputFrameBuffer->lock();
+void SCFilterBase::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
+    inputFrameBuffer->lock();
+    inputFrameBuffers[inputFrameBuffer] = index;
 }
 
 std::shared_ptr<FrameBuffer> SCFilterBase::render() {
-    if (!enableRender) {
-        return inputFrameBuffer;
-    }
     std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
-    renderToFrameBuffer(outputFrameBuffer);
+    if (isNeedRender()) {
+        renderToFrameBuffer(outputFrameBuffer);
+    }
     return outputFrameBuffer;
 }
 
 void SCFilterBase::setEnableRender(bool enableRender) {
     this->enableRender = enableRender;
+}
+
+bool SCFilterBase::isAllInputReady() {
+    return inputFrameBuffers.size() == 1;
+}
+
+bool SCFilterBase::isNeedRender() {
+    return isAllInputReady() && enableRender;
 }
 
 void SCFilterBase::setParams(const std::map<std::string, std::string> &param) {

@@ -39,7 +39,6 @@
 		FC892B9B267A1294000F4513 /* SCCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC892B99267A1294000F4513 /* SCCameraViewController.mm */; };
 		FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC892B9A267A1294000F4513 /* SCCameraViewController.xib */; };
 		FCADC6CC26CF92F700AF2497 /* GLResource in Resources */ = {isa = PBXBuildFile; fileRef = FCADC6CB26CF92F700AF2497 /* GLResource */; };
-		FCADC6D026CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */; };
 		FCCB269626FB1C1A00F09C7F /* SeetaAuthorize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB268E26FB1C1500F09C7F /* SeetaAuthorize.framework */; };
 		FCCB269726FB1C1A00F09C7F /* SeetaAuthorize.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB268E26FB1C1500F09C7F /* SeetaAuthorize.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCCB269826FB1C1B00F09C7F /* SeetaFaceDetector600.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB268F26FB1C1500F09C7F /* SeetaFaceDetector600.framework */; };
@@ -143,8 +142,6 @@
 		FC892B99267A1294000F4513 /* SCCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCCameraViewController.mm; sourceTree = "<group>"; };
 		FC892B9A267A1294000F4513 /* SCCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCCameraViewController.xib; sourceTree = "<group>"; };
 		FCADC6CB26CF92F700AF2497 /* GLResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GLResource; sourceTree = "<group>"; };
-		FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBaseTwoInput.cpp; sourceTree = "<group>"; };
-		FCADC6CF26CFAB6F00AF2497 /* SCFilterBaseTwoInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBaseTwoInput.hpp; sourceTree = "<group>"; };
 		FCCB268E26FB1C1500F09C7F /* SeetaAuthorize.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaAuthorize.framework; sourceTree = "<group>"; };
 		FCCB268F26FB1C1500F09C7F /* SeetaFaceDetector600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceDetector600.framework; sourceTree = "<group>"; };
 		FCCB269026FB1C1500F09C7F /* tennis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tennis.framework; sourceTree = "<group>"; };
@@ -398,8 +395,6 @@
 				FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */,
 				FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */,
 				FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */,
-				FCADC6CE26CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp */,
-				FCADC6CF26CFAB6F00AF2497 /* SCFilterBaseTwoInput.hpp */,
 				FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */,
 				FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */,
 				FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */,
@@ -619,7 +614,6 @@
 				FCEF7CFA262ECE3700F20ED0 /* triangle.cpp in Sources */,
 				FCEF7AFC2627047C00F20ED0 /* BaseLog.cpp in Sources */,
 				FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */,
-				FCADC6D026CFAB6F00AF2497 /* SCFilterBaseTwoInput.cpp in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,
 				71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */,
 				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,

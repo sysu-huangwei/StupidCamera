@@ -14,7 +14,7 @@ void SCFilterLine::init() {
 }
 
 void SCFilterLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !this->lines || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -29,7 +29,8 @@ void SCFilterLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameB
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
 }
 
 
@@ -42,6 +43,10 @@ void SCFilterLine::setLines(std::vector<BaseLine> lines) {
     if (linesCount > 0) {
         memcpy(this->lines, &lines[0], sizeof(BaseLine) * lines.size());
     }
+}
+
+bool SCFilterLine::isNeedRender() {
+    return lines && linesCount > 0 && enableRender;
 }
 
 }

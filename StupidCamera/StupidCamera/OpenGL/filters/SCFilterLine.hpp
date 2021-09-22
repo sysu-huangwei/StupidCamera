@@ -35,6 +35,9 @@ public:
 protected:
     float *lines = nullptr;
     int linesCount = 0;
+    
+    /// 在最终渲染之前判断是否需要渲染
+    virtual bool isNeedRender() override;
 };
 
 }

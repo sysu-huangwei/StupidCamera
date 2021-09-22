@@ -14,7 +14,7 @@ void SCFilterCopy::init() {
 }
 
 void SCFilterCopy::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -28,13 +28,14 @@ void SCFilterCopy::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameB
     program->setVertexAttribPointer("a_position", imageVertices);
     program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
 }
 
 }

@@ -24,9 +24,9 @@ void SCFilterBackgroundMesh::resize(int width, int height) {
     meshFilter.resize(width, height);
 }
 
-void SCFilterBackgroundMesh::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
-    copyFilter.setInputFrameBuffer(inputFrameBuffer);
-    meshFilter.setInputFrameBuffer(inputFrameBuffer);
+void SCFilterBackgroundMesh::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
+    copyFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
+    meshFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
 }
 
 void SCFilterBackgroundMesh::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {

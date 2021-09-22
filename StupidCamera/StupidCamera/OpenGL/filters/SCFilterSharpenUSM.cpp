@@ -19,7 +19,7 @@ void SCFilterSharpenUSM::resize(int width, int height) {
 }
 
 void SCFilterSharpenUSM::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !inputFrameBuffer || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -33,7 +33,7 @@ void SCFilterSharpenUSM::renderToFrameBuffer(std::shared_ptr<FrameBuffer> output
     program->setVertexAttribPointer("a_position", imageVertices);
     program->setVertexAttribPointer("a_texCoord", textureCoordinates);
     
-    program->setTextureAtIndex("u_texture", inputFrameBuffer->getTextureID(), 2);
+    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
     program->setUniform2f("offset", widthOffset, heightOffset);
     program->setUniform1f("alpha", alpha);
     
@@ -41,7 +41,8 @@ void SCFilterSharpenUSM::renderToFrameBuffer(std::shared_ptr<FrameBuffer> output
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
 }
 
 void SCFilterSharpenUSM::setParams(const std::map<std::string, std::string> &param) {

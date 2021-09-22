@@ -19,7 +19,7 @@ void SCFilterPoint::init() {
 }
 
 void SCFilterPoint::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!enableRender || !this->points || !outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
         return;
     }
     
@@ -33,7 +33,8 @@ void SCFilterPoint::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrame
     
     glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
-    inputFrameBuffer->unlock();
+    inputFrameBuffers.begin()->first->unlock();
+    inputFrameBuffers.clear();
 }
 
 
@@ -46,6 +47,10 @@ void SCFilterPoint::setPoints(std::vector<BasePoint> points) {
     if (pointsCount > 0) {
         memcpy(this->points, &points[0], sizeof(BasePoint) * points.size());
     }
+}
+
+bool SCFilterPoint::isNeedRender() {
+    return points && pointsCount > 0 && enableRender;
 }
 
 }

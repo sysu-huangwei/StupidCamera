@@ -23,9 +23,9 @@ void SCFilterBackgroundLine::resize(int width, int height) {
     lineFilter.resize(width, height);
 }
 
-void SCFilterBackgroundLine::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
-    copyFilter.setInputFrameBuffer(inputFrameBuffer);
-    lineFilter.setInputFrameBuffer(inputFrameBuffer);
+void SCFilterBackgroundLine::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
+    copyFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
+    lineFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
 }
 
 void SCFilterBackgroundLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {

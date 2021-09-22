@@ -33,7 +33,8 @@ public:
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
-    virtual void setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) override;
+    /// @param index 这个输入的FBO纹理应该设置到当前滤镜shader的第几个位置，从0开始（通常用于多路输入的滤镜）
+    virtual void setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) override;
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
@@ -48,6 +49,9 @@ protected:
     /// @param height  高，输入和输出
     /// @param maxLength 短边最大的长度
     void scaleWH(int &width, int &height, int maxLength = DEFAULT_MAX_LENGTH);
+    
+    /// 在最终渲染之前判断是否需要渲染
+    virtual bool isNeedRender() override { return true; }
 };
 
 }
