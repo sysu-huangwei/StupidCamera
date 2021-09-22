@@ -48,6 +48,8 @@
 		FCCB269B26FB1C1D00F09C7F /* SeetaFaceLandmarker600.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB269126FB1C1500F09C7F /* SeetaFaceLandmarker600.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCCB269C26FB1C1F00F09C7F /* tennis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB269026FB1C1500F09C7F /* tennis.framework */; };
 		FCCB269D26FB1C1F00F09C7F /* tennis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FCCB269026FB1C1500F09C7F /* tennis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FCCB26A026FB1D7500F09C7F /* FaceData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB269E26FB1D7500F09C7F /* FaceData.cpp */; };
+		FCCB26A326FB22BD00F09C7F /* FaceDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB26A126FB22BD00F09C7F /* FaceDetector.cpp */; };
 		FCEB082D26CA4C11001ACDEF /* SCFilterBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */; };
 		FCEB086026CBA4E3001ACDEF /* SCFilterBlurSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */; };
 		FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */; };
@@ -147,6 +149,10 @@
 		FCCB268F26FB1C1500F09C7F /* SeetaFaceDetector600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceDetector600.framework; sourceTree = "<group>"; };
 		FCCB269026FB1C1500F09C7F /* tennis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tennis.framework; sourceTree = "<group>"; };
 		FCCB269126FB1C1500F09C7F /* SeetaFaceLandmarker600.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SeetaFaceLandmarker600.framework; sourceTree = "<group>"; };
+		FCCB269E26FB1D7500F09C7F /* FaceData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FaceData.cpp; sourceTree = "<group>"; };
+		FCCB269F26FB1D7500F09C7F /* FaceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FaceData.hpp; sourceTree = "<group>"; };
+		FCCB26A126FB22BD00F09C7F /* FaceDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FaceDetector.cpp; sourceTree = "<group>"; };
+		FCCB26A226FB22BD00F09C7F /* FaceDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FaceDetector.hpp; sourceTree = "<group>"; };
 		FCD3E4C126D636BD00F8D3BE /* BasePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePlatform.h; sourceTree = "<group>"; };
 		FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlur.cpp; sourceTree = "<group>"; };
 		FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlur.hpp; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 		FC6A35452624358100CA4434 = {
 			isa = PBXGroup;
 			children = (
+				FC7AAADE269332F100CA4E75 /* base */,
 				FCCB268C26FB1B6600F09C7F /* faceDetect */,
 				FCCB1A9126E2120300F09C7F /* effect */,
 				FC6A35502624358100CA4434 /* StupidCamera */,
@@ -294,7 +301,6 @@
 		FCCB1A9126E2120300F09C7F /* effect */ = {
 			isa = PBXGroup;
 			children = (
-				FC7AAADE269332F100CA4E75 /* base */,
 				FCCB1A9326E2206700F09C7F /* opengl */,
 			);
 			path = effect;
@@ -319,6 +325,10 @@
 			isa = PBXGroup;
 			children = (
 				FCCB268D26FB1BB100F09C7F /* seeta */,
+				FCCB269E26FB1D7500F09C7F /* FaceData.cpp */,
+				FCCB269F26FB1D7500F09C7F /* FaceData.hpp */,
+				FCCB26A126FB22BD00F09C7F /* FaceDetector.cpp */,
+				FCCB26A226FB22BD00F09C7F /* FaceDetector.hpp */,
 			);
 			path = faceDetect;
 			sourceTree = "<group>";
@@ -594,6 +604,7 @@
 				FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */,
 				FCEF7E1C26316CFD00F20ED0 /* SCFilterMesh.cpp in Sources */,
 				FC892B6E267996EB000F4513 /* SCFaceDataIOS.m in Sources */,
+				FCCB26A326FB22BD00F09C7F /* FaceDetector.cpp in Sources */,
 				FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */,
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,
 				FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */,
@@ -614,6 +625,7 @@
 				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,
 				FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */,
 				FC892B7A2679DA36000F4513 /* SCFilterFaceBase.cpp in Sources */,
+				FCCB26A026FB1D7500F09C7F /* FaceData.cpp in Sources */,
 				FCEB086026CBA4E3001ACDEF /* SCFilterBlurSub.cpp in Sources */,
 				FC7AAAAF2692E1C200CA4E75 /* ProgramPool.cpp in Sources */,
 				FC892A782673651C000F4513 /* SCFilterBackgroundLine.cpp in Sources */,

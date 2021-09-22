@@ -31,4 +31,11 @@ typedef struct {
     BasePoint p2;
 } BaseTriangle;
 
+typedef struct {
+    float x;
+    float y;
+    float width;
+    float height;
+} BaseRect;
+
 #endif //BASEDEFINE_H

@@ -8,13 +8,11 @@
 #import "SCEditViewController.h"
 #import "GPUImageSCEffectFilter.h"
 
-#import <SeetaFaceDetector600/seeta/FaceDetector.h>
-#import <SeetaFaceLandmarker600/seeta/FaceLandmarker.h>
+#import "FaceDetector.hpp"
 
 @interface SCCameraViewController () <AVCaptureMetadataOutputObjectsDelegate, GPUImageVideoCameraDelegate>
 {
-    std::shared_ptr<seeta::FaceDetector> faceDetector;
-    std::shared_ptr<seeta::FaceLandmarker> faceLandmarker;
+    std::shared_ptr<FaceDetector> faceDetector;
 }
 
 @property (strong, nonatomic) GPUImageStillCamera *camera;
@@ -45,13 +43,8 @@
     
     NSString *bundlePath = NSBundle.mainBundle.bundlePath;
     
-    NSString *faceDetectorModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_detector.csta"];
-    seeta::ModelSetting faceDetectorModel(faceDetectorModelPath.UTF8String);
-    faceDetector = std::make_shared<seeta::FaceDetector>(faceDetectorModel);
-    
-    NSString *faceLandmarkerModelPath = [bundlePath stringByAppendingPathComponent:@"model/face_landmarker_pts68.csta"];
-    seeta::ModelSetting faceLandmarkerModel(faceLandmarkerModelPath.UTF8String);
-    faceLandmarker = std::make_shared<seeta::FaceLandmarker>(faceLandmarkerModel);
+    NSString *faceDetectorModelFolderPath = [bundlePath stringByAppendingPathComponent:@"model"];
+    faceDetector = std::make_shared<FaceDetector>(faceDetectorModelFolderPath.UTF8String);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -276,46 +269,10 @@
     int bytesPerRow = (int)CVPixelBufferGetBytesPerRowOfPlane(cvImageBufferRef, 0);
     unsigned char *pImageData = (unsigned char *)CVPixelBufferGetBaseAddressOfPlane(cvImageBufferRef, 0);
     
-    seeta::ImageData seetaImage(pImageData, bytesPerRow, height, 1);
-    
-//    std::vector<SeetaFaceInfo> facec = faceDetector->detect_v2(seetaImage);
+    BaseRect faceRect = {(float)_faceRect.origin.x, (float)_faceRect.origin.y, (float)_faceRect.size.width, (float)_faceRect.size.height};
+    FaceData faceData = faceDetector->detect(pImageData, bytesPerRow, height, {faceRect});
     
     CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
-    
-//    printf("%d\n", facec.size());
-    
-//    if (!facec.empty()) {
-        
-        double start = CACurrentMediaTime();
-        
-        SeetaRect rect;
-        rect.x = _faceRect.origin.x * bytesPerRow;
-        rect.y = _faceRect.origin.y * height;
-        rect.width = _faceRect.size.width * bytesPerRow;
-        rect.height = _faceRect.size.height * height;
-        
-        std::vector<SeetaPointF> points = faceLandmarker->mark(seetaImage, rect);
-        
-        double end = CACurrentMediaTime();
-        
-//        printf("seeta rect (%.2f,  %.2f)  w = %.2f  h = %.2f\n",
-//               (float)facec.front().pos.x / (float)bytesPerRow,
-//               (float)facec.front().pos.y / (float)height,
-//               (float)facec.front().pos.width / (float)bytesPerRow,
-//               (float)facec.front().pos.height / (float)height);
-//
-//        printf("iOS rect (%.2f,  %.2f)  w = %.2f  h = %.2f\n",
-//               _faceRect.origin.x,
-//               _faceRect.origin.y,
-//               _faceRect.size.width,
-//               _faceRect.size.height);
-        
-        std::string pointsStr = "";
-        for (int i = 0; i < points.size(); i++) {
-            pointsStr += "(" + std::to_string(points[i].x) + ", " + std::to_string(points[i].y) + ")";
-        }
-        printf("%s time = %f\n", pointsStr.c_str(), 1000 * (end - start));
-//    }
 }
 
 @end
