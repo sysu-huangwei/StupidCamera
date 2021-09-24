@@ -12,7 +12,11 @@ namespace effect {
 
 using namespace std;
 
-FilterChain::FilterChain(const std::vector<FilterNodeDescription> nodeDescriptions) {
+FilterChain::FilterChain(const std::vector<FilterNodeDescription> &nodeDescriptions) : nodeDescriptions(nodeDescriptions) {
+    
+}
+
+void FilterChain::init() {
     map<string, vector<string>> nodeIDToNextIDs;
     map<string, vector<int>> nodeIDToNextIndices;
     map<string, shared_ptr<FilterNode>> nodeIDToNode;
@@ -47,13 +51,27 @@ FilterChain::FilterChain(const std::vector<FilterNodeDescription> nodeDescriptio
     
 }
 
-void FilterChain::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
+void FilterChain::release() {
+    for (const shared_ptr<FilterNode> &filterNode : allFilterNodes) {
+        filterNode->filter->release();
+    }
+}
+
+void FilterChain::resize(int width, int height) {
+    lastNode->filter->resize(width, height);
+}
+
+void FilterChain::setInputFrameBufferAtIndex(shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
     for (std::shared_ptr<FilterNode> filterNode : beginVirtualNode->nextNodes) {
-        filterNode->filter->setInputFrameBufferAtIndex(inputFrameBuffer, 0);
+        filterNode->filter->setInputFrameBufferAtIndex(inputFrameBuffer, index);
     }
 }
 
 void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
+    if (!isNeedRender() || !outputFrameBuffer) {
+        return;
+    }
+    
     lastNode->setOutputFrameBuffer(outputFrameBuffer);
     for (const shared_ptr<FilterNode> &filterNode : allFilterNodes) {
         filterNode->filter->render();

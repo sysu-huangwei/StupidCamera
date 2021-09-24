@@ -31,6 +31,7 @@ void FilterNode::setOutputFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
 void FilterNode::setOutputFrameBufferToNextNodes(std::shared_ptr<FrameBuffer> output) {
     for (size_t i = 0; i < nextNodes.size(); i++) {
         nextNodes[i]->setInputFrameBufferAtIndex(output, nextIndices[i]);
+        nextNodes[i]->filter->resize(output->getWidth(), output->getHeight());
     }
 }
 

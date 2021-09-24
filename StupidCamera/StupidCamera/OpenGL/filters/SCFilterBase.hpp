@@ -51,7 +51,7 @@ public:
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
     /// @param index 这个输入的FBO纹理应该设置到当前滤镜shader的第几个位置，从0开始（通常用于多路输入的滤镜）
-    virtual void setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index);
+    virtual void setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index = 0);
     
     /// 渲染，必须在GL线程
     /// @return 结果FrameBuffer
