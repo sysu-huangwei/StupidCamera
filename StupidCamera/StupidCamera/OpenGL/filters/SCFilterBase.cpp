@@ -35,6 +35,12 @@ void SCFilterBase::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> input
 }
 
 std::shared_ptr<FrameBuffer> SCFilterBase::render() {
+    // 如果当前滤镜没有外部指定渲染尺寸，那么就直接使用输入的FBO的尺寸
+    if ((width == 0 || height == 0) && inputFrameBuffers.size() > 0) {
+        width = inputFrameBuffers.begin()->first->getWidth();
+        height = inputFrameBuffers.begin()->first->getHeight();
+    }
+    
     std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
     if (isNeedRender()) {
         renderToFrameBuffer(outputFrameBuffer);

@@ -1,6 +1,5 @@
 //
 //  FilterChain.hpp
-//  StupidCamera
 //
 //  Created by rayyy on 2021/9/23.
 //
