@@ -8,7 +8,7 @@
 
 namespace effect {
 
-//const std::string defaultBeginID = "begin";
+const std::string defaultBeginID = "begin";
 const FilterNodeDescription defaultBeginNodeDescription { defaultBeginID };
 
 }

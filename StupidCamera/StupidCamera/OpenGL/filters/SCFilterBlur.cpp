@@ -6,16 +6,12 @@
 
 #include "SCFilterBlur.hpp"
 #include "SCFilterBlurSub.hpp"
+#include "FilterFactory.hpp"
 
 namespace effect {
 
-FilterDescription defaultBlurSubFilterDescription { "SCFilterBlurSub", 0, 0, true };
-FilterNodeDescription defaultBlurSubVNodeDescription { "SCFilterBlurSubV", {}, {}, defaultBlurSubFilterDescription };
-FilterNodeDescription defaultBlurSubHNodeDescription { "SCFilterBlurSubH", { "SCFilterBlurSubV" }, { 0 }, defaultBlurSubFilterDescription };
-FilterNodeDescription defaultBlurSubBeginNodeDescription { defaultBeginID, { "SCFilterBlurSubH" }, { 0 } };
-std::vector<FilterNodeDescription> defaultBlurNodeDescriptions = { defaultBlurSubBeginNodeDescription, defaultBlurSubHNodeDescription, defaultBlurSubVNodeDescription };
-
-SCFilterBlur::SCFilterBlur() : FilterChain(defaultBlurNodeDescriptions) {
+SCFilterBlur::SCFilterBlur() : FilterChain(FilterFactory::getChainDescByType("BlurFilter")) {
+    
 }
 
 void SCFilterBlur::resize(int width, int height) {

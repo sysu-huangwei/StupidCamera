@@ -10,6 +10,7 @@
 #include <memory>
 #include "SCFilterBase.hpp"
 #include "FilterDescription.hpp"
+#include "FilterChain.hpp"
 
 namespace effect {
 
@@ -18,6 +19,9 @@ class FilterFactory {
 public:
     
     static std::shared_ptr<SCFilterBase> createFilter(const FilterDescription &filterDesc);
+    
+    static std::vector<FilterNodeDescription> getChainDescByType(const std::string &type);
+    
 };
 
 }

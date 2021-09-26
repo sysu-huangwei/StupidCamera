@@ -27,7 +27,7 @@ typedef struct {
     
 } FilterNodeDescription;
 
-const std::string defaultBeginID = "begin";
+extern const std::string defaultBeginID;
 extern const FilterNodeDescription defaultBeginNodeDescription;
 
 }

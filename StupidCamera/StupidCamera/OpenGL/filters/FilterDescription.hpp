@@ -23,7 +23,7 @@ typedef struct {
     int outputHeight = 0;
     
     // 是否开启绘制
-    bool enable = false;
+    bool enable = true;
     
     // 当前滤镜的一些参数配置
     std::map<std::string, std::string> params;
