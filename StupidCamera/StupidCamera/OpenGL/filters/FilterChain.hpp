@@ -8,10 +8,10 @@
 #ifndef FilterChain_hpp
 #define FilterChain_hpp
 
-#include <vector>
-#include <map>
 #include "FilterNode.hpp"
 #include "FilterNodeDescription.hpp"
+#include <vector>
+#include <map>
 
 namespace effect {
 

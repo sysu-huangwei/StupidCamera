@@ -5,22 +5,28 @@
 //
 
 #include "FilterNode.hpp"
+#include "FilterFactory.hpp"
 
 namespace effect {
+
+FilterNode::FilterNode(const FilterNodeDescription &nodeDesc) {
+    filter = FilterFactory::createFilter(nodeDesc.filterDesc);
+}
 
 void FilterNode::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
     filter->setInputFrameBufferAtIndex(inputFrameBuffer, index);
 }
 
 void FilterNode::render() {
+    std::shared_ptr<FrameBuffer> output;
     if (outputFrameBuffer) {
-        filter->renderToFrameBuffer(outputFrameBuffer);
-        setOutputFrameBufferToNextNodes(outputFrameBuffer);
+        output = outputFrameBuffer;
+        filter->renderToFrameBuffer(output);
     } else {
-        std::shared_ptr<FrameBuffer> output = filter->render();
-        setOutputFrameBufferToNextNodes(output);
+        output = filter->render();
         output->unlock();
     }
+    setOutputFrameBufferToNextNodes(output);
     informNextNodesToRender();
 }
 

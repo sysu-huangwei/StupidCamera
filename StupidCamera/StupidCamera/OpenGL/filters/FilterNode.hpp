@@ -8,12 +8,15 @@
 #define FilterNode_hpp
 
 #include <vector>
+#include "FilterNodeDescription.hpp"
 #include "SCFilterBase.hpp"
 
 namespace effect {
 
 class FilterNode {
 public:
+    
+    FilterNode(const FilterNodeDescription &nodeDesc);
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO

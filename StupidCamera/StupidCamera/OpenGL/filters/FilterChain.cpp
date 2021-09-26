@@ -26,8 +26,7 @@ void FilterChain::init() {
         nodeIDToNextIndices[nodeDescription.id] = nodeDescription.nextTextureIndices;
         
         if (nodeDescription.id != defaultBeginID) {
-            shared_ptr<SCFilterBase> filter = FilterFactory::createFilter(nodeDescription.filterDesc);
-            shared_ptr<FilterNode> filterNode = make_shared<FilterNode>(nodeDescription.id, filter);
+            shared_ptr<FilterNode> filterNode = make_shared<FilterNode>(nodeDescription);
             allFilterNodes.push_back(filterNode);
             nodeIDToNode[nodeDescription.id] = filterNode;
             
@@ -35,7 +34,7 @@ void FilterChain::init() {
                 lastNode = filterNode;
             }
         } else {
-            beginVirtualNode = make_shared<FilterNode>();
+            beginVirtualNode = make_shared<FilterNode>(defaultBeginNodeDescription);
             nodeIDToNode[defaultBeginID] = beginVirtualNode;
         }
     }
