@@ -5,37 +5,33 @@
 //
 
 #include "SCFilterBlur.hpp"
+#include "SCFilterBlurSub.hpp"
 
 namespace effect {
 
-void SCFilterBlur::init() {
-    blurFilterH.init();
-    blurFilterV.init();
-}
+FilterDescription defaultBlurSubFilterDescription { "SCFilterBlurSub", 0, 0, true };
+FilterNodeDescription defaultBlurSubVNodeDescription { "SCFilterBlurSubV", {}, {}, defaultBlurSubFilterDescription };
+FilterNodeDescription defaultBlurSubHNodeDescription { "SCFilterBlurSubH", { "SCFilterBlurSubV" }, { 0 }, defaultBlurSubFilterDescription };
+FilterNodeDescription defaultBlurSubBeginNodeDescription { defaultBeginID, { "SCFilterBlurSubH" }, { 0 } };
+std::vector<FilterNodeDescription> defaultBlurNodeDescriptions = { defaultBlurSubBeginNodeDescription, defaultBlurSubHNodeDescription, defaultBlurSubVNodeDescription };
 
-void SCFilterBlur::release() {
-    blurFilterH.release();
-    blurFilterV.release();
+SCFilterBlur::SCFilterBlur() : FilterChain(defaultBlurNodeDescriptions) {
 }
 
 void SCFilterBlur::resize(int width, int height) {
-    SCFilterBase::resize(width, height);
     scaleWH(width, height);
-    blurFilterH.resize(width, height);
-    blurFilterV.resize(width, height);
-    blurFilterH.setOffset(1.0f / (float)width, 0);
-    blurFilterV.setOffset(0, 1.0f / (float)height);
-}
-
-void SCFilterBlur::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
-    blurFilterH.setInputFrameBufferAtIndex(inputFrameBuffer, index);
-}
-
-void SCFilterBlur::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    std::shared_ptr<FrameBuffer> resultFrameBufferInternal = blurFilterH.render();
-    blurFilterV.setInputFrameBufferAtIndex(resultFrameBufferInternal, 0);
-    blurFilterV.renderToFrameBuffer(outputFrameBuffer);
-    resultFrameBufferInternal->unlock();
+    FilterChain::resize(width, height);
+    for (const std::shared_ptr<FilterNode> &filterNode : allFilterNodes) {
+        filterNode->filter->resize(width, height);
+        if (filterNode->id == "SCFilterBlurSubH") {
+            std::shared_ptr<SCFilterBlurSub> blurFilterH = std::static_pointer_cast<SCFilterBlurSub>(filterNode->filter);
+            blurFilterH->setOffset(1.0f / (float)width, 0);
+        }
+        if (filterNode->id == "SCFilterBlurSubV") {
+            std::shared_ptr<SCFilterBlurSub> blurFilterV = std::static_pointer_cast<SCFilterBlurSub>(filterNode->filter);
+            blurFilterV->setOffset(0, 1.0f / (float)height);
+        }
+    }
 }
 
 void SCFilterBlur::scaleWH(int &width, int &height, int maxLength) {

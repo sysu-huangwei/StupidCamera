@@ -10,7 +10,10 @@
 namespace effect {
 
 FilterNode::FilterNode(const FilterNodeDescription &nodeDesc) {
-    filter = FilterFactory::createFilter(nodeDesc.filterDesc);
+    id = nodeDesc.id;
+    if (nodeDesc.id != defaultBeginID) {
+        filter = FilterFactory::createFilter(nodeDesc.filterDesc);
+    }
 }
 
 void FilterNode::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {

@@ -9,6 +9,7 @@
 #include "BaseLog.h"
 
 #include "SCFilterCopy.hpp"
+#include "SCFilterBlurSub.hpp"
 
 namespace effect {
     
@@ -17,6 +18,8 @@ std::shared_ptr<SCFilterBase> FilterFactory::createFilter(const FilterDescriptio
     
     if (filterDesc.type == "SCFilterType_Copy") {
         filter = std::make_shared<SCFilterCopy>();
+    } else if (filterDesc.type == "SCFilterBlurSub") {
+        filter = std::make_shared<SCFilterBlurSub>();
     } else {
         LOGE("Error: FilterFactory::createFilter: invalid filter type = %s", filterDesc.type.c_str());
         assert(false);

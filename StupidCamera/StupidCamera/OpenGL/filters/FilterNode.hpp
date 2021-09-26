@@ -30,9 +30,12 @@ public:
     /// 渲染，必须在GL线程
     void render();
     
-protected:
+    
+    std::string id = "";
     
     std::shared_ptr<SCFilterBase> filter = nullptr;
+    
+protected:
     
     friend class FilterChain;
     std::vector<std::shared_ptr<FilterNode>> nextNodes;

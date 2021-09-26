@@ -42,7 +42,7 @@ public:
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;
     
-private:
+protected:
     
     std::vector<FilterNodeDescription> nodeDescriptions;
     

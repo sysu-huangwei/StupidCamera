@@ -26,6 +26,7 @@ void FilterChain::init() {
         
         if (nodeDescription.id != defaultBeginID) {
             shared_ptr<FilterNode> filterNode = make_shared<FilterNode>(nodeDescription);
+            filterNode->filter->init();
             allFilterNodes.push_back(filterNode);
             nodeIDToNode[nodeDescription.id] = filterNode;
             
@@ -56,6 +57,7 @@ void FilterChain::release() {
 }
 
 void FilterChain::resize(int width, int height) {
+    SCFilterBase::resize(width, height);
     lastNode->filter->resize(width, height);
 }
 
@@ -72,7 +74,7 @@ void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     
     lastNode->setOutputFrameBuffer(outputFrameBuffer);
     for (const shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-        filterNode->filter->render();
+        filterNode->render();
     }
 }
 
