@@ -33,7 +33,7 @@ void main()
     sumWeight += sampleWeight;
     sum += nearColor * sampleWeight;
     
-    nearColor = texture2D(u_texture, texcoordOutNear[1].zw);
+    nearColor = texture2D(u_texture, texcoordOutNear[1].xy);
     colorDistance = min(distance(srcColor, nearColor) * tolerance_factor, 1.0);
     sampleWeight = 0.1 * (1.0 - colorDistance);
     sumWeight += sampleWeight;
