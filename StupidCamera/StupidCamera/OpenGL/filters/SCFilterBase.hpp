@@ -65,19 +65,20 @@ public:
     /// @param enableRender 是否开启绘制
     virtual void setEnableRender(bool enableRender);
     
+    /// 是否所有输入已就绪
+    virtual bool isAllInputReady();
+    
     /// 设置参数
     /// @param param 参数
     virtual void setParams(const std::map<std::string, std::string> &param);
     
 protected:
     int width = 0, height = 0;
+    int inputWidth = 0, inputHeight = 0;
     std::shared_ptr<Program> program = nullptr;
     std::map<std::shared_ptr<FrameBuffer>, int> inputFrameBuffers;
     
     bool enableRender = true;
-    
-    /// 是否所有输入已就绪
-    virtual bool isAllInputReady();
     
     /// 在最终渲染之前判断是否需要渲染
     virtual bool isNeedRender();

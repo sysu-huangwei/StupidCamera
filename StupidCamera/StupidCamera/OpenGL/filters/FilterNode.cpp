@@ -29,7 +29,6 @@ void FilterNode::render() {
         setOutputFrameBufferToNextNodes(output);
         output->unlock();
     }
-    informNextNodesToRender();
 }
 
 void FilterNode::setOutputFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
@@ -40,12 +39,9 @@ void FilterNode::setOutputFrameBufferToNextNodes(std::shared_ptr<FrameBuffer> ou
     for (size_t i = 0; i < nextNodes.size(); i++) {
         nextNodes[i]->setInputFrameBufferAtIndex(output, nextIndices[i]);
         nextNodes[i]->filter->resize(output->getWidth(), output->getHeight());
-    }
-}
-
-void FilterNode::informNextNodesToRender() {
-    for (size_t i = 0; i < nextNodes.size(); i++) {
-        nextNodes[i]->render();
+        if (nextNodes[i]->filter->isAllInputReady()) {
+            nextNodes[i]->render();
+        }
     }
 }
 

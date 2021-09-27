@@ -12,6 +12,7 @@ namespace effect {
 
 static std::shared_ptr<FrameBufferPool> frameBufferPoolSharedInstance;
 static std::mutex frameBufferPoolSharedInstanceLock;
+static std::map<std::string, std::weak_ptr<FrameBuffer>> testRayyy;
 
 std::shared_ptr<FrameBufferPool> FrameBufferPool::getSharedInstance() {
     if (frameBufferPoolSharedInstance == nullptr) {
@@ -48,6 +49,10 @@ std::shared_ptr<FrameBuffer> FrameBufferPool::fetchFrameBufferFromPool(int width
         frameBuffer = std::make_shared<FrameBuffer>();
         frameBuffer->init(width, height, isOnlyTexture, textureOptions);
         frameBuffer->setEnableReferenceCount(true);
+        while (testRayyy.find(key) != testRayyy.end()) {
+            key += "!";
+        }
+        testRayyy[key] = frameBuffer;
     }
     frameBuffer->lock();
     return frameBuffer;

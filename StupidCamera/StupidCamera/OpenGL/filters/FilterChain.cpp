@@ -69,6 +69,8 @@ void FilterChain::setInputFrameBufferAtIndex(shared_ptr<FrameBuffer> inputFrameB
     for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
         beginVirtualNode->nextNodes[i]->filter->setInputFrameBufferAtIndex(inputFrameBuffer, index);
     }
+    inputWidth = inputFrameBuffer->getWidth();
+    inputHeight = inputFrameBuffer->getHeight();
 }
 
 void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
@@ -83,6 +85,10 @@ void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
         beginVirtualNode->nextNodes[i]->render();
     }
+}
+
+bool FilterChain::isAllInputReady() {
+    return true;
 }
 
 }

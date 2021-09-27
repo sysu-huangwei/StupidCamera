@@ -54,6 +54,7 @@
 		FCCB27AD26FC6A7200F09C7F /* FilterChain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB27AB26FC6A7200F09C7F /* FilterChain.cpp */; };
 		FCCB28A326FC7CFF00F09C7F /* FilterNodeDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB28A126FC7CFE00F09C7F /* FilterNodeDescription.cpp */; };
 		FCCB293126FDAC0A00F09C7F /* FilterNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB292F26FDAC0900F09C7F /* FilterNode.cpp */; };
+		FCCB2B932701A0BF00F09C7F /* SCFilterMix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB2B912701A0BA00F09C7F /* SCFilterMix.cpp */; };
 		FCEB082D26CA4C11001ACDEF /* SCFilterBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */; };
 		FCEB086026CBA4E3001ACDEF /* SCFilterBlurSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */; };
 		FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */; };
@@ -165,6 +166,8 @@
 		FCCB28A226FC7CFE00F09C7F /* FilterNodeDescription.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FilterNodeDescription.hpp; sourceTree = "<group>"; };
 		FCCB292F26FDAC0900F09C7F /* FilterNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FilterNode.cpp; sourceTree = "<group>"; };
 		FCCB293026FDAC0900F09C7F /* FilterNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FilterNode.hpp; sourceTree = "<group>"; };
+		FCCB2B912701A0BA00F09C7F /* SCFilterMix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterMix.cpp; sourceTree = "<group>"; };
+		FCCB2B922701A0BA00F09C7F /* SCFilterMix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterMix.hpp; sourceTree = "<group>"; };
 		FCD3E4C126D636BD00F8D3BE /* BasePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePlatform.h; sourceTree = "<group>"; };
 		FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlur.cpp; sourceTree = "<group>"; };
 		FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlur.hpp; sourceTree = "<group>"; };
@@ -418,6 +421,8 @@
 				FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */,
 				FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */,
 				FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */,
+				FCCB2B912701A0BA00F09C7F /* SCFilterMix.cpp */,
+				FCCB2B922701A0BA00F09C7F /* SCFilterMix.hpp */,
 				71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */,
 				71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */,
 				FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */,
@@ -616,6 +621,7 @@
 				FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */,
 				FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */,
 				FC892B72267999D5000F4513 /* SCFaceData.cpp in Sources */,
+				FCCB2B932701A0BF00F09C7F /* SCFilterMix.cpp in Sources */,
 				FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */,
 				FCCB293126FDAC0A00F09C7F /* FilterNode.cpp in Sources */,
 				FC892B9B267A1294000F4513 /* SCCameraViewController.mm in Sources */,

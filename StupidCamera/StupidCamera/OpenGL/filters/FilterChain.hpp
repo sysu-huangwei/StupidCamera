@@ -49,6 +49,9 @@ protected:
     std::shared_ptr<FilterNode> beginVirtualNode;
     std::vector<std::shared_ptr<FilterNode>> lastNodes;
     std::vector<std::shared_ptr<FilterNode>> allFilterNodes;
+    
+    /// 是否所有输入已就绪
+    virtual bool isAllInputReady() override;
 };
 
 }
