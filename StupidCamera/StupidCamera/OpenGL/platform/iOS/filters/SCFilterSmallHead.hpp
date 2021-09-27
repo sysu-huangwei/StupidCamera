@@ -19,10 +19,6 @@ public:
     /// 滤镜的唯一ID
     std::string filterName() override { return SCFilterType_SmallHead; }
     
-    /// 渲染，必须在GL线程
-    /// @param outputFrameBuffer 目标FBO
-    virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;
-    
     /// 设置人脸数据
     /// @param faceData 人脸数据
     virtual void setFaceData(SCFaceData *faceData) override;

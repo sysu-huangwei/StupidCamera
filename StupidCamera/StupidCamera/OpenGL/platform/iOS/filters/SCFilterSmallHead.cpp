@@ -11,10 +11,6 @@
 
 namespace effect {
 
-void SCFilterSmallHead::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    SCFilterBackgroundMesh::renderToFrameBuffer(outputFrameBuffer);
-}
-
 void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
     SCFilterFaceBase::setFaceData(faceData);
     if (faceData) {
