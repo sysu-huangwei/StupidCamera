@@ -79,7 +79,8 @@ private:
     GLint getAttributeLocation(std:: string name);
     
     GLuint programID = 0;
-    std::map<std::string, GLint> locationMap;
+    std::map<std::string, GLint> uniformLocationMap;
+    std::map<std::string, GLint> attributeLocationMap;
     
 };
 

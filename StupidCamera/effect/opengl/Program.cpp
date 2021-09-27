@@ -118,22 +118,22 @@ void Program::setTextureAtIndex(std::string name, GLuint textureID, int index) {
 }
 
 GLint Program::getUniformLocation(std:: string name) {
-    if (locationMap.find(name) == locationMap.end()) {
+    if (uniformLocationMap.find(name) == uniformLocationMap.end()) {
         GLint location = glGetUniformLocation(programID, name.c_str());
-        locationMap[name] = location;
+        uniformLocationMap[name] = location;
         return location;
     } else {
-        return locationMap[name];
+        return uniformLocationMap[name];
     }
 }
 
 GLint Program::getAttributeLocation(std:: string name) {
-    if (locationMap.find(name) == locationMap.end()) {
+    if (attributeLocationMap.find(name) == attributeLocationMap.end()) {
         GLint location = glGetAttribLocation(programID, name.c_str());
-        locationMap[name] = location;
+        attributeLocationMap[name] = location;
         return location;
     } else {
-        return locationMap[name];
+        return attributeLocationMap[name];
     }
 }
 
