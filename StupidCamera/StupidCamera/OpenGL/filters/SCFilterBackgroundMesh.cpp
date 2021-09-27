@@ -16,7 +16,7 @@ SCFilterBackgroundMesh::SCFilterBackgroundMesh() : FilterChain(FilterFactory::ge
 
 void SCFilterBackgroundMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
     for (const std::shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-        if (filterNode->id == "SCFilterMesh") {
+        if (filterNode->id == "mesh") {
             std::shared_ptr<SCFilterMesh> meshFilter = std::static_pointer_cast<SCFilterMesh>(filterNode->filter);
             meshFilter->setMesh(mesh, meshStd, meshIndex, indexArrayCount);
         }
