@@ -14,20 +14,18 @@ void SCFilterLine::init() {
 }
 
 void SCFilterLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!isNeedRender() || !outputFrameBuffer) {
-        return;
+    if (isNeedRender() && outputFrameBuffer) {
+        outputFrameBuffer->activeFrameBuffer();
+        
+        program->use();
+        
+        program->setVertexAttribPointer("a_position", lines);
+        
+        glLineWidth(5.0f);
+        glDrawArrays(GL_LINES, 0, linesCount * 2);
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
-    
-    outputFrameBuffer->activeFrameBuffer();
-    
-    program->use();
-    
-    program->setVertexAttribPointer("a_position", lines);
-    
-    glLineWidth(5.0f);
-    glDrawArrays(GL_LINES, 0, linesCount * 2);
-    
-    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
     inputFrameBuffers.begin()->first->unlock();
     inputFrameBuffers.clear();

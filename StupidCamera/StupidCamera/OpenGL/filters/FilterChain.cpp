@@ -20,23 +20,25 @@ void FilterChain::init() {
     map<string, vector<int>> nodeIDToNextIndices;
     map<string, shared_ptr<FilterNode>> nodeIDToNode;
     
-    for (const FilterNodeDescription &nodeDescription : nodeDescriptions) {
+    for (size_t i = 0; i < nodeDescriptions.size(); i++) {
+        const FilterNodeDescription &nodeDescription = nodeDescriptions[i];
         nodeIDToNextIDs[nodeDescription.id] = nodeDescription.nextIDs;
         nodeIDToNextIndices[nodeDescription.id] = nodeDescription.nextTextureIndices;
         
+        shared_ptr<FilterNode> filterNode = make_shared<FilterNode>(nodeDescription);
+        
         if (nodeDescription.id != defaultBeginID) {
-            shared_ptr<FilterNode> filterNode = make_shared<FilterNode>(nodeDescription);
             filterNode->filter->init();
             allFilterNodes.push_back(filterNode);
-            nodeIDToNode[nodeDescription.id] = filterNode;
-            
-            if (nodeDescription.nextIDs.empty()) {
-                lastNode = filterNode;
-            }
         } else {
-            beginVirtualNode = make_shared<FilterNode>(defaultBeginNodeDescription);
-            nodeIDToNode[defaultBeginID] = beginVirtualNode;
+            beginVirtualNode = filterNode;
         }
+        
+        if (nodeDescription.nextIDs.empty()) {
+            lastNodes.push_back(filterNode);
+        }
+        
+        nodeIDToNode[nodeDescription.id] = filterNode;
     }
     
     for (auto it = nodeIDToNextIDs.begin(); it != nodeIDToNextIDs.end(); it++) {
@@ -51,19 +53,21 @@ void FilterChain::init() {
 }
 
 void FilterChain::release() {
-    for (const shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-        filterNode->filter->release();
+    for (size_t i = 0; i < allFilterNodes.size(); i++) {
+        allFilterNodes[i]->filter->release();
     }
 }
 
 void FilterChain::resize(int width, int height) {
     SCFilterBase::resize(width, height);
-    lastNode->filter->resize(width, height);
+    for (size_t i = 0; i < lastNodes.size(); i++) {
+        lastNodes[i]->filter->resize(width, height);
+    }
 }
 
 void FilterChain::setInputFrameBufferAtIndex(shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
-    for (std::shared_ptr<FilterNode> filterNode : beginVirtualNode->nextNodes) {
-        filterNode->filter->setInputFrameBufferAtIndex(inputFrameBuffer, index);
+    for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
+        beginVirtualNode->nextNodes[i]->filter->setInputFrameBufferAtIndex(inputFrameBuffer, index);
     }
 }
 
@@ -72,9 +76,12 @@ void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
         return;
     }
     
-    lastNode->setOutputFrameBuffer(outputFrameBuffer);
-    for (const shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-        filterNode->render();
+    for (size_t i = 0; i < lastNodes.size(); i++) {
+        lastNodes[i]->setOutputFrameBuffer(outputFrameBuffer);
+    }
+    
+    for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
+        beginVirtualNode->nextNodes[i]->render();
     }
 }
 

@@ -29,33 +29,32 @@ void SCFilterSmooth::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inp
 }
 
 void SCFilterSmooth::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!isNeedRender() || !outputFrameBuffer) {
-        return;
+    if (isNeedRender() && outputFrameBuffer) {
+        std::shared_ptr<FrameBuffer> resultFrameBufferInternal = blurFilter.render();
+        
+        outputFrameBuffer->activeFrameBuffer();
+        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(0.0f,0.0f,0.0f,1.0f);
+        
+        program->use();
+        
+        program->setVertexAttribPointer("a_position", imageVertices);
+        program->setVertexAttribPointer("a_texCoord", textureCoordinates);
+        
+        program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
+        program->setTextureAtIndex("u_texture1", resultFrameBufferInternal->getTextureID(), 3);
+        program->setUniform1f("alpha", alpha);
+        
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
+        
+        resultFrameBufferInternal->unlock();
     }
-    
-    std::shared_ptr<FrameBuffer> resultFrameBufferInternal = blurFilter.render();
-    
-    outputFrameBuffer->activeFrameBuffer();
-    
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.0f,0.0f,0.0f,1.0f);
-    
-    program->use();
-    
-    program->setVertexAttribPointer("a_position", imageVertices);
-    program->setVertexAttribPointer("a_texCoord", textureCoordinates);
-    
-    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
-    program->setTextureAtIndex("u_texture1", resultFrameBufferInternal->getTextureID(), 3);
-    program->setUniform1f("alpha", alpha);
-    
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    
-    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
     inputFrameBuffers.begin()->first->unlock();
     inputFrameBuffers.clear();
-    resultFrameBufferInternal->unlock();
 }
 
 void SCFilterSmooth::setParams(const std::map<std::string, std::string> &param) {

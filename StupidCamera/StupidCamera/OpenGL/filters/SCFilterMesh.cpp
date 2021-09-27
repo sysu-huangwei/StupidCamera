@@ -26,22 +26,20 @@ void SCFilterMesh::init() {
 }
 
 void SCFilterMesh::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!isNeedRender() || !outputFrameBuffer) {
-        return;
+    if (isNeedRender() && outputFrameBuffer) {
+        outputFrameBuffer->activeFrameBuffer();
+        
+        program->use();
+        
+        program->setVertexAttribPointer("a_position", mesh);
+        program->setVertexAttribPointer("a_position_std", meshStd);
+        
+        program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
+        
+        glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
-    
-    outputFrameBuffer->activeFrameBuffer();
-    
-    program->use();
-    
-    program->setVertexAttribPointer("a_position", mesh);
-    program->setVertexAttribPointer("a_position_std", meshStd);
-    
-    program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
-    
-    glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
-    
-    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
     inputFrameBuffers.begin()->first->unlock();
     inputFrameBuffers.clear();

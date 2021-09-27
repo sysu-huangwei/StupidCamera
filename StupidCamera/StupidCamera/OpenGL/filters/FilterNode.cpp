@@ -21,15 +21,14 @@ void FilterNode::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFr
 }
 
 void FilterNode::render() {
-    std::shared_ptr<FrameBuffer> output;
     if (outputFrameBuffer) {
-        output = outputFrameBuffer;
-        filter->renderToFrameBuffer(output);
+        filter->renderToFrameBuffer(outputFrameBuffer);
+        setOutputFrameBufferToNextNodes(outputFrameBuffer);
     } else {
-        output = filter->render();
+        std::shared_ptr<FrameBuffer> output = filter->render();
+        setOutputFrameBufferToNextNodes(output);
         output->unlock();
     }
-    setOutputFrameBufferToNextNodes(output);
     informNextNodesToRender();
 }
 

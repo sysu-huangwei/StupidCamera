@@ -47,7 +47,7 @@ protected:
     std::vector<FilterNodeDescription> nodeDescriptions;
     
     std::shared_ptr<FilterNode> beginVirtualNode;
-    std::shared_ptr<FilterNode> lastNode;
+    std::vector<std::shared_ptr<FilterNode>> lastNodes;
     std::vector<std::shared_ptr<FilterNode>> allFilterNodes;
 };
 

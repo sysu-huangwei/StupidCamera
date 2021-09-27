@@ -21,7 +21,7 @@ void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
         BasePoint facePointChanged[FACE_POINT_COUNT];
         memcpy(facePointChanged, faceData->faces[0].facePoints, sizeof(BasePoint) * FACE_POINT_COUNT);
         changeSmallFacePoint(facePointChanged);
-        meshFilter.setMesh(std::vector<BasePoint>(facePointChanged, facePointChanged + sizeof(facePointChanged) / sizeof(BasePoint)),
+        setMesh(std::vector<BasePoint>(facePointChanged, facePointChanged + sizeof(facePointChanged) / sizeof(BasePoint)),
                            std::vector<BasePoint>(faceData->faces[0].facePoints, faceData->faces[0].facePoints + sizeof(faceData->faces[0].facePoints) / sizeof(BasePoint)),
                            FaceTriangleIndex,
                            FACE_TRIANGLE_INDEX_INT_ARRAY_SIZE);

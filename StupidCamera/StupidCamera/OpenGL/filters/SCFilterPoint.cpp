@@ -19,19 +19,17 @@ void SCFilterPoint::init() {
 }
 
 void SCFilterPoint::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!isNeedRender() || !outputFrameBuffer) {
-        return;
+    if (isNeedRender() && outputFrameBuffer) {
+        outputFrameBuffer->activeFrameBuffer();
+        
+        program->use();
+        
+        program->setVertexAttribPointer("a_position", points);
+        
+        glDrawArrays(GL_POINTS, 0, pointsCount);
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
-    
-    outputFrameBuffer->activeFrameBuffer();
-    
-    program->use();
-    
-    program->setVertexAttribPointer("a_position", points);
-    
-    glDrawArrays(GL_POINTS, 0, pointsCount);
-    
-    glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     
     inputFrameBuffers.begin()->first->unlock();
     inputFrameBuffers.clear();
