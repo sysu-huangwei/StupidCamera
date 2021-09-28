@@ -24,8 +24,8 @@ void SCFilterMix::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
         program->setVertexAttribPointer("a_position", imageVertices);
         program->setVertexAttribPointer("a_texCoord", textureCoordinates);
         
-        program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
-        program->setTextureAtIndex("u_texture1", (inputFrameBuffers.begin()++)->first->getTextureID(), 2 + (inputFrameBuffers.begin()++)->second);
+        program->setTextureAtIndex("u_texture", inputFrameBuffers[0]->getTextureID(), 2 + inputFrameBufferIndices[0]);
+        program->setTextureAtIndex("u_texture1", inputFrameBuffers[1]->getTextureID(), 2 + inputFrameBufferIndices[1]);
         program->setUniform1f("alpha", alpha);
         
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -33,9 +33,7 @@ void SCFilterMix::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
         glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
     
-    inputFrameBuffers.begin()->first->unlock();
-    (inputFrameBuffers.begin()++)->first->unlock();
-    inputFrameBuffers.clear();
+    unlockAndClearAllInputFrameBuffers();
 }
 
 void SCFilterMix::setAlpha(float alpha) {

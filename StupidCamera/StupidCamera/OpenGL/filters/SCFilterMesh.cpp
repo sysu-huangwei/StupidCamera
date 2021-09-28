@@ -34,15 +34,14 @@ void SCFilterMesh::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameB
         program->setVertexAttribPointer("a_position", mesh);
         program->setVertexAttribPointer("a_position_std", meshStd);
         
-        program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
+        program->setTextureAtIndex("u_texture", inputFrameBuffers[0]->getTextureID(), 2 + inputFrameBufferIndices[0]);
         
         glDrawElements(GL_TRIANGLES, indexArrayCount, GL_UNSIGNED_INT, (void *)meshIndex);
         
         glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
     
-    inputFrameBuffers.begin()->first->unlock();
-    inputFrameBuffers.clear();
+    unlockAndClearAllInputFrameBuffers();
 }
 
 void SCFilterMesh::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {

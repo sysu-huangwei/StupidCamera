@@ -27,8 +27,7 @@ void SCFilterLine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameB
         glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
     
-    inputFrameBuffers.begin()->first->unlock();
-    inputFrameBuffers.clear();
+    unlockAndClearAllInputFrameBuffers();
 }
 
 

@@ -65,26 +65,20 @@ void FilterChain::resize(int width, int height) {
     }
 }
 
-void FilterChain::setInputFrameBufferAtIndex(shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
-    for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
-        beginVirtualNode->nextNodes[i]->filter->setInputFrameBufferAtIndex(inputFrameBuffer, index);
-    }
-    inputWidth = inputFrameBuffer->getWidth();
-    inputHeight = inputFrameBuffer->getHeight();
-}
-
 void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    if (!isNeedRender() || !outputFrameBuffer) {
-        return;
+    if (isNeedRender() && outputFrameBuffer) {
+        for (size_t i = 0; i < lastNodes.size(); i++) {
+            lastNodes[i]->setOutputFrameBuffer(outputFrameBuffer);
+        }
+        
+        for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
+            for (size_t j = 0; j < inputFrameBuffers.size(); j++) {
+                beginVirtualNode->setOutputFrameBufferToNextNodes(inputFrameBuffers[j]);
+            }
+        }
     }
     
-    for (size_t i = 0; i < lastNodes.size(); i++) {
-        lastNodes[i]->setOutputFrameBuffer(outputFrameBuffer);
-    }
-    
-    for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
-        beginVirtualNode->nextNodes[i]->render();
-    }
+    unlockAndClearAllInputFrameBuffers();
 }
 
 bool FilterChain::isAllInputReady() {

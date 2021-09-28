@@ -24,7 +24,7 @@ void SCFilterBlurSub::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFra
         program->setVertexAttribPointer("a_position", imageVertices);
         program->setVertexAttribPointer("a_texCoord", textureCoordinates);
         
-        program->setTextureAtIndex("u_texture", inputFrameBuffers.begin()->first->getTextureID(), 2 + inputFrameBuffers.begin()->second);
+        program->setTextureAtIndex("u_texture", inputFrameBuffers[0]->getTextureID(), 2 + inputFrameBufferIndices[0]);
         program->setUniform2f("offset", widthOffset, heightOffset);
         
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -32,8 +32,7 @@ void SCFilterBlurSub::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFra
         glBindFramebuffer(GL_FRAMEBUFFER, GL_NONE);
     }
     
-    inputFrameBuffers.begin()->first->unlock();
-    inputFrameBuffers.clear();
+    unlockAndClearAllInputFrameBuffers();
 }
 
 void SCFilterBlurSub::setOffset(float widthOffset, float heightOffset) {

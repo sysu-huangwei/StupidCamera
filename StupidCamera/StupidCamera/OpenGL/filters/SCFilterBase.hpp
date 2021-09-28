@@ -7,7 +7,7 @@
 #ifndef SCFilterBase_hpp
 #define SCFilterBase_hpp
 
-#include <map>
+#include <vector>
 #include "SCFilterConstant.hpp"
 #include "FrameBuffer.hpp"
 #include "Program.hpp"
@@ -74,9 +74,11 @@ public:
     
 protected:
     int width = 0, height = 0;
-    int inputWidth = 0, inputHeight = 0;
+    int firstInputWidth = 0, firstInputHeight = 0;
     std::shared_ptr<Program> program = nullptr;
-    std::map<std::shared_ptr<FrameBuffer>, int> inputFrameBuffers;
+    
+    std::vector<std::shared_ptr<FrameBuffer>> inputFrameBuffers;
+    std::vector<int> inputFrameBufferIndices;
     
     bool enableRender = true;
     
@@ -84,6 +86,8 @@ protected:
     virtual bool isNeedRender();
     
     virtual void initWithVertexStringAndFragmentString(const char* vertexShaderName, const char* fragmentShaderName);
+    
+    virtual void unlockAndClearAllInputFrameBuffers();
 };
 
 }

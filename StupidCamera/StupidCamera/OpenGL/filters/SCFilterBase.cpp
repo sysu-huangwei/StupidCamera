@@ -30,19 +30,20 @@ void SCFilterBase::release() {
 }
 
 void SCFilterBase::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
-    inputFrameBuffer->lock();
-    inputFrameBuffers[inputFrameBuffer] = index;
-    if (inputFrameBuffers.empty() || inputWidth == 0 || inputHeight == 0) {
-        inputWidth = inputFrameBuffer->getWidth();
-        inputHeight = inputFrameBuffer->getHeight();
+    if (inputFrameBuffers.empty()) {
+        firstInputWidth = inputFrameBuffer->getWidth();
+        firstInputHeight = inputFrameBuffer->getHeight();
     }
+    inputFrameBuffer->lock();
+    inputFrameBuffers.push_back(inputFrameBuffer);
+    inputFrameBufferIndices.push_back(index);
 }
 
 std::shared_ptr<FrameBuffer> SCFilterBase::render() {
-    // 如果当前滤镜没有外部指定渲染尺寸，那么就直接使用输入的FBO的尺寸
+    // 如果当前滤镜没有外部指定渲染尺寸，那么就直接使用第一个输入的FBO的尺寸
     if (width == 0 || height == 0) {
-        width = inputWidth;
-        height = inputHeight;
+        width = firstInputWidth;
+        height = firstInputHeight;
     }
     
     std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
@@ -66,6 +67,14 @@ bool SCFilterBase::isNeedRender() {
 
 void SCFilterBase::setParams(const std::map<std::string, std::string> &param) {
     
+}
+
+void SCFilterBase::unlockAndClearAllInputFrameBuffers() {
+    for (size_t i= 0; i < inputFrameBuffers.size(); i++) {
+        inputFrameBuffers[i]->unlock();
+    }
+    inputFrameBuffers.clear();
+    inputFrameBufferIndices.clear();
 }
 
 }

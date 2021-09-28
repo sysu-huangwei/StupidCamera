@@ -33,11 +33,6 @@ public:
     /// @param height 高
     virtual void resize(int width, int height) override;
     
-    /// 设置输入图像的FBO
-    /// @param inputFrameBuffer 输入图像的FBO
-    /// @param index 这个输入的FBO纹理应该设置到当前滤镜shader的第几个位置，从0开始（通常用于多路输入的滤镜）
-    virtual void setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index = 0) override;
-    
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;
@@ -49,6 +44,8 @@ protected:
     std::shared_ptr<FilterNode> beginVirtualNode;
     std::vector<std::shared_ptr<FilterNode>> lastNodes;
     std::vector<std::shared_ptr<FilterNode>> allFilterNodes;
+    
+    std::map<std::shared_ptr<FrameBuffer>, int> inputFrameBuffersRef;
     
     /// 是否所有输入已就绪
     virtual bool isAllInputReady() override;
