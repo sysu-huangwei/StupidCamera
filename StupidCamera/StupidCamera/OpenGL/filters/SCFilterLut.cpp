@@ -50,28 +50,26 @@ void SCFilterLut::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     unlockAndClearAllInputFrameBuffers();
 }
 
-void SCFilterLut::setLutImagePath(const char *path) {
+void SCFilterLut::setParams(const std::map<std::string, std::string> &param) {
+    if (param.find(SCFilterParam_Lut_Path) != param.end()) {
+        setLutImagePath(param.at(SCFilterParam_Lut_Path));
+    }
+    if (param.find(SCFilterParam_Lut_Alpha) != param.end()) {
+        setAlpha(std::stof(param.at(SCFilterParam_Lut_Alpha)));
+    }
+}
+
+void SCFilterLut::setLutImagePath(std::string path) {
     if (lutTextureID > 0) {
         glDeleteTextures(1, &lutTextureID);
         lutTextureID = 0;
     }
     int width, height;
-    this->lutTextureID = BaseGLUtils::loadImageFileToTexture(path, width, height);
+    this->lutTextureID = BaseGLUtils::loadImageFileToTexture(path.c_str(), width, height);
 }
 
 void SCFilterLut::setAlpha(float alpha) {
     this->alpha = alpha;
-}
-
-void SCFilterLut::setParams(const std::map<std::string, std::string> &param) {
-    std::map<std::string, std::string>::const_iterator it;
-    for (it = param.begin(); it != param.end(); it++) {
-        if ((*it).first == SCFilterParam_LutPath) {
-            setLutImagePath((*it).second.c_str());
-        } else if ((*it).first == SCFilterParam_LutAlpha) {
-            setAlpha(std::stof((*it).second));
-        }
-    }
 }
 
 }

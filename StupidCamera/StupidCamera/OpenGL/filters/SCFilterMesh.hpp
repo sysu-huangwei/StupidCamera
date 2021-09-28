@@ -18,8 +18,8 @@ class SCFilterMesh : public SCFilterBase {
 public:
     ~SCFilterMesh();
     
-    /// 滤镜的唯一ID
-    std::string filterName() override { return SCFilterType_Mesh; }
+    /// 滤镜的类型
+    std::string filterType() override { return SCFilterType_Mesh; }
     
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
     virtual void init() override;

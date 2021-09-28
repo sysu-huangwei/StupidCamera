@@ -43,12 +43,13 @@ void SCFilterSharpenUSM::renderToFrameBuffer(std::shared_ptr<FrameBuffer> output
 }
 
 void SCFilterSharpenUSM::setParams(const std::map<std::string, std::string> &param) {
-    std::map<std::string, std::string>::const_iterator it;
-    for (it = param.begin(); it != param.end(); it++) {
-        if ((*it).first == SCFilterParam_SharpenAlpha) {
-            alpha = std::stof((*it).second);
-        }
+    if (param.find(SCFilterParam_Sharpen_Alpha) != param.end()) {
+        setAlpha(std::stof(param.at(SCFilterParam_Sharpen_Alpha)));
     }
+}
+
+void SCFilterSharpenUSM::setAlpha(float alpha) {
+    this->alpha = alpha;
 }
 
 }

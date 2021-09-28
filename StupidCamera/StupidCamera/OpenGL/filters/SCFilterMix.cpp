@@ -36,6 +36,12 @@ void SCFilterMix::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     unlockAndClearAllInputFrameBuffers();
 }
 
+void SCFilterMix::setParams(const std::map<std::string, std::string> &param) {
+    if (param.find(SCFilterParam_Mix_Alpha) != param.end()) {
+        setAlpha(std::stof(param.at(SCFilterParam_Mix_Alpha)));
+    }
+}
+
 void SCFilterMix::setAlpha(float alpha) {
     this->alpha = alpha;
 }

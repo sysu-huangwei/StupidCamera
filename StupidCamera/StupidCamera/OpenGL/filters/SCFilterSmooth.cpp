@@ -15,15 +15,11 @@ SCFilterSmooth::SCFilterSmooth() : FilterChain(FilterFactory::getChainDescByType
 }
 
 void SCFilterSmooth::setParams(const std::map<std::string, std::string> &param) {
-    std::map<std::string, std::string>::const_iterator it;
-    for (it = param.begin(); it != param.end(); it++) {
-        if ((*it).first == SCFilterParam_BlurAlpha) {
-            alpha = std::stof((*it).second);
-            for (const std::shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-                if (filterNode->id == "mix") {
-                    std::shared_ptr<SCFilterMix> mixFilter = std::static_pointer_cast<SCFilterMix>(filterNode->filter);
-                    mixFilter->setAlpha(alpha);
-                }
+    if (param.find(SCFilterParam_Blur_Alpha) != param.end()) {
+        for (const std::shared_ptr<FilterNode> &filterNode : allFilterNodes) {
+            if (filterNode->id == "mix") {
+                std::shared_ptr<SCFilterMix> mixFilter = std::static_pointer_cast<SCFilterMix>(filterNode->filter);
+                mixFilter->setParams({{SCFilterParam_Mix_Alpha, param.at(SCFilterParam_Blur_Alpha)}});
             }
         }
     }

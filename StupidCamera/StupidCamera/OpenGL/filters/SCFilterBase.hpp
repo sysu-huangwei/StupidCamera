@@ -34,8 +34,8 @@ const static float textureCoordinates[8] = {
 class SCFilterBase {
 public:
     
-    /// 滤镜的唯一ID
-    virtual std::string filterName() = 0;
+    /// 滤镜的类型
+    virtual std::string filterType() = 0;
     
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
     virtual void init();

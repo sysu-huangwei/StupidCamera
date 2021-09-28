@@ -15,8 +15,8 @@ namespace effect {
 class SCFilterBlurSub : public SCFilterBase {
 public:
     
-    /// 滤镜的唯一ID
-    std::string filterName() override { return SCFilterType_Blur; }
+    /// 滤镜的类型
+    std::string filterType() override { return SCFilterType_BlurSub; }
     
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
     virtual void init() override;
@@ -31,6 +31,7 @@ public:
     virtual void setOffset(float widthOffset, float heightOffset);
     
 protected:
+    
     float widthOffset = 0.0f, heightOffset = 0.0f;
 };
 

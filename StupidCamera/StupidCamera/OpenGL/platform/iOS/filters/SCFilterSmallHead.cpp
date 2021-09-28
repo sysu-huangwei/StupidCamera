@@ -25,11 +25,8 @@ void SCFilterSmallHead::setFaceData(SCFaceData *faceData) {
 }
 
 void SCFilterSmallHead::setParams(const std::map<std::string, std::string> &param) {
-    std::map<std::string, std::string>::const_iterator it;
-    for (it = param.begin(); it != param.end(); it++) {
-        if ((*it).first == SCFilterParam_SmallHeadDegree) {
-            setSmallHeadDegree(std::stof((*it).second));
-        }
+    if (param.find(SCFilterParam_SmallHead_Degree) != param.end()) {
+        setSmallHeadDegree(std::stof(param.at(SCFilterParam_SmallHead_Degree)));
     }
 }
 

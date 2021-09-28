@@ -19,8 +19,8 @@ public:
     
     SCFilterBlur();
     
-    /// 滤镜的唯一ID
-    std::string filterName() override { return SCFilterType_Blur; }
+    /// 滤镜的类型
+    std::string filterType() override { return SCFilterType_Blur; }
     
     /// 设置绘制尺寸
     /// @param width 宽

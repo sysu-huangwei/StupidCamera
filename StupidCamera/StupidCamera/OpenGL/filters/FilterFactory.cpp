@@ -11,27 +11,30 @@
 #include "SCFilterCopy.hpp"
 #include "SCFilterBlurSub.hpp"
 #include "SCFilterBlur.hpp"
-#include "SCFilterMesh.hpp"
 #include "SCFilterMix.hpp"
 #include "SCFilterSmooth.hpp"
+#include "SCFilterMesh.hpp"
+#include "SCFilterBackgroundMesh.hpp"
 
 namespace effect {
     
 std::shared_ptr<SCFilterBase> FilterFactory::createFilter(const FilterDescription &filterDesc) {
     std::shared_ptr<SCFilterBase> filter = nullptr;
     
-    if (filterDesc.type == "SCFilterCopy") {
+    if (filterDesc.type == SCFilterType_Copy) {
         filter = std::make_shared<SCFilterCopy>();
-    } else if (filterDesc.type == "SCFilterBlurSub") {
+    } else if (filterDesc.type == SCFilterType_BlurSub) {
         filter = std::make_shared<SCFilterBlurSub>();
-    } else if (filterDesc.type == "SCFilterBlur") {
+    } else if (filterDesc.type == SCFilterType_Blur) {
         filter = std::make_shared<SCFilterBlur>();
-    } else if (filterDesc.type == "SCFilterMesh") {
-        filter = std::make_shared<SCFilterMesh>();
-    } else if (filterDesc.type == "SCFilterMix") {
+    } else if (filterDesc.type == SCFilterType_Mix) {
         filter = std::make_shared<SCFilterMix>();
-    } else if (filterDesc.type == "SCFilterSmooth") {
+    } else if (filterDesc.type == SCFilterType_Smooth) {
         filter = std::make_shared<SCFilterSmooth>();
+    } else if (filterDesc.type == SCFilterType_Mesh) {
+        filter = std::make_shared<SCFilterMesh>();
+    } else if (filterDesc.type == SCFilterType_BackgroundMesh) {
+        filter = std::make_shared<SCFilterBackgroundMesh>();
     } else {
         LOGE("Error: FilterFactory::createFilter: invalid filter type = %s", filterDesc.type.c_str());
         assert(false);
@@ -47,7 +50,7 @@ std::shared_ptr<SCFilterBase> FilterFactory::createFilter(const FilterDescriptio
 std::vector<FilterNodeDescription> FilterFactory::getChainDescByType(const std::string &type) {
     std::vector<FilterNodeDescription> chainDesc;
     
-    if (type == "BlurFilter") {
+    if (type == SCFilterType_Blur) {
         FilterNodeDescription begin = defaultBeginNodeDescription;
         begin.nextIDs.push_back("blurH");
         begin.nextTextureIndices.push_back(0);
@@ -56,17 +59,17 @@ std::vector<FilterNodeDescription> FilterFactory::getChainDescByType(const std::
         blurH.id = "blurH";
         blurH.nextIDs.push_back("blurV");
         blurH.nextTextureIndices.push_back(0);
-        blurH.filterDesc.type = "SCFilterBlurSub";
+        blurH.filterDesc.type = SCFilterType_BlurSub;
         
         FilterNodeDescription blurV;
         blurV.id = "blurV";
-        blurV.filterDesc.type = "SCFilterBlurSub";
+        blurV.filterDesc.type = SCFilterType_BlurSub;
         
         chainDesc.push_back(begin);
         chainDesc.push_back(blurH);
         chainDesc.push_back(blurV);
         
-    } else if (type == "BackgroundMeshFilter") {
+    } else if (type == SCFilterType_BackgroundMesh) {
         FilterNodeDescription begin = defaultBeginNodeDescription;
         begin.nextIDs.push_back("copy");
         begin.nextTextureIndices.push_back(0);
@@ -75,17 +78,17 @@ std::vector<FilterNodeDescription> FilterFactory::getChainDescByType(const std::
         
         FilterNodeDescription copy;
         copy.id = "copy";
-        copy.filterDesc.type = "SCFilterCopy";
+        copy.filterDesc.type = SCFilterType_Copy;
         
         FilterNodeDescription mesh;
         mesh.id = "mesh";
-        mesh.filterDesc.type = "SCFilterMesh";
+        mesh.filterDesc.type = SCFilterType_Mesh;
         
         chainDesc.push_back(begin);
         chainDesc.push_back(copy);
         chainDesc.push_back(mesh);
         
-    } else if (type == "SmoothFilter") {
+    } else if (type == SCFilterType_Smooth) {
         FilterNodeDescription begin = defaultBeginNodeDescription;
         begin.nextIDs.push_back("mix");
         begin.nextTextureIndices.push_back(0);
@@ -96,11 +99,11 @@ std::vector<FilterNodeDescription> FilterFactory::getChainDescByType(const std::
         blur.id = "blur";
         blur.nextIDs.push_back("mix");
         blur.nextTextureIndices.push_back(1);
-        blur.filterDesc.type = "SCFilterBlur";
+        blur.filterDesc.type = SCFilterType_Blur;
         
         FilterNodeDescription mix;
         mix.id = "mix";
-        mix.filterDesc.type = "SCFilterMix";
+        mix.filterDesc.type = SCFilterType_Mix;
         
         chainDesc.push_back(begin);
         chainDesc.push_back(blur);

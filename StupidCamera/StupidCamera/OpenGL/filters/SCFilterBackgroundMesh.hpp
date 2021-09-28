@@ -18,8 +18,8 @@ public:
     
     SCFilterBackgroundMesh();
     
-    /// 滤镜的唯一ID
-    std::string filterName() override { return SCFilterType_BackgroundMesh; }
+    /// 滤镜的类型
+    std::string filterType() override { return SCFilterType_BackgroundMesh; }
     
     /// 设置需要画的网格，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param mesh 点位信息

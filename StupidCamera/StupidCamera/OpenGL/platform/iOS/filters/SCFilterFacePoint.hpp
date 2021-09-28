@@ -16,8 +16,8 @@ namespace effect {
 class SCFilterFacePoint : public SCFilterBackgroundPoint, SCFilterFaceBase {
 public:
     
-    /// 滤镜的唯一ID
-    std::string filterName() override { return SCFilterType_FacePoint; }
+    /// 滤镜的类型
+    std::string filterType() override { return SCFilterType_FacePoint; }
     
     /// 设置人脸数据
     /// @param faceData 人脸数据

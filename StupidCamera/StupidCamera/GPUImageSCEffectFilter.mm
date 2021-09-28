@@ -79,7 +79,7 @@
         [GPUImageContext useImageProcessingContext];
         std::map<std::string, std::map<std::string, std::string> > params = {
             { SCFilterType_Lut, {
-                { SCFilterParam_LutPath, std::string(lutImagePath.UTF8String) }
+                { SCFilterParam_Lut_Path, std::string(lutImagePath.UTF8String) }
             } }
         };
         self->effectEngine->setParams(params);
@@ -89,7 +89,7 @@
 - (void)setLutDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
         { SCFilterType_Lut, {
-            { SCFilterParam_LutAlpha, std::to_string(degree) }
+            { SCFilterParam_Lut_Alpha, std::to_string(degree) }
         } }
     };
     self->effectEngine->setParams(params);
@@ -98,7 +98,7 @@
 - (void)setBlurDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
         { SCFilterType_Smooth, {
-            { SCFilterParam_BlurAlpha, std::to_string(degree) }
+            { SCFilterParam_Blur_Alpha, std::to_string(degree) }
         } }
     };
     self->effectEngine->setParams(params);
@@ -107,7 +107,7 @@
 - (void)setSharpenDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
         { SCFilterType_SharpenUSM, {
-            { SCFilterParam_SharpenAlpha, std::to_string(degree) }
+            { SCFilterParam_Sharpen_Alpha, std::to_string(degree) }
         } }
     };
     self->effectEngine->setParams(params);
@@ -116,7 +116,7 @@
 - (void)setSmallHeadDegree:(float)degree {
     std::map<std::string, std::map<std::string, std::string> > params = {
         { SCFilterType_SmallHead, {
-            { SCFilterParam_SmallHeadDegree, std::to_string(degree) }
+            { SCFilterParam_SmallHead_Degree, std::to_string(degree) }
         } }
     };
     self->effectEngine->setParams(params);

@@ -85,7 +85,7 @@ void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string,
     std::map<std::string, std::map<std::string, std::string> >::const_iterator it;
     for (it = params.begin(); it != params.end(); it++) {
         for (std::shared_ptr<SCFilterBase> filter : currentFilters) {
-            if (filter->filterName() == (*it).first) {
+            if (filter->filterType() == (*it).first) {
                 filter->setParams((*it).second);
             }
         }

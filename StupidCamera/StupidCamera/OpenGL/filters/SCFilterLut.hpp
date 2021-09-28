@@ -15,8 +15,8 @@ namespace effect {
 class SCFilterLut : public SCFilterBase {
 public:
     
-    /// 滤镜的唯一ID
-    std::string filterName() override { return SCFilterType_Lut; }
+    /// 滤镜的类型
+    std::string filterType() override { return SCFilterType_Lut; }
     
     /// 初始化，必须在GL线程，子类实现这个方法去做GL相关的初始化操作
     virtual void init() override;
@@ -38,7 +38,7 @@ protected:
     
     /// 设置LUT图路径，底层加载
     /// @param path LUT图的路径
-    void setLutImagePath(const char *path);
+    void setLutImagePath(std::string path);
     
     /// 设置滤镜程度
     /// @param alpha 滤镜程度，0.0 ~ 1.0
