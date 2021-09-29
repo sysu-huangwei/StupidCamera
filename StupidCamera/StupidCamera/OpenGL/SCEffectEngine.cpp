@@ -12,10 +12,10 @@
 namespace effect {
 
 SCEffectEngine::SCEffectEngine() {
-    lutFilter = std::make_shared<SCFilterLut>();
-    smallHeadFilter = std::make_shared<SCFilterSmallHead>();
-    smoothFilter = std::make_shared<SCFilterSmooth>();
-    sharpenFilter = std::make_shared<SCFilterSharpenUSM>();
+    lutFilter = std::make_shared<LutFilter>();
+    smallHeadFilter = std::make_shared<SmallHeadFilter>();
+    smoothFilter = std::make_shared<SmoothFilter>();
+    sharpenFilter = std::make_shared<SharpenFilter>();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
     currentFilters.push_back(smoothFilter);
@@ -84,7 +84,7 @@ void SCEffectEngine::setFaceData(SCFaceData *faceData) {
 void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string, std::string> > &params) {
     std::map<std::string, std::map<std::string, std::string> >::const_iterator it;
     for (it = params.begin(); it != params.end(); it++) {
-        for (std::shared_ptr<SCFilterBase> filter : currentFilters) {
+        for (std::shared_ptr<BaseFilter> filter : currentFilters) {
             if (filter->filterType() == (*it).first) {
                 filter->setParams((*it).second);
             }

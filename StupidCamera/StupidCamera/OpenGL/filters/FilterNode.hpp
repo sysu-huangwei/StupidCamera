@@ -9,7 +9,7 @@
 
 #include <vector>
 #include "FilterNodeDescription.hpp"
-#include "SCFilterBase.hpp"
+#include "BaseFilter.hpp"
 
 namespace effect {
 
@@ -40,10 +40,10 @@ protected:
     
     std::string id = "";
     
-    std::shared_ptr<SCFilterBase> filter = nullptr;
+    std::shared_ptr<BaseFilter> filter = nullptr;
     
     friend class FilterChain;
-    friend class SCFilterBackgroundMesh;
+    friend class BackgroundMeshFilter;
     std::vector<std::shared_ptr<FilterNode>> nextNodes;
     std::vector<int> nextIndices;
     

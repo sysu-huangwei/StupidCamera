@@ -9,10 +9,10 @@
 
 #include <vector>
 #include "SCFaceData.hpp"
-#include "SCFilterLut.hpp"
-#include "SCFilterSmallHead.hpp"
-#include "SCFilterSmooth.hpp"
-#include "SCFilterSharpenUSM.hpp"
+#include "LutFilter.hpp"
+#include "SmallHeadFilter.hpp"
+#include "SmoothFilter.hpp"
+#include "SharpenFilter.hpp"
 
 namespace effect {
 
@@ -54,11 +54,11 @@ public:
     
 private:
     std::shared_ptr<SCFaceData> faceData;
-    std::vector<std::shared_ptr<SCFilterBase>> currentFilters;
-    std::shared_ptr<SCFilterLut> lutFilter;
-    std::shared_ptr<SCFilterSmallHead> smallHeadFilter;
-    std::shared_ptr<SCFilterSmooth> smoothFilter;
-    std::shared_ptr<SCFilterSharpenUSM> sharpenFilter;
+    std::vector<std::shared_ptr<BaseFilter>> currentFilters;
+    std::shared_ptr<LutFilter> lutFilter;
+    std::shared_ptr<SmallHeadFilter> smallHeadFilter;
+    std::shared_ptr<SmoothFilter> smoothFilter;
+    std::shared_ptr<SharpenFilter> sharpenFilter;
 };
 
 }

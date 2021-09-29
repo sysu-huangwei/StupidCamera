@@ -8,7 +8,7 @@
 #define FilterFactory_hpp
 
 #include <memory>
-#include "SCFilterBase.hpp"
+#include "BaseFilter.hpp"
 #include "FilterDescription.hpp"
 #include "FilterChain.hpp"
 
@@ -18,7 +18,7 @@ namespace effect {
 class FilterFactory {
 public:
     
-    static std::shared_ptr<SCFilterBase> createFilter(const FilterDescription &filterDesc);
+    static std::shared_ptr<BaseFilter> createFilter(const FilterDescription &filterDesc);
     
     static std::vector<FilterNodeDescription> getChainDescByType(const std::string &type);
     

@@ -14,7 +14,7 @@
 
 namespace effect {
 
-class FilterChain : public SCFilterBase {
+class FilterChain : public BaseFilter {
 public:
     
     FilterChain(const std::vector<FilterNodeDescription> &nodeDescriptions);

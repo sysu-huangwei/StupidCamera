@@ -10,8 +10,8 @@
 		62A4FA9BB231E8B35F997512 /* libPods-StupidCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */; };
 		710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 710F63642690134700976E1A /* FrameBufferPool.cpp */; };
 		7176450926F87ECC00DAD7EA /* model in Resources */ = {isa = PBXBuildFile; fileRef = 7176450826F87ECC00DAD7EA /* model */; };
-		71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */; };
-		FC0BE59C26D3BEC1000F848E /* SCFilterSharpenUSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */; };
+		71E05CC026D23B800061DE6D /* SmoothFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71E05CBE26D23B800061DE6D /* SmoothFilter.cpp */; };
+		FC0BE59C26D3BEC1000F848E /* SharpenFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0BE59A26D3BEC1000F848E /* SharpenFilter.cpp */; };
 		FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */; };
 		FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6DD268C6F3A001095B2 /* GPUImageSCEffectFilter.mm */; };
 		FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC22B6E2268D6251001095B2 /* FrameBuffer.cpp */; };
@@ -27,15 +27,15 @@
 		FC7AAAAF2692E1C200CA4E75 /* ProgramPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */; };
 		FC7AAAE72694477500CA4E75 /* SCEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC7AAAE52694477400CA4E75 /* SCEditViewController.m */; };
 		FC7AAAE82694477500CA4E75 /* SCEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC7AAAE62694477400CA4E75 /* SCEditViewController.xib */; };
-		FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */; };
-		FC892A782673651C000F4513 /* SCFilterBackgroundLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */; };
-		FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */; };
+		FC892A46266DF76F000F4513 /* BackgroundMeshFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A44266DF76F000F4513 /* BackgroundMeshFilter.cpp */; };
+		FC892A782673651C000F4513 /* BackgroundLineFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892A762673651C000F4513 /* BackgroundLineFilter.cpp */; };
+		FC892B6A2678CE45000F4513 /* BackgroundPointFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B682678CE45000F4513 /* BackgroundPointFilter.cpp */; };
 		FC892B6E267996EB000F4513 /* SCFaceDataIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */; };
 		FC892B72267999D5000F4513 /* SCFaceData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B71267999D5000F4513 /* SCFaceData.cpp */; };
-		FC892B762679D9C2000F4513 /* SCFilterSmallHead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B742679D9C2000F4513 /* SCFilterSmallHead.cpp */; };
-		FC892B7A2679DA36000F4513 /* SCFilterFaceBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B782679DA36000F4513 /* SCFilterFaceBase.cpp */; };
-		FC892B8B2679E854000F4513 /* SCFilterFacePoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B892679E854000F4513 /* SCFilterFacePoint.cpp */; };
-		FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */; };
+		FC892B762679D9C2000F4513 /* SmallHeadFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B742679D9C2000F4513 /* SmallHeadFilter.cpp */; };
+		FC892B7A2679DA36000F4513 /* FaceBaseFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B782679DA36000F4513 /* FaceBaseFilter.cpp */; };
+		FC892B8B2679E854000F4513 /* FacePointFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B892679E854000F4513 /* FacePointFilter.cpp */; };
+		FC892B902679EC3C000F4513 /* FaceLineFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B8E2679EC3C000F4513 /* FaceLineFilter.cpp */; };
 		FC892B9B267A1294000F4513 /* SCCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC892B99267A1294000F4513 /* SCCameraViewController.mm */; };
 		FC892B9C267A1294000F4513 /* SCCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC892B9A267A1294000F4513 /* SCCameraViewController.xib */; };
 		FCADC6CC26CF92F700AF2497 /* GLResource in Resources */ = {isa = PBXBuildFile; fileRef = FCADC6CB26CF92F700AF2497 /* GLResource */; };
@@ -54,24 +54,24 @@
 		FCCB27AD26FC6A7200F09C7F /* FilterChain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB27AB26FC6A7200F09C7F /* FilterChain.cpp */; };
 		FCCB28A326FC7CFF00F09C7F /* FilterNodeDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB28A126FC7CFE00F09C7F /* FilterNodeDescription.cpp */; };
 		FCCB293126FDAC0A00F09C7F /* FilterNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB292F26FDAC0900F09C7F /* FilterNode.cpp */; };
-		FCCB2B932701A0BF00F09C7F /* SCFilterMix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB2B912701A0BA00F09C7F /* SCFilterMix.cpp */; };
-		FCEB082D26CA4C11001ACDEF /* SCFilterBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */; };
-		FCEB086026CBA4E3001ACDEF /* SCFilterBlurSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */; };
+		FCCB2B932701A0BF00F09C7F /* MixFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCCB2B912701A0BA00F09C7F /* MixFilter.cpp */; };
+		FCEB082D26CA4C11001ACDEF /* BlurFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB082B26CA4C11001ACDEF /* BlurFilter.cpp */; };
+		FCEB086026CBA4E3001ACDEF /* BlurSubFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEB085E26CBA4E3001ACDEF /* BlurSubFilter.cpp */; };
 		FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */; };
-		FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */; };
+		FCEF7AFA2627047C00F20ED0 /* BaseFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF22627047C00F20ED0 /* BaseFilter.cpp */; };
 		FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */; };
 		FCEF7AFC2627047C00F20ED0 /* BaseLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF72627047C00F20ED0 /* BaseLog.cpp */; };
-		FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */; };
-		FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */; };
+		FCEF7AFD2627047C00F20ED0 /* CopyFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7AF82627047C00F20ED0 /* CopyFilter.cpp */; };
+		FCEF7B0B26270E7200F20ED0 /* LutFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0926270E7200F20ED0 /* LutFilter.cpp */; };
 		FCEF7B10262710B900F20ED0 /* FileUtilsForIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */; };
-		FCEF7B5626297CE600F20ED0 /* SCFilterPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */; };
+		FCEF7B5626297CE600F20ED0 /* PointFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7B5426297CE600F20ED0 /* PointFilter.cpp */; };
 		FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CF0262ECE3700F20ED0 /* edge.cpp */; };
 		FCEF7CFA262ECE3700F20ED0 /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CF2262ECE3700F20ED0 /* triangle.cpp */; };
 		FCEF7CFB262ECE3700F20ED0 /* vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CF4262ECE3700F20ED0 /* vector2.cpp */; };
 		FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CF5262ECE3700F20ED0 /* delaunay.cpp */; };
 		FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7CFE262ECFAA00F20ED0 /* DelaunayTriangle.cpp */; };
-		FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7D02262EF4CB00F20ED0 /* SCFilterLine.cpp */; };
-		FCEF7E1C26316CFD00F20ED0 /* SCFilterMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7E1A26316CFC00F20ED0 /* SCFilterMesh.cpp */; };
+		FCEF7D04262EF4CB00F20ED0 /* LineFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7D02262EF4CB00F20ED0 /* LineFilter.cpp */; };
+		FCEF7E1C26316CFD00F20ED0 /* MeshFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7E1A26316CFC00F20ED0 /* MeshFilter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,10 +96,10 @@
 		710F63642690134700976E1A /* FrameBufferPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBufferPool.cpp; sourceTree = "<group>"; };
 		710F63652690134700976E1A /* FrameBufferPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameBufferPool.hpp; sourceTree = "<group>"; };
 		7176450826F87ECC00DAD7EA /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
-		71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSmooth.cpp; sourceTree = "<group>"; };
-		71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSmooth.hpp; sourceTree = "<group>"; };
-		FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSharpenUSM.cpp; sourceTree = "<group>"; };
-		FC0BE59B26D3BEC1000F848E /* SCFilterSharpenUSM.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSharpenUSM.hpp; sourceTree = "<group>"; };
+		71E05CBE26D23B800061DE6D /* SmoothFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothFilter.cpp; sourceTree = "<group>"; };
+		71E05CBF26D23B800061DE6D /* SmoothFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SmoothFilter.hpp; sourceTree = "<group>"; };
+		FC0BE59A26D3BEC1000F848E /* SharpenFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SharpenFilter.cpp; sourceTree = "<group>"; };
+		FC0BE59B26D3BEC1000F848E /* SharpenFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SharpenFilter.hpp; sourceTree = "<group>"; };
 		FC22B6D8268C67E3001095B2 /* SCEffectEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCEffectEngine.cpp; sourceTree = "<group>"; };
 		FC22B6D9268C67E3001095B2 /* SCEffectEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCEffectEngine.hpp; sourceTree = "<group>"; };
 		FC22B6DC268C6F3A001095B2 /* GPUImageSCEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPUImageSCEffectFilter.h; sourceTree = "<group>"; };
@@ -123,27 +123,27 @@
 		FC7AAAAA2692B2B500CA4E75 /* Program.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Program.hpp; sourceTree = "<group>"; };
 		FC7AAAAD2692E1C200CA4E75 /* ProgramPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgramPool.cpp; sourceTree = "<group>"; };
 		FC7AAAAE2692E1C200CA4E75 /* ProgramPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProgramPool.hpp; sourceTree = "<group>"; };
-		FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterConstant.hpp; sourceTree = "<group>"; };
+		FC7AAAE026942F7500CA4E75 /* FilterConstant.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FilterConstant.hpp; sourceTree = "<group>"; };
 		FC7AAAE42694477400CA4E75 /* SCEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEditViewController.h; sourceTree = "<group>"; };
 		FC7AAAE52694477400CA4E75 /* SCEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCEditViewController.m; sourceTree = "<group>"; };
 		FC7AAAE62694477400CA4E75 /* SCEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCEditViewController.xib; sourceTree = "<group>"; };
-		FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundMesh.cpp; sourceTree = "<group>"; };
-		FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundMesh.hpp; sourceTree = "<group>"; };
-		FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundLine.cpp; sourceTree = "<group>"; };
-		FC892A772673651C000F4513 /* SCFilterBackgroundLine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundLine.hpp; sourceTree = "<group>"; };
-		FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBackgroundPoint.cpp; sourceTree = "<group>"; };
-		FC892B692678CE45000F4513 /* SCFilterBackgroundPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBackgroundPoint.hpp; sourceTree = "<group>"; };
+		FC892A44266DF76F000F4513 /* BackgroundMeshFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundMeshFilter.cpp; sourceTree = "<group>"; };
+		FC892A45266DF76F000F4513 /* BackgroundMeshFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BackgroundMeshFilter.hpp; sourceTree = "<group>"; };
+		FC892A762673651C000F4513 /* BackgroundLineFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundLineFilter.cpp; sourceTree = "<group>"; };
+		FC892A772673651C000F4513 /* BackgroundLineFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BackgroundLineFilter.hpp; sourceTree = "<group>"; };
+		FC892B682678CE45000F4513 /* BackgroundPointFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundPointFilter.cpp; sourceTree = "<group>"; };
+		FC892B692678CE45000F4513 /* BackgroundPointFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BackgroundPointFilter.hpp; sourceTree = "<group>"; };
 		FC892B6C267996EB000F4513 /* SCFaceDataIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCFaceDataIOS.h; sourceTree = "<group>"; };
 		FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCFaceDataIOS.m; sourceTree = "<group>"; };
 		FC892B71267999D5000F4513 /* SCFaceData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFaceData.cpp; sourceTree = "<group>"; };
-		FC892B742679D9C2000F4513 /* SCFilterSmallHead.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterSmallHead.cpp; sourceTree = "<group>"; };
-		FC892B752679D9C2000F4513 /* SCFilterSmallHead.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterSmallHead.hpp; sourceTree = "<group>"; };
-		FC892B782679DA36000F4513 /* SCFilterFaceBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterFaceBase.cpp; sourceTree = "<group>"; };
-		FC892B792679DA36000F4513 /* SCFilterFaceBase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterFaceBase.hpp; sourceTree = "<group>"; };
-		FC892B892679E854000F4513 /* SCFilterFacePoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterFacePoint.cpp; sourceTree = "<group>"; };
-		FC892B8A2679E854000F4513 /* SCFilterFacePoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterFacePoint.hpp; sourceTree = "<group>"; };
-		FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterFaceLine.cpp; sourceTree = "<group>"; };
-		FC892B8F2679EC3C000F4513 /* SCFilterFaceLine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterFaceLine.hpp; sourceTree = "<group>"; };
+		FC892B742679D9C2000F4513 /* SmallHeadFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SmallHeadFilter.cpp; sourceTree = "<group>"; };
+		FC892B752679D9C2000F4513 /* SmallHeadFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SmallHeadFilter.hpp; sourceTree = "<group>"; };
+		FC892B782679DA36000F4513 /* FaceBaseFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FaceBaseFilter.cpp; sourceTree = "<group>"; };
+		FC892B792679DA36000F4513 /* FaceBaseFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FaceBaseFilter.hpp; sourceTree = "<group>"; };
+		FC892B892679E854000F4513 /* FacePointFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FacePointFilter.cpp; sourceTree = "<group>"; };
+		FC892B8A2679E854000F4513 /* FacePointFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FacePointFilter.hpp; sourceTree = "<group>"; };
+		FC892B8E2679EC3C000F4513 /* FaceLineFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FaceLineFilter.cpp; sourceTree = "<group>"; };
+		FC892B8F2679EC3C000F4513 /* FaceLineFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FaceLineFilter.hpp; sourceTree = "<group>"; };
 		FC892B98267A1294000F4513 /* SCCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCCameraViewController.h; sourceTree = "<group>"; };
 		FC892B99267A1294000F4513 /* SCCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCCameraViewController.mm; sourceTree = "<group>"; };
 		FC892B9A267A1294000F4513 /* SCCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCCameraViewController.xib; sourceTree = "<group>"; };
@@ -166,31 +166,31 @@
 		FCCB28A226FC7CFE00F09C7F /* FilterNodeDescription.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FilterNodeDescription.hpp; sourceTree = "<group>"; };
 		FCCB292F26FDAC0900F09C7F /* FilterNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FilterNode.cpp; sourceTree = "<group>"; };
 		FCCB293026FDAC0900F09C7F /* FilterNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FilterNode.hpp; sourceTree = "<group>"; };
-		FCCB2B912701A0BA00F09C7F /* SCFilterMix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterMix.cpp; sourceTree = "<group>"; };
-		FCCB2B922701A0BA00F09C7F /* SCFilterMix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterMix.hpp; sourceTree = "<group>"; };
+		FCCB2B912701A0BA00F09C7F /* MixFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MixFilter.cpp; sourceTree = "<group>"; };
+		FCCB2B922701A0BA00F09C7F /* MixFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MixFilter.hpp; sourceTree = "<group>"; };
 		FCD3E4C126D636BD00F8D3BE /* BasePlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePlatform.h; sourceTree = "<group>"; };
-		FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlur.cpp; sourceTree = "<group>"; };
-		FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlur.hpp; sourceTree = "<group>"; };
-		FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBlurSub.cpp; sourceTree = "<group>"; };
-		FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBlurSub.hpp; sourceTree = "<group>"; };
+		FCEB082B26CA4C11001ACDEF /* BlurFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurFilter.cpp; sourceTree = "<group>"; };
+		FCEB082C26CA4C11001ACDEF /* BlurFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BlurFilter.hpp; sourceTree = "<group>"; };
+		FCEB085E26CBA4E3001ACDEF /* BlurSubFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlurSubFilter.cpp; sourceTree = "<group>"; };
+		FCEB085F26CBA4E3001ACDEF /* BlurSubFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BlurSubFilter.hpp; sourceTree = "<group>"; };
 		FCEB086226CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLUtilsForIOSGPUImage.h; sourceTree = "<group>"; };
 		FCEB086326CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLUtilsForIOSGPUImage.mm; sourceTree = "<group>"; };
 		FCEF7AF12627047C00F20ED0 /* BaseLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLog.h; sourceTree = "<group>"; };
-		FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterBase.cpp; sourceTree = "<group>"; };
-		FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterCopy.hpp; sourceTree = "<group>"; };
+		FCEF7AF22627047C00F20ED0 /* BaseFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseFilter.cpp; sourceTree = "<group>"; };
+		FCEF7AF32627047C00F20ED0 /* CopyFilter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CopyFilter.hpp; sourceTree = "<group>"; };
 		FCEF7AF42627047C00F20ED0 /* BaseDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDefine.h; sourceTree = "<group>"; };
 		FCEF7AF52627047C00F20ED0 /* SCBaseGLUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCBaseGLUtils.cpp; sourceTree = "<group>"; };
-		FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCFilterBase.hpp; sourceTree = "<group>"; };
+		FCEF7AF62627047C00F20ED0 /* BaseFilter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseFilter.hpp; sourceTree = "<group>"; };
 		FCEF7AF72627047C00F20ED0 /* BaseLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLog.cpp; sourceTree = "<group>"; };
-		FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterCopy.cpp; sourceTree = "<group>"; };
+		FCEF7AF82627047C00F20ED0 /* CopyFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CopyFilter.cpp; sourceTree = "<group>"; };
 		FCEF7AF92627047C00F20ED0 /* SCBaseGLUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SCBaseGLUtils.hpp; sourceTree = "<group>"; };
-		FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterLut.cpp; sourceTree = "<group>"; };
-		FCEF7B0A26270E7200F20ED0 /* SCFilterLut.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterLut.hpp; sourceTree = "<group>"; };
+		FCEF7B0926270E7200F20ED0 /* LutFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LutFilter.cpp; sourceTree = "<group>"; };
+		FCEF7B0A26270E7200F20ED0 /* LutFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LutFilter.hpp; sourceTree = "<group>"; };
 		FCEF7B0E262710B900F20ED0 /* FileUtilsForIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileUtilsForIOS.h; sourceTree = "<group>"; };
 		FCEF7B0F262710B900F20ED0 /* FileUtilsForIOS.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FileUtilsForIOS.mm; sourceTree = "<group>"; };
 		FCEF7B4E262970E100F20ED0 /* SCFaceData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFaceData.hpp; sourceTree = "<group>"; };
-		FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterPoint.cpp; sourceTree = "<group>"; };
-		FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterPoint.hpp; sourceTree = "<group>"; };
+		FCEF7B5426297CE600F20ED0 /* PointFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PointFilter.cpp; sourceTree = "<group>"; };
+		FCEF7B5526297CE600F20ED0 /* PointFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PointFilter.hpp; sourceTree = "<group>"; };
 		FCEF7CF0262ECE3700F20ED0 /* edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = edge.cpp; sourceTree = "<group>"; };
 		FCEF7CF1262ECE3700F20ED0 /* delaunay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delaunay.h; sourceTree = "<group>"; };
 		FCEF7CF2262ECE3700F20ED0 /* triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = triangle.cpp; sourceTree = "<group>"; };
@@ -202,10 +202,10 @@
 		FCEF7CF8262ECE3700F20ED0 /* edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edge.h; sourceTree = "<group>"; };
 		FCEF7CFE262ECFAA00F20ED0 /* DelaunayTriangle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DelaunayTriangle.cpp; sourceTree = "<group>"; };
 		FCEF7CFF262ECFAA00F20ED0 /* DelaunayTriangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DelaunayTriangle.hpp; sourceTree = "<group>"; };
-		FCEF7D02262EF4CB00F20ED0 /* SCFilterLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterLine.cpp; sourceTree = "<group>"; };
-		FCEF7D03262EF4CB00F20ED0 /* SCFilterLine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterLine.hpp; sourceTree = "<group>"; };
-		FCEF7E1A26316CFC00F20ED0 /* SCFilterMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFilterMesh.cpp; sourceTree = "<group>"; };
-		FCEF7E1B26316CFC00F20ED0 /* SCFilterMesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCFilterMesh.hpp; sourceTree = "<group>"; };
+		FCEF7D02262EF4CB00F20ED0 /* LineFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LineFilter.cpp; sourceTree = "<group>"; };
+		FCEF7D03262EF4CB00F20ED0 /* LineFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LineFilter.hpp; sourceTree = "<group>"; };
+		FCEF7E1A26316CFC00F20ED0 /* MeshFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MeshFilter.cpp; sourceTree = "<group>"; };
+		FCEF7E1B26316CFC00F20ED0 /* MeshFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MeshFilter.hpp; sourceTree = "<group>"; };
 		FDF6F9AA22D6AD5A49BE28D9 /* libPods-StupidCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StupidCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEBA510C13E34FF132EAE5D0 /* Pods-StupidCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StupidCamera.release.xcconfig"; path = "Target Support Files/Pods-StupidCamera/Pods-StupidCamera.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -384,14 +384,14 @@
 		FCEB086B26CF5695001ACDEF /* filters */ = {
 			isa = PBXGroup;
 			children = (
-				FC892B892679E854000F4513 /* SCFilterFacePoint.cpp */,
-				FC892B8A2679E854000F4513 /* SCFilterFacePoint.hpp */,
-				FC892B8E2679EC3C000F4513 /* SCFilterFaceLine.cpp */,
-				FC892B8F2679EC3C000F4513 /* SCFilterFaceLine.hpp */,
-				FC892B742679D9C2000F4513 /* SCFilterSmallHead.cpp */,
-				FC892B752679D9C2000F4513 /* SCFilterSmallHead.hpp */,
-				FC892B782679DA36000F4513 /* SCFilterFaceBase.cpp */,
-				FC892B792679DA36000F4513 /* SCFilterFaceBase.hpp */,
+				FC892B892679E854000F4513 /* FacePointFilter.cpp */,
+				FC892B8A2679E854000F4513 /* FacePointFilter.hpp */,
+				FC892B8E2679EC3C000F4513 /* FaceLineFilter.cpp */,
+				FC892B8F2679EC3C000F4513 /* FaceLineFilter.hpp */,
+				FC892B742679D9C2000F4513 /* SmallHeadFilter.cpp */,
+				FC892B752679D9C2000F4513 /* SmallHeadFilter.hpp */,
+				FC892B782679DA36000F4513 /* FaceBaseFilter.cpp */,
+				FC892B792679DA36000F4513 /* FaceBaseFilter.hpp */,
 			);
 			path = filters;
 			sourceTree = "<group>";
@@ -410,35 +410,35 @@
 		FCEB086D26CF57AB001ACDEF /* filters */ = {
 			isa = PBXGroup;
 			children = (
-				FC7AAAE026942F7500CA4E75 /* SCFilterConstant.hpp */,
-				FCEF7AF22627047C00F20ED0 /* SCFilterBase.cpp */,
-				FCEF7AF62627047C00F20ED0 /* SCFilterBase.hpp */,
-				FCEF7AF82627047C00F20ED0 /* SCFilterCopy.cpp */,
-				FCEF7AF32627047C00F20ED0 /* SCFilterCopy.hpp */,
-				FCEF7B0926270E7200F20ED0 /* SCFilterLut.cpp */,
-				FCEF7B0A26270E7200F20ED0 /* SCFilterLut.hpp */,
-				FCEB082B26CA4C11001ACDEF /* SCFilterBlur.cpp */,
-				FCEB082C26CA4C11001ACDEF /* SCFilterBlur.hpp */,
-				FCEB085E26CBA4E3001ACDEF /* SCFilterBlurSub.cpp */,
-				FCEB085F26CBA4E3001ACDEF /* SCFilterBlurSub.hpp */,
-				FCCB2B912701A0BA00F09C7F /* SCFilterMix.cpp */,
-				FCCB2B922701A0BA00F09C7F /* SCFilterMix.hpp */,
-				71E05CBE26D23B800061DE6D /* SCFilterSmooth.cpp */,
-				71E05CBF26D23B800061DE6D /* SCFilterSmooth.hpp */,
-				FC0BE59A26D3BEC1000F848E /* SCFilterSharpenUSM.cpp */,
-				FC0BE59B26D3BEC1000F848E /* SCFilterSharpenUSM.hpp */,
-				FCEF7B5426297CE600F20ED0 /* SCFilterPoint.cpp */,
-				FCEF7B5526297CE600F20ED0 /* SCFilterPoint.hpp */,
-				FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */,
-				FC892B692678CE45000F4513 /* SCFilterBackgroundPoint.hpp */,
-				FCEF7D02262EF4CB00F20ED0 /* SCFilterLine.cpp */,
-				FCEF7D03262EF4CB00F20ED0 /* SCFilterLine.hpp */,
-				FC892A762673651C000F4513 /* SCFilterBackgroundLine.cpp */,
-				FC892A772673651C000F4513 /* SCFilterBackgroundLine.hpp */,
-				FCEF7E1A26316CFC00F20ED0 /* SCFilterMesh.cpp */,
-				FCEF7E1B26316CFC00F20ED0 /* SCFilterMesh.hpp */,
-				FC892A44266DF76F000F4513 /* SCFilterBackgroundMesh.cpp */,
-				FC892A45266DF76F000F4513 /* SCFilterBackgroundMesh.hpp */,
+				FC7AAAE026942F7500CA4E75 /* FilterConstant.hpp */,
+				FCEF7AF22627047C00F20ED0 /* BaseFilter.cpp */,
+				FCEF7AF62627047C00F20ED0 /* BaseFilter.hpp */,
+				FCEF7AF82627047C00F20ED0 /* CopyFilter.cpp */,
+				FCEF7AF32627047C00F20ED0 /* CopyFilter.hpp */,
+				FCEF7B0926270E7200F20ED0 /* LutFilter.cpp */,
+				FCEF7B0A26270E7200F20ED0 /* LutFilter.hpp */,
+				FCEB082B26CA4C11001ACDEF /* BlurFilter.cpp */,
+				FCEB082C26CA4C11001ACDEF /* BlurFilter.hpp */,
+				FCEB085E26CBA4E3001ACDEF /* BlurSubFilter.cpp */,
+				FCEB085F26CBA4E3001ACDEF /* BlurSubFilter.hpp */,
+				FCCB2B912701A0BA00F09C7F /* MixFilter.cpp */,
+				FCCB2B922701A0BA00F09C7F /* MixFilter.hpp */,
+				71E05CBE26D23B800061DE6D /* SmoothFilter.cpp */,
+				71E05CBF26D23B800061DE6D /* SmoothFilter.hpp */,
+				FC0BE59A26D3BEC1000F848E /* SharpenFilter.cpp */,
+				FC0BE59B26D3BEC1000F848E /* SharpenFilter.hpp */,
+				FCEF7B5426297CE600F20ED0 /* PointFilter.cpp */,
+				FCEF7B5526297CE600F20ED0 /* PointFilter.hpp */,
+				FC892B682678CE45000F4513 /* BackgroundPointFilter.cpp */,
+				FC892B692678CE45000F4513 /* BackgroundPointFilter.hpp */,
+				FCEF7D02262EF4CB00F20ED0 /* LineFilter.cpp */,
+				FCEF7D03262EF4CB00F20ED0 /* LineFilter.hpp */,
+				FC892A762673651C000F4513 /* BackgroundLineFilter.cpp */,
+				FC892A772673651C000F4513 /* BackgroundLineFilter.hpp */,
+				FCEF7E1A26316CFC00F20ED0 /* MeshFilter.cpp */,
+				FCEF7E1B26316CFC00F20ED0 /* MeshFilter.hpp */,
+				FC892A44266DF76F000F4513 /* BackgroundMeshFilter.cpp */,
+				FC892A45266DF76F000F4513 /* BackgroundMeshFilter.hpp */,
 				FCCB26AB26FC266D00F09C7F /* FilterDescription.cpp */,
 				FCCB26AC26FC266D00F09C7F /* FilterDescription.hpp */,
 				FCCB26B326FC5FD100F09C7F /* FilterFactory.cpp */,
@@ -613,33 +613,33 @@
 			files = (
 				FCEF7CFB262ECE3700F20ED0 /* vector2.cpp in Sources */,
 				FC22B6DA268C67E3001095B2 /* SCEffectEngine.cpp in Sources */,
-				FCEB082D26CA4C11001ACDEF /* SCFilterBlur.cpp in Sources */,
-				FC892B8B2679E854000F4513 /* SCFilterFacePoint.cpp in Sources */,
+				FCEB082D26CA4C11001ACDEF /* BlurFilter.cpp in Sources */,
+				FC892B8B2679E854000F4513 /* FacePointFilter.cpp in Sources */,
 				FC7AAAE72694477500CA4E75 /* SCEditViewController.m in Sources */,
-				FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */,
-				FC0BE59C26D3BEC1000F848E /* SCFilterSharpenUSM.cpp in Sources */,
+				FC892B6A2678CE45000F4513 /* BackgroundPointFilter.cpp in Sources */,
+				FC0BE59C26D3BEC1000F848E /* SharpenFilter.cpp in Sources */,
 				FCEF7AFB2627047C00F20ED0 /* SCBaseGLUtils.cpp in Sources */,
 				FCEF7CF9262ECE3700F20ED0 /* edge.cpp in Sources */,
 				FC892B72267999D5000F4513 /* SCFaceData.cpp in Sources */,
-				FCCB2B932701A0BF00F09C7F /* SCFilterMix.cpp in Sources */,
-				FC892A46266DF76F000F4513 /* SCFilterBackgroundMesh.cpp in Sources */,
+				FCCB2B932701A0BF00F09C7F /* MixFilter.cpp in Sources */,
+				FC892A46266DF76F000F4513 /* BackgroundMeshFilter.cpp in Sources */,
 				FCCB293126FDAC0A00F09C7F /* FilterNode.cpp in Sources */,
 				FC892B9B267A1294000F4513 /* SCCameraViewController.mm in Sources */,
-				FC892B762679D9C2000F4513 /* SCFilterSmallHead.cpp in Sources */,
-				FCEF7B0B26270E7200F20ED0 /* SCFilterLut.cpp in Sources */,
+				FC892B762679D9C2000F4513 /* SmallHeadFilter.cpp in Sources */,
+				FCEF7B0B26270E7200F20ED0 /* LutFilter.cpp in Sources */,
 				710F63662690134700976E1A /* FrameBufferPool.cpp in Sources */,
 				FCEF7D00262ECFAA00F20ED0 /* DelaunayTriangle.cpp in Sources */,
-				FCEF7E1C26316CFD00F20ED0 /* SCFilterMesh.cpp in Sources */,
+				FCEF7E1C26316CFD00F20ED0 /* MeshFilter.cpp in Sources */,
 				FC892B6E267996EB000F4513 /* SCFaceDataIOS.m in Sources */,
 				FCCB26A326FB22BD00F09C7F /* FaceDetector.cpp in Sources */,
 				FC22B6DE268C6F3A001095B2 /* GPUImageSCEffectFilter.mm in Sources */,
 				FC6A35592624358100CA4434 /* ViewController.m in Sources */,
-				FCEF7AFA2627047C00F20ED0 /* SCFilterBase.cpp in Sources */,
+				FCEF7AFA2627047C00F20ED0 /* BaseFilter.cpp in Sources */,
 				FC7AAAAB2692B2B500CA4E75 /* Program.cpp in Sources */,
 				FC22B6E4268D6251001095B2 /* FrameBuffer.cpp in Sources */,
-				FC892B902679EC3C000F4513 /* SCFilterFaceLine.cpp in Sources */,
+				FC892B902679EC3C000F4513 /* FaceLineFilter.cpp in Sources */,
 				FCCB28A326FC7CFF00F09C7F /* FilterNodeDescription.cpp in Sources */,
-				FCEF7B5626297CE600F20ED0 /* SCFilterPoint.cpp in Sources */,
+				FCEF7B5626297CE600F20ED0 /* PointFilter.cpp in Sources */,
 				FCEB086426CD2DD0001ACDEF /* GLUtilsForIOSGPUImage.mm in Sources */,
 				FC6A35532624358100CA4434 /* AppDelegate.m in Sources */,
 				FC6A35642624358100CA4434 /* main.m in Sources */,
@@ -651,14 +651,14 @@
 				FCCB27AD26FC6A7200F09C7F /* FilterChain.cpp in Sources */,
 				FCEF7CFC262ECE3700F20ED0 /* delaunay.cpp in Sources */,
 				FC6A35562624358100CA4434 /* SceneDelegate.m in Sources */,
-				71E05CC026D23B800061DE6D /* SCFilterSmooth.cpp in Sources */,
-				FCEF7D04262EF4CB00F20ED0 /* SCFilterLine.cpp in Sources */,
-				FCEF7AFD2627047C00F20ED0 /* SCFilterCopy.cpp in Sources */,
-				FC892B7A2679DA36000F4513 /* SCFilterFaceBase.cpp in Sources */,
+				71E05CC026D23B800061DE6D /* SmoothFilter.cpp in Sources */,
+				FCEF7D04262EF4CB00F20ED0 /* LineFilter.cpp in Sources */,
+				FCEF7AFD2627047C00F20ED0 /* CopyFilter.cpp in Sources */,
+				FC892B7A2679DA36000F4513 /* FaceBaseFilter.cpp in Sources */,
 				FCCB26A026FB1D7500F09C7F /* FaceData.cpp in Sources */,
-				FCEB086026CBA4E3001ACDEF /* SCFilterBlurSub.cpp in Sources */,
+				FCEB086026CBA4E3001ACDEF /* BlurSubFilter.cpp in Sources */,
 				FC7AAAAF2692E1C200CA4E75 /* ProgramPool.cpp in Sources */,
-				FC892A782673651C000F4513 /* SCFilterBackgroundLine.cpp in Sources */,
+				FC892A782673651C000F4513 /* BackgroundLineFilter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
