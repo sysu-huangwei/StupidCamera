@@ -60,10 +60,12 @@ std::vector<FilterNodeDescription> FilterFactory::getChainDescByType(const std::
         blurH.nextIDs.push_back("blurV");
         blurH.nextTextureIndices.push_back(0);
         blurH.filterDesc.type = SCFilterType_BlurSub;
+        blurH.filterDesc.params = {{SCFilterParam_BlurSub_Direction, std::to_string(SCFilterBlurSub::BlurDirection_Horizontal)}};
         
         FilterNodeDescription blurV;
         blurV.id = "blurV";
         blurV.filterDesc.type = SCFilterType_BlurSub;
+        blurH.filterDesc.params = {{SCFilterParam_BlurSub_Direction, std::to_string(SCFilterBlurSub::BlurDirection_Vertical)}};
         
         chainDesc.push_back(begin);
         chainDesc.push_back(blurH);

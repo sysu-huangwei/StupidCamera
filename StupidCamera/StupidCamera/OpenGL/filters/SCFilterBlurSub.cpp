@@ -12,6 +12,16 @@ void SCFilterBlurSub::init() {
     SCFilterBase::initWithVertexStringAndFragmentString("sample_9x9", "blur_surface_9x9");
 }
 
+void SCFilterBlurSub::resize(int width, int height) {
+    if (direction == BlurDirection_Horizontal) {
+        widthOffset = 1.0f / (float)width;
+        heightOffset = 0.0f;
+    } else if (direction == BlurDirection_Vertical) {
+        widthOffset = 0.0f;
+        heightOffset = 1.0f / (float)height;
+    }
+}
+
 void SCFilterBlurSub::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (isNeedRender() && outputFrameBuffer) {
         outputFrameBuffer->activeFrameBuffer();
@@ -35,9 +45,10 @@ void SCFilterBlurSub::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFra
     unlockAndClearAllInputFrameBuffers();
 }
 
-void SCFilterBlurSub::setOffset(float widthOffset, float heightOffset) {
-    this->widthOffset = widthOffset;
-    this->heightOffset = heightOffset;
+void SCFilterBlurSub::setParams(const std::map<std::string, std::string> &param) {
+    if (param.find(SCFilterParam_BlurSub_Direction) != param.end()) {
+        direction = (BlurDirection)std::stoi(param.at(SCFilterParam_BlurSub_Direction));
+    }
 }
 
 }

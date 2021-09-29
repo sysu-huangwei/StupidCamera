@@ -16,6 +16,13 @@ FilterNode::FilterNode(const FilterNodeDescription &nodeDesc) {
     }
 }
 
+std::string FilterNode::getID() {
+    return id;
+}
+
+void FilterNode::resize(int width, int height) {
+    filter->resize(width, height);
+}
 
 void FilterNode::render() {
     if (outputFrameBuffer) {
@@ -26,6 +33,10 @@ void FilterNode::render() {
         setOutputFrameBufferToNextNodes(output);
         output->unlock();
     }
+}
+
+void FilterNode::setParams(const std::map<std::string, std::string> &param) {
+    filter->setParams(param);
 }
 
 void FilterNode::setOutputFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {

@@ -27,6 +27,7 @@
 #define SCFilterParam_Lut_Path SCFilterType_Lut "_Path"
 #define SCFilterParam_Lut_Alpha SCFilterType_Lut "_Alpha"
 #define SCFilterParam_Mix_Alpha SCFilterType_Mix "_Alpha"
+#define SCFilterParam_BlurSub_Direction SCFilterType_BlurSub "_Direction"
 #define SCFilterParam_Blur_Alpha SCFilterType_Blur "_Alpha"
 #define SCFilterParam_Sharpen_Alpha SCFilterType_SharpenUSM "_SharpenAlpha"
 #define SCFilterParam_SmallHead_Degree SCFilterType_SmallHead "_SmallHeadDegree"
