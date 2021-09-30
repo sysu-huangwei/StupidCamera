@@ -15,9 +15,9 @@ BackgroundMeshFilter::BackgroundMeshFilter() : FilterChain(FilterFactory::getCha
 }
 
 void BackgroundMeshFilter::setMesh(std::vector<BasePoint> mesh, std::vector<BasePoint> meshStd, unsigned int *meshIndex, int indexArrayCount) {
-    for (const std::shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-        if (filterNode->getID() == "mesh") {
-            std::shared_ptr<MeshFilter> meshFilter = std::static_pointer_cast<MeshFilter>(filterNode->filter);
+    for (const std::shared_ptr<FilterNode> &node : allNodes) {
+        if (node->getID() == "mesh") {
+            std::shared_ptr<MeshFilter> meshFilter = std::static_pointer_cast<MeshFilter>(node->filter);
             meshFilter->setMesh(mesh, meshStd, meshIndex, indexArrayCount);
         }
     }

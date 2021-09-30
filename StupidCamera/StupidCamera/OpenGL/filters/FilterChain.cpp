@@ -29,7 +29,7 @@ void FilterChain::init() {
         
         if (nodeDescription.id != defaultBeginID) {
             filterNode->filter->init();
-            allFilterNodes.push_back(filterNode);
+            allNodes.push_back(filterNode);
         } else {
             beginVirtualNode = filterNode;
         }
@@ -53,8 +53,8 @@ void FilterChain::init() {
 }
 
 void FilterChain::release() {
-    for (size_t i = 0; i < allFilterNodes.size(); i++) {
-        allFilterNodes[i]->filter->release();
+    for (size_t i = 0; i < allNodes.size(); i++) {
+        allNodes[i]->filter->release();
     }
 }
 

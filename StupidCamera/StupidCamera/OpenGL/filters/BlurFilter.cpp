@@ -16,8 +16,8 @@ BlurFilter::BlurFilter() : FilterChain(FilterFactory::getChainDescByType("BlurFi
 void BlurFilter::resize(int width, int height) {
     scaleWH(width, height);
     FilterChain::resize(width, height);
-    for (const std::shared_ptr<FilterNode> &filterNode : allFilterNodes) {
-        filterNode->resize(width, height);
+    for (const std::shared_ptr<FilterNode> &node : allNodes) {
+        node->resize(width, height);
     }
 }
 

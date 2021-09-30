@@ -40,9 +40,7 @@ protected:
     
     std::shared_ptr<FilterNode> beginVirtualNode;
     std::vector<std::shared_ptr<FilterNode>> lastNodes;
-    std::vector<std::shared_ptr<FilterNode>> allFilterNodes;
-    
-    std::map<std::shared_ptr<FrameBuffer>, int> inputFrameBuffersRef;
+    std::vector<std::shared_ptr<FilterNode>> allNodes;
     
     /// 是否所有输入已就绪
     virtual bool isAllInputReady() override;
