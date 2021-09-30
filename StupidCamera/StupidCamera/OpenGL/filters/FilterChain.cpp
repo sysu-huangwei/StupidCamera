@@ -11,10 +11,6 @@ namespace effect {
 
 using namespace std;
 
-FilterChain::FilterChain(const std::vector<FilterNodeDescription> &nodeDescriptions) : nodeDescriptions(nodeDescriptions) {
-    
-}
-
 void FilterChain::init() {
     
     // 以下是根据滤镜链描述，来构造滤镜链的过程

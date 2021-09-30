@@ -5,12 +5,30 @@
 //
 
 #include "BlurFilter.hpp"
-#include "FilterFactory.hpp"
+#include "BlurSubFilter.hpp"
 
 namespace effect {
 
-BlurFilter::BlurFilter() : FilterChain(FilterFactory::getChainDescByType("BlurFilter")) {
+BlurFilter::BlurFilter() {
+    FilterNodeDescription begin = defaultBeginNodeDescription;
+    begin.nextIDs.push_back("blurH");
+    begin.nextTextureIndices.push_back(0);
     
+    FilterNodeDescription blurH;
+    blurH.id = "blurH";
+    blurH.nextIDs.push_back("blurV");
+    blurH.nextTextureIndices.push_back(0);
+    blurH.filterDesc.type = FilterType_BlurSub;
+    blurH.filterDesc.params = {{FilterParam_BlurSub_Direction, std::to_string(BlurSubFilter::BlurDirection_Horizontal)}};
+    
+    FilterNodeDescription blurV;
+    blurV.id = "blurV";
+    blurV.filterDesc.type = FilterType_BlurSub;
+    blurH.filterDesc.params = {{FilterParam_BlurSub_Direction, std::to_string(BlurSubFilter::BlurDirection_Vertical)}};
+    
+    nodeDescriptions.push_back(begin);
+    nodeDescriptions.push_back(blurH);
+    nodeDescriptions.push_back(blurV);
 }
 
 void BlurFilter::setOutputSize(int outputWidth, int outputHeight) {

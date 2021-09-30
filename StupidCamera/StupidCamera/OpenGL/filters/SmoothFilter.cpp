@@ -5,13 +5,30 @@
 //
 
 #include "SmoothFilter.hpp"
-#include "FilterFactory.hpp"
 #include "MixFilter.hpp"
 
 namespace effect {
 
-SmoothFilter::SmoothFilter() : FilterChain(FilterFactory::getChainDescByType("SmoothFilter")) {
+SmoothFilter::SmoothFilter() {
+    FilterNodeDescription begin = defaultBeginNodeDescription;
+    begin.nextIDs.push_back("mix");
+    begin.nextTextureIndices.push_back(0);
+    begin.nextIDs.push_back("blur");
+    begin.nextTextureIndices.push_back(0);
     
+    FilterNodeDescription blur;
+    blur.id = "blur";
+    blur.nextIDs.push_back("mix");
+    blur.nextTextureIndices.push_back(1);
+    blur.filterDesc.type = FilterType_Blur;
+    
+    FilterNodeDescription mix;
+    mix.id = "mix";
+    mix.filterDesc.type = FilterType_Mix;
+    
+    nodeDescriptions.push_back(begin);
+    nodeDescriptions.push_back(blur);
+    nodeDescriptions.push_back(mix);
 }
 
 void SmoothFilter::setParams(const std::map<std::string, std::string> &param) {
