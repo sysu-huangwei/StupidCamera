@@ -20,8 +20,8 @@ std::string FilterNode::getID() {
     return id;
 }
 
-void FilterNode::resize(int width, int height) {
-    filter->resize(width, height);
+void FilterNode::setOutputSize(int outputWidth, int outputHeight) {
+    filter->setOutputSize(outputWidth, outputHeight);
 }
 
 void FilterNode::render() {

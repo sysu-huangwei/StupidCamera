@@ -18,9 +18,9 @@ void BackgroundPointFilter::release() {
     pointFilter.release();
 }
 
-void BackgroundPointFilter::resize(int width, int height) {
-    copyFilter.resize(width, height);
-    pointFilter.resize(width, height);
+void BackgroundPointFilter::setOutputSize(int outputWidth, int outputHeight) {
+    copyFilter.setOutputSize(outputWidth, outputHeight);
+    pointFilter.setOutputSize(outputWidth, outputHeight);
 }
 
 void BackgroundPointFilter::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {

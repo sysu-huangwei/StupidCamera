@@ -23,9 +23,9 @@ public:
     std::string filterType() override { return FilterType_Blur; }
     
     /// 设置绘制尺寸
-    /// @param width 宽
-    /// @param height 高
-    virtual void resize(int width, int height) override;
+    /// @param outputWidth 宽
+    /// @param outputHeight 高
+    virtual void setOutputSize(int outputWidth, int outputHeight) override;
     
     
 protected:

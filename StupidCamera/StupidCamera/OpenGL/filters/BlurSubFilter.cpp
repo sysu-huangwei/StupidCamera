@@ -12,14 +12,14 @@ void BlurSubFilter::init() {
     BaseFilter::initWithVertexStringAndFragmentString("sample_9x9", "blur_surface_9x9");
 }
 
-void BlurSubFilter::resize(int width, int height) {
-    BaseFilter::resize(width, height);
+void BlurSubFilter::setOutputSize(int outputWidth, int outputHeight) {
+    BaseFilter::setOutputSize(outputWidth, outputHeight);
     if (direction == BlurDirection_Horizontal) {
-        widthOffset = 1.0f / (float)width;
+        widthOffset = 1.0f / (float)outputWidth;
         heightOffset = 0.0f;
     } else if (direction == BlurDirection_Vertical) {
         widthOffset = 0.0f;
-        heightOffset = 1.0f / (float)height;
+        heightOffset = 1.0f / (float)outputHeight;
     }
 }
 

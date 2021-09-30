@@ -44,9 +44,9 @@ public:
     virtual void release();
     
     /// 设置绘制尺寸
-    /// @param width 宽
-    /// @param height 高
-    virtual void resize(int width, int height);
+    /// @param outputWidth 宽
+    /// @param outputHeight 高
+    virtual void setOutputSize(int outputWidth, int outputHeight);
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
@@ -73,7 +73,7 @@ public:
     virtual void setParams(const std::map<std::string, std::string> &param);
     
 protected:
-    int width = 0, height = 0;
+    int outputWidth = 0, outputHeight = 0;
     int firstInputWidth = 0, firstInputHeight = 0;
     std::shared_ptr<Program> program = nullptr;
     

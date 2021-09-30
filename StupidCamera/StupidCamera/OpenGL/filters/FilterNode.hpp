@@ -21,9 +21,9 @@ public:
     std::string getID();
     
     /// 设置绘制尺寸
-    /// @param width 宽
-    /// @param height 高
-    virtual void resize(int width, int height);
+    /// @param outputWidth 宽
+    /// @param outputHeight 高
+    virtual void setOutputSize(int outputWidth, int outputHeight);
     
     /// 如果需要绘制到特定的FBO上，那么通过这个接口设置。通常滤镜链的最后一个节点需要设置
     /// @param outputFrameBuffer 目标FBO

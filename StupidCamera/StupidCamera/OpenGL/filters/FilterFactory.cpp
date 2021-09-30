@@ -41,7 +41,7 @@ std::shared_ptr<BaseFilter> FilterFactory::createFilter(const FilterDescription 
     }
     
     filter->setEnableRender(filterDesc.enable);
-    filter->resize(filterDesc.outputWidth, filterDesc.outputHeight);
+    filter->setOutputSize(filterDesc.outputWidth, filterDesc.outputHeight);
     filter->setParams(filterDesc.params);
     
     return filter;

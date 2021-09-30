@@ -20,9 +20,9 @@ void BaseFilter::initWithVertexStringAndFragmentString(const char* vertexShaderN
                                                                      BaseGLUtils::getFragmengShaderSourceByName(fragmentShaderName));
 }
 
-void BaseFilter::resize(int width, int height) {
-    this->width = width;
-    this->height = height;
+void BaseFilter::setOutputSize(int outputWidth, int outputHeight) {
+    this->outputWidth = outputWidth;
+    this->outputHeight = outputHeight;
 }
 
 void BaseFilter::release() {
@@ -41,13 +41,11 @@ void BaseFilter::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFr
 
 std::shared_ptr<FrameBuffer> BaseFilter::render() {
     // 如果当前滤镜没有外部指定渲染尺寸，那么就直接使用第一个输入的FBO的尺寸
-    if (width == 0 || height == 0) {
-        width = firstInputWidth;
-        height = firstInputHeight;
-        resize(width, height);
+    if (outputWidth == 0 || outputHeight == 0) {
+        setOutputSize(firstInputWidth, firstInputHeight);
     }
     
-    std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);
+    std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(outputWidth, outputHeight);
     if (isNeedRender()) {
         renderToFrameBuffer(outputFrameBuffer);
     }

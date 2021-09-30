@@ -13,11 +13,11 @@ BlurFilter::BlurFilter() : FilterChain(FilterFactory::getChainDescByType("BlurFi
     
 }
 
-void BlurFilter::resize(int width, int height) {
-    scaleWH(width, height);
-    FilterChain::resize(width, height);
+void BlurFilter::setOutputSize(int outputWidth, int outputHeight) {
+    scaleWH(outputWidth, outputHeight);
+    FilterChain::setOutputSize(outputWidth, outputHeight);
     for (const std::shared_ptr<FilterNode> &node : allNodes) {
-        node->resize(width, height);
+        node->setOutputSize(outputWidth, outputHeight);
     }
 }
 

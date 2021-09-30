@@ -58,10 +58,10 @@ void FilterChain::release() {
     }
 }
 
-void FilterChain::resize(int width, int height) {
-    BaseFilter::resize(width, height);
+void FilterChain::setOutputSize(int outputWidth, int outputHeight) {
+    BaseFilter::setOutputSize(outputWidth, outputHeight);
     for (size_t i = 0; i < lastNodes.size(); i++) {
-        lastNodes[i]->filter->resize(width, height);
+        lastNodes[i]->filter->setOutputSize(outputWidth, outputHeight);
     }
 }
 

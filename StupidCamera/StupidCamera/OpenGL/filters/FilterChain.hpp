@@ -28,7 +28,7 @@ public:
     /// 设置绘制尺寸
     /// @param width 宽
     /// @param height 高
-    virtual void resize(int width, int height) override;
+    virtual void setOutputSize(int outputWidth, int outputHeight) override;
     
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO

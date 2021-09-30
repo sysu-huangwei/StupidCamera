@@ -18,9 +18,9 @@ void BackgroundLineFilter::release() {
     lineFilter.release();
 }
 
-void BackgroundLineFilter::resize(int width, int height) {
-    copyFilter.resize(width, height);
-    lineFilter.resize(width, height);
+void BackgroundLineFilter::setOutputSize(int outputWidth, int outputHeight) {
+    copyFilter.setOutputSize(outputWidth, outputHeight);
+    lineFilter.setOutputSize(outputWidth, outputHeight);
 }
 
 void BackgroundLineFilter::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {

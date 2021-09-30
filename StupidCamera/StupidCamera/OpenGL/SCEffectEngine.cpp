@@ -43,10 +43,10 @@ void SCEffectEngine::release() {
 }
 
 void SCEffectEngine::resize(int width, int height) {
-    lutFilter->resize(width, height);
-    smallHeadFilter->resize(width, height);
-    smoothFilter->resize(width, height);
-    sharpenFilter->resize(width, height);
+    lutFilter->setOutputSize(width, height);
+    smallHeadFilter->setOutputSize(width, height);
+    smoothFilter->setOutputSize(width, height);
+    sharpenFilter->setOutputSize(width, height);
 }
 
 void SCEffectEngine::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {

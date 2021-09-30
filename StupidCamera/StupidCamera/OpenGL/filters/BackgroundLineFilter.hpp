@@ -26,9 +26,9 @@ public:
     virtual void release() override;
     
     /// 设置绘制尺寸
-    /// @param width 宽
-    /// @param height 高
-    virtual void resize(int width, int height) override;
+    /// @param outputWidth 宽
+    /// @param outputHeight 高
+    virtual void setOutputSize(int outputWidth, int outputHeight);
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO
