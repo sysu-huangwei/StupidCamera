@@ -25,11 +25,6 @@ public:
     /// 释放资源，必须在GL线程，子类实现这个方法去做GL相关的释放操作
     virtual void release() override;
     
-    /// 设置绘制尺寸
-    /// @param width 宽
-    /// @param height 高
-    virtual void setOutputSize(int outputWidth, int outputHeight) override;
-    
     /// 渲染，必须在GL线程
     /// @param outputFrameBuffer 目标FBO
     virtual void renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) override;

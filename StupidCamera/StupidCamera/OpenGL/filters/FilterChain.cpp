@@ -58,13 +58,6 @@ void FilterChain::release() {
     }
 }
 
-void FilterChain::setOutputSize(int outputWidth, int outputHeight) {
-    BaseFilter::setOutputSize(outputWidth, outputHeight);
-    for (size_t i = 0; i < lastNodes.size(); i++) {
-        lastNodes[i]->filter->setOutputSize(outputWidth, outputHeight);
-    }
-}
-
 void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (isNeedRender() && outputFrameBuffer) {
         for (size_t i = 0; i < lastNodes.size(); i++) {
