@@ -16,10 +16,12 @@ SCEffectEngine::SCEffectEngine() {
     smallHeadFilter = std::make_shared<SmallHeadFilter>();
     smoothFilter = std::make_shared<SmoothFilter>();
     sharpenFilter = std::make_shared<SharpenFilter>();
+    facePointFilter = std::make_shared<FacePointFilter>();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
     currentFilters.push_back(smoothFilter);
     currentFilters.push_back(sharpenFilter);
+    currentFilters.push_back(facePointFilter);
 }
 
 SCEffectEngine::~SCEffectEngine() {
@@ -31,6 +33,7 @@ void SCEffectEngine::init() {
     smallHeadFilter->init();
     smoothFilter->init();
     sharpenFilter->init();
+    facePointFilter->init();
 }
 
 void SCEffectEngine::release() {
@@ -38,6 +41,7 @@ void SCEffectEngine::release() {
     smallHeadFilter->release();
     smoothFilter->release();
     sharpenFilter->release();
+    facePointFilter->release();
     FrameBufferPool::getSharedInstance()->clearFrameBufferPool();
     ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
@@ -47,6 +51,7 @@ void SCEffectEngine::resize(int width, int height) {
     smallHeadFilter->setOutputSize(width, height);
     smoothFilter->setOutputSize(width, height);
     sharpenFilter->setOutputSize(width, height);
+    facePointFilter->setOutputSize(width, height);
 }
 
 void SCEffectEngine::setInputFrameBuffer(std::shared_ptr<FrameBuffer> inputFrameBuffer) {
@@ -74,11 +79,16 @@ void SCEffectEngine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFram
     sharpenFilter->setInputFrameBufferAtIndex(smoothResult, 0);
     smoothResult->unlock();
     
-    sharpenFilter->renderToFrameBuffer(outputFrameBuffer);
+    std::shared_ptr<FrameBuffer> sharpenResult = sharpenFilter->render();
+    facePointFilter->setInputFrameBufferAtIndex(sharpenResult);
+    sharpenResult->unlock();
+    
+    facePointFilter->renderToFrameBuffer(outputFrameBuffer);
 }
 
 void SCEffectEngine::setFaceData(std::shared_ptr<FaceData> faceData) {
     smallHeadFilter->setFaceData(faceData);
+    facePointFilter->setFaceData(faceData);
 }
 
 void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string, std::string> > &params) {

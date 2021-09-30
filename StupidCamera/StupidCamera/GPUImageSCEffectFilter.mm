@@ -122,8 +122,10 @@
     self->effectEngine->setParams(params);
 }
 
-- (void)setFaceData:(FaceDataIOS *)faceData {
-//    self->effectEngine->setFaceData(faceData.faceData);
+- (void)setFaceData:(FaceData)faceData {
+    std::shared_ptr<FaceData> pFaceData = std::make_shared<FaceData>();
+    memcpy(pFaceData.get(), &faceData, sizeof(FaceData));
+    self->effectEngine->setFaceData(pFaceData);
 }
 
 @end

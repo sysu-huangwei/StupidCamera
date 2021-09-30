@@ -13,6 +13,8 @@
 #include "BlurFilter.hpp"
 #include "MixFilter.hpp"
 #include "SmoothFilter.hpp"
+#include "PointFilter.hpp"
+#include "BackgroundPointFilter.hpp"
 #include "MeshFilter.hpp"
 #include "BackgroundMeshFilter.hpp"
 
@@ -31,6 +33,10 @@ std::shared_ptr<BaseFilter> FilterFactory::createFilter(const FilterDescription 
         filter = std::make_shared<MixFilter>();
     } else if (filterDesc.type == FilterType_Smooth) {
         filter = std::make_shared<SmoothFilter>();
+    } else if (filterDesc.type == FilterType_Point) {
+        filter = std::make_shared<PointFilter>();
+    } else if (filterDesc.type == FilterType_BackgroundPoint) {
+        filter = std::make_shared<BackgroundPointFilter>();
     } else if (filterDesc.type == FilterType_Mesh) {
         filter = std::make_shared<MeshFilter>();
     } else if (filterDesc.type == FilterType_BackgroundMesh) {

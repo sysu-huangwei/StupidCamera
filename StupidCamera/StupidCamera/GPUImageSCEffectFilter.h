@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setSmallHeadDegree:(float)degree;
 
-- (void)setFaceData:(FaceDataIOS *)faceData;
+- (void)setFaceData:(FaceData)faceData;
 
 @end
 

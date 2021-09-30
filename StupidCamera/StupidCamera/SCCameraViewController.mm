@@ -271,6 +271,7 @@
     
     BaseRect faceRect = {(float)_faceRect.origin.x, (float)_faceRect.origin.y, (float)_faceRect.size.width, (float)_faceRect.size.height};
     FaceData faceData = faceDetector->detect(pImageData, bytesPerRow, height, {faceRect});
+    [_effectFilter setFaceData:faceData];
     
     CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
 }

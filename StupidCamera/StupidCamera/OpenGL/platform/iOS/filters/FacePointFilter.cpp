@@ -10,9 +10,9 @@ namespace effect {
 
 void FacePointFilter::setFaceData(std::shared_ptr<FaceData> faceData) {
     FaceBaseFilter::setFaceData(faceData);
-//    if (faceData) {
-//        pointFilter.setPoints(std::vector<BasePoint>(faceData->faces[0].facePoints, faceData->faces[0].facePoints + sizeof(faceData->faces[0].facePoints) / sizeof(BasePoint)));
-//    }
+    if (faceData) {
+        setPoints(std::vector<BasePoint>(faceData->faces[0].facePoints, faceData->faces[0].facePoints + sizeof(faceData->faces[0].facePoints) / sizeof(BasePoint)));
+    }
 }
 
 }
