@@ -5,36 +5,35 @@
 //
 
 #include "BackgroundPointFilter.hpp"
+#include "PointFilter.hpp"
 
 namespace effect {
 
-void BackgroundPointFilter::init() {
-    copyFilter.init();
-    pointFilter.init();
-}
-
-void BackgroundPointFilter::release() {
-    copyFilter.release();
-    pointFilter.release();
-}
-
-void BackgroundPointFilter::setOutputSize(int outputWidth, int outputHeight) {
-    copyFilter.setOutputSize(outputWidth, outputHeight);
-    pointFilter.setOutputSize(outputWidth, outputHeight);
-}
-
-void BackgroundPointFilter::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
-    copyFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
-    pointFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
-}
-
-void BackgroundPointFilter::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    copyFilter.renderToFrameBuffer(outputFrameBuffer);
-    pointFilter.renderToFrameBuffer(outputFrameBuffer);
+BackgroundPointFilter::BackgroundPointFilter() {
+    FilterNodeDescription begin = defaultBeginNodeDescription;
+    begin.nextIDs.push_back("copy");
+    begin.nextTextureIndices.push_back(0);
+    begin.nextIDs.push_back("point");
+    begin.nextTextureIndices.push_back(0);
+    
+    FilterNodeDescription copy;
+    copy.id = "copy";
+    copy.filterDesc.type = FilterType_Copy;
+    
+    FilterNodeDescription point;
+    point.id = "point";
+    point.filterDesc.type = FilterType_Point;
+    
+    nodeDescriptions.push_back(begin);
+    nodeDescriptions.push_back(copy);
+    nodeDescriptions.push_back(point);
 }
 
 void BackgroundPointFilter::setPoints(std::vector<BasePoint> points) {
-    pointFilter.setPoints(points);
+    std::shared_ptr<PointFilter> pointFilter = std::static_pointer_cast<PointFilter>(getFilterByNodeID("point"));
+    if (pointFilter) {
+        pointFilter->setPoints(points);
+    }
 }
 
 }

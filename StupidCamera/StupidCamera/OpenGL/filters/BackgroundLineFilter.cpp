@@ -5,36 +5,35 @@
 //
 
 #include "BackgroundLineFilter.hpp"
+#include "LineFilter.hpp"
 
 namespace effect {
 
-void BackgroundLineFilter::init() {
-    copyFilter.init();
-    lineFilter.init();
-}
-
-void BackgroundLineFilter::release() {
-    copyFilter.release();
-    lineFilter.release();
-}
-
-void BackgroundLineFilter::setOutputSize(int outputWidth, int outputHeight) {
-    copyFilter.setOutputSize(outputWidth, outputHeight);
-    lineFilter.setOutputSize(outputWidth, outputHeight);
-}
-
-void BackgroundLineFilter::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
-    copyFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
-    lineFilter.setInputFrameBufferAtIndex(inputFrameBuffer, index);
-}
-
-void BackgroundLineFilter::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
-    copyFilter.renderToFrameBuffer(outputFrameBuffer);
-    lineFilter.renderToFrameBuffer(outputFrameBuffer);
+BackgroundLineFilter::BackgroundLineFilter() {
+    FilterNodeDescription begin = defaultBeginNodeDescription;
+    begin.nextIDs.push_back("copy");
+    begin.nextTextureIndices.push_back(0);
+    begin.nextIDs.push_back("line");
+    begin.nextTextureIndices.push_back(0);
+    
+    FilterNodeDescription copy;
+    copy.id = "copy";
+    copy.filterDesc.type = FilterType_Copy;
+    
+    FilterNodeDescription line;
+    line.id = "line";
+    line.filterDesc.type = FilterType_Line;
+    
+    nodeDescriptions.push_back(begin);
+    nodeDescriptions.push_back(copy);
+    nodeDescriptions.push_back(line);
 }
 
 void BackgroundLineFilter::setLines(std::vector<BaseLine> lines) {
-    lineFilter.setLines(lines);
+    std::shared_ptr<LineFilter> lineFilter = std::static_pointer_cast<LineFilter>(getFilterByNodeID("line"));
+    if (lineFilter) {
+        lineFilter->setLines(lines);
+    }
 }
 
 }
