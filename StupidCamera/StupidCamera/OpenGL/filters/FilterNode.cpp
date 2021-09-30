@@ -25,17 +25,15 @@ void FilterNode::setOutputSize(int outputWidth, int outputHeight) {
 }
 
 void FilterNode::render() {
-    if (id == defaultBeginID) {
-        informNextNodesToRender();
-        return;
-    }
-    if (outputFrameBuffer) {
-        filter->renderToFrameBuffer(outputFrameBuffer);
-        setResultFrameBufferToNextNodes(outputFrameBuffer);
-    } else {
-        std::shared_ptr<FrameBuffer> output = filter->render();
-        setResultFrameBufferToNextNodes(output);
-        output->unlock();
+    if (id != defaultBeginID) {
+        if (outputFrameBuffer) {
+            filter->renderToFrameBuffer(outputFrameBuffer);
+            setResultFrameBufferToNextNodes(outputFrameBuffer);
+        } else {
+            std::shared_ptr<FrameBuffer> output = filter->render();
+            setResultFrameBufferToNextNodes(output);
+            output->unlock();
+        }
     }
     informNextNodesToRender();
 }
@@ -48,9 +46,9 @@ void FilterNode::setOutputFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     this->outputFrameBuffer = outputFrameBuffer;
 }
 
-void FilterNode::setResultFrameBufferToNextNodes(std::shared_ptr<FrameBuffer> output) {
+void FilterNode::setResultFrameBufferToNextNodes(std::shared_ptr<FrameBuffer> resultFrameBuffer) {
     for (size_t i = 0; i < nextNodes.size(); i++) {
-        nextNodes[i]->filter->setInputFrameBufferAtIndex(output, nextIndices[i]);
+        nextNodes[i]->filter->setInputFrameBufferAtIndex(resultFrameBuffer, nextIndices[i]);
     }
 }
 

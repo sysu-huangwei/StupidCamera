@@ -87,6 +87,7 @@ protected:
     
     virtual void initWithVertexStringAndFragmentString(const char* vertexShaderName, const char* fragmentShaderName);
     
+    /// 清除所有输入的FBO
     virtual void unlockAndClearAllInputFrameBuffers();
 };
 

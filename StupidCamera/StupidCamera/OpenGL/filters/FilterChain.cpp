@@ -69,16 +69,20 @@ void FilterChain::release() {
     }
 }
 
+void FilterChain::setInputFrameBufferAtIndex(std::shared_ptr<FrameBuffer> inputFrameBuffer, int index) {
+    BaseFilter::setInputFrameBufferAtIndex(inputFrameBuffer, index);
+    // 把起始的输入FBO传递给虚拟起始节点，起始节点会将输入的FBO设置给各个真正的起始滤镜
+    beginVirtualNode->setResultFrameBufferToNextNodes(inputFrameBuffer);
+}
+
 void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {
     if (isNeedRender() && outputFrameBuffer) {
+        // 把目标FBO标记给最后的滤镜节点，让最好的滤镜节点直接绘制到这个FBO上
         for (size_t i = 0; i < lastNodes.size(); i++) {
             lastNodes[i]->setOutputFrameBuffer(outputFrameBuffer);
         }
         
-        for (size_t j = 0; j < inputFrameBuffers.size(); j++) {
-            beginVirtualNode->setResultFrameBufferToNextNodes(inputFrameBuffers[j]);
-        }
-        
+        // 启动整个滤镜链的渲染
         beginVirtualNode->render();
     }
     
