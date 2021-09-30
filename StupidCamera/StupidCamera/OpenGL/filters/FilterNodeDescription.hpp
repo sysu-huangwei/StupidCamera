@@ -12,6 +12,7 @@
 
 namespace effect {
 
+/// 滤镜节点的描述
 typedef struct {
     
     // 当前节点的ID
@@ -27,8 +28,8 @@ typedef struct {
     
 } FilterNodeDescription;
 
-extern const std::string defaultBeginID;
-extern const FilterNodeDescription defaultBeginNodeDescription;
+extern const std::string defaultBeginID;  // 默认的起始节点的ID
+extern const FilterNodeDescription defaultBeginNodeDescription;  // 默认的起始节点
 
 }
 

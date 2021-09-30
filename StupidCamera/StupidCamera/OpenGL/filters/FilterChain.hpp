@@ -14,6 +14,7 @@
 
 namespace effect {
 
+/// 滤镜链，是多个滤镜效果的组合
 class FilterChain : public BaseFilter {
 public:
     
@@ -31,11 +32,11 @@ public:
     
 protected:
     
-    std::vector<FilterNodeDescription> nodeDescriptions;
+    std::vector<FilterNodeDescription> nodeDescriptions; // 滤镜链描述
     
-    std::shared_ptr<FilterNode> beginVirtualNode;
-    std::vector<std::shared_ptr<FilterNode>> lastNodes;
-    std::vector<std::shared_ptr<FilterNode>> allNodes;
+    std::shared_ptr<FilterNode> beginVirtualNode;  // 标记滤镜链开始的节点。这是一个虚拟节点，里面并没有真正的滤镜，只是用来标记这个渲染链的开端是哪几个。
+    std::vector<std::shared_ptr<FilterNode>> lastNodes;   // 滤镜链最后的节点。滤镜链最终绘制的结果由这些滤镜来绘制。
+    std::vector<std::shared_ptr<FilterNode>> allNodes;   // 滤镜链中所有的节点
     
     /// 是否所有输入已就绪
     virtual bool isAllInputReady() override;

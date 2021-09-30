@@ -16,31 +16,42 @@ FilterChain::FilterChain(const std::vector<FilterNodeDescription> &nodeDescripti
 }
 
 void FilterChain::init() {
-    map<string, vector<string>> nodeIDToNextIDs;
-    map<string, vector<int>> nodeIDToNextIndices;
-    map<string, shared_ptr<FilterNode>> nodeIDToNode;
+    
+    // 以下是根据滤镜链描述，来构造滤镜链的过程
+    
+    map<string, vector<string>> nodeIDToNextIDs;  // 当前节点ID对应的下一个(或几个)节点的ID
+    map<string, vector<int>> nodeIDToNextIndices;  // 当前节点ID对应下一个(或几个)节点的纹理下标
+    map<string, shared_ptr<FilterNode>> nodeIDToNode;  // 当前节点ID对应的真正渲染节点
     
     for (size_t i = 0; i < nodeDescriptions.size(); i++) {
+        // 遍历滤镜链描述里的每一个节点描述
         const FilterNodeDescription &nodeDescription = nodeDescriptions[i];
-        nodeIDToNextIDs[nodeDescription.id] = nodeDescription.nextIDs;
-        nodeIDToNextIndices[nodeDescription.id] = nodeDescription.nextTextureIndices;
         
+        // 根据滤镜节点描述，构造滤镜节点实例
         shared_ptr<FilterNode> filterNode = make_shared<FilterNode>(nodeDescription);
         
         if (nodeDescription.id != defaultBeginID) {
+            // 如果是正常的实体节点，那么初始化内部的滤镜
             filterNode->filter->init();
             allNodes.push_back(filterNode);
         } else {
+            // 如果是虚拟起始节点，记录下来
             beginVirtualNode = filterNode;
         }
         
+        // 如果一个滤镜节点没有后续节点，就说明这个节点是最后的节点（最后的节点可能不止一个）
         if (nodeDescription.nextIDs.empty()) {
             lastNodes.push_back(filterNode);
         }
         
+        // 记录当前节点ID对应的下一个节点的ID和纹理下标
+        nodeIDToNextIDs[nodeDescription.id] = nodeDescription.nextIDs;
+        nodeIDToNextIndices[nodeDescription.id] = nodeDescription.nextTextureIndices;
+        // 记录当前节点ID对应的真正节点对象
         nodeIDToNode[nodeDescription.id] = filterNode;
     }
     
+    // 根据记录下来的各个节点ID先后顺序的关系，对应到真正的节点实例中去
     for (auto it = nodeIDToNextIDs.begin(); it != nodeIDToNextIDs.end(); it++) {
         const string &nodeID = (*it).first;
         const vector<string> &nextIDs = (*it).second;

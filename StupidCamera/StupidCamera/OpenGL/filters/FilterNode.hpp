@@ -13,6 +13,7 @@
 
 namespace effect {
 
+/// 滤镜节点
 class FilterNode {
 public:
     
