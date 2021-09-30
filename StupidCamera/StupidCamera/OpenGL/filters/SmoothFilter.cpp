@@ -16,10 +16,9 @@ SmoothFilter::SmoothFilter() : FilterChain(FilterFactory::getChainDescByType("Sm
 
 void SmoothFilter::setParams(const std::map<std::string, std::string> &param) {
     if (param.find(FilterParam_Blur_Alpha) != param.end()) {
-        for (const std::shared_ptr<FilterNode> &node : allNodes) {
-            if (node->getID() == "mix") {
-                node->setParams({{FilterParam_Mix_Alpha, param.at(FilterParam_Blur_Alpha)}});
-            }
+        std::shared_ptr<BaseFilter> mixFilter = getFilterByNodeID("mix");
+        if (mixFilter) {
+            mixFilter->setParams({{FilterParam_Mix_Alpha, param.at(FilterParam_Blur_Alpha)}});
         }
     }
 }

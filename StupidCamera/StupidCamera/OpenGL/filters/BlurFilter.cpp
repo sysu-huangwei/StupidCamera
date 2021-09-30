@@ -16,8 +16,13 @@ BlurFilter::BlurFilter() : FilterChain(FilterFactory::getChainDescByType("BlurFi
 void BlurFilter::setOutputSize(int outputWidth, int outputHeight) {
     scaleWH(outputWidth, outputHeight);
     FilterChain::setOutputSize(outputWidth, outputHeight);
-    for (const std::shared_ptr<FilterNode> &node : allNodes) {
-        node->setOutputSize(outputWidth, outputHeight);
+    std::shared_ptr<BaseFilter> blurHFilter = getFilterByNodeID("blurH");
+    if (blurHFilter) {
+        blurHFilter->setOutputSize(outputWidth, outputHeight);
+    }
+    std::shared_ptr<BaseFilter> blurVFilter = getFilterByNodeID("blurV");
+    if (blurVFilter) {
+        blurVFilter->setOutputSize(outputWidth, outputHeight);
     }
 }
 

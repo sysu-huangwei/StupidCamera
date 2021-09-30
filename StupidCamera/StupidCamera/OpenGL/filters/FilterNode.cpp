@@ -16,14 +16,6 @@ FilterNode::FilterNode(const FilterNodeDescription &nodeDesc) {
     }
 }
 
-std::string FilterNode::getID() {
-    return id;
-}
-
-void FilterNode::setOutputSize(int outputWidth, int outputHeight) {
-    filter->setOutputSize(outputWidth, outputHeight);
-}
-
 void FilterNode::render() {
     if (id != defaultBeginID) {
         if (outputFrameBuffer) {
@@ -36,10 +28,6 @@ void FilterNode::render() {
         }
     }
     informNextNodesToRender();
-}
-
-void FilterNode::setParams(const std::map<std::string, std::string> &param) {
-    filter->setParams(param);
 }
 
 void FilterNode::setOutputFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBuffer) {

@@ -47,8 +47,9 @@ protected:
     // 滤镜链中所有的节点
     std::vector<std::shared_ptr<FilterNode>> allNodes;
     
-    /// 是否所有输入已就绪
-    virtual bool isAllInputReady() override;
+    /// 根据节点ID，获取当前滤镜链内部的某个滤镜实例。通常用于给滤镜链子类去精准控制每一个滤镜，例如设置尺寸、设置mesh等。
+    /// @param id 滤镜节点ID
+    const std::shared_ptr<BaseFilter> getFilterByNodeID(const std::string &id);
 };
 
 }

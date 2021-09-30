@@ -89,8 +89,14 @@ void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
     unlockAndClearAllInputFrameBuffers();
 }
 
-bool FilterChain::isAllInputReady() {
-    return true;
+const std::shared_ptr<BaseFilter> FilterChain::getFilterByNodeID(const std::string &id) {
+    std::shared_ptr<BaseFilter> filter = nullptr;
+    for (size_t i = 0; i < allNodes.size(); i++) {
+        if (allNodes[i]->id == id) {
+            filter = allNodes[i]->filter;
+        }
+    }
+    return filter;
 }
 
 }
