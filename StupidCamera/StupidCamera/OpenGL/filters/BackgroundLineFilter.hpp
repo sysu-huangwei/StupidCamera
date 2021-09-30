@@ -28,7 +28,7 @@ public:
     /// 设置绘制尺寸
     /// @param outputWidth 宽
     /// @param outputHeight 高
-    virtual void setOutputSize(int outputWidth, int outputHeight);
+    virtual void setOutputSize(int outputWidth, int outputHeight) override;
     
     /// 设置输入图像的FBO
     /// @param inputFrameBuffer 输入图像的FBO

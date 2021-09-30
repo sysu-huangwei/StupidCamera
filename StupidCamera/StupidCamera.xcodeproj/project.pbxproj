@@ -304,6 +304,33 @@
 			path = base;
 			sourceTree = "<group>";
 		};
+		FCC8A32E2705B34B00E49DF4 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				FC7AAAE026942F7500CA4E75 /* FilterConstant.hpp */,
+				FCEF7AF22627047C00F20ED0 /* BaseFilter.cpp */,
+				FCEF7AF62627047C00F20ED0 /* BaseFilter.hpp */,
+				FCCB26AB26FC266D00F09C7F /* FilterDescription.cpp */,
+				FCCB26AC26FC266D00F09C7F /* FilterDescription.hpp */,
+				FCCB292F26FDAC0900F09C7F /* FilterNode.cpp */,
+				FCCB293026FDAC0900F09C7F /* FilterNode.hpp */,
+				FCCB28A126FC7CFE00F09C7F /* FilterNodeDescription.cpp */,
+				FCCB28A226FC7CFE00F09C7F /* FilterNodeDescription.hpp */,
+				FCCB27AB26FC6A7200F09C7F /* FilterChain.cpp */,
+				FCCB27AC26FC6A7200F09C7F /* FilterChain.hpp */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		FCC8A32F2705B37B00E49DF4 /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				FCCB26B326FC5FD100F09C7F /* FilterFactory.cpp */,
+				FCCB26B426FC5FD100F09C7F /* FilterFactory.hpp */,
+			);
+			path = factory;
+			sourceTree = "<group>";
+		};
 		FCCB18D026DE26F700F09C7F /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,9 +437,8 @@
 		FCEB086D26CF57AB001ACDEF /* filters */ = {
 			isa = PBXGroup;
 			children = (
-				FC7AAAE026942F7500CA4E75 /* FilterConstant.hpp */,
-				FCEF7AF22627047C00F20ED0 /* BaseFilter.cpp */,
-				FCEF7AF62627047C00F20ED0 /* BaseFilter.hpp */,
+				FCC8A32E2705B34B00E49DF4 /* base */,
+				FCC8A32F2705B37B00E49DF4 /* factory */,
 				FCEF7AF82627047C00F20ED0 /* CopyFilter.cpp */,
 				FCEF7AF32627047C00F20ED0 /* CopyFilter.hpp */,
 				FCEF7B0926270E7200F20ED0 /* LutFilter.cpp */,
@@ -439,16 +465,6 @@
 				FCEF7E1B26316CFC00F20ED0 /* MeshFilter.hpp */,
 				FC892A44266DF76F000F4513 /* BackgroundMeshFilter.cpp */,
 				FC892A45266DF76F000F4513 /* BackgroundMeshFilter.hpp */,
-				FCCB26AB26FC266D00F09C7F /* FilterDescription.cpp */,
-				FCCB26AC26FC266D00F09C7F /* FilterDescription.hpp */,
-				FCCB26B326FC5FD100F09C7F /* FilterFactory.cpp */,
-				FCCB26B426FC5FD100F09C7F /* FilterFactory.hpp */,
-				FCCB292F26FDAC0900F09C7F /* FilterNode.cpp */,
-				FCCB293026FDAC0900F09C7F /* FilterNode.hpp */,
-				FCCB28A126FC7CFE00F09C7F /* FilterNodeDescription.cpp */,
-				FCCB28A226FC7CFE00F09C7F /* FilterNodeDescription.hpp */,
-				FCCB27AB26FC6A7200F09C7F /* FilterChain.cpp */,
-				FCCB27AC26FC6A7200F09C7F /* FilterChain.hpp */,
 			);
 			path = filters;
 			sourceTree = "<group>";
