@@ -77,7 +77,7 @@ void SCEffectEngine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFram
     sharpenFilter->renderToFrameBuffer(outputFrameBuffer);
 }
 
-void SCEffectEngine::setFaceData(SCFaceData *faceData) {
+void SCEffectEngine::setFaceData(std::shared_ptr<FaceData> faceData) {
     smallHeadFilter->setFaceData(faceData);
 }
 

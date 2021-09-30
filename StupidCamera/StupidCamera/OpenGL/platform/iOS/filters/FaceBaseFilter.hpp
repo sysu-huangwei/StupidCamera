@@ -7,7 +7,8 @@
 #ifndef FaceBaseFilter_hpp
 #define FaceBaseFilter_hpp
 
-#include "SCFaceData.hpp"
+#include <memory>
+#include "FaceData.hpp"
 
 namespace effect {
 
@@ -15,14 +16,14 @@ namespace effect {
 class FaceBaseFilter {
 public:
 
-    ~FaceBaseFilter();
-    
     /// 设置人脸数据
     /// @param faceData 人脸数据
-    virtual void setFaceData(SCFaceData *faceData) = 0;
+    virtual void setFaceData(std::shared_ptr<FaceData> faceData) = 0;
     
 protected:
-    SCFaceData *faceData = NULL;
+    
+    // 人脸数据
+    std::shared_ptr<FaceData> faceData = nullptr;
 };
 
 }

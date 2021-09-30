@@ -8,7 +8,7 @@
 #define SCEffectEngine_hpp
 
 #include <vector>
-#include "SCFaceData.hpp"
+#include "FaceData.hpp"
 #include "LutFilter.hpp"
 #include "SmallHeadFilter.hpp"
 #include "SmoothFilter.hpp"
@@ -46,14 +46,14 @@ public:
     
     /// 设置人脸数据
     /// @param faceData 人脸数据
-    void setFaceData(SCFaceData *faceData);
+    void setFaceData(std::shared_ptr<FaceData> faceData);
     
     /// 设置各种参数
     /// @param params 参数，key为滤镜的名称，value是一整个map，是给这个滤镜具体的参数。
     void setParams(const std::map<std::string, std::map<std::string, std::string> > &params);
     
 private:
-    std::shared_ptr<SCFaceData> faceData;
+    std::shared_ptr<FaceData> faceData;
     std::vector<std::shared_ptr<BaseFilter>> currentFilters;
     std::shared_ptr<LutFilter> lutFilter;
     std::shared_ptr<SmallHeadFilter> smallHeadFilter;

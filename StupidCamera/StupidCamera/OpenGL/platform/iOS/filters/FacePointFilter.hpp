@@ -21,7 +21,7 @@ public:
     
     /// 设置人脸数据
     /// @param faceData 人脸数据
-    virtual void setFaceData(SCFaceData *faceData) override;
+    virtual void setFaceData(std::shared_ptr<FaceData> faceData) override;
 };
 
 }

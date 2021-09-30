@@ -122,8 +122,8 @@
     self->effectEngine->setParams(params);
 }
 
-- (void)setFaceData:(SCFaceDataIOS *)faceData {
-    self->effectEngine->setFaceData(faceData.faceData);
+- (void)setFaceData:(FaceDataIOS *)faceData {
+//    self->effectEngine->setFaceData(faceData.faceData);
 }
 
 @end

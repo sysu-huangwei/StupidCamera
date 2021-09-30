@@ -221,7 +221,7 @@
             [_faceDataDict addObject:oneFaceDict];
         }
     }
-        [_effectFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
+//        [_effectFilter setFaceData:[[FaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
 }
 
 - (UIImage*)changeBufferToImage:(CMSampleBufferRef)sampleBufferRef {

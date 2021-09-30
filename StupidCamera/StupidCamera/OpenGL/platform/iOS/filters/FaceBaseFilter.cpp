@@ -8,20 +8,8 @@
 
 namespace effect {
 
-FaceBaseFilter::~FaceBaseFilter() {
-    if (faceData) {
-        freeSCFaceData(&faceData);
-    }
-}
-
-void FaceBaseFilter::setFaceData(SCFaceData *faceData) {
-    if (faceData) {
-        if (!this->faceData) {
-            this->faceData = newAndCopySCFaceData(faceData);
-        } else {
-            copySCFaceData(faceData, this->faceData);
-        }
-    }
+void FaceBaseFilter::setFaceData(std::shared_ptr<FaceData> faceData) {
+    this->faceData = faceData;
 }
 
 }
