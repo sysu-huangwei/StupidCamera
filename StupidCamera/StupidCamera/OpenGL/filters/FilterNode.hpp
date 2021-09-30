@@ -49,7 +49,9 @@ protected:
     
     std::shared_ptr<FrameBuffer> outputFrameBuffer = nullptr;
     
-    void setOutputFrameBufferToNextNodes(std::shared_ptr<FrameBuffer> output);
+    void setResultFrameBufferToNextNodes(std::shared_ptr<FrameBuffer> output);
+    
+    void informNextNodesToRender();
 };
 
 }

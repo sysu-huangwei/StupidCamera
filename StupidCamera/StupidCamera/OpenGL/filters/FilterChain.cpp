@@ -71,11 +71,11 @@ void FilterChain::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFrameBu
             lastNodes[i]->setOutputFrameBuffer(outputFrameBuffer);
         }
         
-        for (size_t i = 0; i < beginVirtualNode->nextNodes.size(); i++) {
-            for (size_t j = 0; j < inputFrameBuffers.size(); j++) {
-                beginVirtualNode->setOutputFrameBufferToNextNodes(inputFrameBuffers[j]);
-            }
+        for (size_t j = 0; j < inputFrameBuffers.size(); j++) {
+            beginVirtualNode->setResultFrameBufferToNextNodes(inputFrameBuffers[j]);
         }
+        
+        beginVirtualNode->render();
     }
     
     unlockAndClearAllInputFrameBuffers();

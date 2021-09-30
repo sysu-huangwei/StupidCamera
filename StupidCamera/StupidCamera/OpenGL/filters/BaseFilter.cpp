@@ -44,6 +44,7 @@ std::shared_ptr<FrameBuffer> BaseFilter::render() {
     if (width == 0 || height == 0) {
         width = firstInputWidth;
         height = firstInputHeight;
+        resize(width, height);
     }
     
     std::shared_ptr<FrameBuffer> outputFrameBuffer = FrameBufferPool::getSharedInstance()->fetchFrameBufferFromPool(width, height);

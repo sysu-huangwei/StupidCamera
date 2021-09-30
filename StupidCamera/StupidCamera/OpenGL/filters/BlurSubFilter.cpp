@@ -13,6 +13,7 @@ void BlurSubFilter::init() {
 }
 
 void BlurSubFilter::resize(int width, int height) {
+    BaseFilter::resize(width, height);
     if (direction == BlurDirection_Horizontal) {
         widthOffset = 1.0f / (float)width;
         heightOffset = 0.0f;
