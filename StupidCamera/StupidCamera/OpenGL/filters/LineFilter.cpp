@@ -9,6 +9,10 @@
 
 namespace effect {
 
+LineFilter::~LineFilter() {
+    SAFE_DELETE_ARRAY(this->lines);
+}
+
 void LineFilter::init() {
     BaseFilter::initWithVertexStringAndFragmentString("line", "line");
 }

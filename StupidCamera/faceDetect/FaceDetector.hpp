@@ -22,6 +22,7 @@ public:
     
 private:
     
+    void* faceTracker;
     void* faceLandmarker;
     
     FaceDetector(const FaceDetector &) = delete;

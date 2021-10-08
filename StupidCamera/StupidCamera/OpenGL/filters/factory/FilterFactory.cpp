@@ -15,6 +15,8 @@
 #include "SmoothFilter.hpp"
 #include "PointFilter.hpp"
 #include "BackgroundPointFilter.hpp"
+#include "LineFilter.hpp"
+#include "BackgroundLineFilter.hpp"
 #include "MeshFilter.hpp"
 #include "BackgroundMeshFilter.hpp"
 
@@ -37,6 +39,10 @@ std::shared_ptr<BaseFilter> FilterFactory::createFilter(const FilterDescription 
         filter = std::make_shared<PointFilter>();
     } else if (filterDesc.type == FilterType_BackgroundPoint) {
         filter = std::make_shared<BackgroundPointFilter>();
+    } else if (filterDesc.type == FilterType_Line) {
+        filter = std::make_shared<LineFilter>();
+    } else if (filterDesc.type == FilterType_BackgroundLine) {
+        filter = std::make_shared<BackgroundLineFilter>();
     } else if (filterDesc.type == FilterType_Mesh) {
         filter = std::make_shared<MeshFilter>();
     } else if (filterDesc.type == FilterType_BackgroundMesh) {

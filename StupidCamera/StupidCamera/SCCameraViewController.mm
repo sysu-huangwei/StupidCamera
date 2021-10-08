@@ -273,6 +273,23 @@
     FaceData faceData = faceDetector->detect(pImageData, bytesPerRow, height, {faceRect});
     [_effectFilter setFaceData:faceData];
     
+    BOOL b = NO;
+    if (b) {
+        int faceOriginX = _faceRect.origin.x * bytesPerRow;
+        int faceOriginY = _faceRect.origin.y * height;
+        int faceWidth = _faceRect.size.width * bytesPerRow;
+        int faceHeight = _faceRect.size.height * height;
+        unsigned char *testImageData = new unsigned char[faceWidth * faceHeight];
+        unsigned char *testImageDataCopy = testImageData;
+        for (int h = faceOriginY; h < faceOriginY + faceHeight; h++) {
+            unsigned char *pCurrentData = pImageData + h * bytesPerRow + faceOriginX;
+            memcpy(testImageDataCopy, pCurrentData, sizeof(unsigned char) * faceWidth);
+            testImageDataCopy += faceWidth;
+        }
+        UIImage *testImage = [self transferToImageWithData:testImageData withWidth:faceWidth withHeight:faceHeight];
+        delete [] testImageData;
+    }
+    
     CVPixelBufferUnlockBaseAddress(cvImageBufferRef, 0);
 }
 

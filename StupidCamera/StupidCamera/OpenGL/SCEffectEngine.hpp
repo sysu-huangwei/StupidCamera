@@ -14,6 +14,7 @@
 #include "SmoothFilter.hpp"
 #include "SharpenFilter.hpp"
 #include "FacePointFilter.hpp"
+#include "BackgroundLineFilter.hpp"
 
 namespace effect {
 
@@ -61,6 +62,7 @@ private:
     std::shared_ptr<SmoothFilter> smoothFilter;
     std::shared_ptr<SharpenFilter> sharpenFilter;
     std::shared_ptr<FacePointFilter> facePointFilter;
+    std::shared_ptr<BackgroundLineFilter> lineFilter;
 };
 
 }

@@ -17,11 +17,13 @@ SCEffectEngine::SCEffectEngine() {
     smoothFilter = std::make_shared<SmoothFilter>();
     sharpenFilter = std::make_shared<SharpenFilter>();
     facePointFilter = std::make_shared<FacePointFilter>();
+    lineFilter = std::make_shared<BackgroundLineFilter>();
     currentFilters.push_back(lutFilter);
     currentFilters.push_back(smallHeadFilter);
     currentFilters.push_back(smoothFilter);
     currentFilters.push_back(sharpenFilter);
     currentFilters.push_back(facePointFilter);
+    currentFilters.push_back(lineFilter);
 }
 
 SCEffectEngine::~SCEffectEngine() {
@@ -34,6 +36,7 @@ void SCEffectEngine::init() {
     smoothFilter->init();
     sharpenFilter->init();
     facePointFilter->init();
+    lineFilter->init();
 }
 
 void SCEffectEngine::release() {
@@ -42,6 +45,7 @@ void SCEffectEngine::release() {
     smoothFilter->release();
     sharpenFilter->release();
     facePointFilter->release();
+    lineFilter->release();
     FrameBufferPool::getSharedInstance()->clearFrameBufferPool();
     ProgramPool::getSharedInstance()->clearProgramFromPool();
 }
@@ -83,12 +87,43 @@ void SCEffectEngine::renderToFrameBuffer(std::shared_ptr<FrameBuffer> outputFram
     facePointFilter->setInputFrameBufferAtIndex(sharpenResult);
     sharpenResult->unlock();
     
-    facePointFilter->renderToFrameBuffer(outputFrameBuffer);
+    std::shared_ptr<FrameBuffer> pointResult = facePointFilter->render();
+    lineFilter->setInputFrameBufferAtIndex(pointResult);
+    pointResult->unlock();
+    
+    lineFilter->renderToFrameBuffer(outputFrameBuffer);
 }
 
 void SCEffectEngine::setFaceData(std::shared_ptr<FaceData> faceData) {
     smallHeadFilter->setFaceData(faceData);
     facePointFilter->setFaceData(faceData);
+    if (faceData->faceCount > 0) {
+        std::vector<BaseLine> lines;
+        BasePoint topLeft, topRight, bottomLeft, bottomRight;
+        topLeft.x = faceData->faces[0].faceRect.x;
+        topLeft.y = faceData->faces[0].faceRect.y;
+        topRight.x = faceData->faces[0].faceRect.x + faceData->faces[0].faceRect.width;
+        topRight.y = faceData->faces[0].faceRect.y;
+        bottomLeft.x = faceData->faces[0].faceRect.x;
+        bottomLeft.y = faceData->faces[0].faceRect.y + faceData->faces[0].faceRect.height;
+        bottomRight.x = faceData->faces[0].faceRect.x + faceData->faces[0].faceRect.width;
+        bottomRight.y = faceData->faces[0].faceRect.y + faceData->faces[0].faceRect.height;
+        BaseLine leftLight, topLine, rightLine, bottomLine;
+        leftLight.p0 = topLeft;
+        leftLight.p1 = bottomLeft;
+        topLine.p0 = topLeft;
+        topLine.p1 = topRight;
+        rightLine.p0 = topRight;
+        rightLine.p1 = bottomRight;
+        bottomLine.p0 = bottomLeft;
+        bottomLine.p1 = bottomRight;
+        lines.push_back(leftLight);
+        lines.push_back(topLine);
+        lines.push_back(rightLine);
+        lines.push_back(bottomLine);
+        
+        lineFilter->setLines(lines);
+    }
 }
 
 void SCEffectEngine::setParams(const std::map<std::string, std::map<std::string, std::string> > &params) {
