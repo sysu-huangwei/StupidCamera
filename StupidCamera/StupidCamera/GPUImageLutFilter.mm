@@ -19,6 +19,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         runSynchronouslyOnVideoProcessingQueue(^{
+            [GPUImageContext useImageProcessingContext];
             self->lutFilter = new SCFilterLut();
             self->lutFilter->init();
         });
@@ -28,6 +29,7 @@
 
 - (void)dealloc {
     runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
         self->lutFilter->release();
         delete self->lutFilter;
     });
@@ -36,6 +38,7 @@
 - (void)setupFilterForSize:(CGSize)filterFrameSize;
 {
     runSynchronouslyOnVideoProcessingQueue(^{
+        [GPUImageContext useImageProcessingContext];
         self->lutFilter->resize(filterFrameSize.width, filterFrameSize.height);
     });
 }
