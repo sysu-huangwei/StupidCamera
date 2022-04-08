@@ -21,6 +21,7 @@
 		FC892B6A2678CE45000F4513 /* SCFilterBackgroundPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B682678CE45000F4513 /* SCFilterBackgroundPoint.cpp */; };
 		FC892B6E267996EB000F4513 /* SCFaceDataIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */; };
 		FC892B72267999D5000F4513 /* SCFaceData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC892B71267999D5000F4513 /* SCFaceData.cpp */; };
+		FCD94B802800594400B79149 /* 基础模特图.png in Resources */ = {isa = PBXBuildFile; fileRef = FCD94B7F2800594400B79149 /* 基础模特图.png */; };
 		FCEF78E32626961D00F20ED0 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */; };
 		FCEF78EB2626C31700F20ED0 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEF78EA2626C31700F20ED0 /* BaseViewController.m */; };
 		FCEF7A9C2626E10300F20ED0 /* GPUImageBaseFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCEF7A9B2626E10300F20ED0 /* GPUImageBaseFilter.mm */; };
@@ -69,6 +70,7 @@
 		FC892B6C267996EB000F4513 /* SCFaceDataIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCFaceDataIOS.h; sourceTree = "<group>"; };
 		FC892B6D267996EB000F4513 /* SCFaceDataIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCFaceDataIOS.m; sourceTree = "<group>"; };
 		FC892B71267999D5000F4513 /* SCFaceData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCFaceData.cpp; sourceTree = "<group>"; };
+		FCD94B7F2800594400B79149 /* 基础模特图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "基础模特图.png"; path = "../../../基础模特图.png"; sourceTree = "<group>"; };
 		FCEF78E02626961D00F20ED0 /* EditPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
 		FCEF78E12626961D00F20ED0 /* EditPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
 		FCEF78E92626C31700F20ED0 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		FC6A35452624358100CA4434 = {
 			isa = PBXGroup;
 			children = (
+				FCD94B7F2800594400B79149 /* 基础模特图.png */,
 				FC6A35502624358100CA4434 /* StupidCamera */,
 				FC6A354F2624358100CA4434 /* Products */,
 				712F004BBF0E3CDCE92ED728 /* Pods */,
@@ -324,6 +327,7 @@
 				FC6A35612624358100CA4434 /* LaunchScreen.storyboard in Resources */,
 				FC6A355E2624358100CA4434 /* Assets.xcassets in Resources */,
 				FC6A355C2624358100CA4434 /* Main.storyboard in Resources */,
+				FCD94B802800594400B79149 /* 基础模特图.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

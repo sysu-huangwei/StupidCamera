@@ -19,7 +19,8 @@
 @property (strong, nonatomic) UILabel *lutAlphaLabel;
 @property (strong, nonatomic) UIButton *captureButton;
 
-@property (strong, nonatomic) GPUImageStillCamera *camera;
+@property (strong, nonatomic) GPUImagePicture *picture;
+//@property (strong, nonatomic) GPUImageStillCamera *camera;
 @property (strong, nonatomic) GPUImageBaseFilter *baseFilter;
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
@@ -44,7 +45,8 @@
     [self initLutAlphaSlider];
     [self initLutAlphaLabel];
     [self initCamera];
-    [_camera startCameraCapture];
+//    [_camera startCameraCapture];
+    [_picture processImage];
     _faceDataDict = [[NSMutableArray alloc] init];
     _lutImagePaths = @[
         @"",
@@ -149,30 +151,43 @@
 
 
 - (void)initCamera {
-    if (!_camera) {
-        _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
-        _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
-        _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
-        [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
-        [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
-        [_camera enableFaceDetect:YES];
+    if (!_picture) {
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
-        [_camera addTarget:_faceMeshFilter];
-        [_faceMeshFilter addTarget:self.imageView];
-//        [_faceLineFilter addTarget:self.imageView];
+        
+        NSString *path = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"基础模特图.png"];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+        _picture = [[GPUImagePicture alloc] initWithImage:image];
+        [_picture addTarget:_facePointFilter];
+        [_facePointFilter addTarget:self.imageView];
     }
+
+//    if (!_camera) {
+//        _camera = [[GPUImageStillCamera alloc] initWithSessionPreset:AVCaptureSessionPresetPhoto cameraPosition:AVCaptureDevicePositionFront];
+//        _camera.outputImageOrientation = UIInterfaceOrientationPortrait;//设置照片的方向为设备的定向
+//        _camera.horizontallyMirrorFrontFacingCamera = YES;//设置前置是否为镜像
+//        [_camera setCaptureSessionPreset:AVCaptureSessionPresetPhoto];
+//        [_camera setAVCaptureMetadataOutputObjectsDelegate:self];
+//        [_camera enableFaceDetect:YES];
+//        _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
+//        _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
+//        _facePointFilter = [[GPUImageFacePointFilter alloc] init];
+//        [_camera addTarget:_facePointFilter];
+//        [_facePointFilter addTarget:self.imageView];
+////        [_faceLineFilter addTarget:self.imageView];
+//    }
 }
 
 - (void)takePhoto:(void (^)(UIImage *image))block {
     if (!block) {
         return;
     }
-    [self->_camera capturePhotoAsImageProcessedUpToFilter:_faceMeshFilter withCompletionHandler:^(UIImage *image, NSError *error) {
-        [self->_camera stopCameraCapture];
-        block(image);
-    }];
+    [_picture processImage];
+//    [self->_camera capturePhotoAsImageProcessedUpToFilter:_faceMeshFilter withCompletionHandler:^(UIImage *image, NSError *error) {
+//        [self->_camera stopCameraCapture];
+//        block(image);
+//    }];
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate

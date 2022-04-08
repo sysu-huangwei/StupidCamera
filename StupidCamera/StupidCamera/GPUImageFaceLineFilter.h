@@ -8,7 +8,7 @@
 #if __cplusplus
 extern "C" {
 #endif
-#import <GPUImage/GPUImage.h>
+#import <GPUImage/GPUImageFilter.h>
 #if __cplusplus
 }
 #endif
