@@ -25,10 +25,12 @@ public:
     /// 设置需要画的点，内部会做拷贝【此接口和render并行调用会有线程问题，需要保证先后顺序】
     /// @param points 点位信息，{x1,y1,x2,y2……}  需要归一化到0到1的点
     /// @param pointsCount 点的数量，一般是points的长度/2
-    void setPoints(float *points, int pointsCount);
+    void setPoints(float *points, int pointsCount, float r = 1.0f, float g = 0.0f, float b = 0.0f);
     
 protected:
     float *points = nullptr;
+    float r = 1.0f, g = 1.0f, b = 0.0f;
     int pointsCount = 0;
+    int colorUniform = -1;
 };
 #endif /* SCFilterPoint_hpp */

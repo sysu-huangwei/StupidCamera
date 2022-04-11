@@ -23,9 +23,11 @@ const char *kSCFilterPointFragmentShaderString = SHADER_STRING_CPP
 (
  precision highp float;
  
+ uniform vec3 color;
+ 
  void main()
  {
-    gl_FragColor = vec4(1,0,0,1);
+    gl_FragColor = vec4(color,1);
  }
 );
 
@@ -43,6 +45,7 @@ SCFilterPoint::~SCFilterPoint() {
 void SCFilterPoint::init() {
     SCFilterBase::initWithVertexStringAndFragmentString(kSCFilterPointVertexShaderString, kSCFilterPointFragmentShaderString);
     positionAttribute = glGetAttribLocation(programID, "a_position");
+    colorUniform = glGetUniformLocation(programID, "color");
 //    textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
 //    inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
 }
@@ -77,6 +80,8 @@ unsigned SCFilterPoint::render() {
 //    glBindTexture(GL_TEXTURE_2D, srcTextureID);
 //    glUniform1i(inputImageTextureUniform, 2);
     
+    glUniform3f(colorUniform, r, g, b);
+    
     glDrawArrays(GL_POINTS, 0, pointsCount);
     
     afterDraw();
@@ -84,7 +89,10 @@ unsigned SCFilterPoint::render() {
 }
 
 
-void SCFilterPoint::setPoints(float *points, int pointsCount) {
+void SCFilterPoint::setPoints(float *points, int pointsCount, float r, float g, float b) {
+    this->r = r;
+    this->g = g;
+    this->b = b;
     if (pointsCount != this->pointsCount) {
         if (this->points) {
             delete [] this->points;

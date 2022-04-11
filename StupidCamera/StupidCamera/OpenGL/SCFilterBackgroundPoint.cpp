@@ -47,6 +47,6 @@ void SCFilterBackgroundPoint::setOutsideTextureAndFbo(unsigned textureIDOutside,
     pointFilter->setOutsideTextureAndFbo(textureIDOutside, fboIDOutside);
 }
 
-void SCFilterBackgroundPoint::setPoints(float *points, int pointsCount) {
-    pointFilter->setPoints(points, pointsCount);
+void SCFilterBackgroundPoint::setPoints(float *points, int pointsCount, float r, float g, float b) {
+    pointFilter->setPoints(points, pointsCount, r, g, b);
 }
