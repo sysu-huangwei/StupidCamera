@@ -180,7 +180,8 @@
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
         [_camera addTarget:_lutFilter];
         [_lutFilter addTarget:_facePointFilter];
-        [_facePointFilter addTarget:self.imageView];
+        [_facePointFilter addTarget:_faceMeshFilter];
+        [_faceMeshFilter addTarget:self.imageView];
     }
 }
 
@@ -236,7 +237,7 @@
     }
     [_facePointFilter setFaceDataDict:_faceDataDict];
 //    [_faceMeshFilter setFaceDataDict:_faceDataDict];
-    [_faceMeshFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
+//    [_faceMeshFilter setFaceData:[[SCFaceDataIOS alloc] initWithFaceDataDictArray:_faceDataDict]];
     [_faceLineFilter setFaceDataDict:_faceDataDict];
 }
 
