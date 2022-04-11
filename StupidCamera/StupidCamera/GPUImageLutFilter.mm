@@ -76,7 +76,15 @@
     });
 }
 
+- (void)setLutImagePath2:(NSString *)lutImagePath2 {
+    runSynchronouslyOnVideoProcessingQueue(^{
+        self->_lutImagePath2 = lutImagePath2;
+        self->lutFilter->setLutImagePath2(self->_lutImagePath2.UTF8String);
+    });
+}
+
 - (void)setAlpha:(float)alpha {
+    _alpha = alpha;
     lutFilter->setAlpha(alpha);
 }
 

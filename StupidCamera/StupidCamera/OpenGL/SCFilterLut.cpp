@@ -27,6 +27,7 @@ const char *kSCFilterLutFragmentShaderString = SHADER_STRING_CPP
  
  uniform sampler2D u_texture;
  uniform sampler2D u_lut;
+ uniform sampler2D u_lut2;
  varying vec2 texcoordOut;
  
  uniform float alpha;
@@ -58,6 +59,11 @@ const char *kSCFilterLutFragmentShaderString = SHADER_STRING_CPP
     
     vec4 newColor = mix(newColor1, newColor2, fract(blueColor));
     gl_FragColor = mix(textureColor, vec4(newColor.rgb, textureColor.w), alpha);
+    if (alpha > 0.5) {
+        gl_FragColor = texture2D(u_lut, texcoordOut);
+    } else {
+        gl_FragColor = texture2D(u_lut2, texcoordOut);
+    }
 }
  );
 
@@ -75,6 +81,7 @@ void SCFilterLut::init() {
     textureCoordinateAttribute = glGetAttribLocation(programID, "a_texCoord");
     inputImageTextureUniform = glGetUniformLocation(programID, "u_texture");
     lutTextureUniform = glGetUniformLocation(programID, "u_lut");
+    lutTexture2Uniform = glGetUniformLocation(programID, "u_lut2");
     alphaUniform = glGetUniformLocation(programID, "alpha");
 }
 
@@ -83,6 +90,10 @@ void SCFilterLut::release() {
     if (lutTextureID > 0) {
         glDeleteTextures(1, &lutTextureID);
         lutTextureID = 0;
+    }
+    if (lutTexture2ID > 0) {
+        glDeleteTextures(1, &lutTexture2ID);
+        lutTexture2ID = 0;
     }
 }
 
@@ -100,6 +111,10 @@ unsigned SCFilterLut::render() {
     glBindTexture(GL_TEXTURE_2D, lutTextureID);
     glUniform1i(lutTextureUniform, 3);
     
+    glActiveTexture(GL_TEXTURE4);
+    glBindTexture(GL_TEXTURE_2D, lutTexture2ID);
+    glUniform1i(lutTexture2Uniform, 4);
+    
     glUniform1f(alphaUniform, alpha);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -115,6 +130,15 @@ void SCFilterLut::setLutImagePath(const char *path) {
         lutTextureID = 0;
     }
     this->lutTextureID = BaseGLUtils::LoadTexture_File(path, &width, &height);
+}
+
+void SCFilterLut::setLutImagePath2(const char *path2) {
+    int width, height;
+    if (lutTexture2ID > 0) {
+        glDeleteTextures(1, &lutTexture2ID);
+        lutTexture2ID = 0;
+    }
+    this->lutTexture2ID = BaseGLUtils::LoadTexture_File(path2, &width, &height);
 }
 
 void SCFilterLut::setAlpha(float alpha) {

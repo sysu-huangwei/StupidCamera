@@ -28,14 +28,16 @@ public:
     /// 设置LUT图路径，底层加载
     /// @param path LUT图的路径
     void setLutImagePath(const char *path);
+    void setLutImagePath2(const char *path2);
     
     /// 设置滤镜程度
     /// @param alpha 滤镜程度，0.0 ~ 1.0
     void setAlpha(float alpha);
     
 protected:
-    int lutTextureUniform = -1, alphaUniform = -1;
+    int lutTextureUniform = -1, lutTexture2Uniform = -1, alphaUniform = -1;
     unsigned lutTextureID = 0;
+    unsigned lutTexture2ID = 0;
     float alpha = 1.0f;
 };
 
