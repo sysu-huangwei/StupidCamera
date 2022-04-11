@@ -11,7 +11,6 @@
 #import "GPUImageBaseFilter.h"
 #import "GPUImageLutFilter.h"
 #import "GPUImageFacePointFilter.h"
-#import "GPUImageFacePointFilter2.h"
 #import "GPUImageFaceLineFilter.h"
 #import "GPUImageFaceMeshFilter.h"
 
@@ -25,7 +24,6 @@
 @property (strong, nonatomic) GPUImageBaseFilter *baseFilter;
 @property (strong, nonatomic) GPUImageLutFilter *lutFilter;
 @property (strong, nonatomic) GPUImageFacePointFilter *facePointFilter;
-@property (strong, nonatomic) GPUImageFacePointFilter2 *facePointFilter2;
 @property (strong, nonatomic) GPUImageFaceLineFilter *faceLineFilter;
 @property (strong, nonatomic) GPUImageFaceMeshFilter *faceMeshFilter;
 
@@ -129,7 +127,6 @@
     _lutAlphaLabel.text = [NSString stringWithFormat:@"%d", (int)(slider.value * 100)];
     [_lutFilter setAlpha:slider.value];
     [_facePointFilter setSmallFaceDegree:slider.value];
-    [_facePointFilter2 setSmallFaceDegree:slider.value];
     [_faceLineFilter setSmallFaceDegree:slider.value];
     [_faceMeshFilter setSmallFaceDegree:slider.value];
 }
@@ -181,11 +178,9 @@
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
-        _facePointFilter2 = [[GPUImageFacePointFilter2 alloc] init];
         [_camera addTarget:_lutFilter];
         [_lutFilter addTarget:_facePointFilter];
-        [_facePointFilter addTarget:_facePointFilter2];
-        [_facePointFilter2 addTarget:self.imageView];
+        [_facePointFilter addTarget:self.imageView];
     }
 }
 
