@@ -16,6 +16,7 @@ const char *kSCFilterMeshVertexShaderString = SHADER_STRING_CPP
  void main()
  {
     texcoordOut = a_position_std;
+//    texcoordOut = a_position;
     gl_Position = vec4(a_position * 2.0 - 1.0, 0.0, 1.0);
  }
 );
@@ -29,7 +30,12 @@ const char *kSCFilterMeshFragmentShaderString = SHADER_STRING_CPP
  void main()
  {
     vec4 srcColor = texture2D(u_texture,texcoordOut);
-    gl_FragColor = vec4(mix(srcColor.rgb, vec3(1,0,0), 0.5), 1.0);
+    highp vec2 coord = texcoordOut * 255.0;
+    highp float intX = floor(coord.x) / 255.0;
+    highp float floatX = fract(coord.x);
+    highp float intY = floor(coord.y) / 255.0;
+    highp float floatY = fract(coord.y);
+    gl_FragColor = vec4(texcoordOut, 0, 1);
  }
 );
 

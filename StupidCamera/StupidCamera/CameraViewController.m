@@ -178,6 +178,9 @@
         _faceMeshFilter = [[GPUImageFaceMeshFilter alloc] init];
         _faceLineFilter = [[GPUImageFaceLineFilter alloc] init];
         _facePointFilter = [[GPUImageFacePointFilter alloc] init];
+        [_lutFilter forceProcessingAtSize:CGSizeMake(2048.0, 2048.0)];
+        [_facePointFilter forceProcessingAtSize:CGSizeMake(2048.0, 2048.0)];
+        [_faceMeshFilter forceProcessingAtSize:CGSizeMake(2048.0, 2048.0)];
         [_camera addTarget:_lutFilter];
         [_lutFilter addTarget:_facePointFilter];
         [_facePointFilter addTarget:_faceMeshFilter];
